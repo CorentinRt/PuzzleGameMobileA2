@@ -68,22 +68,7 @@ public class ShapeSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (_boxCollider == Physics2D.OverlapPoint(mousePos))
-            {
-                if (_isOpen)
-                {
-                    CloseSelector();
-                }
-                else
-                {
-                    OpenSelector();
-                }
-            }
-        }
+        
     }
 
     IEnumerator OpenSelectorCoroutine()
