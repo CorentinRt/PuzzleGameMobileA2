@@ -1,11 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-
-public class ShapeManager : MonoBehaviour
+public class ShapeManagerNoCanvas : MonoBehaviour
 {
     private enum ShapeType
     {
@@ -25,7 +22,7 @@ public class ShapeManager : MonoBehaviour
 
     [SerializeField] private ShapePower _shapePower;
 
-    private Image _image;
+    private SpriteRenderer _spriteRd;
 
     [SerializeField] private AllShapesInfo _shapesInfo;
 
@@ -39,25 +36,17 @@ public class ShapeManager : MonoBehaviour
 
     private void ActivateGravity()
     {
+        Debug.Log("Dynamic");
         _body2D.bodyType = RigidbodyType2D.Dynamic;
     }
 
     private void OnValidate()
     {
-        _image = GetComponent<Image>();
-        
-        if(_boxCollider == null)
-        {
-            _boxCollider = GetComponent<BoxCollider2D>();
-        }
-        if(_circleCollider == null)
-        {
-            _circleCollider = GetComponent<CircleCollider2D>();
-        }
-        if(_triangleCollider == null)
-        {
-            _triangleCollider = GetComponent<PolygonCollider2D>();
-        }
+        _spriteRd = GetComponent<SpriteRenderer>();
+
+        _boxCollider = GetComponent<BoxCollider2D>();
+        _triangleCollider = GetComponent<PolygonCollider2D>();
+        _circleCollider = GetComponent<CircleCollider2D>();
 
         switch (_shapeType)
         {
@@ -66,7 +55,7 @@ public class ShapeManager : MonoBehaviour
                 {
                     if (info.Name == "Square")
                     {
-                        _image.sprite = info.Sprite;
+                        _spriteRd.sprite = info.Sprite;
                         break;
                     }
                 }
@@ -79,7 +68,7 @@ public class ShapeManager : MonoBehaviour
                 {
                     if (info.Name == "Triangle")
                     {
-                        _image.sprite = info.Sprite;
+                        _spriteRd.sprite = info.Sprite;
                         break;
                     }
                 }
@@ -92,7 +81,7 @@ public class ShapeManager : MonoBehaviour
                 {
                     if (info.Name == "Circle")
                     {
-                        _image.sprite = info.Sprite;
+                        _spriteRd.sprite = info.Sprite;
                         break;
                     }
                 }
@@ -105,22 +94,13 @@ public class ShapeManager : MonoBehaviour
 
     private void Awake()
     {
-        _image = GetComponent<Image>();
+        _spriteRd = GetComponent<SpriteRenderer>();
 
         _body2D = GetComponent<Rigidbody2D>();
 
-        if (_boxCollider == null)
-        {
-            _boxCollider = GetComponent<BoxCollider2D>();
-        }
-        if (_circleCollider == null)
-        {
-            _circleCollider = GetComponent<CircleCollider2D>();
-        }
-        if (_triangleCollider == null)
-        {
-            _triangleCollider = GetComponent<PolygonCollider2D>();
-        }
+        _boxCollider = GetComponent<BoxCollider2D>();
+        _triangleCollider = GetComponent<PolygonCollider2D>();
+        _circleCollider = GetComponent<CircleCollider2D>();
 
         switch (_shapeType)
         {
@@ -129,47 +109,45 @@ public class ShapeManager : MonoBehaviour
                 {
                     if (info.Name == "Square")
                     {
-                        _image.sprite = info.Sprite;
+                        _spriteRd.sprite = info.Sprite;
                         break;
                     }
                 }
                 _boxCollider.enabled = true;
                 _triangleCollider.enabled = false;
                 _circleCollider.enabled = false;
+                GetComponent<DragDropNoCanvas>().Collider = _boxCollider;
                 break;
             case ShapeType.Triangle:
                 foreach (var info in _shapesInfo.ShapesInfo)
                 {
                     if (info.Name == "Triangle")
                     {
-                        _image.sprite = info.Sprite;
+                        _spriteRd.sprite = info.Sprite;
                         break;
                     }
                 }
                 _triangleCollider.enabled = true;
                 _boxCollider.enabled = false;
                 _circleCollider.enabled = false;
+                GetComponent<DragDropNoCanvas>().Collider = _triangleCollider;
                 break;
             case ShapeType.Circle:
                 foreach (var info in _shapesInfo.ShapesInfo)
                 {
                     if (info.Name == "Circle")
                     {
-                        _image.sprite = info.Sprite;
+                        _spriteRd.sprite = info.Sprite;
                         break;
                     }
                 }
                 _circleCollider.enabled = true;
                 _triangleCollider.enabled = false;
                 _boxCollider.enabled = false;
+                GetComponent<DragDropNoCanvas>().Collider = _circleCollider;
                 break;
         }
         _body2D.bodyType = RigidbodyType2D.Kinematic;
-
-        if (_isAffectedByGravity)
-        {
-            GameManager.Instance.OnPhase1Ended += ActivateGravity;
-        }
 
         switch (_shapePower)
         {
@@ -187,7 +165,19 @@ public class ShapeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        if (_isAffectedByGravity)
+        {
+            Debug.Log("Assign");
+            GameManager.Instance.OnPhase1Ended += ActivateGravity;
+        }
+    }
+    private void OnDestroy()
+    {
+        if(_isAffectedByGravity)
+        {
+            Debug.Log("Desasign");
+            GameManager.Instance.OnPhase1Ended -= ActivateGravity;
+        }
     }
 
     // Update is called once per frame
