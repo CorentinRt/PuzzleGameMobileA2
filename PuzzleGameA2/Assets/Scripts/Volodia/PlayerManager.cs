@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private Vector3 _spawnpoint;
+    [SerializeField] private Vector3 _startpoint;
     [SerializeField] private int _nbLives;
     private PlayerBehaviour _currentPlayer;
     private PlayerBehaviour _nextPlayer;
@@ -16,8 +17,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        _nextPlayer = Instantiate(_playerPrefab, _spawnpoint + new Vector3(-2,0,0), transform.rotation).GetComponent<PlayerBehaviour>();
-        _nextPlayer.SetSpawnpoint(_spawnpoint);
+        _nextPlayer = Instantiate(_playerPrefab, _spawnpoint, transform.rotation).GetComponent<PlayerBehaviour>();
+        _nextPlayer.SetSpawnpoint(_startpoint);
         _playerCount = 1;
         _isOnPlayerPhase = false;
     }
@@ -43,14 +44,16 @@ public class PlayerManager : MonoBehaviour
         _nextPlayer.StartWalking();
         _currentPlayer = _nextPlayer;
         if (_playerCount >= _nbLives) return;
-        _nextPlayer = Instantiate(_playerPrefab, _spawnpoint + new Vector3(-2,0,0), transform.rotation).GetComponent<PlayerBehaviour>();
-        _nextPlayer.SetSpawnpoint(_spawnpoint);
+        _nextPlayer = Instantiate(_playerPrefab, _spawnpoint, transform.rotation).GetComponent<PlayerBehaviour>();
+        _nextPlayer.SetSpawnpoint(_startpoint);
         _playerCount++;
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color=Color.green;
-        Gizmos.DrawWireSphere(_spawnpoint, 1);
+        Gizmos.DrawWireSphere(_spawnpoint, 0.5f);
+        Gizmos.color=Color.blue;
+        Gizmos.DrawWireSphere(_startpoint, 0.5f);
     }
 }

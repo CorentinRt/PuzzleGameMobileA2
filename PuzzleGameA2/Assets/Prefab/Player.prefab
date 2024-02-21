@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2187990341674295642}
   - component: {fileID: 4101997370752619832}
   - component: {fileID: 7858308814123802481}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -163,3 +163,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 200
   _corpse: {fileID: 8378204953401740722, guid: d3967d8cefa4fb34d97fe6cb7dbde0bf, type: 3}
+  _layer:
+    serializedVersion: 2
+    m_Bits: 8

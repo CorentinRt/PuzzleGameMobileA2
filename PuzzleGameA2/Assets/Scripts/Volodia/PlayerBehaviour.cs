@@ -13,7 +13,8 @@ public class PlayerBehaviour : MonoBehaviour
 {
     [FormerlySerializedAs("speed")] [SerializeField] private float _speed;
     [SerializeField] private GameObject _corpse;
-    private Vector3 _spawnpoint;
+    [SerializeField] private LayerMask _layer;
+    private Vector3 _startpoint;
     private bool _walking;
     private Rigidbody2D _rb;
     private int _direction; //-1 = left ; 1 = right
@@ -21,7 +22,7 @@ public class PlayerBehaviour : MonoBehaviour
     [Button]
     public void StartWalking() => _walking = true;
 
-    public void SetSpawnpoint(Vector3 spawnpoint) => _spawnpoint = spawnpoint;
+    public void SetSpawnpoint(Vector3 spawnpoint) => _startpoint = spawnpoint;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -36,19 +37,20 @@ public class PlayerBehaviour : MonoBehaviour
             Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
             _rb.velocity = velocity;
         }
-        else if(!_walking && transform.position.x <= _spawnpoint.x) _rb.velocity = new Vector2(_speed * 1 * Time.deltaTime, 0);
+        else if(!_walking && transform.position.x <= _startpoint.x && _rb.velocity.y==0) _rb.velocity = new Vector2(_speed * 1 * Time.deltaTime, _rb.velocity.y);
         else _rb.velocity = new Vector2(0, _rb.velocity.y);
     }
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
     {
-        var ray = new Ray2D(transform.position, Vector3.down);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.down, 0.2f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.down, 1.5f, _layer);
+        Debug.DrawRay(transform.position, Vector3.down, hit? Color.green : Color.red);
         if (hit);
         {
+            Debug.DrawRay(transform.position, Vector2.Perpendicular(hit.normal) * -1);
+            Debug.DrawRay(transform.position,hit.normal * Vector3.right, Color.black);
             var slopeRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
             var adjustVelocity = slopeRotation * velocity;
-
             if (adjustVelocity.y < 0)
             {
                 return adjustVelocity;
