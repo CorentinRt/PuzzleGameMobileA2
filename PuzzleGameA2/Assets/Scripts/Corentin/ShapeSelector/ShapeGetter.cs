@@ -7,21 +7,25 @@ using UnityEngine.EventSystems;
 public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private GameObject _shape;
-    [SerializeField] private Transform _shapePlaceTransf;
 
     private RectTransform _selectorPanel;
 
     private Vector2 _mousePosition;
 
+    [SerializeField] private ShapeManagerNoCanvas.ShapeType _shapeType;
 
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("ClickDown on getter");
 
-        GameObject tempShape = Instantiate(_shape, _mousePosition, Quaternion.identity, _shapePlaceTransf);
+        GameObject tempShape = Instantiate(_shape, _mousePosition, Quaternion.identity);
 
         _selectorPanel.GetComponent<ShapeSelector>().CloseSelector();
-        tempShape.GetComponent<DragDropImage>().CanDrag = true;
+
+        tempShape.GetComponent<ShapeManagerNoCanvas>().SetShapeType(_shapeType);
+        tempShape.GetComponent<DragDropNoCanvas>().Dragging = true;
+        tempShape.GetComponent<DragDropNoCanvas>().AllowDrag();
+        tempShape.GetComponent<DragDropNoCanvas>().SetCollider(_shapeType);
     }
     public void OnPointerUp(PointerEventData eventData)
     {

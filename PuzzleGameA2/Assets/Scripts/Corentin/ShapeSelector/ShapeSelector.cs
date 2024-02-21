@@ -13,6 +13,7 @@ public class ShapeSelector : MonoBehaviour
     private BoxCollider2D _boxCollider;
 
     [SerializeField] private Color _semiTransparentColor;
+    private CanvasGroup _canvasGroup;
 
     [SerializeField] float _openSpeed;
     [SerializeField] float _closeSpeed;
@@ -23,6 +24,19 @@ public class ShapeSelector : MonoBehaviour
 
     private bool _isOpen;
 
+
+    [Button]
+    public void ChangeSelectorState()
+    {
+        if( _isOpen)
+        {
+            CloseSelector();
+        }
+        else
+        {
+            OpenSelector();
+        }
+    }
     [Button]
     public void OpenSelector()
     {
@@ -53,11 +67,24 @@ public class ShapeSelector : MonoBehaviour
             _closeCoroutine = StartCoroutine(CloseSelectorCoroutine());
         }
     }
+
+    [Button]
+    private void ActivateSemiTransparent()
+    {
+        _canvasGroup.alpha = _semiTransparentColor.a;
+    }
+    [Button]
+    private void DesactiveSemiTransparent()
+    {
+        _canvasGroup.alpha = 1.0f;
+    }
     private void Awake()
     {
         _image = GetComponent<Image>();
 
         _boxCollider = GetComponent<BoxCollider2D>();
+
+        _canvasGroup = GetComponent<CanvasGroup>();
     }
     // Start is called before the first frame update
     void Start()
@@ -68,22 +95,7 @@ public class ShapeSelector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (_boxCollider == Physics2D.OverlapPoint(mousePos))
-            {
-                if (_isOpen)
-                {
-                    CloseSelector();
-                }
-                else
-                {
-                    OpenSelector();
-                }
-            }
-        }
+        
     }
 
     IEnumerator OpenSelectorCoroutine()
@@ -91,7 +103,7 @@ public class ShapeSelector : MonoBehaviour
         while ((_openTransf.position - transform.position).magnitude >= 0.1f)
         {
 
-            Debug.Log("Opening");
+            //Debug.Log("Opening");
             Vector3 tempVect = transform.position;
 
             tempVect.y = Mathf.Lerp(tempVect.y, _openTransf.position.y, Time.deltaTime * _openSpeed);
@@ -111,7 +123,7 @@ public class ShapeSelector : MonoBehaviour
     {
         while ((_closeTransf.position - transform.position).magnitude >= 0.1f)
         {
-            Debug.Log("Closing");
+            //Debug.Log("Closing");
 
             Vector3 tempVect = transform.position;
 

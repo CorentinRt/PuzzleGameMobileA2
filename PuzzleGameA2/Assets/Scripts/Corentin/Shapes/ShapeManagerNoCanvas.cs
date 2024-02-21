@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ShapeManagerNoCanvas : MonoBehaviour
 {
-    private enum ShapeType
+    public enum ShapeType
     {
         Square,
         Triangle,
         Circle
     }
 
-    private enum ShapePower
+    public enum ShapePower
     {
         Bounce,
         ArrowTrap,
@@ -33,11 +33,61 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     [SerializeField] private bool _isAffectedByGravity;
     private Rigidbody2D _body2D;
 
+    public ShapeType ShapeType1 { get => _shapeType; set => _shapeType = value; }
 
     private void ActivateGravity()
     {
         Debug.Log("Dynamic");
         _body2D.bodyType = RigidbodyType2D.Dynamic;
+    }
+
+    public void SetShapeType(ShapeType shapeType)
+    {
+        switch (shapeType)
+        {
+            case ShapeType.Square:
+                _shapeType = ShapeType.Square;
+                foreach (var info in _shapesInfo.ShapesInfo)
+                {
+                    if (info.Name == "Square")
+                    {
+                        _spriteRd.sprite = info.Sprite;
+                        break;
+                    }
+                }
+                _boxCollider.enabled = true;
+                _triangleCollider.enabled = false;
+                _circleCollider.enabled = false;
+                break;
+            case ShapeType.Triangle:
+                _shapeType = ShapeType.Triangle;
+                foreach (var info in _shapesInfo.ShapesInfo)
+                {
+                    if (info.Name == "Triangle")
+                    {
+                        _spriteRd.sprite = info.Sprite;
+                        break;
+                    }
+                }
+                _triangleCollider.enabled = true;
+                _boxCollider.enabled = false;
+                _circleCollider.enabled = false;
+                break;
+            case ShapeType.Circle:
+                _shapeType = ShapeType.Circle;
+                foreach (var info in _shapesInfo.ShapesInfo)
+                {
+                    if (info.Name == "Circle")
+                    {
+                        _spriteRd.sprite = info.Sprite;
+                        break;
+                    }
+                }
+                _circleCollider.enabled = true;
+                _boxCollider.enabled = false;
+                _triangleCollider.enabled = false;
+                break;
+        }
     }
 
     private void OnValidate()
@@ -116,7 +166,6 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 _boxCollider.enabled = true;
                 _triangleCollider.enabled = false;
                 _circleCollider.enabled = false;
-                GetComponent<DragDropNoCanvas>().Collider = _boxCollider;
                 break;
             case ShapeType.Triangle:
                 foreach (var info in _shapesInfo.ShapesInfo)
@@ -130,7 +179,6 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 _triangleCollider.enabled = true;
                 _boxCollider.enabled = false;
                 _circleCollider.enabled = false;
-                GetComponent<DragDropNoCanvas>().Collider = _triangleCollider;
                 break;
             case ShapeType.Circle:
                 foreach (var info in _shapesInfo.ShapesInfo)
@@ -144,9 +192,9 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 _circleCollider.enabled = true;
                 _triangleCollider.enabled = false;
                 _boxCollider.enabled = false;
-                GetComponent<DragDropNoCanvas>().Collider = _circleCollider;
                 break;
         }
+        GetComponent<DragDropNoCanvas>().SetCollider(_shapeType);
         _body2D.bodyType = RigidbodyType2D.Kinematic;
 
         switch (_shapePower)
@@ -167,7 +215,6 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     {
         if (_isAffectedByGravity)
         {
-            Debug.Log("Assign");
             GameManager.Instance.OnPhase1Ended += ActivateGravity;
         }
     }
@@ -175,7 +222,6 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     {
         if(_isAffectedByGravity)
         {
-            Debug.Log("Desasign");
             GameManager.Instance.OnPhase1Ended -= ActivateGravity;
         }
     }
