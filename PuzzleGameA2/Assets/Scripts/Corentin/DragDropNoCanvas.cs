@@ -10,20 +10,35 @@ public class DragDropNoCanvas : MonoBehaviour
     bool _dragging;
     Collider2D _collider;
 
-    Vector2 _lastMousePosition;
-
     private bool _canDrag;
 
     public bool CanDrag { get => _canDrag; set => _canDrag = value; }
     public Collider2D Collider { get => _collider; set => _collider = value; }
+    public bool Dragging { get => _dragging; set => _dragging = value; }
 
-    private void AllowDrag()
+    public void AllowDrag()
     {
         _canDrag = true;
     }
-    private void DisallowDrag()
+    public void DisallowDrag()
     {
         _canDrag = false;
+    }
+
+    public void SetCollider(ShapeManagerNoCanvas.ShapeType shapeType)
+    {
+        switch (shapeType)
+        {
+            case ShapeManagerNoCanvas.ShapeType.Circle:
+                _collider = GetComponent<CircleCollider2D>();
+                break;
+            case ShapeManagerNoCanvas.ShapeType.Square:
+                _collider = GetComponent<BoxCollider2D>();
+                break;
+            case ShapeManagerNoCanvas.ShapeType.Triangle:
+                _collider = GetComponent<PolygonCollider2D>();
+                break;
+        }
     }
 
     private void Awake()
@@ -39,7 +54,6 @@ public class DragDropNoCanvas : MonoBehaviour
 
 
         _canMove = false;
-        _dragging = false;
     }
     private void OnDestroy()
     {
@@ -53,8 +67,6 @@ public class DragDropNoCanvas : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))    // Si appuie
         {
-            _lastMousePosition = mousePos;
-
             if (_collider == Physics2D.OverlapPoint(mousePos))
             {
                 _canMove = true;
@@ -70,15 +82,13 @@ public class DragDropNoCanvas : MonoBehaviour
         }
         if (_dragging)  // Drag
         {
-            this.transform.position += (Vector3)mousePos - (Vector3)_lastMousePosition;
+            this.transform.position = (Vector3)mousePos;
         }
         if (Input.GetMouseButtonUp(0))  // Si relache
         {
             _canMove = false;
             _dragging = false;
         }
-
-        _lastMousePosition = mousePos;
     }
 }
 
