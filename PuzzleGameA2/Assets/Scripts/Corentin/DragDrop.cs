@@ -14,27 +14,57 @@ public class DragDropImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
     private Color _unselectedColor;
     private Image _image;
 
+    private bool _canDrag;
+
+
+    private void AllowDrag()
+    {
+        _canDrag = true;
+    }
+    private void DisallowDrag()
+    {
+        _canDrag = false;
+    }
+
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
         _unselectedColor = GetComponent<Image>().color;
         _image = GetComponent<Image>();
     }
+    private void Start()
+    {
+        GameManager.Instance.OnPhase1Started += AllowDrag;
+        GameManager.Instance.OnPhase1Ended += DisallowDrag;
+    }
+    private void OnDestroy()
+    {
+        
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Begin Drag");
-        _image.color = _selectedColor;
+        if (_canDrag)
+        {
+            Debug.Log("Begin Drag");
+            _image.color = _selectedColor;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
+        if (_canDrag)
+        {
+            _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("Begin Drag");
-        _image.color = _unselectedColor;
+        if (_canDrag)
+        {
+            Debug.Log("Begin Drag");
+            _image.color = _unselectedColor;
+        }
     }
 }

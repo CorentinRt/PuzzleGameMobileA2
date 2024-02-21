@@ -37,6 +37,11 @@ public class ShapeManager : MonoBehaviour
     private Rigidbody2D _body2D;
 
 
+    private void ActivateGravity()
+    {
+        _body2D.bodyType = RigidbodyType2D.Dynamic;
+    }
+
     private void OnValidate()
     {
         _image = GetComponent<Image>();
@@ -141,14 +146,11 @@ public class ShapeManager : MonoBehaviour
                 _boxCollider.enabled = false;
                 break;
         }
+        _body2D.bodyType = RigidbodyType2D.Kinematic;
 
-        if (!_isAffectedByGravity)
+        if (_isAffectedByGravity)
         {
-            _body2D.bodyType = RigidbodyType2D.Kinematic;
-        }
-        else
-        {
-            _body2D.bodyType = RigidbodyType2D.Dynamic;
+            GameManager.Instance.OnPhase1Ended += ActivateGravity;
         }
 
         switch (_shapePower)
