@@ -261,6 +261,37 @@ Transform:
   - {fileID: 586847869}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &440333593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 440333594}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &440333594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440333593}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &506866465
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,17 +541,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 586847869}
     m_Modifications:
+    - target: {fileID: 661952450407990709, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 826896401512164022, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
       propertyPath: m_Name
       value: Square (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1324154173123578884, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 2037880880062234557, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
       propertyPath: _canvas
       value: 
       objectReference: {fileID: 586847872}
+    - target: {fileID: 5545992824598523437, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6095513939006137466, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
       propertyPath: _shapeType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6183436937051844255, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7665433143289816714, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
       propertyPath: m_Pivot.x
@@ -750,20 +797,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 586847869}
     m_Modifications:
+    - target: {fileID: 661952450407990709, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 826896401512164022, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
       propertyPath: m_Name
       value: Square (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324154173123578884, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2037880880062234557, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
       propertyPath: _canvas
       value: 
       objectReference: {fileID: 586847872}
+    - target: {fileID: 5545992824598523437, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6095513939006137466, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
       propertyPath: _shapeType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6095513939006137466, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
       propertyPath: _isAffectedByGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6183436937051844255, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7665433143289816714, guid: f572da5fbbea1cc42953fff9f60a0b07, type: 3}
@@ -932,3 +995,4 @@ SceneRoots:
   - {fileID: 91069026}
   - {fileID: 1870571422}
   - {fileID: 1481152007}
+  - {fileID: 440333594}

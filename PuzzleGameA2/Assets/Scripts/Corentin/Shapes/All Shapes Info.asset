@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shapesInfo:
   - _name: Square
-    _sprite: {fileID: 0}
+    _sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - _name: Triangle
     _sprite: {fileID: 0}
   - _name: Circle
-    _sprite: {fileID: 0}
+    _sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   - _name: Bounce
     _sprite: {fileID: 0}
   - _name: Reverse

@@ -25,7 +25,7 @@ public class ShapeManager : MonoBehaviour
 
     [SerializeField] private ShapePower _shapePower;
 
-    private Sprite _sprite;
+    private Image _image;
 
     [SerializeField] private AllShapesInfo _shapesInfo;
 
@@ -37,9 +37,61 @@ public class ShapeManager : MonoBehaviour
     private Rigidbody2D _body2D;
 
 
+    private void OnValidate()
+    {
+        _image = GetComponent<Image>();
+
+        _boxCollider = GetComponent<BoxCollider2D>();
+        _triangleCollider = GetComponent<PolygonCollider2D>();
+        _circleCollider = GetComponent<CircleCollider2D>();
+
+        switch (_shapeType)
+        {
+            case ShapeType.Square:
+                foreach (var info in _shapesInfo.ShapesInfo)
+                {
+                    if (info.Name == "Square")
+                    {
+                        _image.sprite = info.Sprite;
+                        break;
+                    }
+                }
+                _boxCollider.enabled = true;
+                _triangleCollider.enabled = false;
+                _circleCollider.enabled = false;
+                break;
+            case ShapeType.Triangle:
+                foreach (var info in _shapesInfo.ShapesInfo)
+                {
+                    if (info.Name == "Triangle")
+                    {
+                        _image.sprite = info.Sprite;
+                        break;
+                    }
+                }
+                _triangleCollider.enabled = true;
+                _boxCollider.enabled = false;
+                _circleCollider.enabled = false;
+                break;
+            case ShapeType.Circle:
+                foreach (var info in _shapesInfo.ShapesInfo)
+                {
+                    if (info.Name == "Circle")
+                    {
+                        _image.sprite = info.Sprite;
+                        break;
+                    }
+                }
+                _circleCollider.enabled = true;
+                _boxCollider.enabled = false;
+                _triangleCollider.enabled = false;
+                break;
+        }
+    }
+
     private void Awake()
     {
-        _sprite = GetComponent<Image>().sprite;
+        _image = GetComponent<Image>();
 
         _body2D = GetComponent<Rigidbody2D>();
 
@@ -54,10 +106,11 @@ public class ShapeManager : MonoBehaviour
                 {
                     if (info.Name == "Square")
                     {
-                        _sprite = info.Sprite;
+                        _image.sprite = info.Sprite;
                         break;
                     }
                 }
+                _boxCollider.enabled = true;
                 _triangleCollider.enabled = false;
                 _circleCollider.enabled = false;
                 break;
@@ -66,10 +119,11 @@ public class ShapeManager : MonoBehaviour
                 {
                     if (info.Name == "Triangle")
                     {
-                        _sprite = info.Sprite;
+                        _image.sprite = info.Sprite;
                         break;
                     }
                 }
+                _triangleCollider.enabled = true;
                 _boxCollider.enabled = false;
                 _circleCollider.enabled = false;
                 break;
@@ -78,10 +132,11 @@ public class ShapeManager : MonoBehaviour
                 {
                     if (info.Name == "Circle")
                     {
-                        _sprite = info.Sprite;
+                        _image.sprite = info.Sprite;
                         break;
                     }
                 }
+                _circleCollider.enabled = true;
                 _triangleCollider.enabled = false;
                 _boxCollider.enabled = false;
                 break;
@@ -90,6 +145,10 @@ public class ShapeManager : MonoBehaviour
         if (!_isAffectedByGravity)
         {
             _body2D.bodyType = RigidbodyType2D.Kinematic;
+        }
+        else
+        {
+            _body2D.bodyType = RigidbodyType2D.Dynamic;
         }
 
         switch (_shapePower)
