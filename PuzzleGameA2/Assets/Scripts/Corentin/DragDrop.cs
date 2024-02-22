@@ -16,6 +16,7 @@ public class DragDropImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
 
     private bool _canDrag;
 
+    public bool CanDrag { get => _canDrag; set => _canDrag = value; }
 
     private void AllowDrag()
     {
