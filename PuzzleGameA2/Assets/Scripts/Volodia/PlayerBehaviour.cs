@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Enums;
 using NaughtyAttributes;
 using NaughtyAttributes.Test;
 using Unity.VisualScripting.FullSerializer;
@@ -18,6 +19,7 @@ public class PlayerBehaviour : MonoBehaviour
     private bool _walking;
     private Rigidbody2D _rb;
     private int _direction; //-1 = left ; 1 = right
+    [SerializeField] private float _jumpForce;
 
     [Button]
     public void StartWalking() => _walking = true;
@@ -71,6 +73,42 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Instantiate(_corpse, transform.position + new Vector3(_direction*0.5f,-transform.localScale.y/2,0), transform.rotation);
             Destroy(gameObject);
+        }
+        else if (other.gameObject.CompareTag("Plateforme"))
+        {
+            ShapePower shapePower = other.gameObject.GetComponent<ShapeManager>().GetShapePower();
+            switch (shapePower)
+            {
+                case ShapePower.Jump:
+                    Jump();
+                    break;
+                case ShapePower.ChangeDirection:
+                    ChangeDirection();
+                    break;
+                    
+            }
+        }
+    }
+
+    private void Jump()
+    {
+        _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+        Debug.Log("jumping");
+    }
+    
+    
+    //Temporary Function
+    public void TouchingPlateforme(ShapePower shapePower)
+    {
+        switch (shapePower)
+        {
+            case ShapePower.Jump:
+                Jump();
+                break;
+            case ShapePower.ChangeDirection:
+                ChangeDirection();
+                break;
+                    
         }
     }
 }

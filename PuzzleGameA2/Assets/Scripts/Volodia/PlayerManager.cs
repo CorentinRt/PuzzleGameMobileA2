@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using Enums;
 
 public class PlayerManager : MonoBehaviour
 {
