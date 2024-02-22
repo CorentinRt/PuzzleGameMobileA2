@@ -14,13 +14,14 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     [SerializeField] private ShapeManagerNoCanvas.ShapeType _shapeType;
 
+
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("ClickDown on getter");
 
         GameObject tempShape = Instantiate(_shape, _mousePosition, Quaternion.identity);
 
-        _selectorPanel.GetComponent<ShapeSelector>().CloseSelector();
+        //_selectorPanel.GetComponent<ShapeSelector>().CloseSelector();
 
         tempShape.GetComponent<ShapeManagerNoCanvas>().SetShapeType(_shapeType);
         tempShape.GetComponent<DragDropNoCanvas>().Dragging = true;
@@ -29,7 +30,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("ClickUp on getter");
+        
     }
 
     // Start is called before the first frame update

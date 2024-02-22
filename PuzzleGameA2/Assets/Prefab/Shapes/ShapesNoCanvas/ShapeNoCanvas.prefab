@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7661887324319537845}
   - component: {fileID: 144583159404639972}
   - component: {fileID: 6423146844533396581}
+  - component: {fileID: -353436849657291708}
   m_Layer: 0
   m_Name: ShapeNoCanvas
   m_TagString: Untagged
@@ -273,3 +274,15 @@ MonoBehaviour:
   _shapePower: 0
   _shapesInfo: {fileID: 11400000, guid: 70af9acb6d76dd74586101c3c079300a, type: 2}
   _isAffectedByGravity: 0
+--- !u!114 &-353436849657291708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2423419562359650399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ab1516df23afe42bac8733c0cfe76b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

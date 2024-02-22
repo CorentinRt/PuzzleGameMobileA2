@@ -13,13 +13,11 @@ public class ButtonOpenShapeSelector : MonoBehaviour, IPointerDownHandler, IPoin
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("OnPointerDown");
         OnPointerDownEvent?.Invoke();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("OnPointerUp");
         OnPointerUpEvent?.Invoke();
     }
 
