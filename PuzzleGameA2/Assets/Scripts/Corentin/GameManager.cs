@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -8,34 +9,53 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance { get => _instance; set => _instance = value; }
+    
+    private PhaseType _currentPhase;
+    
+    private LevelManager _levelManager;
+    private PlayerManager _playerManager;
 
     public event Action OnPhase1Started;
     public event Action OnPhase1Ended;
 
     public event Action OnPhase2Started;
     public event Action OnPhase2Ended;
-    private enum PhaseType
+
+    private void Start()
     {
-        GamePhase1,
-        GamePhase2,
-        GameEndPhase
+        _levelManager = GetComponent<LevelManager>();
+        _playerManager = GetComponent<PlayerManager>();
     }
-    private void ChangeGamePhase(PhaseType phase)
+
+    public void ChangeGamePhase(PhaseType phase)
     {
         switch (phase)
         {
-            case PhaseType.GamePhase1:
+            case PhaseType.PlateformePlacement:
                 StartPhase1();
                 break;
-            case PhaseType.GamePhase2:
-                EndPhase1();
+            case PhaseType.ChoicePhase:
+                EndPhase2();
+                break;
+            case PhaseType.PlayersMoving:
+                if (_currentPhase==PhaseType.PlateformePlacement) EndPhase1();
                 StartPhase2();
                 break;
             case PhaseType.GameEndPhase:
-                EndPhase2();
+                int nbStars = CalculateStars();
                 break;
         }
+
+        _currentPhase = phase;
     }
+
+    private int CalculateStars()
+    {
+        int nbPlayerAliveCount = _playerManager.GetPlayerAliveCount();
+        int nonRequiredKilledPlayer = _levelManager.GetCurrentLevel().LevelInfo.MaxPlayerToSave - nbPlayerAliveCount;
+        return (nonRequiredKilledPlayer==0? 3 : nonRequiredKilledPlayer<=2? 2 : nbPlayerAliveCount==1? 0 : 1);
+    }
+    
     [Button]
     private void StartPhase1()
     {
@@ -64,16 +84,5 @@ public class GameManager : MonoBehaviour
             Destroy(_instance);
         }
         _instance = this;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

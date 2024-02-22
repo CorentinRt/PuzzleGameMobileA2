@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Enums;
 
 
 public class ShapeManager : MonoBehaviour
@@ -14,16 +15,11 @@ public class ShapeManager : MonoBehaviour
         Circle
     }
 
-    private enum ShapePower
-    {
-        Bounce,
-        ArrowTrap,
-        ReverseMove
-    }
-
     [SerializeField] private ShapeType _shapeType;
 
     [SerializeField] private ShapePower _shapePower;
+
+    public ShapePower GetShapePower() => _shapePower;
 
     private Image _image;
 
@@ -171,7 +167,7 @@ public class ShapeManager : MonoBehaviour
             GameManager.Instance.OnPhase1Ended += ActivateGravity;
         }
 
-        switch (_shapePower)
+        /*switch (_shapePower)
         {
             case ShapePower.Bounce:
                 //gameObject.AddComponent<>();
@@ -182,7 +178,7 @@ public class ShapeManager : MonoBehaviour
             case ShapePower.ReverseMove:
                 //gameObject.AddComponent<>();
                 break;
-        }
+        }*/
     }
     // Start is called before the first frame update
     void Start()

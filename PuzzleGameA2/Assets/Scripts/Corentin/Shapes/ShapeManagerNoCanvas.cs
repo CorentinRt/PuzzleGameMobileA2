@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 
 public class ShapeManagerNoCanvas : MonoBehaviour
@@ -10,21 +11,14 @@ public class ShapeManagerNoCanvas : MonoBehaviour
         Triangle,
         Circle
     }
-
-    public enum ShapePower
-    {
-        Bounce,
-        ArrowTrap,
-        ReverseMove
-    }
-
     [SerializeField] private GameObject _visuals;
     [SerializeField] private GameObject _physics;
-
 
     [SerializeField] private ShapeType _shapeType;
 
     [SerializeField] private ShapePower _shapePower;
+    
+    public ShapePower GetShapePower() => _shapePower;
 
     private SpriteRenderer _spriteRd;
 
@@ -45,8 +39,6 @@ public class ShapeManagerNoCanvas : MonoBehaviour
 
     private void ActivateGravity()
     {
-        Debug.Log("Dynamic");
-
         _body2D.gravityScale = 1.0f;
 
         switch (_shapeType)
@@ -231,6 +223,7 @@ public class ShapeManagerNoCanvas : MonoBehaviour
         GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
         _body2D.gravityScale = 0f;
 
+        /*
         switch (_shapePower)
         {
             case ShapePower.Bounce:
@@ -242,7 +235,7 @@ public class ShapeManagerNoCanvas : MonoBehaviour
             case ShapePower.ReverseMove:
                 //gameObject.AddComponent<>();
                 break;
-        }
+        }*/
     }
     // Start is called before the first frame update
     void Start()
