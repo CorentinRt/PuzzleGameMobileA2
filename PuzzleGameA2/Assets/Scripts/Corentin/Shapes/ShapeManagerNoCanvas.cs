@@ -18,6 +18,10 @@ public class ShapeManagerNoCanvas : MonoBehaviour
         ReverseMove
     }
 
+    [SerializeField] private GameObject _visuals;
+    [SerializeField] private GameObject _physics;
+
+
     [SerializeField] private ShapeType _shapeType;
 
     [SerializeField] private ShapePower _shapePower;
@@ -25,6 +29,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     private SpriteRenderer _spriteRd;
 
     [SerializeField] private AllShapesInfo _shapesInfo;
+
+    [SerializeField] private GameObject _collidersContainer;
 
     private BoxCollider2D _boxCollider;
     private CircleCollider2D _circleCollider;
@@ -34,6 +40,7 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     private Rigidbody2D _body2D;
 
     public ShapeType ShapeType1 { get => _shapeType; set => _shapeType = value; }
+    public SpriteRenderer SpriteRd { get => _spriteRd; set => _spriteRd = value; }
 
     private void ActivateGravity()
     {
@@ -106,11 +113,11 @@ public class ShapeManagerNoCanvas : MonoBehaviour
 
     private void OnValidate()
     {
-        _spriteRd = GetComponent<SpriteRenderer>();
+        _spriteRd = _visuals.GetComponent<SpriteRenderer>();
 
-        _boxCollider = GetComponent<BoxCollider2D>();
-        _triangleCollider = GetComponent<PolygonCollider2D>();
-        _circleCollider = GetComponent<CircleCollider2D>();
+        _boxCollider = _collidersContainer.GetComponent<BoxCollider2D>();
+        _triangleCollider = _collidersContainer.GetComponent<PolygonCollider2D>();
+        _circleCollider = _collidersContainer.GetComponent<CircleCollider2D>();
 
         switch (_shapeType)
         {
@@ -164,13 +171,13 @@ public class ShapeManagerNoCanvas : MonoBehaviour
 
     private void Awake()
     {
-        _spriteRd = GetComponent<SpriteRenderer>();
+        _spriteRd = _visuals.GetComponent<SpriteRenderer>();
 
         _body2D = GetComponent<Rigidbody2D>();
 
-        _boxCollider = GetComponent<BoxCollider2D>();
-        _triangleCollider = GetComponent<PolygonCollider2D>();
-        _circleCollider = GetComponent<CircleCollider2D>();
+        _boxCollider = _collidersContainer.GetComponent<BoxCollider2D>();
+        _triangleCollider = _collidersContainer.GetComponent<PolygonCollider2D>();
+        _circleCollider = _collidersContainer.GetComponent<CircleCollider2D>();
 
         switch (_shapeType)
         {
@@ -220,7 +227,7 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 _circleCollider.isTrigger = true;
                 break;
         }
-        GetComponent<DragDropNoCanvas>().SetCollider(_shapeType);
+        GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
         _body2D.gravityScale = 0f;
 
         switch (_shapePower)

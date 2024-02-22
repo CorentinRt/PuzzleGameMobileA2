@@ -8,12 +8,17 @@ public class DragDropNoCanvas : MonoBehaviour
 {
     bool _canMove;
     bool _dragging;
-    Collider2D _collider;
+    //Collider2D _collider;
+
+    //[SerializeField] private GameObject _collidersContainer;
+
+    [SerializeField] private CircleCollider2D _dragtrigger;    
+    [SerializeField] private LayerMask _dragLayerMask;
 
     private bool _canDrag;
 
     public bool CanDrag { get => _canDrag; set => _canDrag = value; }
-    public Collider2D Collider { get => _collider; set => _collider = value; }
+    // public Collider2D Collider { get => _collider; set => _collider = value; }
     public bool Dragging { get => _dragging; set => _dragging = value; }
 
     public void AllowDrag()
@@ -27,18 +32,18 @@ public class DragDropNoCanvas : MonoBehaviour
 
     public void SetCollider(ShapeManagerNoCanvas.ShapeType shapeType)
     {
-        switch (shapeType)
-        {
-            case ShapeManagerNoCanvas.ShapeType.Circle:
-                _collider = GetComponent<CircleCollider2D>();
-                break;
-            case ShapeManagerNoCanvas.ShapeType.Square:
-                _collider = GetComponent<BoxCollider2D>();
-                break;
-            case ShapeManagerNoCanvas.ShapeType.Triangle:
-                _collider = GetComponent<PolygonCollider2D>();
-                break;
-        }
+        //switch (shapeType)
+        //{
+        //    case ShapeManagerNoCanvas.ShapeType.Circle:
+        //        _collider = _collidersContainer.GetComponent<CircleCollider2D>();
+        //        break;
+        //    case ShapeManagerNoCanvas.ShapeType.Square:
+        //        _collider = _collidersContainer.GetComponent<BoxCollider2D>();
+        //        break;
+        //    case ShapeManagerNoCanvas.ShapeType.Triangle:
+        //        _collider = _collidersContainer.GetComponent<PolygonCollider2D>();
+        //        break;
+        //}
     }
 
     private void Awake()
@@ -66,7 +71,7 @@ public class DragDropNoCanvas : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))    // Si appuie
         {
-            if (_collider == Physics2D.OverlapPoint(mousePos))
+            if (_dragtrigger == Physics2D.OverlapPoint(mousePos, _dragLayerMask))
             {
                 _canMove = true;
             }
@@ -81,7 +86,7 @@ public class DragDropNoCanvas : MonoBehaviour
         }
         if (_dragging)  // Drag
         {
-            DragDropManager.Instance.CurrentShapeDragged = gameObject;
+            DragDropManager.Instance.CurrentShapeDragged = gameObject.transform.parent.gameObject;
             if (DragDropManager.Instance.UseGrid)
             {
                 Vector3Int tempVect = Vector3Int.zero;
@@ -89,12 +94,12 @@ public class DragDropNoCanvas : MonoBehaviour
                 Vector3 cellCize = GridManager.Instance.CellSize;
 
                 tempVect = GridManager.Instance.GetWorldToCellPosition((Vector3)mousePos);
-                this.transform.position = GridManager.Instance.GetCellToWorldPosition(tempVect);
-                this.transform.position += cellCize/2f;
+                gameObject.transform.parent.position = GridManager.Instance.GetCellToWorldPosition(tempVect);
+                gameObject.transform.parent.position += cellCize/2f;
             }
             else
             {
-                this.transform.position = (Vector3)mousePos;
+                gameObject.transform.parent.position = (Vector3)mousePos;
             }
         }
         if (Input.GetMouseButtonUp(0))  // Si relache
@@ -104,15 +109,18 @@ public class DragDropNoCanvas : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public void SetUnableColor()
     {
-        if (collision.gameObject != null)
+        if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
         {
-            GetComponent<SpriteRenderer>().color = DragDropManager.Instance.UnableDragColor;
+            shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.UnableDragColor;
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    public void SetAbleColor()
     {
-        GetComponent<SpriteRenderer>().color = DragDropManager.Instance.AbleDragColor;
+        if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
+        {
+            shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.AbleDragColor;
+        }
     }
 }

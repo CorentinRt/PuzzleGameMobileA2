@@ -28,10 +28,10 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             //_selectorPanel.GetComponent<ShapeSelector>().CloseSelector();
 
-            tempShape.GetComponent<ShapeManagerNoCanvas>().SetShapeType(_shapeType);
-            tempShape.GetComponent<DragDropNoCanvas>().Dragging = true;
-            tempShape.GetComponent<DragDropNoCanvas>().AllowDrag();
-            tempShape.GetComponent<DragDropNoCanvas>().SetCollider(_shapeType);
+            tempShape.GetComponentInChildren<ShapeManagerNoCanvas>().SetShapeType(_shapeType);
+            tempShape.GetComponentInChildren<DragDropNoCanvas>().Dragging = true;
+            tempShape.GetComponentInChildren<DragDropNoCanvas>().AllowDrag();
+            tempShape.GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
 
             DecreaseShapeCount(1);
         }
