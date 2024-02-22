@@ -62,6 +62,8 @@ public class DragDropNoCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetMouseButtonDown(0))    // Si appuie
@@ -103,5 +105,12 @@ public class DragDropNoCanvas : MonoBehaviour
             _dragging = false;
         }
     }
-}
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject != null)
+        {
+            Debug.Log("Collision with : " + collision.gameObject.name);
+        }
+    }
+}

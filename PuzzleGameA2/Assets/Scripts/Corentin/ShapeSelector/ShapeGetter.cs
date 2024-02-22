@@ -17,8 +17,6 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("ClickDown on getter");
-
         GameObject tempShape = Instantiate(_shape, _mousePosition, Quaternion.identity);
 
         //_selectorPanel.GetComponent<ShapeSelector>().CloseSelector();

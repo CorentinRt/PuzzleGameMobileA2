@@ -12,8 +12,13 @@ public class DragDropManager : MonoBehaviour
     [SerializeField] private bool _useGrid;
     private GameObject _currentShapeDragged;
 
+    [SerializeField] private Color _unableDragColor;
+    [SerializeField] private Color _ableDragColor;
+
     public bool UseGrid { get => _useGrid; set => _useGrid = value; }
     public GameObject CurrentShapeDragged { get => _currentShapeDragged; set => _currentShapeDragged = value; }
+    public Color UnableDragColor { get => _unableDragColor; set => _unableDragColor = value; }
+    public Color AbleDragColor { get => _unableDragColor; set => _unableDragColor = value; }
 
     private void Awake()
     {

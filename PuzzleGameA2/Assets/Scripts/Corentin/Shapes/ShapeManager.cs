@@ -39,7 +39,7 @@ public class ShapeManager : MonoBehaviour
 
     private void ActivateGravity()
     {
-        _body2D.bodyType = RigidbodyType2D.Dynamic;
+        _body2D.gravityScale = 1f;
     }
 
     private void OnValidate()
@@ -164,7 +164,7 @@ public class ShapeManager : MonoBehaviour
                 _boxCollider.enabled = false;
                 break;
         }
-        _body2D.bodyType = RigidbodyType2D.Kinematic;
+        _body2D.gravityScale = 0f;
 
         if (_isAffectedByGravity)
         {

@@ -33,14 +33,6 @@ public class TrashShape : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if (Input.GetMouseButtonUp(0) && _canTrash && DragDropManager.Instance.CurrentShapeDragged != null)
         {
-            //Collider2D coll = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-            //if (coll != null)
-            //{
-            //    if (coll.gameObject.TryGetComponent<TrashableHandler>(out TrashableHandler trashable))
-            //    {
-            //        trashable.DeleteShape();
-            //    }
-            //}
             Destroy(DragDropManager.Instance.CurrentShapeDragged);
         }
         if (_justExit == true)

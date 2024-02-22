@@ -38,7 +38,21 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     private void ActivateGravity()
     {
         Debug.Log("Dynamic");
-        _body2D.bodyType = RigidbodyType2D.Dynamic;
+
+        _body2D.gravityScale = 1.0f;
+
+        switch (_shapeType)
+        {
+            case ShapeType.Square:
+                _boxCollider.isTrigger = false;
+                break;
+            case ShapeType.Triangle:
+                _triangleCollider.isTrigger = false;
+                break;
+            case ShapeType.Circle:
+                _circleCollider.isTrigger = false;
+                break;
+        }
     }
 
     public void SetShapeType(ShapeType shapeType)
@@ -112,6 +126,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 _boxCollider.enabled = true;
                 _triangleCollider.enabled = false;
                 _circleCollider.enabled = false;
+
+                _boxCollider.isTrigger = true;
                 break;
             case ShapeType.Triangle:
                 foreach (var info in _shapesInfo.ShapesInfo)
@@ -125,6 +141,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 _triangleCollider.enabled = true;
                 _boxCollider.enabled = false;
                 _circleCollider.enabled = false;
+
+                _triangleCollider.isTrigger = true;
                 break;
             case ShapeType.Circle:
                 foreach (var info in _shapesInfo.ShapesInfo)
@@ -138,6 +156,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 _circleCollider.enabled = true;
                 _boxCollider.enabled = false;
                 _triangleCollider.enabled = false;
+
+                _circleCollider.isTrigger = true;
                 break;
         }
     }
@@ -166,6 +186,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 _boxCollider.enabled = true;
                 _triangleCollider.enabled = false;
                 _circleCollider.enabled = false;
+
+                _boxCollider.isTrigger = true;
                 break;
             case ShapeType.Triangle:
                 foreach (var info in _shapesInfo.ShapesInfo)
@@ -179,6 +201,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 _triangleCollider.enabled = true;
                 _boxCollider.enabled = false;
                 _circleCollider.enabled = false;
+
+                _triangleCollider.isTrigger = true;
                 break;
             case ShapeType.Circle:
                 foreach (var info in _shapesInfo.ShapesInfo)
@@ -192,10 +216,12 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 _circleCollider.enabled = true;
                 _triangleCollider.enabled = false;
                 _boxCollider.enabled = false;
+
+                _circleCollider.isTrigger = true;
                 break;
         }
         GetComponent<DragDropNoCanvas>().SetCollider(_shapeType);
-        _body2D.bodyType = RigidbodyType2D.Kinematic;
+        _body2D.gravityScale = 0f;
 
         switch (_shapePower)
         {
