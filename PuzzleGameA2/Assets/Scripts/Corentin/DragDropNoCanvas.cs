@@ -43,8 +43,7 @@ public class DragDropNoCanvas : MonoBehaviour
 
     private void Awake()
     {
-        //_unselectedColor = GetComponent<Image>().color;
-        //_image = GetComponent<Image>();
+
     }
 
     void Start()
@@ -82,7 +81,21 @@ public class DragDropNoCanvas : MonoBehaviour
         }
         if (_dragging)  // Drag
         {
-            this.transform.position = (Vector3)mousePos;
+            DragDropManager.Instance.CurrentShapeDragged = gameObject;
+            if (DragDropManager.Instance.UseGrid)
+            {
+                Vector3Int tempVect = Vector3Int.zero;
+
+                Vector3 cellCize = GridManager.Instance.CellSize;
+
+                tempVect = GridManager.Instance.GetWorldToCellPosition((Vector3)mousePos);
+                this.transform.position = GridManager.Instance.GetCellToWorldPosition(tempVect);
+                this.transform.position += cellCize/2f;
+            }
+            else
+            {
+                this.transform.position = (Vector3)mousePos;
+            }
         }
         if (Input.GetMouseButtonUp(0))  // Si relache
         {

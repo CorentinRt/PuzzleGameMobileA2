@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
 
     public event Action OnPhase2Started;
     public event Action OnPhase2Ended;
-
     private enum PhaseType
     {
         GamePhase1,
