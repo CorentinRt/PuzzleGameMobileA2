@@ -11,12 +11,22 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => _instance; set => _instance = value; }
     
     private PhaseType _currentPhase;
+    
+    private LevelManager _levelManager;
+    private PlayerManager _playerManager;
 
     public event Action OnPhase1Started;
     public event Action OnPhase1Ended;
 
     public event Action OnPhase2Started;
     public event Action OnPhase2Ended;
+
+    private void Start()
+    {
+        _levelManager = GetComponent<LevelManager>();
+        _playerManager = GetComponent<PlayerManager>();
+    }
+
     public void ChangeGamePhase(PhaseType phase)
     {
         switch (phase)
@@ -41,8 +51,9 @@ public class GameManager : MonoBehaviour
 
     private int CalculateStars()
     {
-        int nbPlayerAliveCount = GetComponent<PlayerManager>().GetPlayerAliveCount();
-        return 0;
+        int nbPlayerAliveCount = _playerManager.GetPlayerAliveCount();
+        int nonRequiredKilledPlayer = _levelManager.GetCurrentLevel().LevelInfo.MaxPlayerToSave - nbPlayerAliveCount;
+        return (nonRequiredKilledPlayer==0? 3 : nonRequiredKilledPlayer<=2? 2 : nbPlayerAliveCount==1? 0 : 1);
     }
     
     [Button]
