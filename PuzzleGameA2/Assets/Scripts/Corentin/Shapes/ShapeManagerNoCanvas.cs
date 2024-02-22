@@ -15,6 +15,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     [SerializeField] private ShapeType _shapeType;
 
     [SerializeField] private ShapePower _shapePower;
+    
+    public ShapePower GetShapePower() => _shapePower;
 
     private SpriteRenderer _spriteRd;
 

@@ -74,9 +74,13 @@ public class PlayerBehaviour : MonoBehaviour
             Instantiate(_corpse, transform.position + new Vector3(_direction*0.5f,-transform.localScale.y/2,0), transform.rotation);
             Destroy(gameObject);
         }
+        else if (other.gameObject.CompareTag("FinalDoor"))
+        {
+            GameObject.FindWithTag("GameController").GetComponent<GameManager>().ChangeGamePhase(PhaseType.GameEndPhase);
+        }
         else if (other.gameObject.CompareTag("Plateforme"))
         {
-            ShapePower shapePower = other.gameObject.GetComponent<ShapeManager>().GetShapePower();
+            ShapePower shapePower = other.gameObject.GetComponent<ShapeManagerNoCanvas>().GetShapePower();
             switch (shapePower)
             {
                 case ShapePower.Jump:
