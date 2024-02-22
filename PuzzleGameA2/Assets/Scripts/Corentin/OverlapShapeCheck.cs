@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragTrigger : MonoBehaviour
+public class OverlapShapeCheck : MonoBehaviour
 {
     [SerializeField] private DragDropNoCanvas _dragDropNoCanvas;
 

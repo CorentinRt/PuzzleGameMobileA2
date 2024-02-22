@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7609178923851661968}
   - component: {fileID: 1447253837928612259}
   - component: {fileID: 1095257968678639032}
+  - component: {fileID: 2308077900132192946}
   m_Layer: 0
   m_Name: ShapeSelectorPanel
   m_TagString: Untagged
@@ -111,6 +112,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2308077900132192946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164961623631222901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1d7883ab86249444836e4c71779f736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gettersPositions: []
 --- !u!1 &665088346189156147
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +305,7 @@ MonoBehaviour:
   _shape: {fileID: 2423419562359650399, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
   _shapeCount: 5
   _shapeType: 0
+  _isAffectedByGravity: 0
 --- !u!1 &1395812921339408633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,6 +1078,7 @@ MonoBehaviour:
   _shape: {fileID: 2423419562359650399, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
   _shapeCount: 5
   _shapeType: 1
+  _isAffectedByGravity: 1
 --- !u!1 &6953417912593625618
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,6 +1340,7 @@ MonoBehaviour:
   _shape: {fileID: 2423419562359650399, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
   _shapeCount: 5
   _shapeType: 2
+  _isAffectedByGravity: 0
 --- !u!1 &8353525082968410885
 GameObject:
   m_ObjectHideFlags: 0

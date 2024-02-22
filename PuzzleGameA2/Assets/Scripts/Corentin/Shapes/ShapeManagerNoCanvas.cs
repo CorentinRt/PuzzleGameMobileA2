@@ -41,6 +41,7 @@ public class ShapeManagerNoCanvas : MonoBehaviour
 
     public ShapeType ShapeType1 { get => _shapeType; set => _shapeType = value; }
     public SpriteRenderer SpriteRd { get => _spriteRd; set => _spriteRd = value; }
+    public bool IsAffectedByGravity { get => _isAffectedByGravity; set => _isAffectedByGravity = value; }
 
     private void ActivateGravity()
     {

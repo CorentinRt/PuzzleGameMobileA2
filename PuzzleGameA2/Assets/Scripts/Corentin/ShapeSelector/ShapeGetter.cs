@@ -17,6 +17,8 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     [SerializeField] private ShapeManagerNoCanvas.ShapeType _shapeType;
 
+    [SerializeField] private bool _isAffectedByGravity;
+
     private TextMeshProUGUI _shapeCountText;
 
 
@@ -29,6 +31,10 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             //_selectorPanel.GetComponent<ShapeSelector>().CloseSelector();
 
             tempShape.GetComponentInChildren<ShapeManagerNoCanvas>().SetShapeType(_shapeType);
+            if (_isAffectedByGravity)
+            {
+                tempShape.GetComponentInChildren<ShapeManagerNoCanvas>().IsAffectedByGravity = true;
+            }
             tempShape.GetComponentInChildren<DragDropNoCanvas>().Dragging = true;
             tempShape.GetComponentInChildren<DragDropNoCanvas>().AllowDrag();
             tempShape.GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
