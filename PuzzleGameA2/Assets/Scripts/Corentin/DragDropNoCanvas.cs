@@ -62,8 +62,6 @@ public class DragDropNoCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetMouseButtonDown(0))    // Si appuie
@@ -110,7 +108,11 @@ public class DragDropNoCanvas : MonoBehaviour
     {
         if (collision.gameObject != null)
         {
-            Debug.Log("Collision with : " + collision.gameObject.name);
+            GetComponent<SpriteRenderer>().color = DragDropManager.Instance.UnableDragColor;
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        GetComponent<SpriteRenderer>().color = DragDropManager.Instance.AbleDragColor;
     }
 }

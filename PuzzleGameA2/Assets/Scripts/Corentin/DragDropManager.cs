@@ -18,7 +18,7 @@ public class DragDropManager : MonoBehaviour
     public bool UseGrid { get => _useGrid; set => _useGrid = value; }
     public GameObject CurrentShapeDragged { get => _currentShapeDragged; set => _currentShapeDragged = value; }
     public Color UnableDragColor { get => _unableDragColor; set => _unableDragColor = value; }
-    public Color AbleDragColor { get => _unableDragColor; set => _unableDragColor = value; }
+    public Color AbleDragColor { get => _ableDragColor; set => _ableDragColor = value; }
 
     private void Awake()
     {
