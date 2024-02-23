@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public static GameManager Instance { get => _instance; set => _instance = value; }
-    
+
     private PhaseType _currentPhase;
     
     private LevelManager _levelManager;
@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public event Action OnPhase2Started;
     public event Action OnPhase2Ended;
+
+    public PhaseType CurrentPhase { get => _currentPhase; set => _currentPhase = value; }
 
     private void Start()
     {
@@ -75,6 +77,12 @@ public class GameManager : MonoBehaviour
     private void EndPhase2()
     {
         OnPhase2Ended?.Invoke();
+    }
+
+
+    private void GameEnd()
+    {
+        ChangeGamePhase(PhaseType.GameEndPhase);
     }
 
     private void Awake()
