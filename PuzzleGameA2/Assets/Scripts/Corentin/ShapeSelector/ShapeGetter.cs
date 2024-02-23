@@ -31,7 +31,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             GameObject tempShape = Instantiate(_shape, _mousePosition, Quaternion.identity);
 
-            //_selectorPanel.GetComponent<ShapeSelector>().CloseSelector();
+            _selectorPanel.GetComponent<ShapeSelector>().CloseTemporary();
 
             tempShape.GetComponentInChildren<ShapeManagerNoCanvas>().SetShapeType(_shapeType);
             if (_isAffectedByGravity)

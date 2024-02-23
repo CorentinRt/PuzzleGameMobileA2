@@ -1767,9 +1767,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 665088346189156147, guid: a55088563abb5264aa208cc811004767, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245030222306705454, guid: a55088563abb5264aa208cc811004767, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2114191188875964648, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: _shapePower
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2114191188875964648, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: _isAffectedByGravity

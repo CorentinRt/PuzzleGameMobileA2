@@ -25,6 +25,15 @@ public class TrashShape : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         _justExit = true;
     }
 
+
+    public void ThrowTrash(GameObject gameObject)
+    {
+        if (DragDropManager.Instance.CurrentShapeDragged != null)
+        {
+            OnGoToTrashEvent?.Invoke(DragDropManager.Instance.CurrentShapeDragged);
+            Destroy(DragDropManager.Instance.CurrentShapeDragged);
+        }
+    }
     private void Awake()
     {
         if (instance != null)
