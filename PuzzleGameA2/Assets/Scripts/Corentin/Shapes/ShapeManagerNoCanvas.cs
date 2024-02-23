@@ -54,6 +54,25 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 break;
         }
     }
+    private void DesactivateGravity()
+    {
+        _body2D.gravityScale = 1.0f;
+
+        _body2D.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        switch (_shapeType)
+        {
+            case ShapeType.Square:
+                _boxCollider.isTrigger = false;
+                break;
+            case ShapeType.Triangle:
+                _triangleCollider.isTrigger = false;
+                break;
+            case ShapeType.Circle:
+                _circleCollider.isTrigger = false;
+                break;
+        }
+    }
 
     public void SetShapeType(ShapeType shapeType)
     {
@@ -244,12 +263,20 @@ public class ShapeManagerNoCanvas : MonoBehaviour
         {
             GameManager.Instance.OnPhase1Ended += ActivateGravity;
         }
+        else
+        {
+            GameManager.Instance.OnPhase1Ended += DesactivateGravity;
+        }
     }
     private void OnDestroy()
     {
         if(_isAffectedByGravity)
         {
             GameManager.Instance.OnPhase1Ended -= ActivateGravity;
+        }
+        else
+        {
+            GameManager.Instance.OnPhase1Ended -= DesactivateGravity;
         }
     }
 

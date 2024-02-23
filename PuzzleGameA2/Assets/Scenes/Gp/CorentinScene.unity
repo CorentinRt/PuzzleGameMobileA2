@@ -649,6 +649,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 506866467}
+    - target: {fileID: 3121271777225843755, guid: a55088563abb5264aa208cc811004767, type: 3}
+      propertyPath: _isAffectedByGravity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4191620676368582138, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -688,6 +692,10 @@ PrefabInstance:
     - target: {fileID: 4191620676368582138, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127276124990019626, guid: a55088563abb5264aa208cc811004767, type: 3}
+      propertyPath: _isAffectedByGravity
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8356805842032265265, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: m_Name
