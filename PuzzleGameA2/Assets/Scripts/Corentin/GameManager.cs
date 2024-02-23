@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => _instance; set => _instance = value; }
 
     private PhaseType _currentPhase;
-    
+
+    int _nbStars;
+
     private LevelManager _levelManager;
     private PlayerManager _playerManager;
 
@@ -21,7 +23,10 @@ public class GameManager : MonoBehaviour
     public event Action OnPhase2Started;
     public event Action OnPhase2Ended;
 
+    public event Action OnGameEnd;
+
     public PhaseType CurrentPhase { get => _currentPhase; set => _currentPhase = value; }
+    public int NbStars { get => _nbStars; set => _nbStars = value; }
 
     private void Start()
     {
@@ -44,7 +49,8 @@ public class GameManager : MonoBehaviour
                 StartPhase2();
                 break;
             case PhaseType.GameEndPhase:
-                int nbStars = CalculateStars();
+                _nbStars = CalculateStars();
+                GameEnd();
                 break;
         }
 
@@ -55,6 +61,7 @@ public class GameManager : MonoBehaviour
     {
         int nbPlayerAliveCount = _playerManager.GetPlayerAliveCount();
         int nonRequiredKilledPlayer = _levelManager.GetCurrentLevel().LevelInfo.MaxPlayerToSave - nbPlayerAliveCount;
+        Debug.Log(nonRequiredKilledPlayer == 0 ? 3 : nonRequiredKilledPlayer <= 2 ? 2 : nbPlayerAliveCount == 1 ? 0 : 1);
         return (nonRequiredKilledPlayer==0? 3 : nonRequiredKilledPlayer<=2? 2 : nbPlayerAliveCount==1? 0 : 1);
     }
     
@@ -82,7 +89,7 @@ public class GameManager : MonoBehaviour
 
     private void GameEnd()
     {
-        ChangeGamePhase(PhaseType.GameEndPhase);
+        OnGameEnd?.Invoke();
     }
 
     private void Awake()
