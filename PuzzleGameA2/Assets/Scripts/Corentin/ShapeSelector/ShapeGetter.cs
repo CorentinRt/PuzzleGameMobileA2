@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private Vector2 _mousePosition;
 
     [SerializeField] private ShapeManagerNoCanvas.ShapeType _shapeType;
+
+    [SerializeField] private ShapePower _shapePower;
 
     [SerializeField] private bool _isAffectedByGravity;
 
@@ -35,6 +38,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             {
                 tempShape.GetComponentInChildren<ShapeManagerNoCanvas>().IsAffectedByGravity = true;
             }
+            tempShape.GetComponent<ShapeManagerNoCanvas>().SetShapePower(_shapePower);
             tempShape.GetComponentInChildren<DragDropNoCanvas>().Dragging = true;
             tempShape.GetComponentInChildren<DragDropNoCanvas>().AllowDrag();
             tempShape.GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
