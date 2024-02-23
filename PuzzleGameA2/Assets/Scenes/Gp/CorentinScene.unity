@@ -1783,30 +1783,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 665088346189156147, guid: a55088563abb5264aa208cc811004767, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1245030222306705454, guid: a55088563abb5264aa208cc811004767, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2114191188875964648, guid: a55088563abb5264aa208cc811004767, type: 3}
-      propertyPath: _shapePower
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2114191188875964648, guid: a55088563abb5264aa208cc811004767, type: 3}
-      propertyPath: _isAffectedByGravity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2341143098852811334, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 506866467}
-    - target: {fileID: 3121271777225843755, guid: a55088563abb5264aa208cc811004767, type: 3}
-      propertyPath: _shapePower
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4191620676368582138, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1845,14 +1825,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4191620676368582138, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7127276124990019626, guid: a55088563abb5264aa208cc811004767, type: 3}
-      propertyPath: _shapePower
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7127276124990019626, guid: a55088563abb5264aa208cc811004767, type: 3}
-      propertyPath: _isAffectedByGravity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7612553244844403783, guid: a55088563abb5264aa208cc811004767, type: 3}
