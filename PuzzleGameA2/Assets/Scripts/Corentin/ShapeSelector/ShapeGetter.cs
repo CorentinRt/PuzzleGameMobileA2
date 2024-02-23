@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     [SerializeField] private ShapeManagerNoCanvas.ShapeType _shapeType;
 
+    [SerializeField] private ShapePower _shapePower;
+
     [SerializeField] private bool _isAffectedByGravity;
 
     private TextMeshProUGUI _shapeCountText;
@@ -28,13 +31,14 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             GameObject tempShape = Instantiate(_shape, _mousePosition, Quaternion.identity);
 
-            //_selectorPanel.GetComponent<ShapeSelector>().CloseSelector();
+            _selectorPanel.GetComponent<ShapeSelector>().CloseTemporary();
 
             tempShape.GetComponentInChildren<ShapeManagerNoCanvas>().SetShapeType(_shapeType);
             if (_isAffectedByGravity)
             {
                 tempShape.GetComponentInChildren<ShapeManagerNoCanvas>().IsAffectedByGravity = true;
             }
+            tempShape.GetComponent<ShapeManagerNoCanvas>().SetShapePower(_shapePower);
             tempShape.GetComponentInChildren<DragDropNoCanvas>().Dragging = true;
             tempShape.GetComponentInChildren<DragDropNoCanvas>().AllowDrag();
             tempShape.GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);

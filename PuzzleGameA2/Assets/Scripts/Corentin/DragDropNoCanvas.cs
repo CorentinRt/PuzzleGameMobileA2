@@ -15,6 +15,8 @@ public class DragDropNoCanvas : MonoBehaviour
     [SerializeField] private CircleCollider2D _dragtrigger;    
     [SerializeField] private LayerMask _dragLayerMask;
 
+    private bool _isUnable;
+
     private bool _canDrag;
 
     public bool CanDrag { get => _canDrag; set => _canDrag = value; }
@@ -107,20 +109,42 @@ public class DragDropNoCanvas : MonoBehaviour
             _canMove = false;
             _dragging = false;
         }
+
+        if (!_isUnable)
+        {
+            if (DragDropManager.Instance.CurrentShapeDragged == transform.parent.gameObject)
+            {
+                if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
+                {
+                    shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.SelectedDragColor;
+                }
+            }
+            else
+            {
+                if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
+                {
+                    shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.AbleDragColor;
+                }
+            }
+        }
     }
 
     public void SetUnableColor()
     {
-        if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
+        if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas) && !_isUnable)
         {
+            _isUnable = true;
             shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.UnableDragColor;
+            DragDropManager.Instance.UnableCount++;
         }
     }
     public void SetAbleColor()
     {
-        if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
+        if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas) && _isUnable)
         {
+            _isUnable = false;
             shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.AbleDragColor;
+            DragDropManager.Instance.UnableCount--;
         }
     }
 }
