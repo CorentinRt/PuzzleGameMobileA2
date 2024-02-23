@@ -40,7 +40,7 @@ public class ShapeSelector : MonoBehaviour
     [Button]
     public void OpenSelector()
     {
-        if (_openCoroutine == null)
+        if (_openCoroutine == null && GameManager.Instance.CurrentPhase == Enums.PhaseType.PlateformePlacement)
         {
             if (_closeCoroutine != null)
             {
@@ -89,13 +89,17 @@ public class ShapeSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.Instance.OnPhase1Ended += CloseSelector;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnPhase1Ended -= CloseSelector;
+    }
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     IEnumerator OpenSelectorCoroutine()

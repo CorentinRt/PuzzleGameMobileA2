@@ -28,6 +28,10 @@ public class PlayerManager : MonoBehaviour
         _gameManager = GetComponent<GameManager>();
         _gameManager.OnPhase2Started += StartNextPlayer;
     }
+    private void OnDestroy()
+    {
+        _gameManager.OnPhase2Started -= StartNextPlayer;
+    }
     private void Update()
     {
         if (_playerCount == 6) return;

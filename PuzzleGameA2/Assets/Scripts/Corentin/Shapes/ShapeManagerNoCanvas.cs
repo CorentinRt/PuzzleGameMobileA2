@@ -37,9 +37,94 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     public SpriteRenderer SpriteRd { get => _spriteRd; set => _spriteRd = value; }
     public bool IsAffectedByGravity { get => _isAffectedByGravity; set => _isAffectedByGravity = value; }
 
+
+    private void DragMode()
+    {
+        switch (_shapeType)
+        {
+            case ShapeType.Square:
+                foreach (var info in _shapesInfo.ShapesInfo)
+                {
+                    if (info.Name == "Square")
+                    {
+                        _spriteRd.sprite = info.Sprite;
+                        break;
+                    }
+                }
+                _boxCollider.enabled = true;
+                _triangleCollider.enabled = false;
+                _circleCollider.enabled = false;
+
+                _boxCollider.isTrigger = true;
+                break;
+            case ShapeType.Triangle:
+                foreach (var info in _shapesInfo.ShapesInfo)
+                {
+                    if (info.Name == "Triangle")
+                    {
+                        _spriteRd.sprite = info.Sprite;
+                        break;
+                    }
+                }
+                _triangleCollider.enabled = true;
+                _boxCollider.enabled = false;
+                _circleCollider.enabled = false;
+
+                _triangleCollider.isTrigger = true;
+                break;
+            case ShapeType.Circle:
+                foreach (var info in _shapesInfo.ShapesInfo)
+                {
+                    if (info.Name == "Circle")
+                    {
+                        _spriteRd.sprite = info.Sprite;
+                        break;
+                    }
+                }
+                _circleCollider.enabled = true;
+                _triangleCollider.enabled = false;
+                _boxCollider.enabled = false;
+
+                _circleCollider.isTrigger = true;
+                break;
+        }
+        //GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
+        _body2D.gravityScale = 0f;
+    }
+    private void LockMode()
+    {
+        if (_isAffectedByGravity)
+        {
+            ActivateGravity();
+        }
+        else
+        {
+            DesactivateGravity();
+        }
+    }
+
     private void ActivateGravity()
     {
         _body2D.gravityScale = 1.0f;
+
+        switch (_shapeType)
+        {
+            case ShapeType.Square:
+                _boxCollider.isTrigger = false;
+                break;
+            case ShapeType.Triangle:
+                _triangleCollider.isTrigger = false;
+                break;
+            case ShapeType.Circle:
+                _circleCollider.isTrigger = false;
+                break;
+        }
+    }
+    private void DesactivateGravity()
+    {
+        _body2D.gravityScale = 1.0f;
+
+        _body2D.constraints = RigidbodyConstraints2D.FreezeAll;
 
         switch (_shapeType)
         {
@@ -240,17 +325,13 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (_isAffectedByGravity)
-        {
-            GameManager.Instance.OnPhase1Ended += ActivateGravity;
-        }
+        GameManager.Instance.OnPhase1Started += DragMode;
+        GameManager.Instance.OnPhase1Ended += LockMode;
     }
     private void OnDestroy()
     {
-        if(_isAffectedByGravity)
-        {
-            GameManager.Instance.OnPhase1Ended -= ActivateGravity;
-        }
+        GameManager.Instance.OnPhase1Started -= DragMode;
+        GameManager.Instance.OnPhase1Ended -= LockMode;
     }
 
     // Update is called once per frame

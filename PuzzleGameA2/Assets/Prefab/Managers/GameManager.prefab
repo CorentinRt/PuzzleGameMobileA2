@@ -74,4 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 878bdca5c09c870488997d25f581101c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shapesInLevel: []
+  _levels:
+  - _levelInfo: {fileID: 11400000, guid: c29835499eedc924a8d31daa855bdd03, type: 2}
+    _unlocked: 0
