@@ -109,6 +109,24 @@ public class DragDropNoCanvas : MonoBehaviour
             _canMove = false;
             _dragging = false;
         }
+
+        if (!_isUnable)
+        {
+            if (DragDropManager.Instance.CurrentShapeDragged == transform.parent.gameObject)
+            {
+                if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
+                {
+                    shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.SelectedDragColor;
+                }
+            }
+            else
+            {
+                if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
+                {
+                    shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.AbleDragColor;
+                }
+            }
+        }
     }
 
     public void SetUnableColor()

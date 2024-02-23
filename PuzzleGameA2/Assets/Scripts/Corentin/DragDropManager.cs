@@ -14,6 +14,7 @@ public class DragDropManager : MonoBehaviour
 
     [SerializeField] private Color _unableDragColor;
     [SerializeField] private Color _ableDragColor;
+    [SerializeField] private Color _selectedDragColor;
 
     private int _unableCount;
 
@@ -22,6 +23,7 @@ public class DragDropManager : MonoBehaviour
     public Color UnableDragColor { get => _unableDragColor; set => _unableDragColor = value; }
     public Color AbleDragColor { get => _ableDragColor; set => _ableDragColor = value; }
     public int UnableCount { get => _unableCount; set => _unableCount = value; }
+    public Color SelectedDragColor { get => _selectedDragColor; set => _selectedDragColor = value; }
 
     private void Awake()
     {

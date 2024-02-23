@@ -1653,6 +1653,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1229218823104934817, guid: c71349a0a2c0dc44c9abe6e21ac79556, type: 3}
+      propertyPath: _selectedDragColor.a
+      value: 0.6392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229218823104934817, guid: c71349a0a2c0dc44c9abe6e21ac79556, type: 3}
+      propertyPath: _selectedDragColor.b
+      value: 0.5329142
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229218823104934817, guid: c71349a0a2c0dc44c9abe6e21ac79556, type: 3}
+      propertyPath: _selectedDragColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229218823104934817, guid: c71349a0a2c0dc44c9abe6e21ac79556, type: 3}
+      propertyPath: _selectedDragColor.r
+      value: 0.44716978
+      objectReference: {fileID: 0}
     - target: {fileID: 3901735837075832220, guid: c71349a0a2c0dc44c9abe6e21ac79556, type: 3}
       propertyPath: m_Name
       value: DragDropManager
