@@ -8,6 +8,11 @@ public class PlayersAnimationManager : MonoBehaviour
 
     public Animator Animator { get => _animator; set => _animator = value; }
 
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
     public void PlayWalkAnimation()
     {
 
