@@ -110,6 +110,15 @@ public class ShapeSelector : MonoBehaviour
             _isClosedTemporary = false;
             OpenSelector();
         }
+
+        if (GameManager.Instance.CurrentPhase == Enums.PhaseType.PlateformePlacement && !_isOpen && !_isClosedTemporary)
+        {
+            OpenSelector();
+        }
+        if (GameManager.Instance.CurrentPhase != Enums.PhaseType.PlateformePlacement && _isOpen)
+        {
+            CloseSelector();
+        }
     }
 
     IEnumerator OpenSelectorCoroutine()
