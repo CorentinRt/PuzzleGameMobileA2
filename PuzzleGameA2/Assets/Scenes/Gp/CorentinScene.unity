@@ -1740,6 +1740,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1782697934099259686, guid: a55088563abb5264aa208cc811004767, type: 3}
+      propertyPath: _shapePower
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782697934099259686, guid: a55088563abb5264aa208cc811004767, type: 3}
+      propertyPath: _isAffectedByGravity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2341143098852811334, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1783,6 +1791,18 @@ PrefabInstance:
     - target: {fileID: 4191620676368582138, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330456317819613268, guid: a55088563abb5264aa208cc811004767, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+    - target: {fileID: 6775856842122702955, guid: a55088563abb5264aa208cc811004767, type: 3}
+      propertyPath: _shapePower
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602145519047531999, guid: a55088563abb5264aa208cc811004767, type: 3}
+      propertyPath: _shapePower
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7612553244844403783, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
