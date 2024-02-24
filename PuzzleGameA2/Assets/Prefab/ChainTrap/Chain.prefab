@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 542714887516556272}
   - component: {fileID: 8884991131107332062}
   - component: {fileID: 3245939018051950604}
+  - component: {fileID: 2599739615293007267}
   m_Layer: 0
   m_Name: Link 2
   m_TagString: Untagged
@@ -143,7 +144,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -174,6 +175,18 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!114 &2599739615293007267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881881299705561886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0216a3e9688c6634d94e76b9c3792eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4642052232230559429
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +200,7 @@ GameObject:
   - component: {fileID: 271740859712120603}
   - component: {fileID: 4801019036342860627}
   - component: {fileID: 5017493485701030253}
+  - component: {fileID: 8890548285788910926}
   m_Layer: 0
   m_Name: Link 3
   m_TagString: Untagged
@@ -317,7 +331,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -339,7 +353,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.46000004}
-  m_ConnectedAnchor: {x: 0, y: 0.5}
+  m_ConnectedAnchor: {x: 0, y: 0.6199999}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -348,6 +362,18 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!114 &8890548285788910926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4642052232230559429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0216a3e9688c6634d94e76b9c3792eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8193387005746780799
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +386,7 @@ GameObject:
   - component: {fileID: 571141905390005609}
   - component: {fileID: 402399266113983070}
   - component: {fileID: 5569965198798435891}
+  - component: {fileID: 5718190461835092908}
   m_Layer: 0
   m_Name: Chain
   m_TagString: Untagged
@@ -483,8 +510,29 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0.5}
   m_AutoConfigureDistance: 1
-  m_Distance: 3.28
+  m_Distance: 3.34
   m_MaxDistanceOnly: 0
+--- !u!114 &5718190461835092908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193387005746780799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e746d0ff9a05dea488ca065fde4c016b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _links:
+  - {fileID: 8428438438030422072}
+  - {fileID: 1881881299705561886}
+  - {fileID: 4642052232230559429}
+  _objectChained: {fileID: 3331002843289545791}
+  _detectionRange: 10
+  _detectedLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &8428438438030422072
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +547,7 @@ GameObject:
   - component: {fileID: 843410351685229227}
   - component: {fileID: 5201399605832325821}
   - component: {fileID: 597604430332382512}
+  - component: {fileID: 8423244104291183411}
   m_Layer: 0
   m_Name: Link 1
   m_TagString: Untagged
@@ -629,7 +678,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -685,6 +734,18 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!114 &8423244104291183411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8428438438030422072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0216a3e9688c6634d94e76b9c3792eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1051238880508180295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -699,7 +760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 23213349320176421, guid: b65eb8293416c8843903e0e5dd846975, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.78
+      value: -3.59
       objectReference: {fileID: 0}
     - target: {fileID: 23213349320176421, guid: b65eb8293416c8843903e0e5dd846975, type: 3}
       propertyPath: m_LocalPosition.z
@@ -745,6 +806,11 @@ PrefabInstance:
 --- !u!4 &1064178109701571682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 23213349320176421, guid: b65eb8293416c8843903e0e5dd846975, type: 3}
+  m_PrefabInstance: {fileID: 1051238880508180295}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3331002843289545791 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2354495579122441080, guid: b65eb8293416c8843903e0e5dd846975, type: 3}
   m_PrefabInstance: {fileID: 1051238880508180295}
   m_PrefabAsset: {fileID: 0}
 --- !u!50 &8197028728709701136 stripped
