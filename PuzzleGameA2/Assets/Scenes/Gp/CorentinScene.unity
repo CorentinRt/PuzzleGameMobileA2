@@ -1549,9 +1549,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5201399605832325821, guid: 5ab8800bf8bb0474e9f2cb0286fd0fca, type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: 0.5000001
+    - target: {fileID: 5718190461835092908, guid: 5ab8800bf8bb0474e9f2cb0286fd0fca, type: 3}
+      propertyPath: _startBalancingForce
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8193387005746780799, guid: 5ab8800bf8bb0474e9f2cb0286fd0fca, type: 3}
       propertyPath: m_Name

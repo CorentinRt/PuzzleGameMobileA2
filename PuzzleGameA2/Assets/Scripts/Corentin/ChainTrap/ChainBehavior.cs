@@ -14,6 +14,9 @@ public class ChainBehavior : MonoBehaviour
 
     [SerializeField] private LayerMask _detectedLayerMask;
 
+    [SerializeField] private bool _startBalancing;
+    [SerializeField] private float _startBalancingForce;
+
     private bool _isBroken;
 
     private void CheckBroken(GameObject gameObject)
@@ -47,6 +50,11 @@ public class ChainBehavior : MonoBehaviour
         foreach (var link in _links)
         {
             link.GetComponent<TriggerCollisionDetection>().OnTriggerEnterEvent += CheckBroken;
+        }
+
+        if (_startBalancing)
+        {
+            _objectChained.GetComponent<Rigidbody2D>().AddForce(new Vector2(_startBalancingForce, 0f), ForceMode2D.Impulse);
         }
     }
 
