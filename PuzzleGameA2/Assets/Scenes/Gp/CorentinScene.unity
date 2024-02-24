@@ -1511,7 +1511,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2953183273148147418, guid: 5ab8800bf8bb0474e9f2cb0286fd0fca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3
+      value: -1.86
       objectReference: {fileID: 0}
     - target: {fileID: 2953183273148147418, guid: 5ab8800bf8bb0474e9f2cb0286fd0fca, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1548,10 +1548,6 @@ PrefabInstance:
     - target: {fileID: 2953183273148147418, guid: 5ab8800bf8bb0474e9f2cb0286fd0fca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5718190461835092908, guid: 5ab8800bf8bb0474e9f2cb0286fd0fca, type: 3}
-      propertyPath: _startBalancingForce
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8193387005746780799, guid: 5ab8800bf8bb0474e9f2cb0286fd0fca, type: 3}
       propertyPath: m_Name
@@ -1630,22 +1626,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1229218823104934817, guid: c71349a0a2c0dc44c9abe6e21ac79556, type: 3}
-      propertyPath: _selectedDragColor.a
-      value: 0.6392157
-      objectReference: {fileID: 0}
-    - target: {fileID: 1229218823104934817, guid: c71349a0a2c0dc44c9abe6e21ac79556, type: 3}
-      propertyPath: _selectedDragColor.b
-      value: 0.5329142
-      objectReference: {fileID: 0}
-    - target: {fileID: 1229218823104934817, guid: c71349a0a2c0dc44c9abe6e21ac79556, type: 3}
-      propertyPath: _selectedDragColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1229218823104934817, guid: c71349a0a2c0dc44c9abe6e21ac79556, type: 3}
-      propertyPath: _selectedDragColor.r
-      value: 0.44716978
-      objectReference: {fileID: 0}
     - target: {fileID: 3901735837075832220, guid: c71349a0a2c0dc44c9abe6e21ac79556, type: 3}
       propertyPath: m_Name
       value: DragDropManager

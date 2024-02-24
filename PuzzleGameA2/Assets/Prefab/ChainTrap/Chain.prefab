@@ -534,7 +534,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _startBalancing: 1
-  _startBalancingForce: 3
+  _startBalancingForce: 35
 --- !u!1 &8428438438030422072
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,7 +800,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpikeChained
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9175928126669924695, guid: b65eb8293416c8843903e0e5dd846975, type: 3}
+      propertyPath: m_Mass
+      value: 50
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4366397421068612958, guid: b65eb8293416c8843903e0e5dd846975, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
