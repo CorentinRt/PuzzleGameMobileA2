@@ -535,6 +535,7 @@ MonoBehaviour:
     m_Bits: 64
   _startBalancing: 1
   _startBalancingForce: 35
+  _breakForceDownAdjustment: 50
 --- !u!1 &8428438438030422072
 GameObject:
   m_ObjectHideFlags: 0

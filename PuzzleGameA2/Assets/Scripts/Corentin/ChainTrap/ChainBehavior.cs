@@ -17,6 +17,8 @@ public class ChainBehavior : MonoBehaviour
     [SerializeField] private bool _startBalancing;
     [SerializeField] private float _startBalancingForce;
 
+    [SerializeField] private float _breakForceDownAdjustment;
+
     private bool _isBroken;
 
     private void CheckBroken(GameObject gameObject)
@@ -35,6 +37,8 @@ public class ChainBehavior : MonoBehaviour
             _isBroken = true;
 
             _objectChained.transform.parent = null;
+
+            _objectChained.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, -_breakForceDownAdjustment), ForceMode2D.Impulse);
 
             StartCoroutine(SpikeChainDeathTagCooldown());
 
