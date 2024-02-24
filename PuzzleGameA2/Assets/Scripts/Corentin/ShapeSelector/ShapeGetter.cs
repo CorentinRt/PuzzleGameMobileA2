@@ -84,7 +84,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // Start is called before the first frame update
     void Start()
     {
-        _selectorPanel = transform.parent.GetComponent<RectTransform>();
+        _selectorPanel = transform.parent.parent.GetComponent<RectTransform>();
 
         _shapeCountText.text = _shapeCount.ToString();
 
