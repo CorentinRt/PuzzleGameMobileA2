@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: 
   _levelID: 0
-  _maxShapeUsable: 5
-  _maxPlayerToSave: 5
-  _levelAdditiveScene: CorentinScene
+  _maxPlayerToSave: 6
+  _levelAdditiveScene: Level1Test

@@ -13,6 +13,7 @@ public class PlayerBehaviour : MonoBehaviour
     private Rigidbody2D _rb;
     private int _direction; //-1 = left ; 1 = right
     [SerializeField] private float _jumpForce;
+    private LevelManager _levelManager;
 
     [Button]
     public void StartWalking() => _walking = true;
@@ -60,11 +61,14 @@ public class PlayerBehaviour : MonoBehaviour
         _direction *= -1;
     }
 
+    public void UnloadLevel() => Destroy(gameObject);
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Death"))
         {
             Instantiate(_corpse, transform.position + new Vector3(_direction*0.5f,-transform.localScale.y/2,0), transform.rotation);
+            //TODO: Add LevelManager to Corpse + UnloadLevel = killCorpse
             Destroy(gameObject);
         }
         else if (other.gameObject.CompareTag("FinalDoor"))
@@ -82,7 +86,6 @@ public class PlayerBehaviour : MonoBehaviour
                 case ShapePower.ChangeDirection:
                     ChangeDirection();
                     break;
-                    
             }
         }
     }
@@ -107,5 +110,11 @@ public class PlayerBehaviour : MonoBehaviour
                 break;
                     
         }
+    }
+
+    public void SetManager(LevelManager levelManager)
+    {
+        _levelManager = levelManager;
+        levelManager.OnLevelUnload += UnloadLevel;
     }
 }

@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
                 break;
             case PhaseType.GameEndPhase:
                 _nbStars = CalculateStars();
+                _levelManager.GetCurrentLevel().SetStars(_nbStars);
                 GameEnd();
                 break;
         }
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
         int nbPlayerAliveCount = _playerManager.GetPlayerAliveCount();
         int nonRequiredKilledPlayer = _levelManager.GetCurrentLevel().LevelInfo.MaxPlayerToSave - nbPlayerAliveCount;
         Debug.Log(nonRequiredKilledPlayer == 0 ? 3 : nonRequiredKilledPlayer <= 2 ? 2 : nbPlayerAliveCount == 1 ? 0 : 1);
-        return (nonRequiredKilledPlayer==0? 3 : nonRequiredKilledPlayer<=2? 2 : nbPlayerAliveCount==1? 0 : 1);
+        return (nonRequiredKilledPlayer<=0? 3 : nonRequiredKilledPlayer<=2? 2 : nbPlayerAliveCount==1? 0 : 1);
     }
     
     [Button]

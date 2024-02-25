@@ -16,18 +16,24 @@ public class PlayerManager : MonoBehaviour
     private int _playerCount;
     private bool _isOnPlayerPhase;
     private GameManager _gameManager;
+    private LevelManager _levelManager;
 
     public int GetPlayerAliveCount() => _nbLives - _playerCount + 2;
 
     private void Start()
     {
-        _nextPlayer = Instantiate(_playerPrefab, _spawnpoint, transform.rotation).GetComponent<PlayerBehaviour>();
-        _nextPlayer.SetSpawnpoint(_startpoint);
-        _playerCount = 1;
         _isOnPlayerPhase = false;
-        _gameManager = GetComponent<GameManager>();
+        _gameManager = GameManager.Instance;
+        _levelManager = _gameManager.gameObject.GetComponent<LevelManager>();
+        _levelManager.OnLevelFinishedLoad += CreateFirstPlayer;
         _gameManager.OnPhase2Started += StartNextPlayer;
     }
+
+    private void CreateFirstPlayer()
+    {
+        SummonPlayer(true);
+    }
+
     private void OnDestroy()
     {
         _gameManager.OnPhase2Started -= StartNextPlayer;
@@ -40,17 +46,31 @@ public class PlayerManager : MonoBehaviour
             _isOnPlayerPhase = false;
             _gameManager.ChangeGamePhase(PhaseType.ChoicePhase);
         }
-
     }
 
+    private void Reset()
+    {
+        _currentPlayer = null;
+        SummonPlayer(true);
+        _playerCount = 1;
+        _isOnPlayerPhase = false;
+        
+    }
+
+    private void SummonPlayer(bool resetPlayerCount=false)
+    {
+        _playerCount = resetPlayerCount ? 1 : _playerCount + 1;
+        _nextPlayer = Instantiate(_playerPrefab, _spawnpoint, transform.rotation).GetComponent<PlayerBehaviour>();
+        _nextPlayer.SetSpawnpoint(_startpoint);
+        _nextPlayer.SetManager(_levelManager);
+    }
     private void StartNextPlayer()
     {
+        if (_currentPlayer != null) return;
         _nextPlayer.StartWalking();
         _currentPlayer = _nextPlayer;
         if (_playerCount >= _nbLives) return;
-        _nextPlayer = Instantiate(_playerPrefab, _spawnpoint, transform.rotation).GetComponent<PlayerBehaviour>();
-        _nextPlayer.SetSpawnpoint(_startpoint);
-        _playerCount++;
+        SummonPlayer();
         _isOnPlayerPhase = true;
     }
 
