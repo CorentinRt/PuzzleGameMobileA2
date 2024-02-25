@@ -47,12 +47,22 @@ public class ButtonDoorBehavior : MonoBehaviour
             OnButtonUnpressed?.Invoke();
         }
     }
+    private void ClampToGrid()
+    {
+        Vector3Int tempVecInt = GridManager.Instance.GetWorldToCellPosition(transform.parent.position);
 
+        Vector3 cellSize = GridManager.Instance.CellSize;
+
+        transform.parent.position = GridManager.Instance.GetCellToWorldPosition(tempVecInt);
+        transform.parent.position += cellSize / 2;
+    }
     // Start is called before the first frame update
     void Start()
     {
         _collisionDetection.OnTriggerEnterEvent += CheckButtonPressed;
         _collisionDetection.OnTriggerExitEvent += CheckButtonUnpressed;
+
+        ClampToGrid();
     }
     private void OnDestroy()
     {

@@ -15,8 +15,6 @@ public class BlockingDoorBehavior : MonoBehaviour
 
     [Header("Parameters")]
 
-    [SerializeField] private bool _startOpen;
-
     [SerializeField] private float _openSpeed;
     [SerializeField] private float _closeSpeed;
 
@@ -61,20 +59,23 @@ public class BlockingDoorBehavior : MonoBehaviour
         }
     }
 
+    private void ClampToGrid()
+    {
+        Vector3Int tempVecInt = GridManager.Instance.GetWorldToCellPosition(transform.parent.position);
+
+        Vector3 cellSize = GridManager.Instance.CellSize;
+
+        transform.parent.position = GridManager.Instance.GetCellToWorldPosition(tempVecInt);
+        transform.parent.position += cellSize / 2;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         _associatedButton.OnButtonPressed += OpenDoor;
         _associatedButton.OnButtonUnpressed += CloseDoor;
 
-        if (_startOpen)
-        {
-            OpenDoor();
-        }
-        else
-        {
-            CloseDoor();
-        }
+        ClampToGrid();
     }
     private void OnDestroy()
     {
