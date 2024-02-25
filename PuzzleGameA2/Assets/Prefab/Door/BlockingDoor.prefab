@@ -49,6 +49,8 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 6059046855243659857}
   _openSpeed: 5
   _closeSpeed: 5
+  _openColor: {r: 0, g: 1, b: 0.10002494, a: 1}
+  _closeColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1060872790793810839
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,8 @@ public class BlockingDoorBehavior : MonoBehaviour
 
     [Header("Parameters")]
 
+    [SerializeField] private bool _startOpen;
+
     [SerializeField] private float _openSpeed;
     [SerializeField] private float _closeSpeed;
 
@@ -64,6 +66,15 @@ public class BlockingDoorBehavior : MonoBehaviour
     {
         _associatedButton.OnButtonPressed += OpenDoor;
         _associatedButton.OnButtonUnpressed += CloseDoor;
+
+        if (_startOpen)
+        {
+            OpenDoor();
+        }
+        else
+        {
+            CloseDoor();
+        }
     }
     private void OnDestroy()
     {
@@ -71,11 +82,6 @@ public class BlockingDoorBehavior : MonoBehaviour
         _associatedButton.OnButtonUnpressed -= CloseDoor;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     IEnumerator OpenDoorCoroutine()
     {
         _boxCollider.enabled = false;

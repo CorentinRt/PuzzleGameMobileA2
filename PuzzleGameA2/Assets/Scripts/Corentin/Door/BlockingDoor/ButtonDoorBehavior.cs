@@ -8,6 +8,11 @@ public class ButtonDoorBehavior : MonoBehaviour
 {
     [SerializeField] private TriggerCollisionDetection _collisionDetection;
 
+    [SerializeField] private Color _pressedColor;
+    [SerializeField] private Color _unpressedColor;
+
+    private int _totalInTrigger;
+
     public event Action OnButtonPressed;
     public event Action OnButtonUnpressed;
 
@@ -15,6 +20,7 @@ public class ButtonDoorBehavior : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
+            _totalInTrigger++;
             PressButton();
         }
     }
@@ -22,6 +28,7 @@ public class ButtonDoorBehavior : MonoBehaviour
     {
         if (gameObject.CompareTag("Player"))
         {
+            _totalInTrigger--;
             UnpressButton();
         }
     }
@@ -34,8 +41,11 @@ public class ButtonDoorBehavior : MonoBehaviour
     [Button]
     private void UnpressButton()
     {
-        Debug.Log("UnPress Button");
-        OnButtonUnpressed?.Invoke();
+        if (_totalInTrigger == 0f)
+        {
+            Debug.Log("UnPress Button");
+            OnButtonUnpressed?.Invoke();
+        }
     }
 
     // Start is called before the first frame update
