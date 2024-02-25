@@ -42,6 +42,9 @@ public class DragDropManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_currentShapeDragged != null && GameManager.Instance.CurrentPhase != Enums.PhaseType.PlateformePlacement)
+        {
+            _currentShapeDragged = null;
+        }
     }
 }

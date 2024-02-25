@@ -5,10 +5,13 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private GameObject _shape;
+
+    [SerializeField] AllShapesInfo _shapesInfo;
 
     [SerializeField] private int _shapeCount;
 
@@ -24,6 +27,9 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private TextMeshProUGUI _shapeCountText;
 
+    public int ShapeCount { get => _shapeCount; set => _shapeCount = value; }
+    public ShapePower ShapePower { get => _shapePower; set => _shapePower = value; }
+    public ShapeManagerNoCanvas.ShapeType ShapeType { get => _shapeType; set => _shapeType = value; }
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -77,6 +83,51 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
+    private void AdaptSprite()
+    {
+        switch (_shapeType)     // Init right spriteRenderer
+        {
+            case ShapeManagerNoCanvas.ShapeType.Square:
+
+                foreach (var info in _shapesInfo.ShapesInfo)
+                {
+                    if (info.Name == "Square")
+                    {
+                        GetComponent<Image>().sprite = info.Sprite;
+                        break;
+                    }
+                }
+                break;
+            case ShapeManagerNoCanvas.ShapeType.Triangle:
+
+                foreach (var info in _shapesInfo.ShapesInfo)
+                {
+                    if (info.Name == "Triangle")
+                    {
+                        GetComponent<Image>().sprite = info.Sprite;
+                        break;
+                    }
+                }
+                break;
+            case ShapeManagerNoCanvas.ShapeType.Circle:
+
+                foreach (var info in _shapesInfo.ShapesInfo)
+                {
+                    if (info.Name == "Circle")
+                    {
+                        GetComponent<Image>().sprite = info.Sprite;
+                        break;
+                    }
+                }
+                break;
+        }
+    }
+
+    private void OnValidate()
+    {
+        AdaptSprite();
+    }
+
     private void Awake()
     {
         _shapeCountText = GetComponentInChildren<TextMeshProUGUI>();
@@ -84,6 +135,8 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // Start is called before the first frame update
     void Start()
     {
+        AdaptSprite();
+
         _selectorPanel = transform.parent.parent.GetComponent<RectTransform>();
 
         _shapeCountText.text = _shapeCount.ToString();

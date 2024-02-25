@@ -46,4 +46,18 @@ public class GridManager : MonoBehaviour
     {
 
     }
+
+    private void OnDrawGizmos()
+    {
+        //Gizmos.color = Color.white;
+
+        //for (int x = 0; x < 23; x++)
+        //{
+        //    Gizmos.DrawLine(transform.position + new Vector3(x, 0f), transform.position + new Vector3(x, 0f) + new Vector3(0f, 10f));
+        //}
+        //for (int y = 0; y < 11; y++)
+        //{
+        //    Gizmos.DrawLine(transform.position + new Vector3(0f, y), transform.position + new Vector3(0f, y) + new Vector3(22f, 0f));
+        //}
+    }
 }
