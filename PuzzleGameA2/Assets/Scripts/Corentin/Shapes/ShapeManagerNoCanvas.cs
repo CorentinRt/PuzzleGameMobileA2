@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Enums;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShapeManagerNoCanvas : MonoBehaviour
@@ -19,6 +20,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     [SerializeField] private ShapePower _shapePower;
     
     public ShapePower GetShapePower() => _shapePower;
+
+    public void SetShapePower(ShapePower power) => _shapePower = power;
 
     private SpriteRenderer _spriteRd;
 
@@ -107,6 +110,39 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     {
         _body2D.gravityScale = 1.0f;
 
+        ActiveCollision();
+    }
+    private void DesactivateGravity()
+    {
+        _body2D.gravityScale = 1.0f;
+
+        _body2D.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        switch (_shapePower)
+        {
+            case ShapePower.None:
+                ActiveCollision();
+                break;
+            case ShapePower.ChangeDirection:
+                ActiveCollision();
+                break;
+            case ShapePower.Jump:
+                DesactiveCollision();
+                break;
+            case ShapePower.SideJump:
+                DesactiveCollision();
+                break;
+            case ShapePower.Acceleration:
+                DesactiveCollision();
+                break;
+            case ShapePower.InverseGravity:
+                DesactiveCollision();
+                break;
+        }
+    }
+
+    private void ActiveCollision()
+    {
         switch (_shapeType)
         {
             case ShapeType.Square:
@@ -120,22 +156,18 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 break;
         }
     }
-    private void DesactivateGravity()
+    private void DesactiveCollision()
     {
-        _body2D.gravityScale = 1.0f;
-
-        _body2D.constraints = RigidbodyConstraints2D.FreezeAll;
-
         switch (_shapeType)
         {
             case ShapeType.Square:
-                _boxCollider.isTrigger = false;
+                _boxCollider.isTrigger = true;
                 break;
             case ShapeType.Triangle:
-                _triangleCollider.isTrigger = false;
+                _triangleCollider.isTrigger = true;
                 break;
             case ShapeType.Circle:
-                _circleCollider.isTrigger = false;
+                _circleCollider.isTrigger = true;
                 break;
         }
     }
@@ -307,26 +339,31 @@ public class ShapeManagerNoCanvas : MonoBehaviour
         }
         GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
         _body2D.gravityScale = 0f;
-
-        /*
-        switch (_shapePower)
-        {
-            case ShapePower.Bounce:
-                //gameObject.AddComponent<>();
-                break;
-            case ShapePower.ArrowTrap:
-                //gameObject.AddComponent<>();
-                break;
-            case ShapePower.ReverseMove:
-                //gameObject.AddComponent<>();
-                break;
-        }*/
     }
     // Start is called before the first frame update
     void Start()
     {
         GameManager.Instance.OnPhase1Started += DragMode;
         GameManager.Instance.OnPhase1Ended += LockMode;
+
+        switch (_shapePower)
+        {
+            case ShapePower.Jump:
+                _collidersContainer.AddComponent(typeof(JumpPower));
+                break;
+            case ShapePower.SideJump:
+                _collidersContainer.AddComponent(typeof(SideJumpPower));
+                break;
+            case ShapePower.ChangeDirection:
+                _collidersContainer.AddComponent(typeof(ChangeDirectionPower));
+                break;
+            case ShapePower.Acceleration:
+                _collidersContainer.AddComponent(typeof(AccelerationPower));
+                break;
+            case ShapePower.InverseGravity:
+                _collidersContainer.AddComponent(typeof(InverseGravityPower));
+                break;
+        }
     }
     private void OnDestroy()
     {

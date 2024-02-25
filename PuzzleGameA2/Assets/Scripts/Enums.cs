@@ -7,8 +7,12 @@ namespace Enums
 {
     public enum ShapePower
     {
+        None,
         Jump,
-        ChangeDirection
+        ChangeDirection,
+        SideJump,
+        Acceleration,
+        InverseGravity
     }
     public enum PhaseType
     {
