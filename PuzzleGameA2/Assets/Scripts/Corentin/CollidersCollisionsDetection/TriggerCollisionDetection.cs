@@ -9,23 +9,20 @@ public class TriggerCollisionDetection : MonoBehaviour
 
     public event Action<GameObject> OnTriggerEnterEvent;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public event Action<GameObject> OnTriggerExitEvent;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject != null)
         {
             OnTriggerEnterEvent?.Invoke(collision.gameObject);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject != null)
+        {
+            OnTriggerExitEvent?.Invoke(collision.gameObject);
         }
     }
 }
