@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -32,7 +33,7 @@ public class DragDropNoCanvas : MonoBehaviour
         _canDrag = false;
     }
 
-    public void SetCollider(ShapeManagerNoCanvas.ShapeType shapeType)
+    public void SetCollider(ShapeType shapeType)
     {
         //switch (shapeType)
         //{

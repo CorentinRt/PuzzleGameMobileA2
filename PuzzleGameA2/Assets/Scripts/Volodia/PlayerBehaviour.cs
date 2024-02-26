@@ -27,6 +27,7 @@ public class PlayerBehaviour : MonoBehaviour
     private CapsuleCollider2D _capsuleCollider;
     private int _direction; //-1 = left ; 1 = right
     [SerializeField] private float _jumpForce;
+    private LevelManager _levelManager;
 
     [SerializeField] private float _mineCooldown;
 
@@ -118,6 +119,8 @@ public class PlayerBehaviour : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    public void UnloadLevel() => Destroy(gameObject);
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -237,5 +240,11 @@ public class PlayerBehaviour : MonoBehaviour
         KillPlayer();
 
         yield return null;
+    }
+
+    public void SetManager(LevelManager levelManager)
+    {
+        _levelManager = levelManager;
+        levelManager.OnLevelUnload += UnloadLevel;
     }
 }
