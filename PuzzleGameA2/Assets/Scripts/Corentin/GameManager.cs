@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get => _instance; set => _instance = value; }
 
     private PhaseType _currentPhase;
+    
+    public int NbStars { get => _nbStars;}
 
     int _nbStars;
 
@@ -26,13 +28,22 @@ public class GameManager : MonoBehaviour
     public event Action OnGameEnd;
 
     public PhaseType CurrentPhase { get => _currentPhase; set => _currentPhase = value; }
-    public int NbStars { get => _nbStars; set => _nbStars = value; }
+
+    public void SetPlayerManager(PlayerManager playerManager) => _playerManager = playerManager;
 
     private void Start()
     {
         _levelManager = GetComponent<LevelManager>();
-        _playerManager = GetComponent<PlayerManager>();
+        _levelManager.OnLevelFinishedLoad += StartGame;
+        DontDestroyOnLoad(gameObject);
     }
+
+    private void OnDestroy()
+    {
+        if (_levelManager!=null) _levelManager.OnLevelFinishedLoad -= StartGame;
+    }
+
+    public void StartGame() => ChangeGamePhase(PhaseType.PlateformePlacement);
 
     public void ChangeGamePhase(PhaseType phase)
     {
@@ -62,7 +73,6 @@ public class GameManager : MonoBehaviour
     {
         int nbPlayerAliveCount = _playerManager.GetPlayerAliveCount();
         int nonRequiredKilledPlayer = _levelManager.GetCurrentLevel().LevelInfo.MaxPlayerToSave - nbPlayerAliveCount;
-        Debug.Log(nonRequiredKilledPlayer == 0 ? 3 : nonRequiredKilledPlayer <= 2 ? 2 : nbPlayerAliveCount == 1 ? 0 : 1);
         return (nonRequiredKilledPlayer<=0? 3 : nonRequiredKilledPlayer<=2? 2 : nbPlayerAliveCount==1? 0 : 1);
     }
     
@@ -97,8 +107,10 @@ public class GameManager : MonoBehaviour
     {
         if (_instance != null)
         {
-            Destroy(_instance);
+            Destroy(gameObject);
+            return;
         }
+
         _instance = this;
     }
 }

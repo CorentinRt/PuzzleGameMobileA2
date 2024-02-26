@@ -59,4 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levels:
   - _levelInfo: {fileID: 11400000, guid: c29835499eedc924a8d31daa855bdd03, type: 2}
+    _starsWon: 0
     _unlocked: 0
+  _globalScene: Global Scene
+  _mainMenu: MainMenuScene

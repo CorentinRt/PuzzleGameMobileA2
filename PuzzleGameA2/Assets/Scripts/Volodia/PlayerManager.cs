@@ -27,6 +27,8 @@ public class PlayerManager : MonoBehaviour
         _levelManager = _gameManager.gameObject.GetComponent<LevelManager>();
         _levelManager.OnLevelFinishedLoad += CreateFirstPlayer;
         _gameManager.OnPhase2Started += StartNextPlayer;
+        _gameManager.SetPlayerManager(this);
+        Debug.Log("pManager");
     }
 
     private void CreateFirstPlayer()
@@ -37,6 +39,7 @@ public class PlayerManager : MonoBehaviour
     private void OnDestroy()
     {
         _gameManager.OnPhase2Started -= StartNextPlayer;
+        _levelManager.OnLevelFinishedLoad -= CreateFirstPlayer;
     }
     private void Update()
     {

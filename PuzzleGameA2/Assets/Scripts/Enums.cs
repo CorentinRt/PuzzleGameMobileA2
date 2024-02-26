@@ -22,4 +22,11 @@ namespace Enums
         ChoicePhase = 2,
         GameEndPhase = 3
     }
+    
+    public enum ShapeType
+    {
+        Square,
+        Triangle,
+        Circle
+    }
 }
