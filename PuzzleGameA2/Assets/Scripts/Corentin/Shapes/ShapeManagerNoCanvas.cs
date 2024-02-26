@@ -138,6 +138,9 @@ public class ShapeManagerNoCanvas : MonoBehaviour
             case ShapePower.InverseGravity:
                 DesactiveCollision();
                 break;
+            case ShapePower.Mine:
+                DesactiveCollision();
+                break;
         }
     }
 
@@ -362,6 +365,9 @@ public class ShapeManagerNoCanvas : MonoBehaviour
                 break;
             case ShapePower.InverseGravity:
                 _collidersContainer.AddComponent(typeof(InverseGravityPower));
+                break;
+            case ShapePower.Mine:
+                _collidersContainer.AddComponent(typeof(MineBehavior));
                 break;
         }
     }

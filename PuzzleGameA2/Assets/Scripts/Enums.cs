@@ -12,7 +12,8 @@ namespace Enums
         ChangeDirection,
         SideJump,
         Acceleration,
-        InverseGravity
+        InverseGravity,
+        Mine
     }
     public enum PhaseType
     {
