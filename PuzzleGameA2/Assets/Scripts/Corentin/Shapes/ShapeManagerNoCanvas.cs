@@ -343,6 +343,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
     {
         GameManager.Instance.OnPhase1Started += DragMode;
         GameManager.Instance.OnPhase1Ended += LockMode;
+        Debug.Log((IResetable) this);
+        GameManager.Instance.gameObject.GetComponent<LevelManager>().AddToResettableObject(this);
 
         switch (_shapePower)
         {
@@ -386,6 +388,7 @@ public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
     }
     public void ResetActive()
     {
+        Debug.Log("Reseting");
         if (_shapePower == ShapePower.InverseGravity)
         {
             Debug.Log("Reset");
