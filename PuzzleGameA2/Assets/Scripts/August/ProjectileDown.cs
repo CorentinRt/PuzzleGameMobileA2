@@ -12,10 +12,10 @@ public class ProjectileDown : MonoBehaviour
         transform.Translate(Vector3.up * projectileSpeed * Time.deltaTime);
     }
 
-    //Destroy the projectile when it collides with player
+    //Destroy the projectile when it collides with the platform
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Platform")
         {
             Destroy(gameObject);
         }
