@@ -26,7 +26,6 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float _mineForce;
     [SerializeField] private float _mineCooldown;
     private bool _tookMine;
-    private Vector3 _mineTakenPos;
 
     [Button]
     public void StartWalking() => _walking = true;
@@ -41,24 +40,21 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_tookMine)
+        if (_walking)
         {
-            if (_walking)
+            if (!_isAccelerating)
             {
-                if (!_isAccelerating)
-                {
-                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
-                    _rb.velocity = velocity;
-                }
-                else
-                {
-                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
-                    _rb.velocity = velocity;
-                }
+                Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
+                _rb.velocity = velocity;
             }
-            else if(!_walking && transform.position.x <= _startpoint.x && _rb.velocity.y==0) _rb.velocity = new Vector2(_speed * 1 * Time.deltaTime, _rb.velocity.y);
-            else _rb.velocity = new Vector2(0, _rb.velocity.y);
+            else
+            {
+                Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
+                _rb.velocity = velocity;
+            }
         }
+        else if(!_walking && transform.position.x <= _startpoint.x && _rb.velocity.y==0) _rb.velocity = new Vector2(_speed * 1 * Time.deltaTime, _rb.velocity.y);
+        else _rb.velocity = new Vector2(0, _rb.velocity.y);
     }
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
@@ -96,7 +92,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void KillPlayer()
     {
-        GameObject corpse = Instantiate(_corpse, transform.position + new Vector3(_direction * 0.5f, -transform.localScale.y / 2, 0), transform.rotation);
+        Instantiate(_corpse, transform.position + new Vector3(_direction * 0.5f, -transform.localScale.y / 2, 0), transform.rotation);
 
         Destroy(gameObject);
     }
@@ -167,20 +163,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void StepOnMine(Vector3 minePos)
     {
-        _mineTakenPos = minePos;
         StartCoroutine(CooldownBeforeExplosionMineCoroutine(minePos));
-    }
-    private void TakeMineExplosion(Vector3 minePos)
-    {
-        _tookMine = true;
-        AddExplosionForce(_rb, _mineForce, minePos, 5f);
-    }
-
-    private void AddExplosionForce(Rigidbody2D body, float explosionForce, Vector3 explosionPosition, float explosionRadius)
-    {
-        var dir = (body.transform.position - explosionPosition);
-        float wearoff = 1 - (dir.magnitude / explosionRadius);
-        body.AddForce(dir.normalized * explosionForce * wearoff);
     }
 
     //Temporary Function
@@ -230,7 +213,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(_mineCooldown);
 
-        TakeMineExplosion(minePos);
         KillPlayer();
 
         yield return null;

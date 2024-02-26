@@ -12,17 +12,10 @@ public class CorpsesBehavior : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
     }
-    public void CreateCorpse(Vector3 position, Vector3 velocity)
+    public void CreateCorpse(Vector3 position)
     {
         transform.position = position;
 
-        _rb.velocity = velocity;
-    }
-
-    public void AddExplosionForce(Rigidbody2D body, float explosionForce, Vector3 explosionPosition, float explosionRadius)
-    {
-        var dir = (body.transform.position - explosionPosition);
-        float wearoff = 1 - (dir.magnitude / explosionRadius);
-        body.AddForce(dir.normalized * explosionForce * wearoff);
+        Debug.Log("Create corpse");
     }
 }
