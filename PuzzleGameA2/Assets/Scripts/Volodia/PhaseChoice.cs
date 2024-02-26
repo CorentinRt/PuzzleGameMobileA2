@@ -11,9 +11,14 @@ public class PhaseChoice : MonoBehaviour
 
     private void Start()
     {
-        _gameManager = GameObject.FindWithTag("GameController").GetComponent<GameManager>();
+        _gameManager = GameManager.Instance;
         _gameManager.OnPhase2Ended += ActivatePanel;
         _choicePanel.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        _gameManager.OnPhase2Ended -= ActivatePanel;
     }
 
     private void ActivatePanel()

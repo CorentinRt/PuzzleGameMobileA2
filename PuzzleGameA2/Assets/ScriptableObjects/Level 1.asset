@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c4a68e69063c442a00bd9fd1baa78f, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  _levelID: 0
-  _maxShapeUsable: 5
-  _maxPlayerToSave: 5
-  _levelAdditiveScene: CorentinScene
+  _levelID: 1
+  _maxPlayerToSave: 6
+  _levelAdditiveScene: Level1Test
+  _shapes:
+  - _power: 1
+    _type: 0
+    _maxCount: 1
+  - _power: 2
+    _type: 2
+    _maxCount: 2

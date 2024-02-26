@@ -19,7 +19,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private Vector2 _mousePosition;
 
-    [SerializeField] private ShapeManagerNoCanvas.ShapeType _shapeType;
+    [SerializeField] private ShapeType _shapeType;
 
     [SerializeField] private ShapePower _shapePower;
 
@@ -29,8 +29,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public int ShapeCount { get => _shapeCount; set => _shapeCount = value; }
     public ShapePower ShapePower { get => _shapePower; set => _shapePower = value; }
-    public ShapeManagerNoCanvas.ShapeType ShapeType { get => _shapeType; set => _shapeType = value; }
-
+    public ShapeType ShapeType { get => _shapeType; set => _shapeType = value; }
     public void OnPointerDown(PointerEventData eventData)
     {
         if (_shapeCount > 0)
@@ -87,7 +86,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         switch (_shapeType)     // Init right spriteRenderer
         {
-            case ShapeManagerNoCanvas.ShapeType.Square:
+            case ShapeType.Square:
 
                 foreach (var info in _shapesInfo.ShapesInfo)
                 {
@@ -98,7 +97,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     }
                 }
                 break;
-            case ShapeManagerNoCanvas.ShapeType.Triangle:
+            case ShapeType.Triangle:
 
                 foreach (var info in _shapesInfo.ShapesInfo)
                 {
@@ -109,7 +108,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     }
                 }
                 break;
-            case ShapeManagerNoCanvas.ShapeType.Circle:
+            case ShapeType.Circle:
 
                 foreach (var info in _shapesInfo.ShapesInfo)
                 {
@@ -135,6 +134,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     // Start is called before the first frame update
     void Start()
     {
+        
         AdaptSprite();
 
         _selectorPanel = transform.parent.parent.GetComponent<RectTransform>();
@@ -143,6 +143,16 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         TrashShape.Instance.OnGoToTrashEvent += IncreaseShapeCountFromTrash;
     }
+
+    public void DestroySelf() => Destroy(gameObject);
+
+    public void Init(Shape shape)
+    {
+        _shapeCount = shape.MaxCount;
+        _shapePower = shape.Power;
+        _shapeType = shape.Type;
+    }
+
     private void OnDestroy()
     {
         TrashShape.Instance.OnGoToTrashEvent -= IncreaseShapeCountFromTrash;

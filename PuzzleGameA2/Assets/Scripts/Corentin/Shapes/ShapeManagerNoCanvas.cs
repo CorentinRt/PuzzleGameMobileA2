@@ -6,12 +6,6 @@ using UnityEngine;
 
 public class ShapeManagerNoCanvas : MonoBehaviour
 {
-    public enum ShapeType
-    {
-        Square,
-        Triangle,
-        Circle
-    }
     [SerializeField] private GameObject _visuals;
     [SerializeField] private GameObject _physics;
 
