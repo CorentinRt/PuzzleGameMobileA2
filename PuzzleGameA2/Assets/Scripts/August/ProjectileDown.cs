@@ -5,25 +5,28 @@ using UnityEngine;
 public class ProjectileDown : MonoBehaviour
 {
     public float projectileSpeed;
-    private bool playerDetected = false;
 
     // Update is called once per frame
     void Update()
     {
-        //Detect player on object
-        if (playerDetected == true)
-        {
-            Debug.Log("Player Detected");
-        }
-
+        
     }
 
-    //Destroy the projectile when it collides with the platform
+    //collision detection
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (playerDetected == true)
+        if (collision.gameObject.tag == "Player")
         {
+            //Destroy the projectile
             Destroy(gameObject);
+            Debug.Log("Player hit");
+
+        }
+
+        if (collision.gameObject.tag == "Detector")
+        {
+            //Translate the projectile down
+            transform.Translate(Vector3.down * projectileSpeed * Time.deltaTime);
         }
     }
 }
