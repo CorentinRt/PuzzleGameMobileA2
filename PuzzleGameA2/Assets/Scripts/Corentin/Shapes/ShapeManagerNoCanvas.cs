@@ -386,18 +386,26 @@ public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
     }
     public void ResetActive()
     {
-        if (_shapePower == ShapePower.Mine || _shapePower == ShapePower.InverseGravity)
+        if (_shapePower == ShapePower.InverseGravity)
         {
             Debug.Log("Reset");
             gameObject.SetActive(true);
             transform.position = StartPosition;
         }
+        else if(_shapePower == ShapePower.Mine)
+        {
+            GetComponentInChildren<MineBehavior>().HasExplode = false;
+        }
     }
     public void Desactive()
     {
-        if (_shapePower == ShapePower.Mine || _shapePower == ShapePower.InverseGravity)
+        if (_shapePower == ShapePower.InverseGravity)
         {
             gameObject.SetActive(false);
+        }
+        else if (_shapePower == ShapePower.Mine)
+        {
+            GetComponentInChildren<MineBehavior>().HasExplode = true;
         }
     }
 }
