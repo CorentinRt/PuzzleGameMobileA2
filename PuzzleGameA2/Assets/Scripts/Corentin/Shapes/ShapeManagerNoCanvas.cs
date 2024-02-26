@@ -4,7 +4,7 @@ using Enums;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ShapeManagerNoCanvas : MonoBehaviour
+public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
 {
     [SerializeField] private GameObject _visuals;
     [SerializeField] private GameObject _physics;
@@ -33,7 +33,6 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     public ShapeType ShapeType1 { get => _shapeType; set => _shapeType = value; }
     public SpriteRenderer SpriteRd { get => _spriteRd; set => _spriteRd = value; }
     public bool IsAffectedByGravity { get => _isAffectedByGravity; set => _isAffectedByGravity = value; }
-
 
     private void DragMode()
     {
@@ -336,6 +335,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour
         }
         GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
         _body2D.gravityScale = 0f;
+
+        InitReset();
     }
     // Start is called before the first frame update
     void Start()
@@ -375,5 +376,36 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public Vector3 StartPosition { get; set; }
+
+    public void InitReset()
+    {
+        StartPosition = transform.position;
+    }
+    public void ResetActive()
+    {
+        if (_shapePower == ShapePower.InverseGravity)
+        {
+            Debug.Log("Reset");
+            gameObject.SetActive(true);
+            transform.position = StartPosition;
+        }
+        else if(_shapePower == ShapePower.Mine)
+        {
+            GetComponentInChildren<MineBehavior>().HasExplode = false;
+        }
+    }
+    public void Desactive()
+    {
+        if (_shapePower == ShapePower.InverseGravity)
+        {
+            gameObject.SetActive(false);
+        }
+        else if (_shapePower == ShapePower.Mine)
+        {
+            GetComponentInChildren<MineBehavior>().HasExplode = true;
+        }
     }
 }
