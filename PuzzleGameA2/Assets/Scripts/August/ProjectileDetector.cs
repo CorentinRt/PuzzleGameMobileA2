@@ -1,26 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
 public class ProjectileDetector : MonoBehaviour
 {
-    private bool playerDetected = false;
+    public bool playerDetected = false;
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    
-    //collision detection. bool true if player detected
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.gameObject.tag == "Player")
         {
+            //Destroy the projectile
             playerDetected = true;
-            Debug.Log("Player detected");
+            Debug.Log("Player hit");
+
         }
     }
 }
