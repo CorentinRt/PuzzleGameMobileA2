@@ -23,6 +23,7 @@ public class ShapeSelector : MonoBehaviour
     private Coroutine _closeCoroutine;
 
     private bool _isOpen;
+    private bool _isClosedTemporary;
 
 
     [Button]
@@ -40,7 +41,7 @@ public class ShapeSelector : MonoBehaviour
     [Button]
     public void OpenSelector()
     {
-        if (_openCoroutine == null)
+        if (_openCoroutine == null && GameManager.Instance.CurrentPhase == Enums.PhaseType.PlateformePlacement)
         {
             if (_closeCoroutine != null)
             {
@@ -67,6 +68,11 @@ public class ShapeSelector : MonoBehaviour
             _closeCoroutine = StartCoroutine(CloseSelectorCoroutine());
         }
     }
+    public void CloseTemporary()
+    {
+        _isClosedTemporary = true;
+        CloseSelector();
+    }
 
     [Button]
     private void ActivateSemiTransparent()
@@ -89,13 +95,30 @@ public class ShapeSelector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.Instance.OnPhase1Ended += CloseSelector;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnPhase1Ended -= CloseSelector;
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        if (_isClosedTemporary && Input.GetMouseButtonUp(0))
+        {
+            _isClosedTemporary = false;
+            OpenSelector();
+        }
+
+        if (GameManager.Instance.CurrentPhase == Enums.PhaseType.PlateformePlacement && !_isOpen && !_isClosedTemporary)
+        {
+            OpenSelector();
+        }
+        if (GameManager.Instance.CurrentPhase != Enums.PhaseType.PlateformePlacement && _isOpen)
+        {
+            CloseSelector();
+        }
     }
 
     IEnumerator OpenSelectorCoroutine()

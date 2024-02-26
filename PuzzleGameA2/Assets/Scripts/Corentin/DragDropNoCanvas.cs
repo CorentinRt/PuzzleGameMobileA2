@@ -8,12 +8,19 @@ public class DragDropNoCanvas : MonoBehaviour
 {
     bool _canMove;
     bool _dragging;
-    Collider2D _collider;
+    //Collider2D _collider;
+
+    //[SerializeField] private GameObject _collidersContainer;
+
+    [SerializeField] private CircleCollider2D _dragtrigger;    
+    [SerializeField] private LayerMask _dragLayerMask;
+
+    private bool _isUnable;
 
     private bool _canDrag;
 
     public bool CanDrag { get => _canDrag; set => _canDrag = value; }
-    public Collider2D Collider { get => _collider; set => _collider = value; }
+    // public Collider2D Collider { get => _collider; set => _collider = value; }
     public bool Dragging { get => _dragging; set => _dragging = value; }
 
     public void AllowDrag()
@@ -27,24 +34,23 @@ public class DragDropNoCanvas : MonoBehaviour
 
     public void SetCollider(ShapeManagerNoCanvas.ShapeType shapeType)
     {
-        switch (shapeType)
-        {
-            case ShapeManagerNoCanvas.ShapeType.Circle:
-                _collider = GetComponent<CircleCollider2D>();
-                break;
-            case ShapeManagerNoCanvas.ShapeType.Square:
-                _collider = GetComponent<BoxCollider2D>();
-                break;
-            case ShapeManagerNoCanvas.ShapeType.Triangle:
-                _collider = GetComponent<PolygonCollider2D>();
-                break;
-        }
+        //switch (shapeType)
+        //{
+        //    case ShapeManagerNoCanvas.ShapeType.Circle:
+        //        _collider = _collidersContainer.GetComponent<CircleCollider2D>();
+        //        break;
+        //    case ShapeManagerNoCanvas.ShapeType.Square:
+        //        _collider = _collidersContainer.GetComponent<BoxCollider2D>();
+        //        break;
+        //    case ShapeManagerNoCanvas.ShapeType.Triangle:
+        //        _collider = _collidersContainer.GetComponent<PolygonCollider2D>();
+        //        break;
+        //}
     }
 
     private void Awake()
     {
-        //_unselectedColor = GetComponent<Image>().color;
-        //_image = GetComponent<Image>();
+
     }
 
     void Start()
@@ -67,7 +73,7 @@ public class DragDropNoCanvas : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))    // Si appuie
         {
-            if (_collider == Physics2D.OverlapPoint(mousePos))
+            if (_dragtrigger == Physics2D.OverlapPoint(mousePos, _dragLayerMask))
             {
                 _canMove = true;
             }
@@ -82,13 +88,63 @@ public class DragDropNoCanvas : MonoBehaviour
         }
         if (_dragging)  // Drag
         {
-            this.transform.position = (Vector3)mousePos;
+            DragDropManager.Instance.CurrentShapeDragged = gameObject.transform.parent.gameObject;
+            if (DragDropManager.Instance.UseGrid)
+            {
+                Vector3Int tempVect = Vector3Int.zero;
+
+                Vector3 cellCize = GridManager.Instance.CellSize;
+
+                tempVect = GridManager.Instance.GetWorldToCellPosition((Vector3)mousePos);
+                gameObject.transform.parent.position = GridManager.Instance.GetCellToWorldPosition(tempVect);
+                gameObject.transform.parent.position += cellCize/2f;
+            }
+            else
+            {
+                gameObject.transform.parent.position = (Vector3)mousePos;
+            }
         }
         if (Input.GetMouseButtonUp(0))  // Si relache
         {
             _canMove = false;
             _dragging = false;
         }
+
+        if (!_isUnable)
+        {
+            if (DragDropManager.Instance.CurrentShapeDragged == transform.parent.gameObject)
+            {
+                if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
+                {
+                    shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.SelectedDragColor;
+                }
+            }
+            else
+            {
+                if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
+                {
+                    shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.AbleDragColor;
+                }
+            }
+        }
+    }
+
+    public void SetUnableColor()
+    {
+        if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas) && !_isUnable)
+        {
+            _isUnable = true;
+            shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.UnableDragColor;
+            DragDropManager.Instance.UnableCount++;
+        }
+    }
+    public void SetAbleColor()
+    {
+        if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas) && _isUnable)
+        {
+            _isUnable = false;
+            shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.AbleDragColor;
+            DragDropManager.Instance.UnableCount--;
+        }
     }
 }
-

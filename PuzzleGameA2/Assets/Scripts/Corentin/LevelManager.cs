@@ -1,26 +1,47 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _shapesInLevel;
+    [SerializeField] private List<Level> _levels;
+    private int _currentLevelID;
+    private bool isLevelLoaded;
 
+    public Level GetLevel(int id) => _levels.Find(x => x.GetID == id);
+    public Level GetCurrentLevel() => GetLevel(_currentLevelID);
 
-    private void DisplayShapesInSelector()
+    public void UnlockLevel(int id) => GetLevel(id).Unlock();
+
+    public void LoadLevel(int id)
     {
-        // Display shapes in selector in ui
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        DisplayShapesInSelector();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        if (GetLevel(id).isUnlocked)
+        {
+            if (isLevelLoaded) SceneManager.UnloadSceneAsync(GetLevel(_currentLevelID).GetScene);
+            SceneManager.LoadScene(GetLevel(_currentLevelID).LevelInfo.LevelScene, LoadSceneMode.Additive);
+            isLevelLoaded = true;
+        }
         
     }
+
+    public void UnloadCurrentLevel()
+    {
+        SceneManager.LoadScene(GetLevel(_currentLevelID).LevelInfo.LevelScene, LoadSceneMode.Additive);
+        isLevelLoaded = false;
+    }
+}
+
+[Serializable]
+public class Level
+{
+    [SerializeField] private LevelInfo _levelInfo;
+    [SerializeField] private bool _unlocked;
+
+    public bool isUnlocked => _unlocked;
+    public void Unlock() => _unlocked = true;
+    public int GetID => _levelInfo.LevelID;
+    public string GetScene => _levelInfo.LevelScene;
+    public LevelInfo LevelInfo => _levelInfo;
 }

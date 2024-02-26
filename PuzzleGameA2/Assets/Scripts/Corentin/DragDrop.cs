@@ -16,7 +16,10 @@ public class DragDropImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
 
     private bool _canDrag;
 
+    private Vector3 _mousePos;
     public bool CanDrag { get => _canDrag; set => _canDrag = value; }
+
+    [SerializeField] private bool _useGrid;
 
     private void AllowDrag()
     {
@@ -56,7 +59,7 @@ public class DragDropImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
     {
         if (_canDrag)
         {
-            _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
+            _rectTransform.anchoredPosition = _mousePos;
         }
     }
 
@@ -67,5 +70,10 @@ public class DragDropImage : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
             Debug.Log("Begin Drag");
             _image.color = _unselectedColor;
         }
+    }
+
+    private void Update()
+    {
+        _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 }

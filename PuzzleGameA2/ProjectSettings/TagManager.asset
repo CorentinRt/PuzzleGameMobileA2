@@ -5,18 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - Death
-  - Projectile
-  - Platform
+  - Plateforme
+  - FinalDoor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
+  - Player
   - 
-  - 
-  - 
+  - DragTrigger
   - 
   - 
   - 
