@@ -15,13 +15,20 @@ public class PlayerBehaviour : MonoBehaviour
 
     private bool _isAccelerating;
 
+    private bool _isGrounded;
+
     [SerializeField] private GameObject _corpse;
     [SerializeField] private LayerMask _layer;
+    [SerializeField] private Transform _groundCheckLeft;
+    [SerializeField] private Transform _groundCheckRight;
     private Vector3 _startpoint;
     private bool _walking;
     private Rigidbody2D _rb;
+    private CapsuleCollider2D _capsuleCollider;
     private int _direction; //-1 = left ; 1 = right
     [SerializeField] private float _jumpForce;
+
+    [SerializeField] private float _mineCooldown;
 
     [Button]
     public void StartWalking() => _walking = true;
@@ -30,27 +37,46 @@ public class PlayerBehaviour : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _capsuleCollider = GetComponent<CapsuleCollider2D>();
         _walking = false;
         _direction = 1;
     }
 
     private void FixedUpdate()
     {
-        if (_walking)
+        Debug.DrawLine(_groundCheckLeft.position, _groundCheckRight.position, Color.yellow);
+        Collider2D groundCheckColl = Physics2D.OverlapArea(_groundCheckLeft.position, _groundCheckRight.position);
+        if (groundCheckColl && groundCheckColl != _capsuleCollider)
         {
-            if (!_isAccelerating)
-            {
-                Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
-                _rb.velocity = velocity;
-            }
-            else
-            {
-                Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
-                _rb.velocity = velocity;
-            }
+            _isGrounded = true;
         }
-        else if(!_walking && transform.position.x <= _startpoint.x && _rb.velocity.y==0) _rb.velocity = new Vector2(_speed * 1 * Time.deltaTime, _rb.velocity.y);
-        else _rb.velocity = new Vector2(0, _rb.velocity.y);
+        else
+        {
+            _isGrounded = false;
+        }
+
+        if (_isGrounded)
+        {
+            if (_walking)
+            {
+                if (!_isAccelerating)
+                {
+                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
+                    _rb.velocity = velocity;
+                }
+                else
+                {
+                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
+                    _rb.velocity = velocity;
+                }
+            }
+            else if (!_walking && transform.position.x <= _startpoint.x && _rb.velocity.y == 0) _rb.velocity = new Vector2(_speed * 1 * Time.deltaTime, _rb.velocity.y);
+            else _rb.velocity = new Vector2(0, _rb.velocity.y);
+        }
+        else
+        {
+            _rb.velocity = new Vector2(0f, _rb.velocity.y);
+        }
     }
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
@@ -86,12 +112,18 @@ public class PlayerBehaviour : MonoBehaviour
         _direction *= -1;
     }
 
+    public void KillPlayer()
+    {
+        Instantiate(_corpse, transform.position + new Vector3(_direction * 0.5f, -transform.localScale.y / 2, 0), transform.rotation);
+
+        Destroy(gameObject);
+    }
+
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Death"))
         {
-            Instantiate(_corpse, transform.position + new Vector3(_direction*0.5f,-transform.localScale.y/2,0), transform.rotation);
-            Destroy(gameObject);
+            KillPlayer();
         }
         else if (other.gameObject.CompareTag("FinalDoor"))
         {
@@ -151,6 +183,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     }
 
+    public void StepOnMine(Vector3 minePos)
+    {
+        StartCoroutine(CooldownBeforeExplosionMineCoroutine(minePos));
+    }
+
     //Temporary Function
     public void TouchingPlateforme(ShapePower shapePower)
     {
@@ -162,14 +199,12 @@ public class PlayerBehaviour : MonoBehaviour
             case ShapePower.ChangeDirection:
                 ChangeDirection();
                 break;
-                    
         }
     }
 
     IEnumerator ChangingGravityCoroutine()
     {
         float percent = 0f;
-
 
         Vector3 scaleY = transform.localScale;
 
@@ -191,6 +226,15 @@ public class PlayerBehaviour : MonoBehaviour
         yield return new WaitForSeconds(_inverseGravityCooldown);
 
         _inverseGravityCoroutine = null;
+
+        yield return null;
+    }
+
+    IEnumerator CooldownBeforeExplosionMineCoroutine(Vector3 minePos)
+    {
+        yield return new WaitForSeconds(_mineCooldown);
+
+        KillPlayer();
 
         yield return null;
     }
