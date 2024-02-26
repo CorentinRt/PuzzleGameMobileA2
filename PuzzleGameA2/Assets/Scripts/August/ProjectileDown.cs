@@ -15,7 +15,7 @@ public class ProjectileDown : MonoBehaviour
     //Destroy the projectile when it collides with the platform
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Platform")
+        if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
         }
