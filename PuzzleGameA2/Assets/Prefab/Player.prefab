@@ -199,9 +199,11 @@ MonoBehaviour:
   _speed: 200
   _accelerationSpeed: 400
   _inverseGravitySpeed: 3
-  _inverseGravityCooldown: 0
+  _inverseGravityCooldown: 1
   _corpse: {fileID: 8378204953401740722, guid: d3967d8cefa4fb34d97fe6cb7dbde0bf, type: 3}
   _layer:
     serializedVersion: 2
     m_Bits: 8
   _jumpForce: 7
+  _mineForce: 1000
+  _mineCooldown: 0.1

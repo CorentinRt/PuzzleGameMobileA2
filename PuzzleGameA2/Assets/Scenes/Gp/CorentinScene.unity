@@ -137,11 +137,11 @@ PrefabInstance:
       objectReference: {fileID: 373089943}
     - target: {fileID: 3764468251746985712, guid: 89ad6cbd151d58c40b7330192a539940, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.46567702
+      value: 6.41
       objectReference: {fileID: 0}
     - target: {fileID: 3764468251746985712, guid: 89ad6cbd151d58c40b7330192a539940, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.2764912
+      value: -2.06
       objectReference: {fileID: 0}
     - target: {fileID: 3764468251746985712, guid: 89ad6cbd151d58c40b7330192a539940, type: 3}
       propertyPath: m_LocalPosition.z
@@ -328,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7226533286368788926, guid: 21569f89b9e42b546b4a2c1a3819bca7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.65
+      value: -0.57
       objectReference: {fileID: 0}
     - target: {fileID: 7226533286368788926, guid: 21569f89b9e42b546b4a2c1a3819bca7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1931,12 +1931,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1782697934099259686, guid: a55088563abb5264aa208cc811004767, type: 3}
+      propertyPath: _shapeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1782697934099259686, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: _shapePower
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1782697934099259686, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: _isAffectedByGravity
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2341143098852811334, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: m_Camera
@@ -1988,7 +1992,7 @@ PrefabInstance:
       objectReference: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
     - target: {fileID: 6775856842122702955, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: _shapePower
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7602145519047531999, guid: a55088563abb5264aa208cc811004767, type: 3}
       propertyPath: _shapePower
