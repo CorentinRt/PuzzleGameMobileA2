@@ -413,7 +413,6 @@ public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
         else if (_shapePower == ShapePower.Mine)
         {
             Debug.Log("Desactive mine");
-            GetComponentInChildren<MineBehavior>().HasExplode = true;
         }
     }
 }

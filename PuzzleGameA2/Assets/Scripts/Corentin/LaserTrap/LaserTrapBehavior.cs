@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LaserTrapBehavior : MonoBehaviour
+public class LaserTrapBehavior : MonoBehaviour, IResetable
 {
     [SerializeField] private bool _hasInfiniteRange;
     [SerializeField] private float _laserRange;
@@ -13,7 +13,9 @@ public class LaserTrapBehavior : MonoBehaviour
     [SerializeField] private LineRenderer _lineRenderer;
 
     private bool _canShoot;
-    
+
+    public Vector3 StartPosition { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     private void LaserHit(GameObject gameObject)
     {
         _canShoot = false;
@@ -55,6 +57,7 @@ public class LaserTrapBehavior : MonoBehaviour
                 {
                     Debug.Log("laser Hit player");
                     LaserHit(playerBehaviour.gameObject);
+                    playerBehaviour.KillPlayer();
                 }
             }
         }
@@ -67,5 +70,21 @@ public class LaserTrapBehavior : MonoBehaviour
         _lineRenderer.gameObject.SetActive(false);
 
         yield return null;
+    }
+
+    public void InitReset()
+    {
+        StartPosition = transform.parent.position;
+    }
+
+    public void ResetActive()
+    {
+        transform.parent.position = StartPosition;
+        _lineRenderer.gameObject.SetActive(false);
+    }
+
+    public void Desactive()
+    {
+        transform.parent.gameObject.SetActive(false);
     }
 }
