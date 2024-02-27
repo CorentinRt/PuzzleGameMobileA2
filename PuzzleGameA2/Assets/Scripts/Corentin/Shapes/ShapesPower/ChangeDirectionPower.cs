@@ -12,7 +12,10 @@ public class ChangeDirectionPower : MonoBehaviour
             if (collision.gameObject.CompareTag("Player"))
             {
                 //Debug.Log("Shape Change Direction Player");
-                collision.gameObject.GetComponent<PlayerBehaviour>().ChangeDirection();
+                if (TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehavior))
+                {
+                    playerBehavior.ChangeDirection();
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Enums;
+using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -335,8 +336,6 @@ public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
         }
         GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
         _body2D.gravityScale = 0f;
-
-        InitReset();
     }
     // Start is called before the first frame update
     void Start()
@@ -384,30 +383,36 @@ public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
 
     public void InitReset()
     {
+        Debug.Log("Init reset");
         StartPosition = transform.position;
     }
+    [Button]
     public void ResetActive()
     {
         Debug.Log("Reseting");
         if (_shapePower == ShapePower.InverseGravity)
         {
-            Debug.Log("Reset");
+            Debug.Log("Reset Gravity");
             gameObject.SetActive(true);
             transform.position = StartPosition;
         }
         else if(_shapePower == ShapePower.Mine)
         {
+            Debug.Log("Reset Mine");
             GetComponentInChildren<MineBehavior>().HasExplode = false;
         }
     }
+    [Button]
     public void Desactive()
     {
         if (_shapePower == ShapePower.InverseGravity)
         {
+            Debug.Log("Desactive gravity");
             gameObject.SetActive(false);
         }
         else if (_shapePower == ShapePower.Mine)
         {
+            Debug.Log("Desactive mine");
             GetComponentInChildren<MineBehavior>().HasExplode = true;
         }
     }

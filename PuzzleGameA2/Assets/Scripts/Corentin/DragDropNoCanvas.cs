@@ -107,6 +107,10 @@ public class DragDropNoCanvas : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))  // Si relache
         {
+            if (transform.parent.gameObject == DragDropManager.Instance.CurrentShapeDragged && transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
+            {
+                shapeManagerNoCanvas.InitReset();
+            }
             _canMove = false;
             _dragging = false;
         }
