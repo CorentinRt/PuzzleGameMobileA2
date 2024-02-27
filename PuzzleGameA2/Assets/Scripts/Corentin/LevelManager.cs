@@ -12,8 +12,32 @@ public class LevelManager : MonoBehaviour
     [SerializeField, Scene] private string _mainMenu;
     private int _currentLevelID;
     private bool isLevelLoaded;
+    private List<IResetable> _elementsToReset = new List<IResetable>();
+
+    private void Start()
+    {
+        OnLevelUnload += ResetResettableList;
+    }
+
+    private void OnDestroy()
+    {
+        OnLevelUnload -= ResetResettableList;
+    }
+
     public event Action OnLevelUnload;
     public event Action OnLevelFinishedLoad;
+    public void AddToResettableObject(IResetable toResetObject)  => _elementsToReset.Add(toResetObject);
+
+    public void ResetResettableList() => _elementsToReset = new List<IResetable>();
+
+    public void ResetTraps()
+    {
+        foreach (IResetable resettable in _elementsToReset)
+        {
+            resettable.ResetActive();
+        }
+    }
+    
 
     [Button]
     private void LoadFirstLevel()
