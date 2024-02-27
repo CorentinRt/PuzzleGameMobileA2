@@ -9,9 +9,9 @@ public class JumpPower : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //collision.GetComponent<PlayerBehaviour>().Jump();
-            if (TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
+            if (collision.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
             {
+                //playerBehaviour.Jump();
                 playerBehaviour.Bump(collision.transform.position);
             }
         }

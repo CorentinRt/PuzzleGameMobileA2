@@ -10,7 +10,7 @@ public class AccelerationPower : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             //Debug.Log("Shape Acceleration Player");
-            if (TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehavior))
+            if (collision.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehavior))
             {
                 playerBehavior.Acceleration();
             }

@@ -169,6 +169,7 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public void Bump(Vector3 bumperPosition)
     {
+        Debug.Log("Bump");
         AddExplosionForce(_rb, 500f, bumperPosition, 5f);
     }
     public void SideJump()
