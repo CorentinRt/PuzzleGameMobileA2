@@ -140,7 +140,7 @@ public class DragDropNoCanvas : MonoBehaviour
         {
             _isUnable = true;
             shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.UnableDragColor;
-            DragDropManager.Instance.UnableCount++;
+            GameManager.Instance.OverlapShapeCount++;
         }
     }
     public void SetAbleColor()
@@ -149,7 +149,7 @@ public class DragDropNoCanvas : MonoBehaviour
         {
             _isUnable = false;
             shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.AbleDragColor;
-            DragDropManager.Instance.UnableCount--;
+            GameManager.Instance.OverlapShapeCount--;
         }
     }
 }
