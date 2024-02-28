@@ -56,7 +56,7 @@ public class PlayerBehaviour : MonoBehaviour
         Collider2D groundCheckColl = Physics2D.OverlapArea(_groundCheckLeft.position, _groundCheckRight.position);
         if (groundCheckColl && groundCheckColl != _capsuleCollider)
         {
-            if (groundCheckColl.CompareTag("Floor"))
+            if (groundCheckColl.CompareTag("Floor") || groundCheckColl.CompareTag("Player"))
             {
                 _isGrounded = true;
                 if (_canStopJump)
@@ -198,15 +198,16 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public void Acceleration()
     {
-        if (!_isAccelerating)
-        {
-            _isAccelerating = true;
-            Debug.Log("Accelerate");
-        }
         if (_accelerationDurationCoroutine != null)
         {
             _accelerationDurationCoroutine = null;
             _accelerationDurationCoroutine = StartCoroutine(AccelerationDurationCoroutine());
+        }
+        if (!_isAccelerating)
+        {
+            _isAccelerating = true;
+            _accelerationDurationCoroutine = StartCoroutine(AccelerationDurationCoroutine());
+            Debug.Log("Accelerate");
         }
     }
     public void InverseGravity()
@@ -289,6 +290,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(_accelerationDuration);
 
+        Debug.Log("Stop acceleration");
+        _isAccelerating = false;
         _accelerationDurationCoroutine = null;
 
         yield return null;
