@@ -41,6 +41,10 @@ public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
     {
         _direction *= -1;
     }
+    public int GetDirection()
+    {
+        return _direction;
+    }
     private void DragMode()
     {
         switch (_shapeType)

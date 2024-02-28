@@ -31,6 +31,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField] private float _mineCooldown;
 
+    public int Direction { get => _direction; set => _direction = value; }
+
     [Button]
     public void StartWalking() => _walking = true;
 
