@@ -5,7 +5,7 @@ using UnityEngine;
 public class MineBehavior : MonoBehaviour
 {
     private bool _hasExplode;
-
+    
     public bool HasExplode { get => _hasExplode; set => _hasExplode = value; }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,7 +16,7 @@ public class MineBehavior : MonoBehaviour
             {
                 if (collision.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
                 {
-                    _hasExplode = true;
+                    //_hasExplode = true;
                     AddExplosionForce(collision.GetComponent<Rigidbody2D>(), 700f, transform.position + new Vector3(0f, -0.5f), 5f);
                     Debug.Log("Corpse take mine");
                 }

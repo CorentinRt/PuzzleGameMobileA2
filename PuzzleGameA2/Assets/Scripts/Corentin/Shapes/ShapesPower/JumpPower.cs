@@ -11,8 +11,11 @@ public class JumpPower : MonoBehaviour
         {
             if (collision.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
             {
-                //playerBehaviour.Jump();
-                playerBehaviour.Bump(collision.transform.position);
+                playerBehaviour.Jump();
+            }
+            if (collision.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
+            {
+                corpsesBehavior.Jump();
             }
         }
     }

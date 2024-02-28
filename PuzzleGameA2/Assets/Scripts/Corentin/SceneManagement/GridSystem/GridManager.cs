@@ -49,15 +49,15 @@ public class GridManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        //Gizmos.color = Color.white;
+        //gizmos.color = color.white;
 
         //for (int x = 0; x < 23; x++)
         //{
-        //    Gizmos.DrawLine(transform.position + new Vector3(x, 0f), transform.position + new Vector3(x, 0f) + new Vector3(0f, 10f));
+        //    gizmos.drawline(transform.position + new vector3(x, 0f), transform.position + new vector3(x, 0f) + new vector3(0f, 10f));
         //}
         //for (int y = 0; y < 11; y++)
         //{
-        //    Gizmos.DrawLine(transform.position + new Vector3(0f, y), transform.position + new Vector3(0f, y) + new Vector3(22f, 0f));
+        //    gizmos.drawline(transform.position + new vector3(0f, y), transform.position + new vector3(0f, y) + new vector3(22f, 0f));
         //}
     }
 }

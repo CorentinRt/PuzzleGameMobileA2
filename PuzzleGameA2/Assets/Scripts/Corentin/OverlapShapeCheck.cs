@@ -36,7 +36,7 @@ public class OverlapShapeCheck : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Plateforme"))
+        if (collision.CompareTag("Plateforme") || collision.CompareTag("Death") || collision.CompareTag("Floor") || collision.CompareTag("FinalDoor"))
         {
             if (((1 << collision.gameObject.layer) & _dragTriggerLayerMask) == 0)
             {
@@ -47,7 +47,7 @@ public class OverlapShapeCheck : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Plateforme"))
+        if (collision.CompareTag("Plateforme") || collision.CompareTag("Death") || collision.CompareTag("Floor") || collision.CompareTag("FinalDoor"))
         {
             if (((1 << collision.gameObject.layer) & _dragTriggerLayerMask) == 0)
             {

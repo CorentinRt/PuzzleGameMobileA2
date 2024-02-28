@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class CorpsesBehavior : MonoBehaviour
@@ -24,29 +25,25 @@ public class CorpsesBehavior : MonoBehaviour
     //    Debug.Log("Create corpse");
     //}
 
-    private void AddExplosionForce(Rigidbody2D body, float explosionForce, Vector3 explosionPosition, float explosionRadius)
-    {
-        var dir = (body.transform.position - explosionPosition);
-        float wearoff = 1 - (dir.magnitude / explosionRadius);
-        body.AddForce(dir.normalized * explosionForce * wearoff);
-    }
     public void Jump()
     {
         _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
         Debug.Log("jumping");
     }
-    public void Bump(Vector3 bumperPosition)
+    public void SideJump(int dir)
     {
-        AddExplosionForce(_rb, 500f, bumperPosition, 5f);
+        _rb.velocity = new Vector2(_jumpForce * dir, _jumpForce);
+        Debug.Log("Side Jumping");
     }
     public void InverseGravity()
     {
         _rb.gravityScale *= -1;
 
-        if (_inverseGravityCoroutine == null)
+        if (_inverseGravityCoroutine != null)
         {
-            _inverseGravityCoroutine = StartCoroutine(ChangingGravityCoroutine());
+            StopCoroutine(_inverseGravityCoroutine);
         }
+        _inverseGravityCoroutine = StartCoroutine(ChangingGravityCoroutine());
     }
     IEnumerator ChangingGravityCoroutine()
     {

@@ -43,8 +43,6 @@ GameObject:
   - component: {fileID: 8316047604625059240}
   - component: {fileID: 2187990341674295642}
   - component: {fileID: 4101997370752619832}
-  - component: {fileID: 6233446967918589403}
-  - component: {fileID: 668873392281444997}
   - component: {fileID: 7858308814123802481}
   m_Layer: 6
   m_Name: Player
@@ -184,39 +182,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6233446967918589403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7621850081756162882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3ab81291b0ea144f9e9c8eae78f4829, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!95 &668873392281444997
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7621850081756162882}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7858308814123802481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +198,7 @@ MonoBehaviour:
   _accelerationSpeed: 400
   _inverseGravitySpeed: 3
   _inverseGravityCooldown: 1
+  _accelerationDuration: 2
   _corpse: {fileID: 8378204953401740722, guid: d3967d8cefa4fb34d97fe6cb7dbde0bf, type: 3}
   _layer:
     serializedVersion: 2
@@ -240,7 +206,7 @@ MonoBehaviour:
   _groundCheckLeft: {fileID: 5598519250197158521}
   _groundCheckRight: {fileID: 8822542137946391359}
   _jumpForce: 7
-  _mineCooldown: 0.3
+  _mineCooldown: 0.1
 --- !u!1 &7790422929690153996
 GameObject:
   m_ObjectHideFlags: 0
