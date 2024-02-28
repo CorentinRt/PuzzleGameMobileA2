@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Enums;
 using NaughtyAttributes;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     int _nbStars;
 
+    int _overlapShapeCount;
+
     private LevelManager _levelManager;
     private PlayerManager _playerManager;
 
@@ -28,6 +31,7 @@ public class GameManager : MonoBehaviour
     public event Action OnGameEnd;
 
     public PhaseType CurrentPhase { get => _currentPhase; set => _currentPhase = value; }
+    public int OverlapShapeCount { get => _overlapShapeCount; set => _overlapShapeCount = value; }
 
     public void SetPlayerManager(PlayerManager playerManager) => _playerManager = playerManager;
 
@@ -47,6 +51,12 @@ public class GameManager : MonoBehaviour
 
     public void ChangeGamePhase(PhaseType phase)
     {
+        if (_overlapShapeCount != 0 && _currentPhase == PhaseType.PlateformePlacement)
+        {
+            Debug.Log("Can't change phase beacause shapes are overlaping");
+            return;
+        }
+
         switch (phase)
         {
             case PhaseType.PlateformePlacement:
