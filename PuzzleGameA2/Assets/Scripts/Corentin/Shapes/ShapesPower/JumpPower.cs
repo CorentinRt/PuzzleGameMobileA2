@@ -9,8 +9,14 @@ public class JumpPower : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Debug.Log("Shape Jump Player");
-            collision.GetComponent<PlayerBehaviour>().Jump();
+            if (collision.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
+            {
+                playerBehaviour.Jump();
+            }
+            if (collision.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
+            {
+                corpsesBehavior.Jump();
+            }
         }
     }
 }

@@ -107,6 +107,10 @@ public class DragDropNoCanvas : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))  // Si relache
         {
+            if (transform.parent.gameObject == DragDropManager.Instance.CurrentShapeDragged && transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
+            {
+                shapeManagerNoCanvas.InitReset();
+            }
             _canMove = false;
             _dragging = false;
         }
@@ -136,7 +140,7 @@ public class DragDropNoCanvas : MonoBehaviour
         {
             _isUnable = true;
             shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.UnableDragColor;
-            DragDropManager.Instance.UnableCount++;
+            GameManager.Instance.OverlapShapeCount++;
         }
     }
     public void SetAbleColor()
@@ -145,7 +149,7 @@ public class DragDropNoCanvas : MonoBehaviour
         {
             _isUnable = false;
             shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.AbleDragColor;
-            DragDropManager.Instance.UnableCount--;
+            GameManager.Instance.OverlapShapeCount--;
         }
     }
 }

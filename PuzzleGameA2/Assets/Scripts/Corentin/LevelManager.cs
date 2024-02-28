@@ -12,8 +12,44 @@ public class LevelManager : MonoBehaviour
     [SerializeField, Scene] private string _mainMenu;
     private int _currentLevelID;
     private bool isLevelLoaded;
+    private List<IResetable> _elementsToReset = new List<IResetable>();
+
+    private void Start()
+    {
+        OnLevelUnload += ResetResettableList;
+#if UNITY_EDITOR
+        Scene[] scenes = SceneManager.GetAllScenes();
+        foreach (Scene scene in scenes)
+        {
+            if (scene.name !=_globalScene)
+            {
+                _levels.Find(x => x.GetScene == scene.name).Unlock();
+                LoadGlobalSceneAndLevel(_levels.Find(x => x.GetScene == scene.name).GetID);
+            }
+            
+        }
+#endif
+    }
+
+    private void OnDestroy()
+    {
+        OnLevelUnload -= ResetResettableList;
+    }
+
     public event Action OnLevelUnload;
     public event Action OnLevelFinishedLoad;
+    public void AddToResettableObject(IResetable toResetObject)  => _elementsToReset.Add(toResetObject);
+
+    public void ResetResettableList() => _elementsToReset = new List<IResetable>();
+
+    public void ResetTraps()
+    {
+        foreach (IResetable resettable in _elementsToReset)
+        {
+            resettable.ResetActive();
+        }
+    }
+    
 
     [Button]
     private void LoadFirstLevel()
@@ -28,6 +64,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(int id)
     {
+        Debug.Log("loading Level" + 1);
         if (GetLevel(id).isUnlocked)
         {
             if (isLevelLoaded)
@@ -44,7 +81,6 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(_globalScene);
         LoadLevel(id);
-        Debug.Log(SceneManager.loadedSceneCount);
     }
 
     private IEnumerator LoadLevelAndWait(int id)
@@ -79,7 +115,7 @@ public class LevelManager : MonoBehaviour
 [Serializable]
 public class Level
 {
-    [SerializeField] private LevelInfo _levelInfo;
+    [SerializeField, Expandable] private LevelInfo _levelInfo;
     [SerializeField] private int _starsWon;
     [SerializeField] private bool _unlocked;
 

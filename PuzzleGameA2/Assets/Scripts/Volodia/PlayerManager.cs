@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour
     private GameManager _gameManager;
     private LevelManager _levelManager;
 
+    public event Action OnPlayerDeath;
+
     public int GetPlayerAliveCount() => _nbLives - _playerCount + 2;
 
     private void Start()
@@ -26,6 +28,7 @@ public class PlayerManager : MonoBehaviour
         _gameManager = GameManager.Instance;
         _levelManager = _gameManager.gameObject.GetComponent<LevelManager>();
         _levelManager.OnLevelFinishedLoad += CreateFirstPlayer;
+        OnPlayerDeath += _levelManager.ResetTraps;
         _gameManager.OnPhase2Started += StartNextPlayer;
         _gameManager.SetPlayerManager(this);
         Debug.Log("pManager");
@@ -40,6 +43,7 @@ public class PlayerManager : MonoBehaviour
     {
         _gameManager.OnPhase2Started -= StartNextPlayer;
         _levelManager.OnLevelFinishedLoad -= CreateFirstPlayer;
+        OnPlayerDeath -= _levelManager.ResetTraps;
     }
     private void Update()
     {
@@ -47,6 +51,7 @@ public class PlayerManager : MonoBehaviour
         if (_currentPlayer == null && _isOnPlayerPhase)
         {
             _isOnPlayerPhase = false;
+            OnPlayerDeath?.Invoke();
             _gameManager.ChangeGamePhase(PhaseType.ChoicePhase);
         }
     }

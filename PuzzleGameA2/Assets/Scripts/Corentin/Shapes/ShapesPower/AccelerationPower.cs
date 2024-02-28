@@ -10,7 +10,20 @@ public class AccelerationPower : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             //Debug.Log("Shape Acceleration Player");
-            collision.GetComponent<PlayerBehaviour>().Acceleration();
+            if (collision.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehavior))
+            {
+                int tempDir = GetComponentInParent<ShapeManagerNoCanvas>().GetDirection();
+
+                if (tempDir == playerBehavior.Direction)
+                {
+                    playerBehavior.Acceleration();
+                }
+                else
+                {
+                    Debug.Log("Wrong direction to accelerate");
+                }
+
+            }
         }
     }
 }

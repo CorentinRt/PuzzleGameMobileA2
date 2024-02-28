@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using Enums;
+using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ShapeManagerNoCanvas : MonoBehaviour
+public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
 {
     [SerializeField] private GameObject _visuals;
     [SerializeField] private GameObject _physics;
@@ -12,6 +13,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     [SerializeField] private ShapeType _shapeType;
 
     [SerializeField] private ShapePower _shapePower;
+
+    private int _direction = 1;
     
     public ShapePower GetShapePower() => _shapePower;
 
@@ -34,7 +37,14 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     public SpriteRenderer SpriteRd { get => _spriteRd; set => _spriteRd = value; }
     public bool IsAffectedByGravity { get => _isAffectedByGravity; set => _isAffectedByGravity = value; }
 
-
+    public void ChangeDirection()
+    {
+        _direction *= -1;
+    }
+    public int GetDirection()
+    {
+        return _direction;
+    }
     private void DragMode()
     {
         switch (_shapeType)
@@ -342,6 +352,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     {
         GameManager.Instance.OnPhase1Started += DragMode;
         GameManager.Instance.OnPhase1Ended += LockMode;
+        Debug.Log((IResetable) this);
+        GameManager.Instance.gameObject.GetComponent<LevelManager>().AddToResettableObject(this);
 
         switch (_shapePower)
         {
@@ -374,6 +386,42 @@ public class ShapeManagerNoCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
 
+    public Vector3 StartPosition { get; set; }
+
+    public void InitReset()
+    {
+        Debug.Log("Init reset");
+        StartPosition = transform.position;
+    }
+    [Button]
+    public void ResetActive()
+    {
+        Debug.Log("Reseting");
+        if (_shapePower == ShapePower.InverseGravity)
+        {
+            Debug.Log("Reset Gravity");
+            gameObject.SetActive(true);
+            transform.position = StartPosition;
+        }
+        else if(_shapePower == ShapePower.Mine)
+        {
+            Debug.Log("Reset Mine");
+        }
+    }
+    [Button]
+    public void Desactive()
+    {
+        if (_shapePower == ShapePower.InverseGravity)
+        {
+            Debug.Log("Desactive gravity");
+            gameObject.SetActive(false);
+        }
+        else if (_shapePower == ShapePower.Mine)
+        {
+            Debug.Log("Desactive mine");
+        }
     }
 }
