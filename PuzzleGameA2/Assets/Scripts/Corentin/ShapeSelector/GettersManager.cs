@@ -32,6 +32,11 @@ public class GettersManager : MonoBehaviour
         _levelManager.OnLevelFinishedLoad += InitGetters;
     }
 
+    private void OnDestroy()
+    {
+        _levelManager.OnLevelFinishedLoad -= InitGetters;
+    }
+
     // Update is called once per frame
     void Update()
     {

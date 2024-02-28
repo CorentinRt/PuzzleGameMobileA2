@@ -156,6 +156,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private void OnDestroy()
     {
         TrashShape.Instance.OnGoToTrashEvent -= IncreaseShapeCountFromTrash;
+        transform.parent.GetComponent<GettersManager>().ResetGetters -= DestroySelf;
     }
     // Update is called once per frame
     void Update()
