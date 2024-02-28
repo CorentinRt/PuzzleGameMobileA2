@@ -32,6 +32,7 @@ public class ProjectileDown : MonoBehaviour
         {
             //Destroy the projectile
             playerDetected = true;
+            Destroy(gameObject);
             Debug.Log("Player hit");
 
         }
