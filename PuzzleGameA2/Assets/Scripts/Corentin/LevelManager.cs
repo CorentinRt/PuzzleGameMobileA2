@@ -115,7 +115,7 @@ public class LevelManager : MonoBehaviour
 [Serializable]
 public class Level
 {
-    [SerializeField] private LevelInfo _levelInfo;
+    [SerializeField, Expandable] private LevelInfo _levelInfo;
     [SerializeField] private int _starsWon;
     [SerializeField] private bool _unlocked;
 
