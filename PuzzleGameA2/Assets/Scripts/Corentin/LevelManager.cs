@@ -17,6 +17,18 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         OnLevelUnload += ResetResettableList;
+#if UNITY_EDITOR
+        Scene[] scenes = SceneManager.GetAllScenes();
+        foreach (Scene scene in scenes)
+        {
+            if (scene.name !=_globalScene)
+            {
+                _levels.Find(x => x.GetScene == scene.name).Unlock();
+                LoadGlobalSceneAndLevel(_levels.Find(x => x.GetScene == scene.name).GetID);
+            }
+            
+        }
+#endif
     }
 
     private void OnDestroy()
@@ -52,6 +64,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(int id)
     {
+        Debug.Log("loading Level" + 1);
         if (GetLevel(id).isUnlocked)
         {
             if (isLevelLoaded)
@@ -68,7 +81,6 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(_globalScene);
         LoadLevel(id);
-        Debug.Log(SceneManager.loadedSceneCount);
     }
 
     private IEnumerator LoadLevelAndWait(int id)
@@ -103,7 +115,7 @@ public class LevelManager : MonoBehaviour
 [Serializable]
 public class Level
 {
-    [SerializeField] private LevelInfo _levelInfo;
+    [SerializeField, Expandable] private LevelInfo _levelInfo;
     [SerializeField] private int _starsWon;
     [SerializeField] private bool _unlocked;
 
