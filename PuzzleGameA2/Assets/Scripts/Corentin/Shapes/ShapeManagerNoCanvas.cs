@@ -13,6 +13,8 @@ public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
     [SerializeField] private ShapeType _shapeType;
 
     [SerializeField] private ShapePower _shapePower;
+
+    private int _direction = 1;
     
     public ShapePower GetShapePower() => _shapePower;
 
@@ -35,6 +37,10 @@ public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
     public SpriteRenderer SpriteRd { get => _spriteRd; set => _spriteRd = value; }
     public bool IsAffectedByGravity { get => _isAffectedByGravity; set => _isAffectedByGravity = value; }
 
+    public void ChangeDirection()
+    {
+        _direction *= -1;
+    }
     private void DragMode()
     {
         switch (_shapeType)
@@ -376,7 +382,7 @@ public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public Vector3 StartPosition { get; set; }
@@ -399,7 +405,6 @@ public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
         else if(_shapePower == ShapePower.Mine)
         {
             Debug.Log("Reset Mine");
-            GetComponentInChildren<MineBehavior>().HasExplode = false;
         }
     }
     [Button]

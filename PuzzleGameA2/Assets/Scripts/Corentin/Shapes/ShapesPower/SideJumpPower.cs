@@ -9,8 +9,14 @@ public class SideJumpPower : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Debug.Log("Shape Side Jump Player");
-            collision.GetComponent<PlayerBehaviour>().SideJump();
+            if (collision.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
+            {
+                playerBehaviour.SideJump();
+            }
+            if (collision.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
+            {
+                corpsesBehavior.SideJump();
+            }
         }
     }
 }
