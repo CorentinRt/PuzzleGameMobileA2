@@ -71,7 +71,10 @@ public class PlayerBehaviour : MonoBehaviour
                     _rb.velocity = velocity;
                 }
             }
-            else if (!_walking && transform.position.x <= _startpoint.x && _rb.velocity.y == 0) _rb.velocity = new Vector2(_speed * 1 * Time.deltaTime, _rb.velocity.y);
+            else if (!_walking && transform.position.x < _startpoint.x)
+            {
+                _rb.velocity = new Vector2(_speed * 1 * Time.deltaTime, _rb.velocity.y);
+            }
             else _rb.velocity = new Vector2(0, _rb.velocity.y);
         }
         else
@@ -116,7 +119,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void KillPlayer()
     {
         Instantiate(_corpse, transform.position + new Vector3(_direction * 0.5f, -transform.localScale.y / 2, 0), transform.rotation);
-
+        
         Destroy(gameObject);
     }
 

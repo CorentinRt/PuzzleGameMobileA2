@@ -17,10 +17,31 @@ public class PlayerManager : MonoBehaviour
     private bool _isOnPlayerPhase;
     private GameManager _gameManager;
     private LevelManager _levelManager;
+    private int _spawnGravity;
 
     public event Action OnPlayerDeath;
+    
+    private static PlayerManager _instance;
+    public static PlayerManager Instance { get => _instance; set => _instance = value; }
 
     public int GetPlayerAliveCount() => _nbLives - _playerCount + 2;
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
+        _instance = this;
+    }
+
+    public void SetStartPoint(Vector3 pos, bool isGravityInverted)
+    {
+        _startpoint = pos;
+        _spawnGravity = isGravityInverted ? -1 : 1;
+    }
 
     private void Start()
     {
@@ -68,7 +89,9 @@ public class PlayerManager : MonoBehaviour
     private void SummonPlayer(bool resetPlayerCount=false)
     {
         _playerCount = resetPlayerCount ? 1 : _playerCount + 1;
-        _nextPlayer = Instantiate(_playerPrefab, _spawnpoint, transform.rotation).GetComponent<PlayerBehaviour>();
+        _nextPlayer = Instantiate(_playerPrefab, new Vector3(_spawnpoint.x,_spawnGravity * _spawnpoint.y,_spawnpoint.z), transform.rotation).GetComponent<PlayerBehaviour>();
+        _nextPlayer.gameObject.GetComponent<Rigidbody2D>().gravityScale*=_spawnGravity;
+        _nextPlayer.transform.localScale = new Vector3(1, -1, 1);
         _nextPlayer.SetSpawnpoint(_startpoint);
         _nextPlayer.SetManager(_levelManager);
     }
