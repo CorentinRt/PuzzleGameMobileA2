@@ -14,6 +14,8 @@ public class PlayerBehaviour : MonoBehaviour
     private Coroutine _inverseGravityCoroutine;
 
     private bool _isAccelerating;
+    [SerializeField] private float _accelerationDuration;
+    private Coroutine _accelerationDurationCoroutine;
 
     private bool _isJumping;
     private bool _canStopJump;
@@ -201,6 +203,11 @@ public class PlayerBehaviour : MonoBehaviour
             _isAccelerating = true;
             Debug.Log("Accelerate");
         }
+        if (_accelerationDurationCoroutine != null)
+        {
+            _accelerationDurationCoroutine = null;
+            _accelerationDurationCoroutine = StartCoroutine(AccelerationDurationCoroutine());
+        }
     }
     public void InverseGravity()
     {
@@ -278,9 +285,20 @@ public class PlayerBehaviour : MonoBehaviour
         yield return null;
     }
 
+    IEnumerator AccelerationDurationCoroutine()
+    {
+        yield return new WaitForSeconds(_accelerationDuration);
+
+        _accelerationDurationCoroutine = null;
+
+        yield return null;
+    } 
+
+
     public void SetManager(LevelManager levelManager)
     {
         _levelManager = levelManager;
         levelManager.OnLevelUnload += UnloadLevel;
     }
+
 }
