@@ -15,6 +15,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     private bool _isAccelerating;
 
+    private bool _isJumping;
+    private bool _canStopJump;
+
     private bool _isGrounded;
 
     [SerializeField] private GameObject _corpse;
@@ -51,14 +54,22 @@ public class PlayerBehaviour : MonoBehaviour
         Collider2D groundCheckColl = Physics2D.OverlapArea(_groundCheckLeft.position, _groundCheckRight.position);
         if (groundCheckColl && groundCheckColl != _capsuleCollider)
         {
-            _isGrounded = true;
+            if (groundCheckColl.CompareTag("Floor"))
+            {
+                _isGrounded = true;
+                if (_canStopJump)
+                {
+                    _canStopJump = false;
+                    _isJumping = false;
+                }
+            }
         }
         else
         {
             _isGrounded = false;
         }
 
-        if (_isGrounded)
+        if (_isGrounded && !_isJumping)
         {
             if (_walking)
             {
@@ -78,7 +89,14 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else
         {
-            _rb.velocity = new Vector2(0f, _rb.velocity.y);
+            if (!_isJumping)
+            {
+                _rb.velocity = new Vector2(0f, _rb.velocity.y);
+            }
+            else
+            {
+                Debug.Log("Still jumping");
+            }
         }
     }
 
@@ -160,12 +178,20 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public void Jump()
     {
-        _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+        //_rb.velocity = new Vector2(_rb.velocity.x * _direction, _jumpForce);
+        StartCoroutine(JumpCooldown());
+        _isJumping = true;
+        _rb.velocity = Vector2.zero;
+        _rb.AddForce(new Vector2(_jumpForce * _direction, _jumpForce), ForceMode2D.Impulse);
         Debug.Log("jumping");
     }
-    public void SideJump()
+    public void SideJump(int dir)
     {
-        _rb.velocity = new Vector2(_jumpForce * _direction, _jumpForce);
+        //_rb.velocity = new Vector2(_jumpForce * dir, _jumpForce);
+        StartCoroutine(JumpCooldown());
+        _isJumping = true;
+        _rb.velocity = Vector2.zero;
+        _rb.AddForce(new Vector2(_jumpForce * dir, _jumpForce), ForceMode2D.Impulse);
         Debug.Log("Side Jumping");
     }
     public void Acceleration()
@@ -240,6 +266,14 @@ public class PlayerBehaviour : MonoBehaviour
         yield return new WaitForSeconds(_mineCooldown);
 
         KillPlayer();
+
+        yield return null;
+    }
+    IEnumerator JumpCooldown()
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        _canStopJump = true;
 
         yield return null;
     }

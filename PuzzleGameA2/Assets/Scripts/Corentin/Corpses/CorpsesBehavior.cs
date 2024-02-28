@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class CorpsesBehavior : MonoBehaviour
@@ -29,9 +30,9 @@ public class CorpsesBehavior : MonoBehaviour
         _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
         Debug.Log("jumping");
     }
-    public void SideJump()
+    public void SideJump(int dir)
     {
-        _rb.velocity = new Vector2(_jumpForce, _jumpForce);
+        _rb.velocity = new Vector2(_jumpForce * dir, _jumpForce);
         Debug.Log("Side Jumping");
     }
     public void InverseGravity()
