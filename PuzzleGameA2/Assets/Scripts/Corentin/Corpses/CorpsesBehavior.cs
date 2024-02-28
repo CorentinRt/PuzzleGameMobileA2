@@ -43,10 +43,11 @@ public class CorpsesBehavior : MonoBehaviour
     {
         _rb.gravityScale *= -1;
 
-        if (_inverseGravityCoroutine == null)
+        if (_inverseGravityCoroutine != null)
         {
-            _inverseGravityCoroutine = StartCoroutine(ChangingGravityCoroutine());
+            StopCoroutine(_inverseGravityCoroutine);
         }
+        _inverseGravityCoroutine = StartCoroutine(ChangingGravityCoroutine());
     }
     IEnumerator ChangingGravityCoroutine()
     {
