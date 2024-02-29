@@ -7,6 +7,17 @@ using Enums;
 
 public class PlayerManager : MonoBehaviour
 {
+    private static PlayerManager _instance;
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+        }
+        _instance = this;
+    }
+
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private Vector3 _spawnpoint;
     [SerializeField] private Vector3 _startpoint;
@@ -18,9 +29,11 @@ public class PlayerManager : MonoBehaviour
     private GameManager _gameManager;
     private LevelManager _levelManager;
 
+    public static PlayerManager Instance { get => _instance; set => _instance = value; }
+
     public event Action OnPlayerDeath;
 
-    public int GetPlayerAliveCount() => _nbLives - _playerCount + 2;
+    public int GetPlayerAliveCount() => _nbLives - _playerCount /* + 2 */;
 
     private void Start()
     {
