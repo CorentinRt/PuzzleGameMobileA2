@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Enums;
 using NaughtyAttributes;
@@ -308,4 +309,8 @@ public class PlayerBehaviour : MonoBehaviour
         LevelManager.Instance.GetCurrentLevelController.OnLevelUnload += UnloadLevel;
     }
 
+    private void OnDestroy()
+    {
+        _levelManager.GetCurrentLevelController.OnLevelUnload -= UnloadLevel;
+    }
 }

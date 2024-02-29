@@ -102,6 +102,7 @@ public class PlayerManager : MonoBehaviour
 
     private void SummonPlayer(bool resetPlayerCount=false)
     {
+        if (_spawnGravity == 0) _spawnGravity = 1;
         _playerCount = resetPlayerCount ? 1 : _playerCount + 1;
         _nextPlayer = Instantiate(_playerPrefab, new Vector3(_spawnpoint.x, _spawnGravity * _spawnpoint.y, _spawnpoint.z), transform.rotation).GetComponent<PlayerBehaviour>();
         _nextPlayer.gameObject.GetComponent<Rigidbody2D>().gravityScale *= _spawnGravity;

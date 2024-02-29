@@ -37,7 +37,7 @@ public class StarsBehaviors : MonoBehaviour
     void Start()
     {
         _gameManager = GameManager.Instance;
-        _levelManager = _gameManager.gameObject.GetComponent<LevelManager>();
+        _levelManager = LevelManager.Instance;
         _gameManager.OnGameEnd += DisplayStars;
         _gameManager.OnGameLost += DisplayGameOver;
     }
