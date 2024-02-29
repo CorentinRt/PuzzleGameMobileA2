@@ -628,6 +628,7 @@ GameObject:
   - component: {fileID: 2253475560577667836}
   - component: {fileID: 2427256673786086545}
   - component: {fileID: 1885391565665662669}
+  - component: {fileID: 7890256369594020316}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -734,6 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _choicePanel: {fileID: 2009424218537742172}
+  _transitionLifeDisplay: {fileID: 0}
 --- !u!114 &1885391565665662669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,6 +749,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeCountText: {fileID: 6634171628874613117}
+--- !u!114 &7890256369594020316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900616159172014414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55788db66f4ddad4fbaed155b452204e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cooldownBeforeDisplay: 1
+  _lifeTransitionPanel: {fileID: 1490752703541753811}
+  _lastNumberText: {fileID: 3888971393986401517}
+  _currentNumberText: {fileID: 3393868464050271578}
+  _textContainer: {fileID: 7668200060760343059}
+  _target: {fileID: 7996790012585105830}
+  _currentNumber: 6
+  _slideSpeed: 1
 --- !u!1 &1395812921339408633
 GameObject:
   m_ObjectHideFlags: 0
