@@ -20,8 +20,7 @@ namespace Enums
         PlateformePlacement = 0,
         PlayersMoving = 1,
         ChoicePhase = 2,
-        GameEndPhase = 3,
-        GameOver=4
+        GameEndPhase = 3
     }
     
     public enum ShapeType

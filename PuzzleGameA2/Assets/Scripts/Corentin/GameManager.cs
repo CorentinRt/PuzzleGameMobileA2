@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     public event Action OnPhase2Ended;
 
     public event Action OnGameEnd;
-    public event Action OnGameLost;
 
     public PhaseType CurrentPhase { get => _currentPhase; set => _currentPhase = value; }
     public int OverlapShapeCount { get => _overlapShapeCount; set => _overlapShapeCount = value; }
@@ -75,10 +74,6 @@ public class GameManager : MonoBehaviour
                 _levelManager.GetCurrentLevel().SetStars(_nbStars);
                 GameEnd();
                 break;
-            case PhaseType.GameOver:
-                Debug.Log("GameOver Manager");
-                GameOver();
-                break;
         }
 
         _currentPhase = phase;
@@ -116,11 +111,6 @@ public class GameManager : MonoBehaviour
     private void GameEnd()
     {
         OnGameEnd?.Invoke();
-    }
-    
-    private void GameOver()
-    {
-        OnGameLost?.Invoke();
     }
 
     private void Awake()
