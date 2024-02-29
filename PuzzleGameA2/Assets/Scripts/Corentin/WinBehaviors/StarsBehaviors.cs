@@ -55,5 +55,12 @@ public class StarsBehaviors : MonoBehaviour
     public void NextLevel()
     {
         _levelManager.LoadLevel(_levelManager.GetCurrentLevel().GetID + 1);
-    }
+        _winPanel.SetActive(false); 
+    } 
+ 
+    public void RestartLevel() 
+    { 
+        _levelManager.RestartCurrentLevel(); 
+        _losePanel.SetActive(false); 
+    } 
 }

@@ -223,7 +223,7 @@ MonoBehaviour:
   _playerPrefab: {fileID: 7621850081756162882, guid: 9518ca1d1459f754ca28998fdcd5114d, type: 3}
   _spawnpoint: {x: -8.5, y: 7, z: 0}
   _startpoint: {x: -6.5, y: -3, z: 0}
-  _nbLives: 6
+  _nbLives: 3
 --- !u!4 &299431788
 Transform:
   m_ObjectHideFlags: 0
@@ -672,7 +672,8 @@ PrefabInstance:
       value: UI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6953417912593625618, guid: a55088563abb5264aa208cc811004767, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a55088563abb5264aa208cc811004767, type: 3}
