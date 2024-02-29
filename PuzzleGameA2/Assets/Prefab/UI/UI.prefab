@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 2253475560577667836}
   - component: {fileID: 2427256673786086545}
   - component: {fileID: 1885391565665662669}
-  - component: {fileID: 7356693394541114820}
+  - component: {fileID: 7890256369594020316}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _choicePanel: {fileID: 2009424218537742172}
-  _transitionLifeDisplay: {fileID: 7356693394541114820}
+  _transitionLifeDisplay: {fileID: 0}
 --- !u!114 &1885391565665662669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,7 +750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeCountText: {fileID: 6634171628874613117}
---- !u!114 &7356693394541114820
+--- !u!114 &7890256369594020316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55788db66f4ddad4fbaed155b452204e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cooldownBeforeDisplay: 0.5
+  _cooldownBeforeDisplay: 1
   _lifeTransitionPanel: {fileID: 1490752703541753811}
   _lastNumberText: {fileID: 3888971393986401517}
   _currentNumberText: {fileID: 3393868464050271578}
@@ -3224,6 +3224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _winPanel: {fileID: 5590129425410224410}
+  _losePanel: {fileID: 6953417912593625618}
   _stars:
   - {fileID: 6147636890696767340}
   - {fileID: 1830190383595853836}
