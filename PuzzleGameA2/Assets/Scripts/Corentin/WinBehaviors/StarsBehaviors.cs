@@ -37,7 +37,7 @@ public class StarsBehaviors : MonoBehaviour
     void Start()
     {
         _gameManager = GameManager.Instance;
-        _levelManager = _gameManager.gameObject.GetComponent<LevelManager>();
+        _levelManager = LevelManager.Instance;
         _gameManager.OnGameEnd += DisplayStars;
         _gameManager.OnGameLost += DisplayGameOver;
     }
@@ -55,5 +55,12 @@ public class StarsBehaviors : MonoBehaviour
     public void NextLevel()
     {
         _levelManager.LoadLevel(_levelManager.GetCurrentLevel().GetID + 1);
-    }
+        _winPanel.SetActive(false); 
+    } 
+ 
+    public void RestartLevel() 
+    { 
+        _levelManager.RestartCurrentLevel(); 
+        _losePanel.SetActive(false); 
+    } 
 }

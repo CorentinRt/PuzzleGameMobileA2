@@ -70,6 +70,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(int id)
     {
+        if (!DoesLevelExist(id)) return;
         Debug.Log("loading Level" + 1);
         if (GetLevel(id).isUnlocked)
         {
@@ -121,6 +122,23 @@ public class LevelManager : MonoBehaviour
         LoadLevel(_currentLevelID);
     }
 
+    public bool DoesLevelExist(int id)
+    {
+        foreach (Level level in _levels)
+        {
+            if (level.GetID == id) return true;
+        }
+
+        return false;
+    }
+
+    public void UnlockNextLevel()
+    {
+        if (DoesLevelExist(_currentLevelID + 1))
+        {
+            if (!GetLevel(_currentLevelID+1).isUnlocked) UnlockLevel(_currentLevelID + 1);
+        }
+    }
 }
 
 [Serializable]

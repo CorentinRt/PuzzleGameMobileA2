@@ -18,7 +18,7 @@ public class CorpsesBehavior : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        //GameManager.Instance.gameObject.GetComponent<LevelManager>().OnLevelUnload += DestroySelf;
+        LevelManager.Instance.GetCurrentLevelController.OnLevelUnload += DestroySelf;
     }
 
     private void DestroySelf()
@@ -29,7 +29,7 @@ public class CorpsesBehavior : MonoBehaviour
     private void OnDestroy()
     {
         if (GameManager.Instance == null) return;
-        //GameManager.Instance.gameObject.GetComponent<LevelManager>().OnLevelUnload -= DestroySelf;
+        LevelManager.Instance.GetCurrentLevelController.OnLevelUnload -= DestroySelf;
     }
 
     private void Update()
