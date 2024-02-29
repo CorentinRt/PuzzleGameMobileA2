@@ -114,7 +114,6 @@ public class LevelManager : MonoBehaviour
     {
         LoadLevel(_currentLevelID);
     }
-
 }
 
 [Serializable]
