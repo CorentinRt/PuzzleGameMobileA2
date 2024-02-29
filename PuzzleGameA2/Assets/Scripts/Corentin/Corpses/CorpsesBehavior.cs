@@ -37,6 +37,7 @@ public class CorpsesBehavior : MonoBehaviour
         if (_rb.velocity == Vector2.zero) _rb.constraints = RigidbodyConstraints2D.FreezePositionX;
     }
 
+
     //public void CreateCorpse(Vector3 position)
     //{
     //    transform.position = position;

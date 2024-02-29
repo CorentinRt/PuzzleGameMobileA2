@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("GameOver Manager");
                 GameOver();
                 break;
+
         }
 
         _currentPhase = phase;
@@ -117,11 +118,11 @@ public class GameManager : MonoBehaviour
     {
         OnGameEnd?.Invoke();
     }
-    
     private void GameOver()
     {
         OnGameLost?.Invoke();
     }
+
 
     private void Awake()
     {

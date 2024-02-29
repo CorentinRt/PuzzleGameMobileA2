@@ -7,6 +7,7 @@ using Enums;
 
 public class PlayerManager : MonoBehaviour
 {
+
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private Vector3 _spawnpoint;
     [SerializeField] private Vector3 _startpoint;
@@ -19,12 +20,15 @@ public class PlayerManager : MonoBehaviour
     private LevelManager _levelManager;
     private int _spawnGravity;
 
+
     public event Action OnPlayerDeath;
-    
+
     private static PlayerManager _instance;
     public static PlayerManager Instance { get => _instance; set => _instance = value; }
 
-    public int GetPlayerAliveCount() => _nbLives - _playerCount + 2;
+
+    public int GetPlayerAliveCount() => _nbLives - _playerCount /* + 2 */;
+
 
     private void Awake()
     {
@@ -33,7 +37,7 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         _instance = this;
     }
 
@@ -42,6 +46,7 @@ public class PlayerManager : MonoBehaviour
         _startpoint = pos;
         _spawnGravity = isGravityInverted ? -1 : 1;
     }
+
 
     private void Start()
     {
@@ -77,6 +82,7 @@ public class PlayerManager : MonoBehaviour
             _isOnPlayerPhase = false;
             return;
         }
+
         if (_currentPlayer == null && _isOnPlayerPhase)
         {
             _isOnPlayerPhase = false;
@@ -97,8 +103,8 @@ public class PlayerManager : MonoBehaviour
     private void SummonPlayer(bool resetPlayerCount=false)
     {
         _playerCount = resetPlayerCount ? 1 : _playerCount + 1;
-        _nextPlayer = Instantiate(_playerPrefab, new Vector3(_spawnpoint.x,_spawnGravity * _spawnpoint.y,_spawnpoint.z), transform.rotation).GetComponent<PlayerBehaviour>();
-        _nextPlayer.gameObject.GetComponent<Rigidbody2D>().gravityScale*=_spawnGravity;
+        _nextPlayer = Instantiate(_playerPrefab, new Vector3(_spawnpoint.x, _spawnGravity * _spawnpoint.y, _spawnpoint.z), transform.rotation).GetComponent<PlayerBehaviour>();
+        _nextPlayer.gameObject.GetComponent<Rigidbody2D>().gravityScale *= _spawnGravity;
         _nextPlayer.transform.localScale = new Vector3(1, _spawnGravity, 1);
         _nextPlayer.SetSpawnpoint(_startpoint);
         _nextPlayer.SetManager(_levelManager);
