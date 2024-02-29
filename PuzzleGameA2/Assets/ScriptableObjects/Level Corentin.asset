@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Level Corentin
   m_EditorClassIdentifier: 
   _levelID: 0
-  _maxPlayerToSave: 6
+  _maxPlayerToSave: 8
   _levelAdditiveScene: CorentinScene
   _shapes:
   - _power: 3
     _type: 0
     _maxCount: 2
-  - _power: 1
+  - _power: 5
     _type: 2
     _maxCount: 2
   - _power: 4

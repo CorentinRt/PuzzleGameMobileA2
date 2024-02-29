@@ -56,7 +56,7 @@ public class PlayerBehaviour : MonoBehaviour
         Collider2D groundCheckColl = Physics2D.OverlapArea(_groundCheckLeft.position, _groundCheckRight.position);
         if (groundCheckColl && groundCheckColl != _capsuleCollider)
         {
-            if (groundCheckColl.CompareTag("Floor"))
+            if (groundCheckColl.CompareTag("Floor") || groundCheckColl.CompareTag("Player"))
             {
                 _isGrounded = true;
                 if (_canStopJump)
@@ -90,6 +90,7 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 _rb.velocity = new Vector2(_speed * 1 * Time.deltaTime, _rb.velocity.y);
             }
+
             else _rb.velocity = new Vector2(0, _rb.velocity.y);
         }
         else
@@ -141,7 +142,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void KillPlayer()
     {
         Instantiate(_corpse, transform.position + new Vector3(_direction * 0.5f, -transform.localScale.y / 2, 0), transform.rotation);
-        
+
         Destroy(gameObject);
     }
 
@@ -201,15 +202,16 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public void Acceleration()
     {
-        if (!_isAccelerating)
-        {
-            _isAccelerating = true;
-            Debug.Log("Accelerate");
-        }
         if (_accelerationDurationCoroutine != null)
         {
             _accelerationDurationCoroutine = null;
             _accelerationDurationCoroutine = StartCoroutine(AccelerationDurationCoroutine());
+        }
+        if (!_isAccelerating)
+        {
+            _isAccelerating = true;
+            _accelerationDurationCoroutine = StartCoroutine(AccelerationDurationCoroutine());
+            Debug.Log("Accelerate");
         }
     }
     public void InverseGravity()
@@ -292,6 +294,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(_accelerationDuration);
 
+        Debug.Log("Stop acceleration");
+        _isAccelerating = false;
         _accelerationDurationCoroutine = null;
 
         yield return null;
@@ -301,7 +305,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void SetManager(LevelManager levelManager)
     {
         _levelManager = levelManager;
-        levelManager.OnLevelUnload += UnloadLevel;
+        LevelManager.Instance.GetCurrentLevelController.OnLevelUnload += UnloadLevel;
     }
 
 }
