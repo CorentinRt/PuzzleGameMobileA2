@@ -56,8 +56,19 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
     private void Start()
     {
         StartPosition = transform.parent.position;
+        if (GridManager.Instance != null)
+        {
+            Vector3Int tempVectInt = GridManager.Instance.GetWorldToCellPosition(StartPosition);
+            StartPosition = GridManager.Instance.GetCellToWorldPosition(tempVectInt);
+            StartPosition += GridManager.Instance.CellSize / 2f;
+        }
+
         _canShoot = true;
-        LevelManager.Instance.GetCurrentLevelController.AddToResettableObject<IResetable>(this);
+
+        if (LevelManager.Instance.GetCurrentLevelController != null)
+        {
+            LevelManager.Instance.GetCurrentLevelController.AddToResettableObject<IResetable>(this);
+        }
     }
 
     // Update is called once per frame
