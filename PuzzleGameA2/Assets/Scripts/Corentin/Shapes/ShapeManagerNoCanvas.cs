@@ -5,7 +5,7 @@ using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
+public class ShapeManagerNoCanvas : MonoBehaviour, IResetable
 {
     [SerializeField] private GameObject _visuals;
     [SerializeField] private GameObject _physics;
@@ -353,7 +353,7 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
         GameManager.Instance.OnPhase1Started += DragMode;
         GameManager.Instance.OnPhase1Ended += LockMode;
         Debug.Log((IResetable) this);
-        LevelManager.Instance.GetCurrentLevelController.AddToResettableObject<IResetable>(this);
+        GameManager.Instance.gameObject.GetComponent<LevelManager>().AddToResettableObject(this);
 
         switch (_shapePower)
         {

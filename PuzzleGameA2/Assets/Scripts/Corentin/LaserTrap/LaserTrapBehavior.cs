@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LaserTrapBehavior : ItemsBehaviors, IResetable
+public class LaserTrapBehavior : MonoBehaviour, IResetable
 {
-    [SerializeField] private float _timeBeforeShoot;
-
     [SerializeField] private bool _hasInfiniteRange;
     [SerializeField] private float _laserRange;
 
@@ -14,81 +12,55 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
 
     [SerializeField] private LineRenderer _lineRenderer;
 
-    [SerializeField] private LayerMask _playerLayerMask;
-
     private bool _canShoot;
-    private bool _hasDetected;
 
-    public Vector3 StartPosition { get; set; }
+    public Vector3 StartPosition { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-    private void LaserHit(PlayerBehaviour playerBehaviour)
+    private void LaserHit(GameObject gameObject)
     {
         _canShoot = false;
 
-        RaycastHit2D hit;
+        _lineRenderer.gameObject.SetActive(true);
 
-        hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_playerLayerMask);
+        _lineRenderer.SetPosition(0, transform.position);
 
-        if (hit)
-        {
-            //Debug.Log("Fire ray on : " + hit.transform.gameObject.name);
+        _lineRenderer.SetPosition(1, gameObject.transform.position);
 
-            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green, 5f);
-
-            _lineRenderer.gameObject.SetActive(true);
-
-            _lineRenderer.SetPosition(0, transform.position);
-
-            _lineRenderer.SetPosition(1, hit.point);
-
-            StartCoroutine(LaserVisualCoroutine());
-        }
-        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
-        if (raycastHit)
-        {
-            if (raycastHit.transform.CompareTag("Player"))
-            {
-                playerBehaviour.KillPlayer();
-            }
-        }
+        StartCoroutine(LaserVisualCoroutine());
     }
 
     private void Start()
     {
-        StartPosition = transform.parent.position;
         _canShoot = true;
-        LevelManager.Instance.GetCurrentLevelController.AddToResettableObject<IResetable>(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_canShoot && !_hasDetected)
+        if (_canShoot)
         {
             RaycastHit2D hit;
             if (_hasInfiniteRange)
             {
                 hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
-                //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * _laserRange, Color.red, 1f);
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * _laserRange, Color.red, 1f);
             }
             else
             {
                 hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), _laserRange);
-                //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * _laserRange, Color.red, 1f);
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * _laserRange, Color.red, 1f);
             }
 
             if (hit.collider.gameObject.CompareTag("Player"))
             {
                 if (hit.collider.gameObject.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
                 {
-                    _hasDetected = true;
-
-                    StartCoroutine(TimeBeforeShootCoroutine(playerBehaviour));
+                    Debug.Log("laser Hit player");
+                    LaserHit(playerBehaviour.gameObject);
+                    playerBehaviour.KillPlayer();
                 }
             }
         }
-
-        //Debug.Log("test name : " + this);
     }
 
     IEnumerator LaserVisualCoroutine()
@@ -99,25 +71,15 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
 
         yield return null;
     }
-    IEnumerator TimeBeforeShootCoroutine(PlayerBehaviour playerBehaviour)
-    {
-        yield return new WaitForSeconds(_timeBeforeShoot);
-
-        LaserHit(playerBehaviour);
-
-        yield return null;
-    }
 
     public void InitReset()
     {
-        Debug.Log("Init reset laser");
+        StartPosition = transform.parent.position;
     }
 
     public void ResetActive()
     {
         transform.parent.position = StartPosition;
-        _canShoot = true;
-        _hasDetected = false;
         _lineRenderer.gameObject.SetActive(false);
     }
 
@@ -125,5 +87,4 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
     {
         transform.parent.gameObject.SetActive(false);
     }
-
 }

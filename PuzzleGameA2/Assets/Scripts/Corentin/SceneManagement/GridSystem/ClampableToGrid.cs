@@ -6,15 +6,12 @@ public class ClampableToGrid : MonoBehaviour
 {
     private void ClampToGrid()
     {
-        if (GridManager.Instance != null)
-        {
-            Vector3Int tempVecInt = GridManager.Instance.GetWorldToCellPosition(transform.position);
+        Vector3Int tempVecInt = GridManager.Instance.GetWorldToCellPosition(transform.position);
 
-            Vector3 cellSize = GridManager.Instance.CellSize;
+        Vector3 cellSize = GridManager.Instance.CellSize;
 
-            transform.position = GridManager.Instance.GetCellToWorldPosition(tempVecInt);
-            transform.position += cellSize / 2;
-        }
+        transform.position = GridManager.Instance.GetCellToWorldPosition(tempVecInt);
+        transform.position += cellSize / 2;
     }
 
     private void Start()

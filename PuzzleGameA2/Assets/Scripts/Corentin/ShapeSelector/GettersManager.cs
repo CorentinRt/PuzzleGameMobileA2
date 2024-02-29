@@ -28,7 +28,7 @@ public class GettersManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _levelManager = LevelManager.Instance;
+        _levelManager = GameManager.Instance.gameObject.GetComponent<LevelManager>();
         _levelManager.OnLevelFinishedLoad += InitGetters;
     }
 
