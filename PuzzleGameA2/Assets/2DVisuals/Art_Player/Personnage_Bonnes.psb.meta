@@ -109,8 +109,8 @@ ScriptedImporter:
     spriteBone:
     - name: Main D
       guid: 5a5dbcb186d551949b1623522392b1b8
-      position: {x: 13.114655, y: 40.717346, z: 0}
-      rotation: {x: 0, y: 0, z: 0.61845464, w: -0.7858206}
+      position: {x: 13.114655, y: 40.717316, z: 0}
+      rotation: {x: 0, y: 0, z: 0.6184546, w: -0.78582054}
       length: 37.59491
       parentId: -1
       color:
@@ -403,18 +403,18 @@ ScriptedImporter:
     spriteBone:
     - name: Main D
       guid: 5a5dbcb186d551949b1623522392b1b8
-      position: {x: 44.956573, y: -0.000017719529, z: 0}
-      rotation: {x: 0, y: 0, z: 0.20458232, w: 0.97884935}
-      length: 37.59491
+      position: {x: 44.95654, y: 0.000009967519, z: 0}
+      rotation: {x: 0, y: 0, z: 0.20458274, w: 0.97884935}
+      length: 37.594906
       parentId: 1
       color:
         serializedVersion: 2
         rgba: 4278255488
     - name: Avant Bras D
       guid: d670602924de94c46a1e144bb3cf0988
-      position: {x: 14.934326, y: 86.98862, z: 0}
-      rotation: {x: 0, y: 0, z: 0.7661389, w: -0.6426751}
-      length: 44.95656
+      position: {x: 14.934326, y: 86.98857, z: 0}
+      rotation: {x: 0, y: 0, z: 0.76613915, w: -0.6426748}
+      length: 44.956573
       parentId: -1
       color:
         serializedVersion: 2
@@ -727,25 +727,25 @@ ScriptedImporter:
     - name: Epaule D
       guid: ee8ba5bd8a77c4441861e4c6924fdc6c
       position: {x: 24.782152, y: 38.47275, z: 0}
-      rotation: {x: 0, y: 0, z: 0.99841714, w: 0.056243088}
-      length: 44.594315
+      rotation: {x: 0, y: 0, z: 0.99841714, w: 0.05624317}
+      length: 44.5943
       parentId: 0
       color:
         serializedVersion: 2
         rgba: 4294902015
     - name: Avant Bras D
       guid: d670602924de94c46a1e144bb3cf0988
-      position: {x: 44.594284, y: -0.000006096827, z: 0}
-      rotation: {x: 0, y: 0, z: 0.11969161, w: 0.9928112}
-      length: 44.95656
+      position: {x: 44.594334, y: 0.000014458497, z: 0}
+      rotation: {x: 0, y: 0, z: 0.11969131, w: 0.9928112}
+      length: 44.956573
       parentId: 1
       color:
         serializedVersion: 2
         rgba: 4278223103
     - name: Main D
       guid: 5a5dbcb186d551949b1623522392b1b8
-      position: {x: 44.95657, y: -0.00005301169, z: 0}
-      rotation: {x: 0, y: 0, z: 0.20458232, w: 0.9788494}
+      position: {x: 44.95653, y: -0.000009131887, z: 0}
+      rotation: {x: 0, y: 0, z: 0.20458269, w: 0.97884935}
       length: 37.594906
       parentId: 2
       color:
@@ -2479,45 +2479,45 @@ ScriptedImporter:
         boneIndex3: 0
     - position: {x: 86.026, y: 46.371002}
       boneWeight:
-        weight0: 0.9418748
-        weight1: 0.05812517
+        weight0: 0.72
+        weight1: 0.28
         weight2: 0
         weight3: 0
         boneIndex0: 1
-        boneIndex1: 5
+        boneIndex1: 2
         boneIndex2: 0
         boneIndex3: 0
-    - position: {x: 83.805, y: 61.78}
+    - position: {x: 83.58427, y: 60.12447}
       boneWeight:
-        weight0: 0.60711855
-        weight1: 0.39288154
+        weight0: 0.87
+        weight1: 0.13
         weight2: 0
         weight3: 0
         boneIndex0: 2
-        boneIndex1: 5
+        boneIndex1: 3
         boneIndex2: 0
         boneIndex3: 0
-    - position: {x: 80.625, y: 77.217}
+    - position: {x: 77.97616, y: 76.8859}
       boneWeight:
-        weight0: 0.49106714
-        weight1: 0.45012173
-        weight2: 0.05881107
+        weight0: 0.52175194
+        weight1: 0.47824803
+        weight2: 0
         weight3: 0
         boneIndex0: 3
         boneIndex1: 2
         boneIndex2: 5
         boneIndex3: 0
-    - position: {x: 80.102005, y: 92.392}
+    - position: {x: 78.00502, y: 99.3452}
       boneWeight:
-        weight0: 1
-        weight1: 0
+        weight0: 0.58000004
+        weight1: 0.42
         weight2: 0
         weight3: 0
         boneIndex0: 3
-        boneIndex1: 0
+        boneIndex1: 4
         boneIndex2: 0
         boneIndex3: 0
-    - position: {x: 83.145004, y: 107.786}
+    - position: {x: 82.15169, y: 108.227486}
       boneWeight:
         weight0: 1
         weight1: 0
@@ -2527,7 +2527,7 @@ ScriptedImporter:
         boneIndex1: 0
         boneIndex2: 0
         boneIndex3: 0
-    - position: {x: 87, y: 123.154}
+    - position: {x: 86.227425, y: 127.89981}
       boneWeight:
         weight0: 1
         weight1: 0
@@ -2687,8 +2687,58 @@ ScriptedImporter:
         boneIndex1: 0
         boneIndex2: 0
         boneIndex3: 0
+    - position: {x: 79.95632, y: 68.17975}
+      boneWeight:
+        weight0: 0.6822271
+        weight1: 0.31777292
+        weight2: 0
+        weight3: 0
+        boneIndex0: 2
+        boneIndex1: 3
+        boneIndex2: 5
+        boneIndex3: 0
+    - position: {x: 77.08675, y: 88.92896}
+      boneWeight:
+        weight0: 0.7853869
+        weight1: 0.21461305
+        weight2: 0
+        weight3: 0
+        boneIndex0: 3
+        boneIndex1: 2
+        boneIndex2: 5
+        boneIndex3: 0
+    - position: {x: 86.00668, y: 116.07955}
+      boneWeight:
+        weight0: 1
+        weight1: 0
+        weight2: 0
+        weight3: 0
+        boneIndex0: 4
+        boneIndex1: 0
+        boneIndex2: 0
+        boneIndex3: 0
+    - position: {x: 41.553265, y: 145.52731}
+      boneWeight:
+        weight0: 0.994798
+        weight1: 0.0052019954
+        weight2: 0
+        weight3: 0
+        boneIndex0: 4
+        boneIndex1: 3
+        boneIndex2: 0
+        boneIndex3: 0
+    - position: {x: 30.49309, y: 142.82657}
+      boneWeight:
+        weight0: 1
+        weight1: 0
+        weight2: 0
+        weight3: 0
+        boneIndex0: 4
+        boneIndex1: 0
+        boneIndex2: 0
+        boneIndex3: 0
     spritePhysicsOutline: []
-    indices: 000000001700000001000000080000000f0000000e000000080000000e0000000c000000080000000c0000000b000000080000000b0000000900000007000000110000001000000007000000100000000f000000070000000f00000008000000060000001400000013000000060000001300000012000000090000000b0000000a0000000600000012000000110000000500000015000000140000000500000014000000060000000400000016000000150000000400000015000000050000000200000017000000160000000200000016000000040000000200000004000000030000000100000017000000020000000000000018000000170000000600000011000000070000000c0000000e0000000d000000
+    indices: 000000001700000001000000110000001a00000012000000100000001a000000110000000e0000001d0000001c0000000d0000001c0000001d000000090000001b0000000b000000090000000b0000000a000000080000000b0000001b000000080000000c0000000b000000070000000e0000001c000000070000001a0000001000000007000000100000000f000000070000000f0000000e000000070000001c0000000c000000070000000c0000000800000006000000120000001a000000060000001900000013000000060000001300000012000000050000001500000019000000050000001600000015000000040000001600000005000000020000001700000016000000020000001600000004000000020000000400000003000000010000001700000002000000000000001800000017000000130000001900000014000000140000001900000015000000
     edges:
     - {x: 0, y: 1}
     - {x: 0, y: 24}
@@ -2696,16 +2746,21 @@ ScriptedImporter:
     - {x: 2, y: 3}
     - {x: 3, y: 4}
     - {x: 4, y: 5}
-    - {x: 5, y: 6}
-    - {x: 6, y: 7}
+    - {x: 5, y: 25}
+    - {x: 6, y: 25}
+    - {x: 6, y: 26}
     - {x: 7, y: 8}
-    - {x: 8, y: 9}
+    - {x: 7, y: 26}
+    - {x: 8, y: 27}
     - {x: 9, y: 10}
+    - {x: 9, y: 27}
     - {x: 10, y: 11}
     - {x: 11, y: 12}
-    - {x: 12, y: 13}
-    - {x: 13, y: 14}
+    - {x: 12, y: 28}
+    - {x: 13, y: 28}
+    - {x: 13, y: 29}
     - {x: 14, y: 15}
+    - {x: 14, y: 29}
     - {x: 15, y: 16}
     - {x: 16, y: 17}
     - {x: 17, y: 18}
@@ -3285,27 +3340,27 @@ ScriptedImporter:
     spriteBone:
     - name: Peids D
       guid: 755823c84595a8c41ac198e9287d91f9
-      position: {x: 14.062289, y: 0.000037408172, z: 0}
-      rotation: {x: 0, y: 0, z: 0.38598683, w: 0.92250437}
-      length: 12.977081
+      position: {x: 14.062314, y: -0.000025617455, z: 0}
+      rotation: {x: 0, y: 0, z: 0.38598582, w: 0.92250466}
+      length: 12.977084
       parentId: 1
       color:
         serializedVersion: 2
         rgba: 4294967040
     - name: Cheville D
       guid: d2087a8be6e37744a854fa9bad5905d6
-      position: {x: 14.0669, y: 0.000030574505, z: 0}
-      rotation: {x: 0, y: 0, z: 0.57062644, w: 0.82120985}
-      length: 14.062352
+      position: {x: 14.066908, y: -0.00000235166, z: 0}
+      rotation: {x: 0, y: 0, z: 0.5706264, w: 0.8212098}
+      length: 14.062295
       parentId: 2
       color:
         serializedVersion: 2
         rgba: 4278255360
     - name: Tibia D
       guid: 3dfd9c81f886d1a44978649365d5388d
-      position: {x: 24.909576, y: 25.834013, z: 0}
-      rotation: {x: 0, y: 0, z: -0.8025434, w: 0.5965938}
-      length: 14.066914
+      position: {x: 24.909576, y: 25.834023, z: 0}
+      rotation: {x: 0, y: 0, z: -0.8025428, w: 0.5965946}
+      length: 14.0669
       parentId: -1
       color:
         serializedVersion: 2
@@ -3597,7 +3652,7 @@ ScriptedImporter:
       guid: 7781900ebd2406d4384ac2dcdb6f5859
       position: {x: 1.1445944, y: 20.18139, z: 0}
       rotation: {x: 0, y: 0, z: -0.9798016, w: 0.19997217}
-      length: 23.04075
+      length: 23.040743
       parentId: 0
       color:
         serializedVersion: 2
@@ -3605,8 +3660,8 @@ ScriptedImporter:
     - name: Tibia D
       guid: 3dfd9c81f886d1a44978649365d5388d
       position: {x: 23.040691, y: -0.000016780115, z: 0}
-      rotation: {x: 0, y: 0, z: -0.36426422, w: 0.9312957}
-      length: 14.066914
+      rotation: {x: 0, y: 0, z: -0.3642633, w: 0.93129605}
+      length: 14.066898
       parentId: 1
       color:
         serializedVersion: 2
@@ -3622,18 +3677,18 @@ ScriptedImporter:
         rgba: 4278255615
     - name: Peids D
       guid: 755823c84595a8c41ac198e9287d91f9
-      position: {x: 14.062272, y: 0.000059852122, z: 0}
-      rotation: {x: 0, y: 0, z: 0.3859868, w: 0.92250437}
-      length: 12.977082
+      position: {x: 14.062321, y: -0.000049971848, z: 0}
+      rotation: {x: 0, y: 0, z: 0.38598588, w: 0.9225047}
+      length: 12.977079
       parentId: 5
       color:
         serializedVersion: 2
         rgba: 4294967040
     - name: Cheville D
       guid: d2087a8be6e37744a854fa9bad5905d6
-      position: {x: 14.06692, y: 0.00008266591, z: 0}
-      rotation: {x: 0, y: 0, z: 0.57062644, w: 0.8212098}
-      length: 14.06235
+      position: {x: 14.066867, y: 0.00003417449, z: 0}
+      rotation: {x: 0, y: 0, z: 0.5706264, w: 0.82120985}
+      length: 14.062293
       parentId: 2
       color:
         serializedVersion: 2
@@ -3961,18 +4016,18 @@ ScriptedImporter:
     spriteBone:
     - name: Cheville G
       guid: dd17bcb25a0814c44acb01d6c3b01b83
-      position: {x: 17.854595, y: -0.0000075077232, z: 0}
-      rotation: {x: 0, y: 0, z: 0.6244823, w: 0.78103906}
-      length: 12.97144
+      position: {x: 17.854582, y: -0.000018306215, z: 0}
+      rotation: {x: 0, y: 0, z: 0.6244813, w: 0.78103983}
+      length: 12.971452
       parentId: 2
       color:
         serializedVersion: 2
         rgba: 4278190335
     - name: Pieds G
       guid: a5aff0cdf73c53a488fcc7896e6c0838
-      position: {x: 12.97145, y: -0.000030137835, z: 0}
-      rotation: {x: 0, y: 0, z: 0.34770238, w: 0.937605}
-      length: 12.35372
+      position: {x: 12.971499, y: 0.000025613926, z: 0}
+      rotation: {x: 0, y: 0, z: 0.3477031, w: 0.93760467}
+      length: 12.353717
       parentId: 0
       color:
         serializedVersion: 2
@@ -3980,8 +4035,8 @@ ScriptedImporter:
     - name: Tibia G
       guid: c07de1dd40dad1c479fac19079bd2700
       position: {x: 27.777466, y: 27.494629, z: 0}
-      rotation: {x: 0, y: 0, z: -0.8185602, w: 0.57442075}
-      length: 17.85461
+      rotation: {x: 0, y: 0, z: -0.81855994, w: 0.57442117}
+      length: 17.854567
       parentId: -1
       color:
         serializedVersion: 2
@@ -4272,8 +4327,8 @@ ScriptedImporter:
     - name: Tibia G
       guid: c07de1dd40dad1c479fac19079bd2700
       position: {x: 19.262972, y: -0.000008856754, z: 0}
-      rotation: {x: 0, y: 0, z: -0.43315372, w: 0.9013201}
-      length: 17.854609
+      rotation: {x: 0, y: 0, z: -0.43315327, w: 0.9013203}
+      length: 17.854568
       parentId: 0
       color:
         serializedVersion: 2
@@ -4289,18 +4344,18 @@ ScriptedImporter:
         rgba: 4278255615
     - name: Cheville G
       guid: dd17bcb25a0814c44acb01d6c3b01b83
-      position: {x: 17.854586, y: 0.000016207996, z: 0}
-      rotation: {x: 0, y: 0, z: 0.6244823, w: 0.78103906}
-      length: 12.971438
+      position: {x: 17.854593, y: 0.000017339578, z: 0}
+      rotation: {x: 0, y: 0, z: 0.6244813, w: 0.7810398}
+      length: 12.971452
       parentId: 1
       color:
         serializedVersion: 2
         rgba: 4278190335
     - name: Pieds G
       guid: a5aff0cdf73c53a488fcc7896e6c0838
-      position: {x: 12.971467, y: -0.000010416206, z: 0}
-      rotation: {x: 0, y: 0, z: 0.3477024, w: 0.937605}
-      length: 12.353718
+      position: {x: 12.971486, y: 0.000039193772, z: 0}
+      rotation: {x: 0, y: 0, z: 0.34770307, w: 0.9376047}
+      length: 12.353719
       parentId: 3
       color:
         serializedVersion: 2
@@ -4630,25 +4685,25 @@ ScriptedImporter:
     - name: Epaule D
       guid: ee8ba5bd8a77c4441861e4c6924fdc6c
       position: {x: 24.782127, y: 38.472748, z: 0}
-      rotation: {x: 0, y: -0, z: 0.99841714, w: 0.056243006}
-      length: 44.594315
+      rotation: {x: 0, y: -0, z: 0.99841714, w: 0.05624313}
+      length: 44.594307
       parentId: 3
       color:
         serializedVersion: 2
         rgba: 4294902015
     - name: Avant Bras D
       guid: d670602924de94c46a1e144bb3cf0988
-      position: {x: 44.59429, y: -0.000005962389, z: 0}
-      rotation: {x: 0, y: 0, z: 0.11969156, w: 0.99281114}
-      length: 44.956562
+      position: {x: 44.59433, y: 0.0000044403, z: 0}
+      rotation: {x: 0, y: 0, z: 0.11969129, w: 0.99281114}
+      length: 44.95657
       parentId: 5
       color:
         serializedVersion: 2
         rgba: 4278223103
     - name: Main D
       guid: 5a5dbcb186d551949b1623522392b1b8
-      position: {x: 44.95657, y: -0.000023708453, z: 0}
-      rotation: {x: 0, y: 0, z: 0.20458232, w: 0.97884935}
+      position: {x: 44.956554, y: 0.000003542782, z: 0}
+      rotation: {x: 0, y: 0, z: 0.20458269, w: 0.9788493}
       length: 37.594906
       parentId: 6
       color:
@@ -4685,33 +4740,33 @@ ScriptedImporter:
       guid: 7781900ebd2406d4384ac2dcdb6f5859
       position: {x: 1.1446049, y: 20.181383, z: 0}
       rotation: {x: 0, y: -0, z: -0.9798016, w: 0.1999722}
-      length: 23.040752
+      length: 23.040745
       parentId: 0
       color:
         serializedVersion: 2
         rgba: 4286578943
     - name: Tibia D
       guid: 3dfd9c81f886d1a44978649365d5388d
-      position: {x: 23.040756, y: 0.00001684892, z: 0}
-      rotation: {x: 0, y: 0, z: -0.36426422, w: 0.9312957}
-      length: 14.066915
+      position: {x: 23.040749, y: 0.000020190708, z: 0}
+      rotation: {x: 0, y: 0, z: -0.36426333, w: 0.931296}
+      length: 14.066898
       parentId: 11
       color:
         serializedVersion: 2
         rgba: 4278255615
     - name: Cheville D
       guid: d2087a8be6e37744a854fa9bad5905d6
-      position: {x: 14.066903, y: 0.000020693078, z: 0}
+      position: {x: 14.066897, y: -0.0000095429195, z: 0}
       rotation: {x: 0, y: 0, z: 0.5706264, w: 0.8212098}
-      length: 14.062351
+      length: 14.062296
       parentId: 12
       color:
         serializedVersion: 2
         rgba: 4278255360
     - name: Peids D
       guid: 755823c84595a8c41ac198e9287d91f9
-      position: {x: 14.0623045, y: 0.000022212744, z: 0}
-      rotation: {x: 0, y: 0, z: 0.38598678, w: 0.92250437}
+      position: {x: 14.062317, y: -0.000010691568, z: 0}
+      rotation: {x: 0, y: 0, z: 0.38598588, w: 0.9225047}
       length: 12.977083
       parentId: 13
       color:
@@ -4728,26 +4783,26 @@ ScriptedImporter:
         rgba: 4294901760
     - name: Tibia G
       guid: c07de1dd40dad1c479fac19079bd2700
-      position: {x: 19.263006, y: -0.000006295313, z: 0}
-      rotation: {x: 0, y: 0, z: -0.43315366, w: 0.9013201}
-      length: 17.85461
+      position: {x: 19.263006, y: -0.000007290591, z: 0}
+      rotation: {x: 0, y: 0, z: -0.43315324, w: 0.9013203}
+      length: 17.85457
       parentId: 15
       color:
         serializedVersion: 2
         rgba: 4294902015
     - name: Cheville G
       guid: dd17bcb25a0814c44acb01d6c3b01b83
-      position: {x: 17.854599, y: -0.000010696717, z: 0}
-      rotation: {x: 0, y: 0, z: 0.6244822, w: 0.78103906}
-      length: 12.97144
+      position: {x: 17.854578, y: -0.000008173361, z: 0}
+      rotation: {x: 0, y: 0, z: 0.62448126, w: 0.7810398}
+      length: 12.971455
       parentId: 16
       color:
         serializedVersion: 2
         rgba: 4278190335
     - name: Pieds G
       guid: a5aff0cdf73c53a488fcc7896e6c0838
-      position: {x: 12.971452, y: -0.000026289728, z: 0}
-      rotation: {x: 0, y: 0, z: 0.3477024, w: 0.937605}
+      position: {x: 12.971474, y: 0.0000019758497, z: 0}
+      rotation: {x: 0, y: 0, z: 0.34770313, w: 0.9376047}
       length: 12.353721
       parentId: 17
       color:
