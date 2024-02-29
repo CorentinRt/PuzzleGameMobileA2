@@ -105,7 +105,7 @@ public class LevelManager : MonoBehaviour
     }
     public void UnloadCurrentLevel()
     {
-        SceneManager.LoadScene(GetLevel(_currentLevelID).LevelInfo.LevelScene, LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync(GetLevel(_currentLevelID).LevelInfo.LevelScene);
         isLevelLoaded = false;
         LevelManager.Instance.GetCurrentLevelController.OnLevelUnload?.Invoke();
     }
@@ -115,7 +115,11 @@ public class LevelManager : MonoBehaviour
         UnloadCurrentLevel();
         SceneManager.LoadScene(_mainMenu);
     }
-    
+
+    public void RestartCurrentLevel()
+    {
+        LoadLevel(_currentLevelID);
+    }
 }
 
 [Serializable]
