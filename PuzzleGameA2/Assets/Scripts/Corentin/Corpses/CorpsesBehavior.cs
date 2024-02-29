@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
@@ -17,7 +18,26 @@ public class CorpsesBehavior : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        GameManager.Instance.gameObject.GetComponent<LevelManager>().OnLevelUnload += DestroySelf;
     }
+
+    private void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance == null) return;
+        GameManager.Instance.gameObject.GetComponent<LevelManager>().OnLevelUnload -= DestroySelf;
+    }
+
+    private void Update()
+    {
+        if (_rb.velocity == Vector2.zero) _rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+    }
+
+
     //public void CreateCorpse(Vector3 position)
     //{
     //    transform.position = position;

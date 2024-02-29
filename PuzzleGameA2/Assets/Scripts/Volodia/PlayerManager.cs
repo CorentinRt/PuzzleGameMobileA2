@@ -7,16 +7,6 @@ using Enums;
 
 public class PlayerManager : MonoBehaviour
 {
-    private static PlayerManager _instance;
-
-    private void Awake()
-    {
-        if (_instance != null)
-        {
-            Destroy(gameObject);
-        }
-        _instance = this;
-    }
 
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private Vector3 _spawnpoint;
@@ -28,12 +18,35 @@ public class PlayerManager : MonoBehaviour
     private bool _isOnPlayerPhase;
     private GameManager _gameManager;
     private LevelManager _levelManager;
+    private int _spawnGravity;
 
-    public static PlayerManager Instance { get => _instance; set => _instance = value; }
 
     public event Action OnPlayerDeath;
 
+    private static PlayerManager _instance;
+    public static PlayerManager Instance { get => _instance; set => _instance = value; }
+
+
     public int GetPlayerAliveCount() => _nbLives - _playerCount /* + 2 */;
+
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        _instance = this;
+    }
+
+    public void SetStartPoint(Vector3 pos, bool isGravityInverted)
+    {
+        _startpoint = pos;
+        _spawnGravity = isGravityInverted ? -1 : 1;
+    }
+
 
     private void Start()
     {
@@ -60,7 +73,16 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        if (_playerCount == 6) return;
+        Debug.Log(_currentPlayer);
+        if (!_isOnPlayerPhase) return;
+        if (_currentPlayer == null && _nextPlayer == null)
+        {
+            _gameManager.ChangeGamePhase(PhaseType.GameOver);
+            Debug.Log("GameOver Zigos");
+            _isOnPlayerPhase = false;
+            return;
+        }
+
         if (_currentPlayer == null && _isOnPlayerPhase)
         {
             _isOnPlayerPhase = false;
@@ -81,7 +103,9 @@ public class PlayerManager : MonoBehaviour
     private void SummonPlayer(bool resetPlayerCount=false)
     {
         _playerCount = resetPlayerCount ? 1 : _playerCount + 1;
-        _nextPlayer = Instantiate(_playerPrefab, _spawnpoint, transform.rotation).GetComponent<PlayerBehaviour>();
+        _nextPlayer = Instantiate(_playerPrefab, new Vector3(_spawnpoint.x, _spawnGravity * _spawnpoint.y, _spawnpoint.z), transform.rotation).GetComponent<PlayerBehaviour>();
+        _nextPlayer.gameObject.GetComponent<Rigidbody2D>().gravityScale *= _spawnGravity;
+        _nextPlayer.transform.localScale = new Vector3(1, _spawnGravity, 1);
         _nextPlayer.SetSpawnpoint(_startpoint);
         _nextPlayer.SetManager(_levelManager);
     }
@@ -90,9 +114,9 @@ public class PlayerManager : MonoBehaviour
         if (_currentPlayer != null) return;
         _nextPlayer.StartWalking();
         _currentPlayer = _nextPlayer;
+        _isOnPlayerPhase = true;
         if (_playerCount >= _nbLives) return;
         SummonPlayer();
-        _isOnPlayerPhase = true;
     }
 
     private void OnDrawGizmosSelected()
