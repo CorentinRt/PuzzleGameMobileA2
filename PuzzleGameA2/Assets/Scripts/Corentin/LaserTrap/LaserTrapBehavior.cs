@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LaserTrapBehavior : MonoBehaviour, IResetable
+public class LaserTrapBehavior : ItemsBehaviors, IResetable
 {
     [SerializeField] private float _timeBeforeShoot;
 
@@ -31,7 +31,7 @@ public class LaserTrapBehavior : MonoBehaviour, IResetable
 
         if (hit)
         {
-            Debug.Log("Fire ray on : " + hit.transform.gameObject.name);
+            //Debug.Log("Fire ray on : " + hit.transform.gameObject.name);
 
             //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green, 5f);
 
@@ -55,8 +55,9 @@ public class LaserTrapBehavior : MonoBehaviour, IResetable
 
     private void Start()
     {
+        StartPosition = transform.parent.position;
         _canShoot = true;
-        GameManager.Instance.gameObject.GetComponent<LevelManager>().AddToResettableObject(this);
+        LevelManager.Instance.GetCurrentLevelController.AddToResettableObject<IResetable>(this);
     }
 
     // Update is called once per frame
@@ -81,18 +82,18 @@ public class LaserTrapBehavior : MonoBehaviour, IResetable
                 if (hit.collider.gameObject.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
                 {
                     _hasDetected = true;
-                    Debug.Log("laser Detect player");
+
                     StartCoroutine(TimeBeforeShootCoroutine(playerBehaviour));
                 }
             }
         }
+
+        //Debug.Log("test name : " + this);
     }
 
     IEnumerator LaserVisualCoroutine()
     {
         yield return new WaitForSeconds(_laserVisualDuration);
-
-        Debug.Log("Stop laser visual");
 
         _lineRenderer.gameObject.SetActive(false);
 
@@ -110,13 +111,10 @@ public class LaserTrapBehavior : MonoBehaviour, IResetable
     public void InitReset()
     {
         Debug.Log("Init reset laser");
-        StartPosition = transform.parent.position;
     }
 
     public void ResetActive()
     {
-        Debug.Log("Reset laser");
-        Debug.Log(transform.gameObject.name);
         transform.parent.position = StartPosition;
         _canShoot = true;
         _hasDetected = false;

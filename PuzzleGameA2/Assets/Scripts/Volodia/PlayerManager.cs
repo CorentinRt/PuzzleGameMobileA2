@@ -26,9 +26,9 @@ public class PlayerManager : MonoBehaviour
     {
         _isOnPlayerPhase = false;
         _gameManager = GameManager.Instance;
-        _levelManager = _gameManager.gameObject.GetComponent<LevelManager>();
+        _levelManager = LevelManager.Instance;
         _levelManager.OnLevelFinishedLoad += CreateFirstPlayer;
-        OnPlayerDeath += _levelManager.ResetTraps;
+        OnPlayerDeath += LevelManager.Instance.GetCurrentLevelController.ResetTraps;
         _gameManager.OnPhase2Started += StartNextPlayer;
         _gameManager.SetPlayerManager(this);
         Debug.Log("pManager");
@@ -43,7 +43,7 @@ public class PlayerManager : MonoBehaviour
     {
         _gameManager.OnPhase2Started -= StartNextPlayer;
         _levelManager.OnLevelFinishedLoad -= CreateFirstPlayer;
-        OnPlayerDeath -= _levelManager.ResetTraps;
+        OnPlayerDeath -= LevelManager.Instance.GetCurrentLevelController.ResetTraps;
     }
     private void Update()
     {

@@ -1,55 +1,61 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    private static LevelManager _instance;
+    public static LevelManager Instance { get => _instance; set => _instance = value; }
+
     [SerializeField] private List<Level> _levels;
     [SerializeField,Scene] private string _globalScene;
     [SerializeField, Scene] private string _mainMenu;
     private int _currentLevelID;
     private bool isLevelLoaded;
-    private List<IResetable> _elementsToReset = new List<IResetable>();
+
+    private LevelController _currentLC;
+    public LevelController GetCurrentLevelController => _currentLC = _currentLC == null ? LevelController.Instance : _currentLC;
+    //FindObjectsOfType<LevelController>().Where(x => x.gameObject.scene == behav.gameObject.scene).FirstOrDefault();
+
+    public event Action OnLevelFinishedLoad;
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
-        OnLevelUnload += ResetResettableList;
 #if UNITY_EDITOR
         Scene[] scenes = SceneManager.GetAllScenes();
         foreach (Scene scene in scenes)
         {
             if (scene.name !=_globalScene)
             {
+                var l = _levels.Find(x => x.GetScene == scene.name);
+
+                if (l == null)
+                    continue;
+
                 _levels.Find(x => x.GetScene == scene.name).Unlock();
                 LoadGlobalSceneAndLevel(_levels.Find(x => x.GetScene == scene.name).GetID);
             }
             
         }
 #endif
+
     }
-
-    private void OnDestroy()
-    {
-        OnLevelUnload -= ResetResettableList;
-    }
-
-    public event Action OnLevelUnload;
-    public event Action OnLevelFinishedLoad;
-    public void AddToResettableObject(IResetable toResetObject)  => _elementsToReset.Add(toResetObject);
-
-    public void ResetResettableList() => _elementsToReset = new List<IResetable>();
-
-    public void ResetTraps()
-    {
-        foreach (IResetable resettable in _elementsToReset)
-        {
-            resettable.ResetActive();
-        }
-    }
-    
 
     [Button]
     private void LoadFirstLevel()
@@ -70,7 +76,7 @@ public class LevelManager : MonoBehaviour
             if (isLevelLoaded)
             {
                 SceneManager.UnloadSceneAsync(GetLevel(_currentLevelID).GetScene);
-                OnLevelUnload?.Invoke();
+                GetCurrentLevelController.OnLevelUnload?.Invoke();
             }
             StartCoroutine(LoadLevelAndWait(id));
         }
@@ -101,7 +107,7 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(GetLevel(_currentLevelID).LevelInfo.LevelScene, LoadSceneMode.Additive);
         isLevelLoaded = false;
-        OnLevelUnload?.Invoke();
+        LevelManager.Instance.GetCurrentLevelController.OnLevelUnload?.Invoke();
     }
 
     public void MainMenu()

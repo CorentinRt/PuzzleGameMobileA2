@@ -301,7 +301,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void SetManager(LevelManager levelManager)
     {
         _levelManager = levelManager;
-        levelManager.OnLevelUnload += UnloadLevel;
+        LevelManager.Instance.GetCurrentLevelController.OnLevelUnload += UnloadLevel;
     }
 
 }
