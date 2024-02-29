@@ -221,8 +221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 7621850081756162882, guid: 9518ca1d1459f754ca28998fdcd5114d, type: 3}
-  _spawnpoint: {x: -8.5, y: 7, z: 0}
-  _startpoint: {x: -6.5, y: -3, z: 0}
+  _spawnpoint: {x: -10.5, y: 7, z: 0}
+  _startpoint: {x: -8.5, y: -3, z: 0}
   _nbLives: 3
 --- !u!4 &299431788
 Transform:

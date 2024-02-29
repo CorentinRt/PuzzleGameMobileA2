@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
             case PhaseType.GameEndPhase:
                 _nbStars = CalculateStars();
                 _levelManager.GetCurrentLevel().SetStars(_nbStars);
+                _levelManager.UnlockNextLevel();
                 GameEnd();
                 break;
             case PhaseType.GameOver:

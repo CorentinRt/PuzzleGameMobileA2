@@ -112,12 +112,12 @@ public class PlayerBehaviour : MonoBehaviour
         RaycastHit2D hit;
         if (_rb.gravityScale >= 0f)
         {
-            hit = Physics2D.Raycast(transform.position, Vector3.down, 1.5f, _layer);
+            hit = Physics2D.Raycast(transform.position, Vector3.down, 2f, _layer);
             Debug.DrawRay(transform.position, Vector3.down, hit? Color.green : Color.red);
         }
         else
         {
-            hit = Physics2D.Raycast(transform.position, Vector3.down, 1.5f, _layer);
+            hit = Physics2D.Raycast(transform.position, Vector3.down, 2f, _layer);
             Debug.DrawRay(transform.position, Vector3.up, hit ? Color.green : Color.red);
         }
         if (hit);
@@ -126,7 +126,7 @@ public class PlayerBehaviour : MonoBehaviour
             Debug.DrawRay(transform.position,hit.normal * Vector3.right, Color.black);
             var slopeRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
             var adjustVelocity = slopeRotation * velocity;
-            if (adjustVelocity.y < 0)
+            if (adjustVelocity.y < 0 && Mathf.Abs(_rb.velocity.x)>0.2)
             {
                 return adjustVelocity;
             }
