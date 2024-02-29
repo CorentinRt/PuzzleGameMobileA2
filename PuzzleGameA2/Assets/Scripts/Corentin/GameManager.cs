@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _levelManager = GetComponent<LevelManager>();
+        _levelManager = LevelManager.Instance;
         _levelManager.OnLevelFinishedLoad += StartGame;
         DontDestroyOnLoad(gameObject);
     }

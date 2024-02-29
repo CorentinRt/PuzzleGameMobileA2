@@ -7,6 +7,17 @@ using Enums;
 
 public class PlayerManager : MonoBehaviour
 {
+    private static PlayerManager _instance;
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+        }
+        _instance = this;
+    }
+
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private Vector3 _spawnpoint;
     [SerializeField] private Vector3 _startpoint;
@@ -19,12 +30,14 @@ public class PlayerManager : MonoBehaviour
     private LevelManager _levelManager;
     private int _spawnGravity;
 
+    public static PlayerManager Instance { get => _instance; set => _instance = value; }
+
     public event Action OnPlayerDeath;
     
     private static PlayerManager _instance;
     public static PlayerManager Instance { get => _instance; set => _instance = value; }
 
-    public int GetPlayerAliveCount() => _nbLives - _playerCount + 2;
+    public int GetPlayerAliveCount() => _nbLives - _playerCount /* + 2 */;
 
     private void Awake()
     {
@@ -47,9 +60,9 @@ public class PlayerManager : MonoBehaviour
     {
         _isOnPlayerPhase = false;
         _gameManager = GameManager.Instance;
-        _levelManager = _gameManager.gameObject.GetComponent<LevelManager>();
+        _levelManager = LevelManager.Instance;
         _levelManager.OnLevelFinishedLoad += CreateFirstPlayer;
-        OnPlayerDeath += _levelManager.ResetTraps;
+        OnPlayerDeath += LevelManager.Instance.GetCurrentLevelController.ResetTraps;
         _gameManager.OnPhase2Started += StartNextPlayer;
         _gameManager.SetPlayerManager(this);
         Debug.Log("pManager");
@@ -64,7 +77,7 @@ public class PlayerManager : MonoBehaviour
     {
         _gameManager.OnPhase2Started -= StartNextPlayer;
         _levelManager.OnLevelFinishedLoad -= CreateFirstPlayer;
-        OnPlayerDeath -= _levelManager.ResetTraps;
+        OnPlayerDeath -= LevelManager.Instance.GetCurrentLevelController.ResetTraps;
     }
     private void Update()
     {
