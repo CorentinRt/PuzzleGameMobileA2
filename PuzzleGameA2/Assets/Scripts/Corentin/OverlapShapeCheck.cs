@@ -16,11 +16,17 @@ public class OverlapShapeCheck : MonoBehaviour
     {
         OnTriggerStayEvent += _dragDropNoCanvas.SetUnableColor;
         OnTriggerExitEvent += _dragDropNoCanvas.SetAbleColor;
+
+        OnTriggerStayEvent += _dragDropNoCanvas.SetOverlaping;
+        OnTriggerExitEvent += _dragDropNoCanvas.UnSetOverlaping;
     }
     private void OnDestroy()
     {
         OnTriggerStayEvent -= _dragDropNoCanvas.SetUnableColor;
         OnTriggerExitEvent -= _dragDropNoCanvas.SetAbleColor;
+
+        OnTriggerStayEvent -= _dragDropNoCanvas.SetOverlaping;
+        OnTriggerExitEvent -= _dragDropNoCanvas.UnSetOverlaping;
     }
     // Start is called before the first frame update
     void Start()
