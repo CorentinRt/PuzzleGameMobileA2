@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7899321885620233982}
   - component: {fileID: 4124810307005322349}
-  - component: {fileID: 6454268861133109046}
+  - component: {fileID: 4911997359146684204}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3996055ab0674ac4eb9bea0c34659515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6454268861133109046
+--- !u!114 &4911997359146684204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,12 +54,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7776476086156627907}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 878bdca5c09c870488997d25f581101c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ad9a740e0cd6824a8f9b1b4a9b31230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levels:
-  - _levelInfo: {fileID: 11400000, guid: c29835499eedc924a8d31daa855bdd03, type: 2}
-    _starsWon: 0
-    _unlocked: 0
-  _globalScene: Global Scene
-  _mainMenu: MainMenuScene

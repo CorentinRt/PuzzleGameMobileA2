@@ -9,16 +9,23 @@ public class PhaseChoice : MonoBehaviour
     private GameManager _gameManager;
     [SerializeField] private GameObject _choicePanel;
 
+    [SerializeField] private TransitionLifeDisplay _transitionLifeDisplay;
+
     private void Start()
     {
         _gameManager = GameManager.Instance;
-        _gameManager.OnPhase2Ended += ActivatePanel;
+        //_gameManager.OnPhase2Ended += ActivatePanel;
+
+        _transitionLifeDisplay.OnTransitionLifeEnded += ActivatePanel;
+
         _choicePanel.SetActive(false);
     }
 
     private void OnDestroy()
     {
-        _gameManager.OnPhase2Ended -= ActivatePanel;
+        //_gameManager.OnPhase2Ended -= ActivatePanel;
+        
+        _transitionLifeDisplay.OnTransitionLifeEnded -= ActivatePanel;
     }
 
     private void ActivatePanel()
@@ -30,5 +37,10 @@ public class PhaseChoice : MonoBehaviour
     {
         _gameManager.ChangeGamePhase((PhaseType) phaseNum);
         _choicePanel.SetActive(false);
+    }
+
+    public void RestartLevel()
+    {
+        LevelManager.Instance.RestartCurrentLevel();
     }
 }

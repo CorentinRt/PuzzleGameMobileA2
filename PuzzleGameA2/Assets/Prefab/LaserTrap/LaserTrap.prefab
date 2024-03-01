@@ -161,10 +161,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1ea83575c1db9d4ca234828b18c18c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeBeforeShoot: 0.15
   _hasInfiniteRange: 1
   _laserRange: 10
   _laserVisualDuration: 0.2
   _lineRenderer: {fileID: 8578383856710529841}
+  _playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1712337800121908852
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,12 +341,12 @@ LineRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.42857143
-        inSlope: -1.773471
-        outSlope: -1.773471
+        value: 0.7589253
+        inSlope: -0.83490336
+        outSlope: -0.83490336
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.15204251
+        inWeight: 0.18608183
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2

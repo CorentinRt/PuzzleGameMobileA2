@@ -17,7 +17,7 @@ public class LevelDisplay : MonoBehaviour
 
     private void Start()
     {
-        _levelManager = GameManager.Instance.gameObject.GetComponent<LevelManager>();
+        _levelManager = LevelManager.Instance;
         _level = _levelManager.GetLevel(_levelID);
         _text.text = "Level " + _level.GetID;
         _button.interactable = _level.isUnlocked;
