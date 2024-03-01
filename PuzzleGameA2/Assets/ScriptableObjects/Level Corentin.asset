@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelID: 3
   _maxPlayerToSave: 8
+  _nbPlayerLives: 0
   _levelAdditiveScene: CorentinScene
   _shapes:
   - _power: 3

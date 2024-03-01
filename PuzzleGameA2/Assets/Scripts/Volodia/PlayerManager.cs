@@ -53,22 +53,34 @@ public class PlayerManager : MonoBehaviour
         _isOnPlayerPhase = false;
         _gameManager = GameManager.Instance;
         _levelManager = LevelManager.Instance;
-        _levelManager.OnLevelFinishedLoad += CreateFirstPlayer;
+        _levelManager.GetCurrentLevelController.OnLevelUnload += Reset;
+        _levelManager.OnLevelFinishedLoad += SetLives;
+        _gameManager.OnPhase1Started += CreateFirstPlayer;
         OnPlayerDeath += LevelManager.Instance.GetCurrentLevelController.ResetTraps;
         _gameManager.OnPhase2Started += StartNextPlayer;
         _gameManager.SetPlayerManager(this);
         Debug.Log("pManager");
     }
 
+    private void SetLives()
+    {
+        _nbLives = _levelManager.GetCurrentLevel().LevelInfo.NbPlayerLives;
+        
+    }
+
     private void CreateFirstPlayer()
     {
         SummonPlayer(true);
+        _gameManager.OnPhase1Started -= CreateFirstPlayer;
+
     }
 
     private void OnDestroy()
     {
+        _gameManager.OnPhase1Started -= CreateFirstPlayer;
         _gameManager.OnPhase2Started -= StartNextPlayer;
-        _levelManager.OnLevelFinishedLoad -= CreateFirstPlayer;
+        _levelManager.OnLevelFinishedLoad -= SetLives;
+        _levelManager.GetCurrentLevelController.OnLevelUnload -= Reset;
         OnPlayerDeath -= LevelManager.Instance.GetCurrentLevelController.ResetTraps;
     }
     private void Update()
@@ -91,12 +103,12 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void Reset()
+    public void Reset()
     {
         _currentPlayer = null;
-        SummonPlayer(true);
-        _playerCount = 1;
+        _playerCount = 0;
         _isOnPlayerPhase = false;
+        _gameManager.OnPhase1Started += CreateFirstPlayer;
         
     }
 

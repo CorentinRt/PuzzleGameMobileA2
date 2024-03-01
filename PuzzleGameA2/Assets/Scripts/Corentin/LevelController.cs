@@ -8,7 +8,7 @@ public class LevelController : MonoBehaviour
     public static LevelController Instance;
 
     [SerializeReference] private List<ItemsBehaviors> _elementsToReset = new List<ItemsBehaviors>();
-    public  Action OnLevelUnload;
+    public Action OnLevelUnload;
 
     private void Awake()
     {
