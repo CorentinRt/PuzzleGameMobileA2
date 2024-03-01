@@ -128,7 +128,7 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
                 ActiveCollision();
                 break;
             case ShapePower.ChangeDirection:
-                ActiveCollision();
+                DesactiveCollision();
                 break;
             case ShapePower.Jump:
                 DesactiveCollision();
@@ -352,6 +352,7 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     {
         GameManager.Instance.OnPhase1Started += DragMode;
         GameManager.Instance.OnPhase1Ended += LockMode;
+        LevelManager.Instance.GetCurrentLevelController.OnLevelUnload += DestroySelf;
         Debug.Log((IResetable) this);
         LevelManager.Instance.GetCurrentLevelController.AddToResettableObject<IResetable>(this);
 
@@ -377,10 +378,17 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
                 break;
         }
     }
+
+    private void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnDestroy()
     {
         GameManager.Instance.OnPhase1Started -= DragMode;
         GameManager.Instance.OnPhase1Ended -= LockMode;
+        LevelManager.Instance.GetCurrentLevelController.OnLevelUnload -= DestroySelf;
     }
 
     // Update is called once per frame

@@ -800,6 +800,9 @@ MonoBehaviour:
   _dragLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &4286778150747060638
 MonoBehaviour:
   m_ObjectHideFlags: 0
