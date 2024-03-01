@@ -205,6 +205,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (_accelerationDurationCoroutine != null)
         {
+            StopCoroutine( _accelerationDurationCoroutine );
             _accelerationDurationCoroutine = null;
             _accelerationDurationCoroutine = StartCoroutine(AccelerationDurationCoroutine());
         }
@@ -293,6 +294,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     IEnumerator AccelerationDurationCoroutine()
     {
+        Debug.Log("Start Acceleration");
+
         yield return new WaitForSeconds(_accelerationDuration);
 
         Debug.Log("Stop acceleration");
