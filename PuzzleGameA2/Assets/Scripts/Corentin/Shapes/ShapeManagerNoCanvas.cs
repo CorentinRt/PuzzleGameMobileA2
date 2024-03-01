@@ -128,7 +128,7 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
                 ActiveCollision();
                 break;
             case ShapePower.ChangeDirection:
-                ActiveCollision();
+                DesactiveCollision();
                 break;
             case ShapePower.Jump:
                 DesactiveCollision();
