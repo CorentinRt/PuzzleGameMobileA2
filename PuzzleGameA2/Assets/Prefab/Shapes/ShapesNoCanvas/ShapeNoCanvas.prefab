@@ -564,7 +564,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.99, y: 0.99}
+  m_Size: {x: 0.98, y: 0.98}
   m_EdgeRadius: 0
 --- !u!58 &5443793794638456864
 CircleCollider2D:
@@ -645,9 +645,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: -0.29}
-      - {x: 0, y: 0.59}
-      - {x: 0.5, y: -0.29}
+    - - {x: -0.46, y: -0.28}
+      - {x: 0, y: 0.58}
+      - {x: 0.46, y: -0.28}
   m_UseDelaunayMesh: 0
 --- !u!114 &1157659602768783304
 MonoBehaviour:

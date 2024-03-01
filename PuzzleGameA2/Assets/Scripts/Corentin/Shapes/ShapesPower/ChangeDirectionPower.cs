@@ -24,7 +24,7 @@ public class ChangeDirectionPower : MonoBehaviour
     {
         if (collision != null)
         {
-            if (collision.CompareTag("Player"))
+            if (collision.CompareTag("Player") && GameManager.Instance.CurrentPhase == Enums.PhaseType.PlayersMoving)
             {
                 //Debug.Log("Shape Change Direction Player");
                 if (collision.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehavior))
