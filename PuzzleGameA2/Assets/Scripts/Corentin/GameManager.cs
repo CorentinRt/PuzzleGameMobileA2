@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
                 EndPhase2();
                 break;
             case PhaseType.PlayersMoving:
+                if (_currentPhase==PhaseType.LevelPresentation) return;
                 if (_currentPhase==PhaseType.PlateformePlacement) EndPhase1();
                 StartPhase2();
                 break;

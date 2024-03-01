@@ -38,4 +38,9 @@ public class PhaseChoice : MonoBehaviour
         _gameManager.ChangeGamePhase((PhaseType) phaseNum);
         _choicePanel.SetActive(false);
     }
+
+    public void RestartLevel()
+    {
+        LevelManager.Instance.RestartCurrentLevel();
+    }
 }
