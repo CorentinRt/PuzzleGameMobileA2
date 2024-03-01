@@ -36,6 +36,7 @@ public class PlayerBehaviour : MonoBehaviour
     private LevelManager _levelManager;
 
     [SerializeField] private float _mineCooldown;
+    private bool _isWalkingOnCorpse;
 
     public int Direction { get => _direction; set => _direction = value; }
 
@@ -51,8 +52,15 @@ public class PlayerBehaviour : MonoBehaviour
         _direction = 1;
     }
 
+    private void Start()
+    {
+        if (_startpoint.x < transform.position.x) _direction = -1;
+        else _direction = 1;
+    }
+
     private void FixedUpdate()
     {
+        _isWalkingOnCorpse = false;
         Debug.DrawLine(_groundCheckLeft.position, _groundCheckRight.position, Color.yellow);
         Collider2D groundCheckColl = Physics2D.OverlapArea(_groundCheckLeft.position, _groundCheckRight.position);
         if (groundCheckColl && groundCheckColl != _capsuleCollider)
@@ -65,13 +73,15 @@ public class PlayerBehaviour : MonoBehaviour
                     _canStopJump = false;
                     _isJumping = false;
                 }
+
+                if (groundCheckColl.CompareTag("Player")) _isWalkingOnCorpse = true;
             }
         }
         else
         {
             _isGrounded = false;
         }
-
+        
         if (_isGrounded && !_isJumping)
         {
             if (_walking)
@@ -87,12 +97,11 @@ public class PlayerBehaviour : MonoBehaviour
                     _rb.velocity = velocity;
                 }
             }
-            else if (!_walking && transform.position.x < _startpoint.x)
+            else if (!_walking)
             {
-                _rb.velocity = new Vector2(_speed * 1 * Time.deltaTime, _rb.velocity.y);
+                if ((_direction==1 && _startpoint.x > transform.position.x) || (_direction==-1 && _startpoint.x < transform.position.x)) _rb.velocity = new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y);
+                else _rb.velocity = new Vector2(0, _rb.velocity.y);
             }
-
-            else _rb.velocity = new Vector2(0, _rb.velocity.y);
         }
         else
         {
@@ -105,6 +114,8 @@ public class PlayerBehaviour : MonoBehaviour
                 Debug.Log("Still jumping");
             }
         }
+        
+        if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
     }
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
