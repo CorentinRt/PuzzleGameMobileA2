@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc6277ddc38f934cb0551aaf20f3744, type: 3}
+  m_Name: All Shapes Info
+  m_EditorClassIdentifier: 
+  _shapesInfo:
+  - _name: Square
+    _sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  - _name: Triangle
+    _sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  - _name: Circle
+    _sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  - _name: Bounce
+    _sprite: {fileID: 0}
+  - _name: Reverse
+    _sprite: {fileID: 0}
+  - _name: ArrowTrap
+    _sprite: {fileID: 0}
