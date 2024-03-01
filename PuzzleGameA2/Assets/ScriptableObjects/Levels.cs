@@ -11,11 +11,13 @@ public class LevelInfo : ScriptableObject
 {
     [SerializeField] private int _levelID;
     [SerializeField] private int _maxPlayerToSave;
+    [SerializeField] private int _nbPlayerLives;
     [SerializeField,Scene] private string _levelAdditiveScene;
     [SerializeField] private List<Shape> _shapes;
 
     public int LevelID => _levelID;
     public int MaxPlayerToSave => _maxPlayerToSave;
+    public int NbPlayerLives => _nbPlayerLives;
     public string LevelScene => _levelAdditiveScene;
 
     public List<Shape> Shapes => _shapes;

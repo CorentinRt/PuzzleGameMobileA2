@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelID: 1
   _maxPlayerToSave: 6
+  _nbPlayerLives: 3
   _levelAdditiveScene: Level1Test
   _shapes:
   - _power: 1

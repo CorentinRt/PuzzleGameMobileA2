@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public event Action OnGameEnd;
     public event Action OnGameLost;
+    public event Action OnLevelPresent;
 
     public PhaseType CurrentPhase { get => _currentPhase; set => _currentPhase = value; }
     public int OverlapShapeCount { get => _overlapShapeCount; set => _overlapShapeCount = value; }
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
         if (_levelManager!=null) _levelManager.OnLevelFinishedLoad -= StartGame;
     }
 
-    public void StartGame() => ChangeGamePhase(PhaseType.PlateformePlacement);
+    public void StartGame() => ChangeGamePhase(PhaseType.LevelPresentation);
 
     public void ChangeGamePhase(PhaseType phase)
     {
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
                 EndPhase2();
                 break;
             case PhaseType.PlayersMoving:
+                if (_currentPhase==PhaseType.LevelPresentation) return;
                 if (_currentPhase==PhaseType.PlateformePlacement) EndPhase1();
                 StartPhase2();
                 break;
@@ -80,10 +82,17 @@ public class GameManager : MonoBehaviour
                 Debug.Log("GameOver Manager");
                 GameOver();
                 break;
-
+            case PhaseType.LevelPresentation:
+                LevelPresent();
+                break;
         }
 
         _currentPhase = phase;
+    }
+
+    private void LevelPresent()
+    {
+        OnLevelPresent?.Invoke();
     }
 
     private int CalculateStars()
