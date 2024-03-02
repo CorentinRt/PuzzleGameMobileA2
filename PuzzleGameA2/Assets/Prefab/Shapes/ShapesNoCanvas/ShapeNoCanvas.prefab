@@ -77,7 +77,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2849293169086583918}
   - component: {fileID: 1513806187899123277}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Physics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -228,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1823526492251497851}
   - component: {fileID: 2503708825842341060}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Physics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 61ac40b257b3a994f841856ad38b2b6b, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -737,7 +737,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3458c119c69e9bc4f9647599c2901dee, type: 3}
   m_Color: {r: 0, g: 1, b: 0.24570489, a: 1}
   m_FlipX: 0
@@ -830,6 +830,9 @@ MonoBehaviour:
   _trashIndicator: {fileID: 2223994620266738408}
   _trigger: {fileID: 2503708825842341060}
   _associatedShape: {fileID: 2423419562359650399}
+  _shapeIndicatorsLayerMask:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!114 &157013521156484259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,6 +849,9 @@ MonoBehaviour:
   _trigger: {fileID: 1513806187899123277}
   _associatedShape: {fileID: 2423419562359650399}
   _associatedVisuals: {fileID: 1826879288983157175}
+  _shapeIndicatorsLayerMask:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!1 &6052889675640329802
 GameObject:
   m_ObjectHideFlags: 0

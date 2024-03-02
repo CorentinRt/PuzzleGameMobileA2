@@ -14,6 +14,8 @@ public class ChangeDirectionIndicator : MonoBehaviour
 
     [SerializeField] private GameObject _associatedVisuals;
 
+    [SerializeField] private LayerMask _shapeIndicatorsLayerMask;
+
     private void DisplayDirectionIndicator()
     {
         _indicatorOpen = true;
@@ -51,7 +53,7 @@ public class ChangeDirectionIndicator : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)) == _trigger)
+        if (Input.GetMouseButtonDown(0) && Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), _shapeIndicatorsLayerMask) == _trigger)
         {
             Vector3 tempVector = _associatedVisuals.transform.localScale;
             tempVector.x *= -1;

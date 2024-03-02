@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class MineBehavior : MonoBehaviour
 {
@@ -21,16 +22,17 @@ public class MineBehavior : MonoBehaviour
             {
                 if (collision.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
                 {
-                    _hasExplode = true;
-                    Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10f);
-                    foreach (var item in colliders)
-                    {
-                        if (item.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior1))
-                        {
-                            AddExplosionForce(item.GetComponent<Rigidbody2D>(), 700f, transform.position + new Vector3(0f, -0.5f), 10f);
-                            Debug.Log("Corpse take mine");
-                        }
-                    }
+                    //_hasExplode = true;
+                    //Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10f);
+                    //foreach (var item in colliders)
+                    //{
+                    //    if (item.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior1))
+                    //    {
+                    //        AddExplosionForce(item.GetComponent<Rigidbody2D>(), 700f, transform.position + new Vector3(0f, -0.5f), 10f);
+                    //        Debug.Log("Corpse take mine");
+                    //    }
+                    //}
+                    AddExplosionForce(collision.GetComponent<Rigidbody2D>(), 700f, transform.position + new Vector3(0f, -0.5f), 10f);
                 }
                 if (GameManager.Instance.CurrentPhase == Enums.PhaseType.PlayersMoving)
                 {
