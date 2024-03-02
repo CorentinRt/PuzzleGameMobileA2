@@ -417,6 +417,7 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
         else if(_shapePower == ShapePower.Mine)
         {
             Debug.Log("Reset Mine");
+            _collidersContainer.GetComponent<MineBehavior>().HasExplode = false;
         }
     }
     [Button]

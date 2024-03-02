@@ -21,6 +21,12 @@ public class CorpsesBehavior : MonoBehaviour
         LevelManager.Instance.GetCurrentLevelController.OnLevelUnload += DestroySelf;
     }
 
+
+    public void DesintagratedByLaser()
+    {
+        Destroy(gameObject);
+    }
+
     private void DestroySelf()
     {
         Destroy(gameObject);

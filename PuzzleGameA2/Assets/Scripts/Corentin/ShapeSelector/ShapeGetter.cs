@@ -74,7 +74,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
         {
-            if (shapeManagerNoCanvas.ShapeType1 == _shapeType)
+            if (shapeManagerNoCanvas.GetShapePower() == ShapePower)
             {
                 _shapeCount++;
                 _shapeCountText.text = _shapeCount.ToString();
