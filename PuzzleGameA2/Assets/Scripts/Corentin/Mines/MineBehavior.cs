@@ -32,6 +32,8 @@ public class MineBehavior : MonoBehaviour
                     //    }
                     //}
 
+                    collision.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+
                     // !!!!!!!!!!!!! Explosion normale !!!!!!!!!!!!!!!!!!!!!!!!
                     AddExplosionForce(collision.GetComponent<Rigidbody2D>(), 700f, transform.position + new Vector3(0f, -0.5f), 10f);
 
