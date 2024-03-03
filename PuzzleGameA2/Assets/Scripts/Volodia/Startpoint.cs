@@ -7,6 +7,9 @@ public class Startpoint : MonoBehaviour
     [SerializeField] private bool _isGravityInverted;
     void Start()
     {
-        PlayerManager.Instance.SetStartPoint(transform.position,_isGravityInverted);
+        if (PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.SetStartPoint(transform.position,_isGravityInverted);
+        }
     }
 }
