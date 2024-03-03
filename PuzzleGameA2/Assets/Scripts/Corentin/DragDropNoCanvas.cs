@@ -147,7 +147,7 @@ public class DragDropNoCanvas : MonoBehaviour
 
         if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas1) && !_isOverlaping)
         {
-            if (shapeManagerNoCanvas1.GetShapePower() == ShapePower.Mine || shapeManagerNoCanvas1.GetShapePower() == ShapePower.Jump)
+            if (shapeManagerNoCanvas1.GetShapePower() == ShapePower.Mine || shapeManagerNoCanvas1.GetShapePower() == ShapePower.Jump && shapeManagerNoCanvas1.GetShapePower() == ShapePower.ChangeDirection || shapeManagerNoCanvas1.GetShapePower() == ShapePower.Acceleration)
             {
                 if (CheckGroundUnder(transform))
                 {
