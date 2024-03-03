@@ -7,7 +7,7 @@ public class SideJumpPower : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && GameManager.Instance.CurrentPhase == Enums.PhaseType.PlayersMoving)
         {
             ShapeManagerNoCanvas shapeManagerNoCanvas = GetComponentInParent<ShapeManagerNoCanvas>();
             if (collision.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
