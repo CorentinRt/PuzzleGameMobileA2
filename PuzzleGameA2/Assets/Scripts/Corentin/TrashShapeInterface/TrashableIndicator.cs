@@ -58,6 +58,10 @@ public class TrashableIndicator : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), _shapeIndicatorsLayerMask) == _trigger)
         {
+            if (!_associatedShape.GetComponentInChildren<DragDropNoCanvas>().IsOverlaping && _associatedShape.GetComponentInChildren<DragDropNoCanvas>().IsUnable)
+            {
+                GameManager.Instance.OverlapShapeCount--;
+            }
             TrashShape.Instance.ThrowTrash(_associatedShape);
         }
     }
