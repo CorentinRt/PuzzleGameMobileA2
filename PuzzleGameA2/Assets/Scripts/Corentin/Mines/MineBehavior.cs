@@ -31,7 +31,17 @@ public class MineBehavior : MonoBehaviour
                     //        Debug.Log("Corpse take mine");
                     //    }
                     //}
+
+                    // !!!!!!!!!!!!! Explosion normale !!!!!!!!!!!!!!!!!!!!!!!!
                     AddExplosionForce(collision.GetComponent<Rigidbody2D>(), 700f, transform.position + new Vector3(0f, -0.5f), 10f);
+
+                    // !!!!!!!!!!!!!!!!!!! Pour explosion predef !!!!!!!!!!!!!!!!!!!!!
+                    //Vector2 dir = new Vector2(1f, 1f);
+
+                    //dir = dir.normalized;
+
+                    //collision.GetComponent<Rigidbody2D>().AddForce(transform.TransformDirection(dir) * 10f, ForceMode2D.Impulse);
+                    // !!!!!!!!!!!!!!!!!!! Fin explosion predef !!!!!!!!!!!!!!!!!!!!!
                 }
                 if (GameManager.Instance.CurrentPhase == Enums.PhaseType.PlayersMoving)
                 {
