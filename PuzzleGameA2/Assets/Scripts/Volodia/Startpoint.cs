@@ -11,7 +11,8 @@ public class Startpoint : MonoBehaviour
     {
         if (PlayerManager.Instance != null)
         {
-            PlayerManager.Instance.SetStartPoint(transform.position,_isGravityInverted);
+            PlayerManager.Instance.SetStartPoint(transform.position + _spawnpoint, transform.position,_isGravityInverted);
+
         }
     }
 
