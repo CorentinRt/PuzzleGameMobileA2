@@ -9,17 +9,23 @@ public class InverseGravityPower : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Debug.Log("Shape Acceleration Player");
-            if (collision.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehavior))
+            if (GameManager.Instance.CurrentPhase == Enums.PhaseType.PlayersMoving)
             {
-                playerBehavior.InverseGravity();
-                GetComponentInParent<ShapeManagerNoCanvas>().Desactive();
+                //Debug.Log("Shape Acceleration Player");
+                if (collision.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehavior))
+                {
+                    playerBehavior.InverseGravity();
+                    GetComponentInParent<ShapeManagerNoCanvas>().Desactive();
                 
+                }
             }
-            if (collision.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
+            else
             {
-                corpsesBehavior.InverseGravity();
-                GetComponentInParent<ShapeManagerNoCanvas>().Desactive();
+                if (collision.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
+                {
+                    corpsesBehavior.InverseGravity();
+                    GetComponentInParent<ShapeManagerNoCanvas>().Desactive();
+                }
             }
         }
     }

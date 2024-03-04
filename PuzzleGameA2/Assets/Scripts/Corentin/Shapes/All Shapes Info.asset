@@ -19,9 +19,13 @@ MonoBehaviour:
     _sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   - _name: Circle
     _sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  - _name: Bounce
+  - _name: ChangeDirection
     _sprite: {fileID: 0}
-  - _name: Reverse
+  - _name: InverseGravity
     _sprite: {fileID: 0}
-  - _name: ArrowTrap
+  - _name: SideJump
+    _sprite: {fileID: 0}
+  - _name: Mine
+    _sprite: {fileID: 0}
+  - _name: Acceleration
     _sprite: {fileID: 0}

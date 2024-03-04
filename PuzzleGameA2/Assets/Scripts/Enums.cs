@@ -31,4 +31,11 @@ namespace Enums
         Triangle,
         Circle
     }
+
+    public enum DeathType
+    {
+        Laser,
+        Spike,
+        Mine
+    }
 }

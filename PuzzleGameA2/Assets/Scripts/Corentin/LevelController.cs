@@ -39,10 +39,32 @@ public class LevelController : MonoBehaviour
 
     public void ResetTraps()
     {
-        foreach (IResetable resettable in _elementsToReset)
+        //foreach (IResetable resettable in _elementsToReset)
+        //{
+        //    try
+        //    {
+        //        Debug.Log(resettable);
+        //        resettable.ResetActive();
+        //    }
+        //    catch
+        //    {
+        //        _elementsToReset.Remove((ItemsBehaviors)resettable);
+        //    }
+        //}
+        for (int i = 0; i < _elementsToReset.Count; i++)
         {
-            //Debug.Log(resettable);
-            resettable.ResetActive();
+            try
+            {
+                if (_elementsToReset[i].TryGetComponent<IResetable>(out IResetable resetable))
+                {
+                    Debug.Log(resetable);
+                    resetable.ResetActive();
+                }
+            }
+            catch
+            {
+                _elementsToReset.Remove(_elementsToReset[i]);
+            }
         }
     }
 }
