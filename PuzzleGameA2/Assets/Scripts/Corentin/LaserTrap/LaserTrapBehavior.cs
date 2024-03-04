@@ -10,6 +10,8 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
     [SerializeField] private bool _hasInfiniteRange;
     [SerializeField] private float _laserRange;
 
+    [SerializeField] private bool _isAlwaysShooting;
+
     [SerializeField] private float _laserVisualDuration;
 
     [SerializeField] private LineRenderer _lineRenderer;
@@ -52,6 +54,37 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
             }
         }
     }
+    private void LaserHitCorpses(CorpsesBehavior corpsesBehavior)
+    {
+        _canShoot = false;
+
+        RaycastHit2D hit;
+
+        hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_playerLayerMask);
+
+        if (hit)
+        {
+            //Debug.Log("Fire ray on : " + hit.transform.gameObject.name);
+
+            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * hit.distance, Color.green, 5f);
+
+            _lineRenderer.gameObject.SetActive(true);
+
+            _lineRenderer.SetPosition(0, transform.position);
+
+            _lineRenderer.SetPosition(1, hit.point);
+
+            StartCoroutine(LaserVisualCoroutine());
+        }
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
+        if (raycastHit)
+        {
+            if (raycastHit.transform.CompareTag("Player"))
+            {
+                corpsesBehavior.DesintagratedByLaser();
+            }
+        }
+    }
 
     private void Start()
     {
@@ -74,7 +107,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
     // Update is called once per frame
     void Update()
     {
-        if (_canShoot && !_hasDetected)
+        if (_canShoot && !_hasDetected && !_isAlwaysShooting)
         {
             RaycastHit2D hit;
             if (_hasInfiniteRange)
@@ -90,7 +123,13 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
 
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                if (hit.collider.gameObject.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
+                if (hit.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
+                {
+                    _hasDetected = true;
+
+                    LaserHitCorpses(corpsesBehavior);
+                }
+                else if (hit.collider.gameObject.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
                 {
                     _hasDetected = true;
 
@@ -98,8 +137,26 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
                 }
             }
         }
+        else if (_isAlwaysShooting)
+        {
+            _lineRenderer.gameObject.SetActive(true);
+            RaycastHit2D hit1 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
+            if (hit1.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
+            {
+                LaserHitCorpses(corpsesBehavior);
+            }
+            if (hit1.collider.gameObject.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
+            {
+                playerBehaviour.KillPlayer();
+            }
+            RaycastHit2D hit2 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_playerLayerMask);
+            if (hit2)
+            {
+                _lineRenderer.SetPosition(0, transform.position);
 
-        //Debug.Log("test name : " + this);
+                _lineRenderer.SetPosition(1, hit2.point);
+            }
+        }
     }
 
     IEnumerator LaserVisualCoroutine()
@@ -110,6 +167,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
 
         yield return null;
     }
+
     IEnumerator TimeBeforeShootCoroutine(PlayerBehaviour playerBehaviour)
     {
         yield return new WaitForSeconds(_timeBeforeShoot);

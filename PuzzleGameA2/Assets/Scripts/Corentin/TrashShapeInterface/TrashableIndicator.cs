@@ -13,6 +13,8 @@ public class TrashableIndicator : MonoBehaviour
 
     [SerializeField] private GameObject _associatedShape;
 
+    [SerializeField] private LayerMask _shapeIndicatorsLayerMask;
+
     private void DisplayTrashIndicator()
     {
         _indicatorOpen = true;
@@ -35,7 +37,13 @@ public class TrashableIndicator : MonoBehaviour
     {
         
     }
-
+    private void OnDestroy()
+    {
+        if (!_associatedShape.GetComponentInChildren<DragDropNoCanvas>().IsOverlaping && _associatedShape.GetComponentInChildren<DragDropNoCanvas>().IsUnable)
+        {
+            GameManager.Instance.OverlapShapeCount--;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -54,7 +62,7 @@ public class TrashableIndicator : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)) == _trigger)
+        if (Input.GetMouseButtonDown(0) && Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition), _shapeIndicatorsLayerMask) == _trigger)
         {
             TrashShape.Instance.ThrowTrash(_associatedShape);
         }

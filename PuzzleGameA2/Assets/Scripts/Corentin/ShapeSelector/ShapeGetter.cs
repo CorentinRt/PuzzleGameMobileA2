@@ -23,6 +23,8 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     [SerializeField] private ShapePower _shapePower;
 
+    [SerializeField] private List<GameObject> _powerVisuals;
+
     [SerializeField] private bool _isAffectedByGravity;
 
     private TextMeshProUGUI _shapeCountText;
@@ -74,7 +76,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
         {
-            if (shapeManagerNoCanvas.ShapeType1 == _shapeType)
+            if (shapeManagerNoCanvas.GetShapePower() == ShapePower)
             {
                 _shapeCount++;
                 _shapeCountText.text = _shapeCount.ToString();
@@ -84,41 +86,111 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private void AdaptSprite()
     {
-        switch (_shapeType)     // Init right spriteRenderer
+        //switch (_shapeType)     // Init right spriteRenderer
+        //{
+        //    case ShapeType.Square:
+
+        //        foreach (var info in _shapesInfo.ShapesInfo)
+        //        {
+        //            if (info.Name == "Square")
+        //            {
+        //                GetComponent<Image>().sprite = info.Sprite;
+        //                break;
+        //            }
+        //        }
+        //        break;
+        //    case ShapeType.Triangle:
+
+        //        foreach (var info in _shapesInfo.ShapesInfo)
+        //        {
+        //            if (info.Name == "Triangle")
+        //            {
+        //                GetComponent<Image>().sprite = info.Sprite;
+        //                break;
+        //            }
+        //        }
+        //        break;
+        //    case ShapeType.Circle:
+
+        //        foreach (var info in _shapesInfo.ShapesInfo)
+        //        {
+        //            if (info.Name == "Circle")
+        //            {
+        //                GetComponent<Image>().sprite = info.Sprite;
+        //                break;
+        //            }
+        //        }
+        //        break;
+        //}
+
+        switch(_shapePower)
         {
-            case ShapeType.Square:
-
-                foreach (var info in _shapesInfo.ShapesInfo)
+            case ShapePower.Mine:
+                for (int i = 0; i < _powerVisuals.Count; i++)
                 {
-                    if (info.Name == "Square")
+                    if (i == 0)
                     {
-                        GetComponent<Image>().sprite = info.Sprite;
-                        break;
+                        _powerVisuals[i].SetActive(true);
+                    }
+                    else
+                    {
+                        _powerVisuals[i].SetActive(false);
                     }
                 }
                 break;
-            case ShapeType.Triangle:
-
-                foreach (var info in _shapesInfo.ShapesInfo)
+            case ShapePower.InverseGravity:
+                for (int i = 0; i < _powerVisuals.Count; i++)
                 {
-                    if (info.Name == "Triangle")
+                    if (i == 1)
                     {
-                        GetComponent<Image>().sprite = info.Sprite;
-                        break;
+                        _powerVisuals[i].SetActive(true);
+                    }
+                    else
+                    {
+                        _powerVisuals[i].SetActive(false);
                     }
                 }
                 break;
-            case ShapeType.Circle:
-
-                foreach (var info in _shapesInfo.ShapesInfo)
+            case ShapePower.ChangeDirection:
+                for (int i = 0; i < _powerVisuals.Count; i++)
                 {
-                    if (info.Name == "Circle")
+                    if (i == 2)
                     {
-                        GetComponent<Image>().sprite = info.Sprite;
-                        break;
+                        _powerVisuals[i].SetActive(true);
+                    }
+                    else
+                    {
+                        _powerVisuals[i].SetActive(false);
                     }
                 }
                 break;
+            case ShapePower.SideJump:
+                for (int i = 0; i < _powerVisuals.Count; i++)
+                {
+                    if (i == 3)
+                    {
+                        _powerVisuals[i].SetActive(true);
+                    }
+                    else
+                    {
+                        _powerVisuals[i].SetActive(false);
+                    }
+                }
+                break;
+            case ShapePower.Acceleration:
+                for (int i = 0; i < _powerVisuals.Count; i++)
+                {
+                    if (i == 4)
+                    {
+                        _powerVisuals[i].SetActive(true);
+                    }
+                    else
+                    {
+                        _powerVisuals[i].SetActive(false);
+                    }
+                }
+                break;
+
         }
     }
 

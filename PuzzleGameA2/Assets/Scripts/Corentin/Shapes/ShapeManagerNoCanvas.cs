@@ -18,13 +18,18 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     
     public ShapePower GetShapePower() => _shapePower;
 
-    public void SetShapePower(ShapePower power) => _shapePower = power;
+
+    [SerializeField] private bool _renderWithShapePower;
 
     private SpriteRenderer _spriteRd;
+    [SerializeField] private List<GameObject> _shapesVisuals;
 
     [SerializeField] private AllShapesInfo _shapesInfo;
 
     [SerializeField] private GameObject _collidersContainer;
+
+    [SerializeField] private List<Collider2D> _powerColliders;
+    [SerializeField] private GameObject _triggersPowerContainer;
 
     private BoxCollider2D _boxCollider;
     private CircleCollider2D _circleCollider;
@@ -47,54 +52,180 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     }
     private void DragMode()
     {
-        switch (_shapeType)
+        if (_renderWithShapePower)
         {
-            case ShapeType.Square:
-                foreach (var info in _shapesInfo.ShapesInfo)
-                {
-                    if (info.Name == "Square")
-                    {
-                        _spriteRd.sprite = info.Sprite;
-                        break;
-                    }
-                }
-                _boxCollider.enabled = true;
-                _triangleCollider.enabled = false;
-                _circleCollider.enabled = false;
+            switch (_shapePower)
+            {
+                case ShapePower.Mine:
 
-                _boxCollider.isTrigger = true;
-                break;
-            case ShapeType.Triangle:
-                foreach (var info in _shapesInfo.ShapesInfo)
-                {
-                    if (info.Name == "Triangle")
+                    for (int i = 0; i < _shapesVisuals.Count; i++)
                     {
-                        _spriteRd.sprite = info.Sprite;
-                        break;
+                        if (i == 0)
+                        {
+                            _spriteRd = _shapesVisuals[i].GetComponent<SpriteRenderer>();
+                            _shapesVisuals[i].SetActive(true);
+                            _powerColliders[i].enabled = true;
+                        }
+                        else
+                        {
+                            _shapesVisuals[i].SetActive(false);
+                            _powerColliders[i].enabled = false;
+                        }
                     }
-                }
-                _triangleCollider.enabled = true;
-                _boxCollider.enabled = false;
-                _circleCollider.enabled = false;
 
-                _triangleCollider.isTrigger = true;
-                break;
-            case ShapeType.Circle:
-                foreach (var info in _shapesInfo.ShapesInfo)
-                {
-                    if (info.Name == "Circle")
+
+                    //_boxCollider.enabled = true;
+                    //_triangleCollider.enabled = false;
+                    //_circleCollider.enabled = false;
+
+                    //_boxCollider.isTrigger = true;
+                    break;
+                case ShapePower.InverseGravity:
+
+                    for (int i = 0; i < _shapesVisuals.Count; i++)
                     {
-                        _spriteRd.sprite = info.Sprite;
-                        break;
+                        if (i == 1)
+                        {
+                            _spriteRd = _shapesVisuals[i].GetComponent<SpriteRenderer>();
+                            _shapesVisuals[i].SetActive(true);
+                            _powerColliders[i].enabled = true;
+                        }
+                        else
+                        {
+                            _shapesVisuals[i].SetActive(false);
+                            _powerColliders[i].enabled = false;
+                        }
                     }
-                }
-                _circleCollider.enabled = true;
-                _triangleCollider.enabled = false;
-                _boxCollider.enabled = false;
 
-                _circleCollider.isTrigger = true;
-                break;
+                    //_triangleCollider.enabled = true;
+                    //_boxCollider.enabled = false;
+                    //_circleCollider.enabled = false;
+
+                    //_triangleCollider.isTrigger = true;
+                    break;
+                case ShapePower.ChangeDirection:
+
+                    for (int i = 0; i < _shapesVisuals.Count; i++)
+                    {
+                        if (i == 2)
+                        {
+                            _spriteRd = _shapesVisuals[i].GetComponent<SpriteRenderer>();
+                            _shapesVisuals[i].SetActive(true);
+                            _powerColliders[i].enabled = true;
+                        }
+                        else
+                        {
+                            _shapesVisuals[i].SetActive(false);
+                            _powerColliders[i].enabled = false;
+                        }
+                    }
+
+                    //_circleCollider.enabled = true;
+                    //_triangleCollider.enabled = false;
+                    //_boxCollider.enabled = false;
+
+                    //_circleCollider.isTrigger = true;
+                    break;
+                case ShapePower.SideJump:
+
+                    for (int i = 0; i < _shapesVisuals.Count; i++)
+                    {
+                        if (i == 3)
+                        {
+                            _spriteRd = _shapesVisuals[i].GetComponent<SpriteRenderer>();
+                            _shapesVisuals[i].SetActive(true);
+                            _powerColliders[i].enabled = true;
+                        }
+                        else
+                        {
+                            _shapesVisuals[i].SetActive(false);
+                            _powerColliders[i].enabled = false;
+                        }
+                    }
+
+                    //_circleCollider.enabled = true;
+                    //_triangleCollider.enabled = false;
+                    //_boxCollider.enabled = false;
+
+                    //_circleCollider.isTrigger = true;
+                    break;
+                case ShapePower.Acceleration:
+
+                    for (int i = 0; i < _shapesVisuals.Count; i++)
+                    {
+                        if (i == 4)
+                        {
+                            _spriteRd = _shapesVisuals[i].GetComponent<SpriteRenderer>();
+                            _shapesVisuals[i].SetActive(true);
+                            _powerColliders[i].enabled = true;
+                        }
+                        else
+                        {
+                            _shapesVisuals[i].SetActive(false);
+                            _powerColliders[i].enabled = false;
+                        }
+                    }
+
+                    //_circleCollider.enabled = true;
+                    //_triangleCollider.enabled = false;
+                    //_boxCollider.enabled = false;
+
+                    //_circleCollider.isTrigger = true;
+                    break;
+            }
         }
+        else
+        {
+            switch (_shapeType)
+            {
+                case ShapeType.Square:
+                    foreach (var info in _shapesInfo.ShapesInfo)
+                    {
+                        if (info.Name == "Square")
+                        {
+                            _spriteRd.sprite = info.Sprite;
+                            break;
+                        }
+                    }
+                    _boxCollider.enabled = true;
+                    _triangleCollider.enabled = false;
+                    _circleCollider.enabled = false;
+
+                    _boxCollider.isTrigger = true;
+                    break;
+                case ShapeType.Triangle:
+                    foreach (var info in _shapesInfo.ShapesInfo)
+                    {
+                        if (info.Name == "Triangle")
+                        {
+                            _spriteRd.sprite = info.Sprite;
+                            break;
+                        }
+                    }
+                    _triangleCollider.enabled = true;
+                    _boxCollider.enabled = false;
+                    _circleCollider.enabled = false;
+
+                    _triangleCollider.isTrigger = true;
+                    break;
+                case ShapeType.Circle:
+                    foreach (var info in _shapesInfo.ShapesInfo)
+                    {
+                        if (info.Name == "Circle")
+                        {
+                            _spriteRd.sprite = info.Sprite;
+                            break;
+                        }
+                    }
+                    _circleCollider.enabled = true;
+                    _triangleCollider.enabled = false;
+                    _boxCollider.enabled = false;
+
+                    _circleCollider.isTrigger = true;
+                    break;
+            }
+        }
+        
         //GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
         _body2D.gravityScale = 0f;
     }
@@ -128,7 +259,7 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
                 ActiveCollision();
                 break;
             case ShapePower.ChangeDirection:
-                ActiveCollision();
+                DesactiveCollision();
                 break;
             case ShapePower.Jump:
                 DesactiveCollision();
@@ -179,52 +310,154 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
         }
     }
 
+    public void SetShapePower(ShapePower power)
+    {
+        _shapePower = power;
+
+        if (_renderWithShapePower)
+        {
+            switch (_shapePower)
+            {
+                case ShapePower.Mine:
+
+                    for (int i = 0; i < _shapesVisuals.Count; i++)
+                    {
+                        if (i == 0)
+                        {
+
+                            _spriteRd = _shapesVisuals[i].GetComponent<SpriteRenderer>();
+                            _shapesVisuals[i].SetActive(true);
+                            _powerColliders[i].enabled = true;
+                        }
+                        else
+                        {
+                            _shapesVisuals[i].SetActive(false);
+                            _powerColliders[i].enabled = false;
+                        }
+                    }
+                    break;
+                case ShapePower.InverseGravity:
+
+                    for (int i = 0; i < _shapesVisuals.Count; i++)
+                    {
+                        if (i == 1)
+                        {
+                            _spriteRd = _shapesVisuals[i].GetComponent<SpriteRenderer>();
+                            _shapesVisuals[i].SetActive(true);
+                            _powerColliders[i].enabled = true;
+                        }
+                        else
+                        {
+                            _shapesVisuals[i].SetActive(false);
+                            _powerColliders[i].enabled = false;
+                        }
+                    }
+                    break;
+                case ShapePower.ChangeDirection:
+
+                    for (int i = 0; i < _shapesVisuals.Count; i++)
+                    {
+                        if (i == 2)
+                        {
+                            _spriteRd = _shapesVisuals[i].GetComponent<SpriteRenderer>();
+                            _shapesVisuals[i].SetActive(true);
+                            _powerColliders[i].enabled = true;
+                        }
+                        else
+                        {
+                            _shapesVisuals[i].SetActive(false);
+                            _powerColliders[i].enabled = false;
+                        }
+                    }
+                    break;
+                case ShapePower.SideJump:
+
+                    for (int i = 0; i < _shapesVisuals.Count; i++)
+                    {
+                        if (i == 3)
+                        {
+                            _spriteRd = _shapesVisuals[i].GetComponent<SpriteRenderer>();
+                            _shapesVisuals[i].SetActive(true);
+                            _powerColliders[i].enabled = true;
+                        }
+                        else
+                        {
+                            _shapesVisuals[i].SetActive(false);
+                            _powerColliders[i].enabled = false;
+                        }
+                    }
+                    break;
+                case ShapePower.Acceleration:
+
+                    for (int i = 0; i < _shapesVisuals.Count; i++)
+                    {
+                        if (i == 4)
+                        {
+                            _spriteRd = _shapesVisuals[i].GetComponent<SpriteRenderer>();
+                            _shapesVisuals[i].SetActive(true);
+                            _powerColliders[i].enabled = true;
+                        }
+                        else
+                        {
+                            _shapesVisuals[i].SetActive(false);
+                            _powerColliders[i].enabled = false;
+                        }
+                    }
+                    break;
+            }
+    }
+}
     public void SetShapeType(ShapeType shapeType)
     {
-        switch (shapeType)
+        _shapeType = shapeType;
+
+        if (!_renderWithShapePower)
         {
-            case ShapeType.Square:
-                _shapeType = ShapeType.Square;
-                foreach (var info in _shapesInfo.ShapesInfo)
-                {
-                    if (info.Name == "Square")
+            switch (shapeType)
+            {
+                case ShapeType.Square:
+                    _shapeType = ShapeType.Square;
+                    foreach (var info in _shapesInfo.ShapesInfo)
                     {
-                        _spriteRd.sprite = info.Sprite;
-                        break;
+                        if (info.Name == "Square")
+                        {
+                            _spriteRd.sprite = info.Sprite;
+                            break;
+                        }
                     }
-                }
-                _boxCollider.enabled = true;
-                _triangleCollider.enabled = false;
-                _circleCollider.enabled = false;
-                break;
-            case ShapeType.Triangle:
-                _shapeType = ShapeType.Triangle;
-                foreach (var info in _shapesInfo.ShapesInfo)
-                {
-                    if (info.Name == "Triangle")
+                    _boxCollider.enabled = true;
+                    _triangleCollider.enabled = false;
+                    _circleCollider.enabled = false;
+                    break;
+                case ShapeType.Triangle:
+                    _shapeType = ShapeType.Triangle;
+                    foreach (var info in _shapesInfo.ShapesInfo)
                     {
-                        _spriteRd.sprite = info.Sprite;
-                        break;
+                        if (info.Name == "Triangle")
+                        {
+                            _spriteRd.sprite = info.Sprite;
+                            break;
+                        }
                     }
-                }
-                _triangleCollider.enabled = true;
-                _boxCollider.enabled = false;
-                _circleCollider.enabled = false;
-                break;
-            case ShapeType.Circle:
-                _shapeType = ShapeType.Circle;
-                foreach (var info in _shapesInfo.ShapesInfo)
-                {
-                    if (info.Name == "Circle")
+                    _triangleCollider.enabled = true;
+                    _boxCollider.enabled = false;
+                    _circleCollider.enabled = false;
+                    break;
+                case ShapeType.Circle:
+                    _shapeType = ShapeType.Circle;
+                    foreach (var info in _shapesInfo.ShapesInfo)
                     {
-                        _spriteRd.sprite = info.Sprite;
-                        break;
+                        if (info.Name == "Circle")
+                        {
+                            _spriteRd.sprite = info.Sprite;
+                            break;
+                        }
                     }
-                }
-                _circleCollider.enabled = true;
-                _boxCollider.enabled = false;
-                _triangleCollider.enabled = false;
-                break;
+                    _circleCollider.enabled = true;
+                    _boxCollider.enabled = false;
+                    _triangleCollider.enabled = false;
+                    break;
+            }
         }
     }
 
@@ -232,58 +465,62 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     {
         _spriteRd = _visuals.GetComponent<SpriteRenderer>();
 
+        _body2D = GetComponent<Rigidbody2D>();
+
         _boxCollider = _collidersContainer.GetComponent<BoxCollider2D>();
         _triangleCollider = _collidersContainer.GetComponent<PolygonCollider2D>();
         _circleCollider = _collidersContainer.GetComponent<CircleCollider2D>();
 
-        switch (_shapeType)
-        {
-            case ShapeType.Square:
-                foreach (var info in _shapesInfo.ShapesInfo)
-                {
-                    if (info.Name == "Square")
-                    {
-                        _spriteRd.sprite = info.Sprite;
-                        break;
-                    }
-                }
-                _boxCollider.enabled = true;
-                _triangleCollider.enabled = false;
-                _circleCollider.enabled = false;
+        //switch (_shapeType)
+        //{
+        //    case ShapeType.Square:
+        //        foreach (var info in _shapesInfo.ShapesInfo)
+        //        {
+        //            if (info.Name == "Square")
+        //            {
+        //                _spriteRd.sprite = info.Sprite;
+        //                break;
+        //            }
+        //        }
+        //        _boxCollider.enabled = true;
+        //        _triangleCollider.enabled = false;
+        //        _circleCollider.enabled = false;
 
-                _boxCollider.isTrigger = true;
-                break;
-            case ShapeType.Triangle:
-                foreach (var info in _shapesInfo.ShapesInfo)
-                {
-                    if (info.Name == "Triangle")
-                    {
-                        _spriteRd.sprite = info.Sprite;
-                        break;
-                    }
-                }
-                _triangleCollider.enabled = true;
-                _boxCollider.enabled = false;
-                _circleCollider.enabled = false;
+        //        _boxCollider.isTrigger = true;
+        //        break;
+        //    case ShapeType.Triangle:
+        //        foreach (var info in _shapesInfo.ShapesInfo)
+        //        {
+        //            if (info.Name == "Triangle")
+        //            {
+        //                _spriteRd.sprite = info.Sprite;
+        //                break;
+        //            }
+        //        }
+        //        _triangleCollider.enabled = true;
+        //        _boxCollider.enabled = false;
+        //        _circleCollider.enabled = false;
 
-                _triangleCollider.isTrigger = true;
-                break;
-            case ShapeType.Circle:
-                foreach (var info in _shapesInfo.ShapesInfo)
-                {
-                    if (info.Name == "Circle")
-                    {
-                        _spriteRd.sprite = info.Sprite;
-                        break;
-                    }
-                }
-                _circleCollider.enabled = true;
-                _boxCollider.enabled = false;
-                _triangleCollider.enabled = false;
+        //        _triangleCollider.isTrigger = true;
+        //        break;
+        //    case ShapeType.Circle:
+        //        foreach (var info in _shapesInfo.ShapesInfo)
+        //        {
+        //            if (info.Name == "Circle")
+        //            {
+        //                _spriteRd.sprite = info.Sprite;
+        //                break;
+        //            }
+        //        }
+        //        _circleCollider.enabled = true;
+        //        _boxCollider.enabled = false;
+        //        _triangleCollider.enabled = false;
 
-                _circleCollider.isTrigger = true;
-                break;
-        }
+        //        _circleCollider.isTrigger = true;
+        //        break;
+        //}
+
+        DragMode();
     }
 
     private void Awake()
@@ -296,54 +533,57 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
         _triangleCollider = _collidersContainer.GetComponent<PolygonCollider2D>();
         _circleCollider = _collidersContainer.GetComponent<CircleCollider2D>();
 
-        switch (_shapeType)
-        {
-            case ShapeType.Square:
-                foreach (var info in _shapesInfo.ShapesInfo)
-                {
-                    if (info.Name == "Square")
-                    {
-                        _spriteRd.sprite = info.Sprite;
-                        break;
-                    }
-                }
-                _boxCollider.enabled = true;
-                _triangleCollider.enabled = false;
-                _circleCollider.enabled = false;
+        //switch (_shapeType)
+        //{
+        //    case ShapeType.Square:
+        //        foreach (var info in _shapesInfo.ShapesInfo)
+        //        {
+        //            if (info.Name == "Square")
+        //            {
+        //                _spriteRd.sprite = info.Sprite;
+        //                break;
+        //            }
+        //        }
+        //        _boxCollider.enabled = true;
+        //        _triangleCollider.enabled = false;
+        //        _circleCollider.enabled = false;
 
-                _boxCollider.isTrigger = true;
-                break;
-            case ShapeType.Triangle:
-                foreach (var info in _shapesInfo.ShapesInfo)
-                {
-                    if (info.Name == "Triangle")
-                    {
-                        _spriteRd.sprite = info.Sprite;
-                        break;
-                    }
-                }
-                _triangleCollider.enabled = true;
-                _boxCollider.enabled = false;
-                _circleCollider.enabled = false;
+        //        _boxCollider.isTrigger = true;
+        //        break;
+        //    case ShapeType.Triangle:
+        //        foreach (var info in _shapesInfo.ShapesInfo)
+        //        {
+        //            if (info.Name == "Triangle")
+        //            {
+        //                _spriteRd.sprite = info.Sprite;
+        //                break;
+        //            }
+        //        }
+        //        _triangleCollider.enabled = true;
+        //        _boxCollider.enabled = false;
+        //        _circleCollider.enabled = false;
 
-                _triangleCollider.isTrigger = true;
-                break;
-            case ShapeType.Circle:
-                foreach (var info in _shapesInfo.ShapesInfo)
-                {
-                    if (info.Name == "Circle")
-                    {
-                        _spriteRd.sprite = info.Sprite;
-                        break;
-                    }
-                }
-                _circleCollider.enabled = true;
-                _triangleCollider.enabled = false;
-                _boxCollider.enabled = false;
+        //        _triangleCollider.isTrigger = true;
+        //        break;
+        //    case ShapeType.Circle:
+        //        foreach (var info in _shapesInfo.ShapesInfo)
+        //        {
+        //            if (info.Name == "Circle")
+        //            {
+        //                _spriteRd.sprite = info.Sprite;
+        //                break;
+        //            }
+        //        }
+        //        _circleCollider.enabled = true;
+        //        _triangleCollider.enabled = false;
+        //        _boxCollider.enabled = false;
 
-                _circleCollider.isTrigger = true;
-                break;
-        }
+        //        _circleCollider.isTrigger = true;
+        //        break;
+        //}
+
+        DragMode();
+
         GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
         _body2D.gravityScale = 0f;
     }
@@ -352,35 +592,43 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     {
         GameManager.Instance.OnPhase1Started += DragMode;
         GameManager.Instance.OnPhase1Ended += LockMode;
+        LevelManager.Instance.GetCurrentLevelController.OnLevelUnload += DestroySelf;
         Debug.Log((IResetable) this);
         LevelManager.Instance.GetCurrentLevelController.AddToResettableObject<IResetable>(this);
 
         switch (_shapePower)
         {
             case ShapePower.Jump:
-                _collidersContainer.AddComponent(typeof(JumpPower));
+                _triggersPowerContainer.AddComponent(typeof(JumpPower));
                 break;
             case ShapePower.SideJump:
-                _collidersContainer.AddComponent(typeof(SideJumpPower));
+                _triggersPowerContainer.AddComponent(typeof(SideJumpPower));
                 break;
             case ShapePower.ChangeDirection:
-                _collidersContainer.AddComponent(typeof(ChangeDirectionPower));
+                _triggersPowerContainer.AddComponent(typeof(ChangeDirectionPower));
                 break;
             case ShapePower.Acceleration:
-                _collidersContainer.AddComponent(typeof(AccelerationPower));
+                _triggersPowerContainer.AddComponent(typeof(AccelerationPower));
                 break;
             case ShapePower.InverseGravity:
-                _collidersContainer.AddComponent(typeof(InverseGravityPower));
+                _triggersPowerContainer.AddComponent(typeof(InverseGravityPower));
                 break;
             case ShapePower.Mine:
-                _collidersContainer.AddComponent(typeof(MineBehavior));
+                _triggersPowerContainer.AddComponent(typeof(MineBehavior));
                 break;
         }
     }
+
+    private void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnDestroy()
     {
         GameManager.Instance.OnPhase1Started -= DragMode;
         GameManager.Instance.OnPhase1Ended -= LockMode;
+        LevelManager.Instance.GetCurrentLevelController.OnLevelUnload -= DestroySelf;
     }
 
     // Update is called once per frame
@@ -409,6 +657,7 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
         else if(_shapePower == ShapePower.Mine)
         {
             Debug.Log("Reset Mine");
+            _triggersPowerContainer.GetComponent<MineBehavior>().HasExplode = false;
         }
     }
     [Button]

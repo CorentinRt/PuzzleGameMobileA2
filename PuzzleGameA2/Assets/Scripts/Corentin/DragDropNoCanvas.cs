@@ -13,16 +13,30 @@ public class DragDropNoCanvas : MonoBehaviour
 
     //[SerializeField] private GameObject _collidersContainer;
 
-    [SerializeField] private CircleCollider2D _dragtrigger;    
+    [SerializeField] private CircleCollider2D _dragtrigger;
     [SerializeField] private LayerMask _dragLayerMask;
+    [SerializeField] private LayerMask _groundLayerMask;
 
     private bool _isUnable;
+
+    private bool _isOverlaping;
 
     private bool _canDrag;
 
     public bool CanDrag { get => _canDrag; set => _canDrag = value; }
     // public Collider2D Collider { get => _collider; set => _collider = value; }
     public bool Dragging { get => _dragging; set => _dragging = value; }
+    public bool IsOverlaping { get => _isOverlaping; set => _isOverlaping = value; }
+    public bool IsUnable { get => _isUnable; set => _isUnable = value; }
+
+    public void SetOverlaping()
+    {
+        _isOverlaping = true;
+    }
+    public void UnSetOverlaping()
+    {
+        _isOverlaping = false;
+    }
 
     public void AllowDrag()
     {
@@ -132,6 +146,21 @@ public class DragDropNoCanvas : MonoBehaviour
                 }
             }
         }
+
+        if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas1) && !_isOverlaping)
+        {
+            if (shapeManagerNoCanvas1.GetShapePower() == ShapePower.Mine || shapeManagerNoCanvas1.GetShapePower() == ShapePower.Jump && shapeManagerNoCanvas1.GetShapePower() == ShapePower.ChangeDirection || shapeManagerNoCanvas1.GetShapePower() == ShapePower.Acceleration)
+            {
+                if (CheckGroundUnder(transform))
+                {
+                    SetAbleColor();
+                }
+                else
+                {
+                    SetUnableColor();
+                }
+            }
+        }
     }
 
     public void SetUnableColor()
@@ -151,5 +180,17 @@ public class DragDropNoCanvas : MonoBehaviour
             shapeManagerNoCanvas.SpriteRd.color = DragDropManager.Instance.AbleDragColor;
             GameManager.Instance.OverlapShapeCount--;
         }
+    }
+
+    private bool CheckGroundUnder(Transform transf)
+    {
+        Vector2 checkPos = transf.position;
+        checkPos.y -= GridManager.Instance.CellSize.y;
+
+        if (Physics2D.OverlapPoint(checkPos, _groundLayerMask))
+        {
+            return true;
+        }
+        return false;
     }
 }
