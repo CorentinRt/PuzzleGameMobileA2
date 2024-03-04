@@ -9,7 +9,10 @@ public class Startpoint : MonoBehaviour
     [SerializeField] private Vector3 _spawnpoint;
     void Start()
     {
-        PlayerManager.Instance.SetStartPoint(transform.position + _spawnpoint, transform.position,_isGravityInverted);
+        if (PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.SetStartPoint(transform.position,_isGravityInverted);
+        }
     }
 
     private void OnDrawGizmosSelected()

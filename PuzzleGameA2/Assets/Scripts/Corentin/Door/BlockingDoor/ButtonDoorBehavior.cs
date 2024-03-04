@@ -11,6 +11,13 @@ public class ButtonDoorBehavior : MonoBehaviour
     [SerializeField] private Color _pressedColor;
     [SerializeField] private Color _unpressedColor;
 
+    [SerializeField] private Transform _buttonVisual;
+
+    [SerializeField] private Transform _pressedTransf;
+    private Vector3 _unpressedPosition;
+
+    private bool _isFirstupdate;
+
     private int _totalInTrigger;
 
     public event Action OnButtonPressed;
@@ -37,6 +44,8 @@ public class ButtonDoorBehavior : MonoBehaviour
     {
         Debug.Log("Press Button");
         OnButtonPressed?.Invoke();
+
+        _buttonVisual.position = _pressedTransf.position;
     }
     [Button]
     private void UnpressButton()
@@ -45,6 +54,8 @@ public class ButtonDoorBehavior : MonoBehaviour
         {
             Debug.Log("UnPress Button");
             OnButtonUnpressed?.Invoke();
+
+            _buttonVisual.position = _unpressedPosition;
         }
     }
     // Start is called before the first frame update
@@ -52,6 +63,8 @@ public class ButtonDoorBehavior : MonoBehaviour
     {
         _collisionDetection.OnTriggerEnterEvent += CheckButtonPressed;
         _collisionDetection.OnTriggerExitEvent += CheckButtonUnpressed;
+
+        _unpressedPosition = _buttonVisual.transform.position;
     }
     private void OnDestroy()
     {

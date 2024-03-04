@@ -38,7 +38,7 @@ public class ChangeDirectionIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DragDropManager.Instance.CurrentShapeDragged == _associatedShape && (_associatedShape.GetComponent<ShapeManagerNoCanvas>().GetShapePower() == Enums.ShapePower.SideJump || _associatedShape.GetComponent<ShapeManagerNoCanvas>().GetShapePower() == Enums.ShapePower.Acceleration))
+        if (DragDropManager.Instance.CurrentShapeDragged == _associatedShape && (_associatedShape.GetComponent<ShapeManagerNoCanvas>().GetShapePower() == Enums.ShapePower.SideJump || _associatedShape.GetComponent<ShapeManagerNoCanvas>().GetShapePower() == Enums.ShapePower.Acceleration || _associatedShape.GetComponent<ShapeManagerNoCanvas>().GetShapePower() == Enums.ShapePower.Mine))
         {
             if (!_indicatorOpen)
             {
