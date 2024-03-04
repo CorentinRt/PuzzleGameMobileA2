@@ -102,6 +102,17 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
         {
             LevelManager.Instance.GetCurrentLevelController.AddToResettableObject<IResetable>(this);
         }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnPhase2Started += ResetActive;
+        }
+    }
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnPhase2Started -= ResetActive;
+        }
     }
 
     // Update is called once per frame
@@ -184,6 +195,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
 
     public void ResetActive()
     {
+        Debug.Log("reset laser");
         transform.parent.position = StartPosition;
         _canShoot = true;
         _hasDetected = false;
