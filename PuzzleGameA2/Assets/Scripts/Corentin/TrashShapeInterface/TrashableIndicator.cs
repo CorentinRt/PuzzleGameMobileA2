@@ -37,7 +37,13 @@ public class TrashableIndicator : MonoBehaviour
     {
         
     }
-
+    private void OnDestroy()
+    {
+        if (!_associatedShape.GetComponentInChildren<DragDropNoCanvas>().IsOverlaping && _associatedShape.GetComponentInChildren<DragDropNoCanvas>().IsUnable)
+        {
+            GameManager.Instance.OverlapShapeCount--;
+        }
+    }
     // Update is called once per frame
     void Update()
     {

@@ -17,7 +17,7 @@ public class ClampableToGrid : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         ClampToGrid();
     }

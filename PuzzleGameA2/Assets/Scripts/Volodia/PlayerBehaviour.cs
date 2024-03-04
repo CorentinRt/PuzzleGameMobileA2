@@ -3,6 +3,7 @@ using System.Collections;
 using Enums;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -36,6 +37,12 @@ public class PlayerBehaviour : MonoBehaviour
     private LevelManager _levelManager;
 
     [SerializeField] private float _mineCooldown;
+
+    [SerializeField] private UnityEvent OnPlayerChangeDirection;
+    [SerializeField] private UnityEvent OnPlayerAccelerate;
+    [SerializeField] private UnityEvent OnPlayerJump;
+    [SerializeField] private UnityEvent OnPlayerInverseGravity;
+
 
     public int Direction { get => _direction; set => _direction = value; }
 

@@ -13,7 +13,7 @@ public class DragDropNoCanvas : MonoBehaviour
 
     //[SerializeField] private GameObject _collidersContainer;
 
-    [SerializeField] private CircleCollider2D _dragtrigger;    
+    [SerializeField] private CircleCollider2D _dragtrigger;
     [SerializeField] private LayerMask _dragLayerMask;
     [SerializeField] private LayerMask _groundLayerMask;
 
@@ -26,6 +26,8 @@ public class DragDropNoCanvas : MonoBehaviour
     public bool CanDrag { get => _canDrag; set => _canDrag = value; }
     // public Collider2D Collider { get => _collider; set => _collider = value; }
     public bool Dragging { get => _dragging; set => _dragging = value; }
+    public bool IsOverlaping { get => _isOverlaping; set => _isOverlaping = value; }
+    public bool IsUnable { get => _isUnable; set => _isUnable = value; }
 
     public void SetOverlaping()
     {
@@ -147,7 +149,7 @@ public class DragDropNoCanvas : MonoBehaviour
 
         if (transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas1) && !_isOverlaping)
         {
-            if (shapeManagerNoCanvas1.GetShapePower() == ShapePower.Mine || shapeManagerNoCanvas1.GetShapePower() == ShapePower.Jump)
+            if (shapeManagerNoCanvas1.GetShapePower() == ShapePower.Mine || shapeManagerNoCanvas1.GetShapePower() == ShapePower.Jump && shapeManagerNoCanvas1.GetShapePower() == ShapePower.ChangeDirection || shapeManagerNoCanvas1.GetShapePower() == ShapePower.Acceleration)
             {
                 if (CheckGroundUnder(transform))
                 {
@@ -189,7 +191,6 @@ public class DragDropNoCanvas : MonoBehaviour
         {
             return true;
         }
-
         return false;
     }
 }
