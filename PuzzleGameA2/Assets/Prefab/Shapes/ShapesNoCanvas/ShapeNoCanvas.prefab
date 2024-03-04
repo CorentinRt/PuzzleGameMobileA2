@@ -617,6 +617,7 @@ MonoBehaviour:
   _physics: {fileID: 6650314657922123617}
   _shapeType: 2
   _shapePower: 2
+  _isLookingLeft: 0
   _renderWithShapePower: 1
   _shapesVisuals:
   - {fileID: 1391132317825379134}
@@ -1658,7 +1659,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5917990013064046217}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 417d8742be5963440b6c09cd76225b01, type: 3}
   m_Name: 

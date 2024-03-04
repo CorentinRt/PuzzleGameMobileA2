@@ -14,6 +14,8 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
 
     [SerializeField] private ShapePower _shapePower;
 
+    [SerializeField] private bool _isLookingLeft;
+
     private int _direction = 1;
     
     public ShapePower GetShapePower() => _shapePower;
@@ -41,9 +43,18 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     public ShapeType ShapeType1 { get => _shapeType; set => _shapeType = value; }
     public SpriteRenderer SpriteRd { get => _spriteRd; set => _spriteRd = value; }
     public bool IsAffectedByGravity { get => _isAffectedByGravity; set => _isAffectedByGravity = value; }
+    public bool IsLookingLeft { get => _isLookingLeft; set => _isLookingLeft = value; }
 
     public void ChangeDirection()
     {
+        if (_isLookingLeft)
+        {
+            _isLookingLeft = false;
+        }
+        else
+        {
+            _isLookingLeft = true;
+        }
         _direction *= -1;
     }
     public int GetDirection()
@@ -638,6 +649,7 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     }
 
     public Vector3 StartPosition { get; set; }
+
 
     public void InitReset()
     {
