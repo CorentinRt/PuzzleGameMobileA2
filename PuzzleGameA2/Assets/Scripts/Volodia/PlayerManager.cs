@@ -41,8 +41,9 @@ public class PlayerManager : MonoBehaviour
         _instance = this;
     }
 
-    public void SetStartPoint(Vector3 pos, bool isGravityInverted)
+    public void SetStartPoint(Vector3 spawnpoint, Vector3 pos, bool isGravityInverted)
     {
+        _spawnpoint = spawnpoint;
         _startpoint = pos;
         _spawnGravity = isGravityInverted ? -1 : 1;
     }
