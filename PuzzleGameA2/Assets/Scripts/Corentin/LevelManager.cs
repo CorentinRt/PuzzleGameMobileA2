@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
 
         foreach (Level level in _levels)
         {
+            level.SetStars(0);
             level.Lock();
         }
         
@@ -44,7 +45,7 @@ public class LevelManager : MonoBehaviour
         {
             Level level = GetLevel(data.ID);
             level.Unlock(false);
-            level.SetStars(data.Stars, false);
+            level.SetStars(data.Stars);
         }
         OnSaveLoaded?.Invoke();
         
@@ -169,12 +170,20 @@ public class LevelManager : MonoBehaviour
 
     public void ReloadSave()
     {
+        foreach (Level level in _levels)
+        {
+            level.SetStars(0);
+            level.Lock();
+        }
+        //PlayerPrefs.DeleteAll();
         foreach (LevelSavedData data in SaveManager.LoadData(_levels))
         {
+            Debug.Log("ID: " + data.ID + ", Stars: " + data.Stars +  ", Unlocked: " + data.Unlocked);
             Level level = GetLevel(data.ID);
             level.Unlock(false);
-            level.SetStars(data.Stars, false);
+            level.SetStars(data.Stars);
         }
+        if (!_levels[0].isUnlocked) _levels[0].Unlock();
         OnSaveLoaded?.Invoke();
     }
 }
@@ -189,16 +198,21 @@ public class Level
     public bool isUnlocked => _unlocked;
     public int GetStarsNum => _starsWon;
 
-    public void SetStars(int nbStars, bool save = true)
-    { 
+    public void UpdateStars(int nbStars, bool save = true)
+    {
         _starsWon = _starsWon < nbStars ? nbStars : _starsWon;
-        SaveManager.SaveDataOfLevel(this);
+        if (save) SaveManager.SaveDataOfLevel(this);
+    }
+
+    public void SetStars(int nbStars)
+    {
+        _starsWon = nbStars;
     }
 
     public void Unlock(bool save = true)
     {
         _unlocked = true;
-        SaveManager.SaveDataOfLevel(this);
+        if (save) SaveManager.SaveDataOfLevel(this);
     }
 
     public int GetID => _levelInfo.LevelID;

@@ -14,6 +14,8 @@ public class SaveManager : MonoBehaviour
             if (!lvlData.Unlocked) return levelsData;
             levelsData.Add(LoadDataFromID(level.GetID));
         }
+        Debug.Log("Data has been saved");
+        Debug.Log(levelsData);
         return levelsData;
     }
 
@@ -24,6 +26,7 @@ public class SaveManager : MonoBehaviour
             if (!level.isUnlocked) return;
             PlayerPrefs.SetInt("Level"+level.GetID, level.GetStarsNum);
         }
+        Debug.Log("Data has been saved");
         PlayerPrefs.Save();
     }
 
@@ -36,6 +39,9 @@ public class SaveManager : MonoBehaviour
     public static void DeleteData()
     {
         PlayerPrefs.DeleteAll();
+        //PlayerPrefs.Save();
+        Debug.Log("Data has been Deleted");
+        Debug.Log(PlayerPrefs.HasKey("Level" + 1));
     }
 
     private static LevelSavedData LoadDataFromID(int levelID)
@@ -43,6 +49,7 @@ public class SaveManager : MonoBehaviour
         LevelSavedData levelSavedData = new LevelSavedData();
         levelSavedData.ID = levelID;
         levelSavedData.Unlocked = PlayerPrefs.HasKey("Level" + levelID);
+        levelSavedData.Stars = 0;
         if (!levelSavedData.Unlocked) return levelSavedData;
         int data = PlayerPrefs.GetInt("Level" + levelID);
         levelSavedData.Stars = data;
