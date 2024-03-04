@@ -17,6 +17,17 @@ public class LevelDisplay : MonoBehaviour
 
     private void Start()
     {
+        UpdateUI();
+        LevelManager.Instance.OnSaveLoaded += UpdateUI;
+    }
+
+    private void OnDestroy()
+    {
+        LevelManager.Instance.OnSaveLoaded -= UpdateUI;
+    }
+
+    private void UpdateUI()
+    {
         _levelManager = LevelManager.Instance;
         _level = _levelManager.GetLevel(_levelID);
         _text.text = "Level " + _level.GetID;

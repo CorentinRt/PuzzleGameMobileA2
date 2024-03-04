@@ -19,8 +19,10 @@ public class LevelManager : MonoBehaviour
 
     private LevelController _currentLC;
     public LevelController GetCurrentLevelController => _currentLC = _currentLC == null ? LevelController.Instance : _currentLC;
+
     //FindObjectsOfType<LevelController>().Where(x => x.gameObject.scene == behav.gameObject.scene).FirstOrDefault();
 
+    public event Action OnSaveLoaded;
     public event Action OnLevelFinishedLoad;
 
     private void Awake()
@@ -31,8 +33,22 @@ public class LevelManager : MonoBehaviour
             return;
         }
         _instance = this;
-
         DontDestroyOnLoad(gameObject);
+
+        foreach (Level level in _levels)
+        {
+            level.Lock();
+        }
+        
+        foreach (LevelSavedData data in SaveManager.LoadData(_levels))
+        {
+            Level level = GetLevel(data.ID);
+            level.Unlock(false);
+            level.SetStars(data.Stars, false);
+        }
+        OnSaveLoaded?.Invoke();
+        
+        if (!_levels[0].isUnlocked) _levels[0].Unlock();
     }
 
     private void Start()
@@ -61,6 +77,17 @@ public class LevelManager : MonoBehaviour
     private void LoadFirstLevel()
     {
         LoadLevel(_levels[0].GetID);
+    }
+
+    public void LoadLastLevelUnlocked()
+    {
+        int id = _levels[0].GetID;
+        foreach (Level level in _levels)
+        {
+            if (level.isUnlocked) id = level.GetID;
+            else break;
+        }
+        LoadGlobalSceneAndLevel(id);
     }
 
     public Level GetLevel(int id) => _levels.Find(x => x.GetID == id);
@@ -139,6 +166,17 @@ public class LevelManager : MonoBehaviour
             if (!GetLevel(_currentLevelID+1).isUnlocked) UnlockLevel(_currentLevelID + 1);
         }
     }
+
+    public void ReloadSave()
+    {
+        foreach (LevelSavedData data in SaveManager.LoadData(_levels))
+        {
+            Level level = GetLevel(data.ID);
+            level.Unlock(false);
+            level.SetStars(data.Stars, false);
+        }
+        OnSaveLoaded?.Invoke();
+    }
 }
 
 [Serializable]
@@ -151,9 +189,24 @@ public class Level
     public bool isUnlocked => _unlocked;
     public int GetStarsNum => _starsWon;
 
-    public void SetStars(int nbStars) => _starsWon = _starsWon<nbStars? nbStars : _starsWon;
-    public void Unlock() => _unlocked = true;
+    public void SetStars(int nbStars, bool save = true)
+    { 
+        _starsWon = _starsWon < nbStars ? nbStars : _starsWon;
+        SaveManager.SaveDataOfLevel(this);
+    }
+
+    public void Unlock(bool save = true)
+    {
+        _unlocked = true;
+        SaveManager.SaveDataOfLevel(this);
+    }
+
     public int GetID => _levelInfo.LevelID;
     public string GetScene => _levelInfo.LevelScene;
     public LevelInfo LevelInfo => _levelInfo;
+
+    public void Lock()
+    {
+        _unlocked = false;
+    }
 }
