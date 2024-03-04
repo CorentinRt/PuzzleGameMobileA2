@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CorpsesBehavior : MonoBehaviour
 {
@@ -13,12 +15,23 @@ public class CorpsesBehavior : MonoBehaviour
     private Coroutine _inverseGravityCoroutine;
     [SerializeField] private float _jumpForce;
 
+    private DeathType _deathType;
+
+    [SerializeField] private UnityEvent OnCorpsesDamage;
+
     public Rigidbody2D Rb { get => _rb; set => _rb = value; }
+    public DeathType DeathType { get => _deathType; set => _deathType = value; }
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         LevelManager.Instance.GetCurrentLevelController.OnLevelUnload += DestroySelf;
+    }
+
+
+    public void DesintagratedByLaser()
+    {
+        Destroy(gameObject);
     }
 
     private void DestroySelf()
@@ -32,6 +45,10 @@ public class CorpsesBehavior : MonoBehaviour
         LevelManager.Instance.GetCurrentLevelController.OnLevelUnload -= DestroySelf;
     }
 
+    private void Start()
+    {
+        OnCorpsesDamage?.Invoke();
+    }
     private void Update()
     {
         if (_rb.velocity == Vector2.zero) _rb.constraints = RigidbodyConstraints2D.FreezePositionX;
