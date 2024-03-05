@@ -1958,16 +1958,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2702550699699987471, guid: b0989c32dbd2aea46905d1f319434b33, type: 3}
+      propertyPath: _spawnpoint.y
+      value: -0.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 2702550699699987471, guid: b0989c32dbd2aea46905d1f319434b33, type: 3}
       propertyPath: _isGravityInverted
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7589420417208474375, guid: b0989c32dbd2aea46905d1f319434b33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.903249
+      value: 9.5
       objectReference: {fileID: 0}
     - target: {fileID: 7589420417208474375, guid: b0989c32dbd2aea46905d1f319434b33, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.84
+      value: 3.72
       objectReference: {fileID: 0}
     - target: {fileID: 7589420417208474375, guid: b0989c32dbd2aea46905d1f319434b33, type: 3}
       propertyPath: m_LocalPosition.z
