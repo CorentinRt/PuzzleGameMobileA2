@@ -16,6 +16,8 @@ public class LevelPresentation : MonoBehaviour
     [SerializeField] private Transform _shapeDisplayPanel;
     [SerializeField] private GameObject _shapeDisplayPrefab;
 
+    private bool _hasPressedToSkip;
+
     private void Start()
     {
         LevelManager.Instance.OnLevelFinishedLoad += SetupPresentation;
@@ -27,7 +29,17 @@ public class LevelPresentation : MonoBehaviour
         LevelManager.Instance.OnLevelFinishedLoad -= SetupPresentation;
         GameManager.Instance.OnLevelPresent -= Present;
     }
-
+    private void Update()
+    {
+        if (_hasPressedToSkip)
+        {
+            _hasPressedToSkip = false;
+        }
+        if (Input.GetMouseButtonDown(0) && _presentationPanel.activeSelf)
+        {
+            _hasPressedToSkip = true;
+        }
+    }
     private void Present()
     {
         _presentationPanel.SetActive(true);
@@ -36,9 +48,21 @@ public class LevelPresentation : MonoBehaviour
 
     public IEnumerator ClosePanel()
     {
-        yield return new WaitForSeconds(_waitTime);
+        //yield return new WaitForSeconds(_waitTime);
+
+        float current = 0f;
+
+        while (current < _waitTime && !_hasPressedToSkip)
+        {
+            current += Time.deltaTime;
+
+            yield return null;
+        }
+
         _presentationPanel.SetActive(false);
         GameManager.Instance.ChangeGamePhase(PhaseType.PlateformePlacement);
+
+        yield return null;
     }
 
 
@@ -52,7 +76,6 @@ public class LevelPresentation : MonoBehaviour
         {
             ShapeDisplay shapeDisplay = Instantiate(_shapeDisplayPrefab, _shapeDisplayPanel).GetComponent<ShapeDisplay>();
             shapeDisplay.SetShape(shape);
-
         }
     }
 }
