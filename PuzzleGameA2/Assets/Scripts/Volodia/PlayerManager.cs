@@ -21,11 +21,15 @@ public class PlayerManager : MonoBehaviour
     private int _spawnGravity;
 
 
+    private int _corpsesInMotionCount;
+
+
     public event Action OnPlayerDeath;
 
     private static PlayerManager _instance;
     public static PlayerManager Instance { get => _instance; set => _instance = value; }
-
+    public int CorpsesInMotionCount { get => _corpsesInMotionCount; set => _corpsesInMotionCount = value; }
+    public PlayerBehaviour CurrentPlayer { get => _currentPlayer; set => _currentPlayer = value; }
 
     public int GetPlayerAliveCount() => _nbLives - _playerCount /* + 2 */;
 
@@ -41,8 +45,9 @@ public class PlayerManager : MonoBehaviour
         _instance = this;
     }
 
-    public void SetStartPoint(Vector3 pos, bool isGravityInverted)
+    public void SetStartPoint(Vector3 spawnpoint, Vector3 pos, bool isGravityInverted)
     {
+        _spawnpoint = spawnpoint;
         _startpoint = pos;
         _spawnGravity = isGravityInverted ? -1 : 1;
     }
@@ -95,7 +100,7 @@ public class PlayerManager : MonoBehaviour
             return;
         }
 
-        if (_currentPlayer == null && _isOnPlayerPhase)
+        if (_currentPlayer == null && _isOnPlayerPhase && _corpsesInMotionCount == 0)
         {
             _isOnPlayerPhase = false;
             OnPlayerDeath?.Invoke();
@@ -116,7 +121,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (_spawnGravity == 0) _spawnGravity = 1;
         _playerCount = resetPlayerCount ? 1 : _playerCount + 1;
-        _nextPlayer = Instantiate(_playerPrefab, new Vector3(_spawnpoint.x, _spawnGravity * _spawnpoint.y, _spawnpoint.z), transform.rotation).GetComponent<PlayerBehaviour>();
+        _nextPlayer = Instantiate(_playerPrefab, new Vector3(_spawnpoint.x, /* _spawnGravity * */ _spawnpoint.y, _spawnpoint.z), transform.rotation).GetComponent<PlayerBehaviour>();
         _nextPlayer.gameObject.GetComponent<Rigidbody2D>().gravityScale *= _spawnGravity;
         _nextPlayer.transform.localScale = new Vector3(1, _spawnGravity, 1);
         _nextPlayer.SetSpawnpoint(_startpoint);

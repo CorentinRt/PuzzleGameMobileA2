@@ -23,6 +23,8 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     [SerializeField] private ShapePower _shapePower;
 
+    [SerializeField] private bool _isLookingLeft;
+
     [SerializeField] private List<GameObject> _powerVisuals;
 
     [SerializeField] private bool _isAffectedByGravity;
@@ -32,6 +34,8 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public int ShapeCount { get => _shapeCount; set => _shapeCount = value; }
     public ShapePower ShapePower { get => _shapePower; set => _shapePower = value; }
     public ShapeType ShapeType { get => _shapeType; set => _shapeType = value; }
+    public bool IsLookingLeft { get => _isLookingLeft; set => _isLookingLeft = value; }
+
     public void OnPointerDown(PointerEventData eventData)
     {
         if (_shapeCount > 0)
@@ -45,8 +49,24 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             {
                 tempShape.GetComponentInChildren<ShapeManagerNoCanvas>().IsAffectedByGravity = true;
             }
+            if (_isLookingLeft)
+            {
+                tempShape.GetComponent<ShapeManagerNoCanvas>().ChangeDirection();
+                Vector3 tempVect = tempShape.transform.localScale;
+                tempVect.x = -1;
+                tempShape.transform.localScale = tempVect;
+            }
             tempShape.GetComponent<ShapeManagerNoCanvas>().SetShapePower(_shapePower);
+            if (_shapePower == ShapePower.SideJump)
+            {
+                tempShape.GetComponent<ShapeManagerNoCanvas>().ActivateFieldOfView();
+                if (_isLookingLeft)
+                {
+                    tempShape.GetComponent<ShapeManagerNoCanvas>().ReverseFieldOfView();
+                }
+            }
             tempShape.GetComponentInChildren<DragDropNoCanvas>().Dragging = true;
+            DragDropManager.Instance.DraggingNumber++;
             tempShape.GetComponentInChildren<DragDropNoCanvas>().AllowDrag();
             tempShape.GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
 
@@ -223,6 +243,14 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         _shapeCount = shape.MaxCount;
         _shapePower = shape.Power;
         _shapeType = shape.Type;
+        _isLookingLeft = shape.IsLookingLeft;
+        if (_isLookingLeft)
+        {
+            Vector3 tempVect = transform.localScale;
+            tempVect.x = -1;
+            transform.localScale = tempVect;
+            _shapeCountText.transform.localScale = tempVect;
+        }
     }
 
     private void OnDestroy()

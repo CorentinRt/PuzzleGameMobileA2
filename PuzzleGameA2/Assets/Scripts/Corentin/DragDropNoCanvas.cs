@@ -98,6 +98,8 @@ public class DragDropNoCanvas : MonoBehaviour
             }
             if (_canMove && _canDrag)
             {
+                DragDropManager.Instance.DraggingNumber++;
+
                 _dragging = true;
             }
         }
@@ -124,6 +126,8 @@ public class DragDropNoCanvas : MonoBehaviour
             if (transform.parent.gameObject == DragDropManager.Instance.CurrentShapeDragged && transform.parent.gameObject.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
             {
                 shapeManagerNoCanvas.InitReset();
+
+                DragDropManager.Instance.DraggingNumber--;
             }
             _canMove = false;
             _dragging = false;
@@ -161,6 +165,19 @@ public class DragDropNoCanvas : MonoBehaviour
                 }
             }
         }
+
+        Vector3 tempVector = transform.parent.localScale;
+        if (CheckGroundOnTop(transform.parent))
+        {
+            Debug.Log("Detect ground on top");
+            tempVector.y = -1;
+            transform.parent.localScale = tempVector;
+        }
+        else
+        {
+            tempVector.y = 1;
+            transform.parent.localScale = tempVector;
+        }
     }
 
     public void SetUnableColor()
@@ -185,9 +202,30 @@ public class DragDropNoCanvas : MonoBehaviour
     private bool CheckGroundUnder(Transform transf)
     {
         Vector2 checkPos = transf.position;
-        checkPos.y -= GridManager.Instance.CellSize.y;
+        if (transf.parent.localScale.y < 0f)
+        {
+            checkPos.y += GridManager.Instance.CellSize.y;
+            Debug.Log("ground under -1");
+        }
+        else
+        {
+            checkPos.y -= GridManager.Instance.CellSize.y;
+            Debug.Log("ground under 1");
+        }
 
         if (Physics2D.OverlapPoint(checkPos, _groundLayerMask))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private bool CheckGroundOnTop(Transform transf)
+    {
+        Vector2 CheckPos = transf.position;
+        CheckPos.y += GridManager.Instance.CellSize.y;
+
+        if (Physics2D.OverlapPoint(CheckPos, _groundLayerMask))
         {
             return true;
         }

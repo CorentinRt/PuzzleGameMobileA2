@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ShapeSelector : MonoBehaviour
+public class ShapeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private RectTransform _openTransf;
 
@@ -13,6 +14,8 @@ public class ShapeSelector : MonoBehaviour
     private BoxCollider2D _boxCollider;
 
     [SerializeField] private Color _semiTransparentColor;
+    private Color _notTransparentColor;
+
     private CanvasGroup _canvasGroup;
 
     [SerializeField] float _openSpeed;
@@ -96,6 +99,8 @@ public class ShapeSelector : MonoBehaviour
     void Start()
     {
         GameManager.Instance.OnPhase1Ended += CloseSelector;
+
+        _notTransparentColor = GetComponent<Image>().color;
     }
 
     private void OnDestroy()
@@ -161,5 +166,15 @@ public class ShapeSelector : MonoBehaviour
         _closeCoroutine = null;
 
         yield return null;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        GetComponent<Image>().color = _semiTransparentColor;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        GetComponent<Image>().color = _notTransparentColor;
     }
 }

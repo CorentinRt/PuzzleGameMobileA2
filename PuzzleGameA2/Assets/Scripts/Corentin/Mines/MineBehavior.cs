@@ -37,6 +37,8 @@ public class MineBehavior : MonoBehaviour
 
                     dir.x *= GetComponentInParent<ShapeManagerNoCanvas>().GetDirection();
 
+                    dir.y *= GetComponentInParent<ShapeManagerNoCanvas>().transform.localScale.y;
+
                     collision.GetComponent<Rigidbody2D>().AddForce(dir * 10f, ForceMode2D.Impulse);
                     
                     // !!!!!!!!!!!!!!!!!!! Fin explosion predef !!!!!!!!!!!!!!!!!!!!!
