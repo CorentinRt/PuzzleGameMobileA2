@@ -8,6 +8,8 @@ public class FieldOfView : MonoBehaviour
     private Vector3 origin;
     [SerializeField] private LayerMask _floorLayerMask;
 
+    [SerializeField] private float _distance;
+
     private Vector3 GetVectorFromAngle(float angle)
     {
         float angleRad = angle * (Mathf.PI / 180f);
@@ -27,7 +29,7 @@ public class FieldOfView : MonoBehaviour
         int rayCount = 80;
         float angle = 0f;
         float angleIncrease = fov / rayCount;
-        float viewDistance = 5f;
+        float viewDistance = _distance;
 
         Vector3[] vertices = new Vector3[rayCount + 1 + 1];
         Vector2[] uv = new Vector2[vertices.Length];

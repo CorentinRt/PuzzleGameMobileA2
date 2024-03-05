@@ -30,8 +30,10 @@ public class Shape
     [SerializeField] private ShapePower _power;
     [SerializeField] private ShapeType _type;
     [SerializeField] private int _maxCount;
+    [SerializeField] private bool _isLookingLeft;
 
     public ShapePower Power => _power;
     public ShapeType Type => _type;
     public int MaxCount => _maxCount;
+    public bool IsLookingLeft { get => _isLookingLeft; set => _isLookingLeft = value; }
 }

@@ -477,6 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a368122ff75dc645ade728335a40b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _displayGrid: 0
 --- !u!4 &302729965
 Transform:
   m_ObjectHideFlags: 0
@@ -3015,6 +3016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isGravityInverted: 0
+  _spawnpoint: {x: 0, y: 0, z: 0}
 --- !u!4 &2049595331
 Transform:
   m_ObjectHideFlags: 0

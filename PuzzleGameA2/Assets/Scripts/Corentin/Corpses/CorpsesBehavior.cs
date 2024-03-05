@@ -64,12 +64,12 @@ public class CorpsesBehavior : MonoBehaviour
 
     public void Jump()
     {
-        _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+        _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce * _rb.gravityScale);
         Debug.Log("jumping");
     }
     public void SideJump(int dir)
     {
-        _rb.velocity = new Vector2(_jumpForce * dir, _jumpForce);
+        _rb.velocity = new Vector2(_jumpForce * dir, _jumpForce * _rb.gravityScale);
         Debug.Log("Side Jumping");
     }
     public void InverseGravity()
