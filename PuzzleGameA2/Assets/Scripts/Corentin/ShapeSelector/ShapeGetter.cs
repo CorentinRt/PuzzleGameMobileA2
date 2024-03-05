@@ -66,6 +66,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 }
             }
             tempShape.GetComponentInChildren<DragDropNoCanvas>().Dragging = true;
+            DragDropManager.Instance.DraggingNumber++;
             tempShape.GetComponentInChildren<DragDropNoCanvas>().AllowDrag();
             tempShape.GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
 
@@ -209,7 +210,19 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     }
                 }
                 break;
-
+            case ShapePower.ElectricSphere:
+                for (int i = 0; i < _powerVisuals.Count; i++)
+                {
+                    if (i == 5)
+                    {
+                        _powerVisuals[i].SetActive(true);
+                    }
+                    else
+                    {
+                        _powerVisuals[i].SetActive(false);
+                    }
+                }
+                break;
         }
     }
 
