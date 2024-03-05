@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3615918274148405929}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -1.05, z: 0}
+  m_LocalPosition: {x: 0.4, y: -1.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -208,6 +208,18 @@ MonoBehaviour:
   _groundCheckRight: {fileID: 8822542137946391359}
   _jumpForce: 7
   _mineCooldown: 0.15
+  OnPlayerChangeDirection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerAccelerate:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerJump:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerInverseGravity:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7790422929690153996
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 7790422929690153996}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: -1.05, z: 0}
+  m_LocalPosition: {x: -0.4, y: -1.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
