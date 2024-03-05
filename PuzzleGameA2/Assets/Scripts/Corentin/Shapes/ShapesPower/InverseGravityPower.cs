@@ -18,10 +18,7 @@ public class InverseGravityPower : MonoBehaviour
                     GetComponentInParent<ShapeManagerNoCanvas>().Desactive();
                 
                 }
-            }
-            else
-            {
-                if (collision.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
+                else if(collision.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
                 {
                     corpsesBehavior.InverseGravity();
                     GetComponentInParent<ShapeManagerNoCanvas>().Desactive();
