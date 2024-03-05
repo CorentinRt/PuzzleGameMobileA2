@@ -839,6 +839,7 @@ GameObject:
   - component: {fileID: 1885391565665662669}
   - component: {fileID: 7890256369594020316}
   - component: {fileID: 2316864286195120199}
+  - component: {fileID: 4458650457365320835}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -999,6 +1000,18 @@ MonoBehaviour:
   - {fileID: 1792561405989332718}
   - {fileID: 8243742983328116808}
   - {fileID: 9108095256624542248}
+--- !u!114 &4458650457365320835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900616159172014414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcca99f5014bc144892a3dff44f9349e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &991527927778469516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,9 +1715,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2427256673786086545}
-        m_TargetAssemblyTypeName: PhaseChoice, Assembly-CSharp
-        m_MethodName: RestartLevel
+      - m_Target: {fileID: 4458650457365320835}
+        m_TargetAssemblyTypeName: SkipLifeSystem, Assembly-CSharp
+        m_MethodName: SkipLife
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3297,7 +3310,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4080766875217697303}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2427256673786086545}
+        m_TargetAssemblyTypeName: PhaseChoice, Assembly-CSharp
+        m_MethodName: RestartLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3245847866095459406
 GameObject:
   m_ObjectHideFlags: 0

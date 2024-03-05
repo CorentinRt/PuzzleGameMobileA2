@@ -164,7 +164,10 @@ public class PlayerBehaviour : MonoBehaviour
 
         Destroy(gameObject);
     }
-
+    public void KillPlayerWithoutCorpses()
+    {
+        Destroy(gameObject);
+    }
     public void UnloadLevel() => Destroy(gameObject);
 
     private void OnCollisionEnter2D(Collision2D other)

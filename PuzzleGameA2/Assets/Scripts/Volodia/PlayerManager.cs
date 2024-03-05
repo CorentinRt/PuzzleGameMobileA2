@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
     private static PlayerManager _instance;
     public static PlayerManager Instance { get => _instance; set => _instance = value; }
     public int CorpsesInMotionCount { get => _corpsesInMotionCount; set => _corpsesInMotionCount = value; }
+    public PlayerBehaviour CurrentPlayer { get => _currentPlayer; set => _currentPlayer = value; }
 
     public int GetPlayerAliveCount() => _nbLives - _playerCount /* + 2 */;
 
