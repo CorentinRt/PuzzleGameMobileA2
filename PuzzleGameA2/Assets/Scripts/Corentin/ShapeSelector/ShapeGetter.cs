@@ -57,6 +57,14 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 tempShape.transform.localScale = tempVect;
             }
             tempShape.GetComponent<ShapeManagerNoCanvas>().SetShapePower(_shapePower);
+            if (_shapePower == ShapePower.SideJump)
+            {
+                tempShape.GetComponent<ShapeManagerNoCanvas>().ActivateFieldOfView();
+                if (_isLookingLeft)
+                {
+                    tempShape.GetComponent<ShapeManagerNoCanvas>().ReverseFieldOfView();
+                }
+            }
             tempShape.GetComponentInChildren<DragDropNoCanvas>().Dragging = true;
             tempShape.GetComponentInChildren<DragDropNoCanvas>().AllowDrag();
             tempShape.GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
