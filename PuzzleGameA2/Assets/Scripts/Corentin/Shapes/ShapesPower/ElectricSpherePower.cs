@@ -13,6 +13,7 @@ public class ElectricSpherePower : MonoBehaviour
                 if (collision.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
                 {
                     playerBehaviour.KillPlayer();
+                    GetComponentInParent<ShapeManagerNoCanvas>().Desactive();
                 }
             }
         }

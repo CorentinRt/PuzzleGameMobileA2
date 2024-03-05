@@ -432,7 +432,20 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
                     break;
                 case ShapePower.ElectricSphere:
 
-
+                    for (int i = 0; i < _shapesVisuals.Count; i++)
+                    {
+                        if (i == 5)
+                        {
+                            _spriteRd = _shapesVisuals[i].GetComponent<SpriteRenderer>();
+                            _shapesVisuals[i].SetActive(true);
+                            _powerColliders[i].enabled = true;
+                        }
+                        else
+                        {
+                            _shapesVisuals[i].SetActive(false);
+                            _powerColliders[i].enabled = false;
+                        }
+                    }
                     break;
             }
     }
@@ -706,6 +719,11 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
         {
             Debug.Log("Reset Mine");
             _triggersPowerContainer.GetComponent<MineBehavior>().HasExplode = false;
+        }
+        else if (_shapePower == ShapePower.ElectricSphere)
+        {
+            Debug.Log("Reset Electric sphere");
+            gameObject.SetActive(true);
         }
     }
     [Button]

@@ -133,7 +133,19 @@ public class ShapeDisplay : MonoBehaviour
                     }
                 }
                 break;
-
+            case ShapePower.ElectricSphere:
+                for (int i = 0; i < _powerVisuals.Count; i++)
+                {
+                    if (i == 5)
+                    {
+                        _powerVisuals[i].SetActive(true);
+                    }
+                    else
+                    {
+                        _powerVisuals[i].SetActive(false);
+                    }
+                }
+                break;
         }
 
         _nbShape.text = shape.MaxCount.ToString();
