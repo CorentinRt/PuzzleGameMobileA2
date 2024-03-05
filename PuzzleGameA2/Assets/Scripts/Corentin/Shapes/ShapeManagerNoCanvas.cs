@@ -430,6 +430,10 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
                         }
                     }
                     break;
+                case ShapePower.ElectricSphere:
+
+
+                    break;
             }
     }
 }
@@ -641,6 +645,9 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
                 break;
             case ShapePower.Mine:
                 _triggersPowerContainer.AddComponent(typeof(MineBehavior));
+                break;
+            case ShapePower.ElectricSphere:
+                _triggersPowerContainer.AddComponent(typeof(ElectricSpherePower));
                 break;
         }
     }

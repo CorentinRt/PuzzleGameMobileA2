@@ -13,7 +13,8 @@ namespace Enums
         SideJump,
         Acceleration,
         InverseGravity,
-        Mine
+        Mine,
+        ElectricSphere
     }
     public enum PhaseType
     {
