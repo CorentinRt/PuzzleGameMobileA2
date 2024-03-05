@@ -21,11 +21,14 @@ public class PlayerManager : MonoBehaviour
     private int _spawnGravity;
 
 
+    private int _corpsesInMotionCount;
+
+
     public event Action OnPlayerDeath;
 
     private static PlayerManager _instance;
     public static PlayerManager Instance { get => _instance; set => _instance = value; }
-
+    public int CorpsesInMotionCount { get => _corpsesInMotionCount; set => _corpsesInMotionCount = value; }
 
     public int GetPlayerAliveCount() => _nbLives - _playerCount /* + 2 */;
 
@@ -96,7 +99,7 @@ public class PlayerManager : MonoBehaviour
             return;
         }
 
-        if (_currentPlayer == null && _isOnPlayerPhase)
+        if (_currentPlayer == null && _isOnPlayerPhase && _corpsesInMotionCount == 0)
         {
             _isOnPlayerPhase = false;
             OnPlayerDeath?.Invoke();

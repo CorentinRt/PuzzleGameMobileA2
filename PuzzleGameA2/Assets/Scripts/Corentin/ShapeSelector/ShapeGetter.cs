@@ -66,6 +66,7 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 }
             }
             tempShape.GetComponentInChildren<DragDropNoCanvas>().Dragging = true;
+            DragDropManager.Instance.DraggingNumber++;
             tempShape.GetComponentInChildren<DragDropNoCanvas>().AllowDrag();
             tempShape.GetComponentInChildren<DragDropNoCanvas>().SetCollider(_shapeType);
 
