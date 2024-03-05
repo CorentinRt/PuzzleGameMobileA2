@@ -16,11 +16,14 @@ public class DragDropManager : MonoBehaviour
     [SerializeField] private Color _ableDragColor;
     [SerializeField] private Color _selectedDragColor;
 
+    private int _draggingNumber;
+
     public bool UseGrid { get => _useGrid; set => _useGrid = value; }
     public GameObject CurrentShapeDragged { get => _currentShapeDragged; set => _currentShapeDragged = value; }
     public Color UnableDragColor { get => _unableDragColor; set => _unableDragColor = value; }
     public Color AbleDragColor { get => _ableDragColor; set => _ableDragColor = value; }
     public Color SelectedDragColor { get => _selectedDragColor; set => _selectedDragColor = value; }
+    public int DraggingNumber { get => _draggingNumber; set => _draggingNumber = value; }
 
     private void Awake()
     {
@@ -42,6 +45,11 @@ public class DragDropManager : MonoBehaviour
         if (_currentShapeDragged != null && GameManager.Instance.CurrentPhase != Enums.PhaseType.PlateformePlacement)
         {
             _currentShapeDragged = null;
+            _draggingNumber = 0;
+        }
+        if (!Input.GetMouseButton(0))
+        {
+            _draggingNumber = 0;
         }
     }
 }

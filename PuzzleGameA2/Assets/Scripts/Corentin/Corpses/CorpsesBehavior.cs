@@ -15,6 +15,8 @@ public class CorpsesBehavior : MonoBehaviour
     private Coroutine _inverseGravityCoroutine;
     [SerializeField] private float _jumpForce;
 
+    private bool _inMotion;
+
     private DeathType _deathType;
 
     [SerializeField] private UnityEvent OnCorpsesDamage;
@@ -43,15 +45,33 @@ public class CorpsesBehavior : MonoBehaviour
     {
         if (GameManager.Instance == null) return;
         LevelManager.Instance.GetCurrentLevelController.OnLevelUnload -= DestroySelf;
+
+        if (_inMotion)
+        {
+            PlayerManager.Instance.CorpsesInMotionCount--;
+        }
     }
 
     private void Start()
     {
         OnCorpsesDamage?.Invoke();
+        
+        PlayerManager.Instance.CorpsesInMotionCount++;
+        _inMotion = true;
     }
     private void Update()
     {
-        if (_rb.velocity == Vector2.zero) _rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        if (_rb.velocity == Vector2.zero && _inMotion)
+        {
+            _inMotion = false;
+            PlayerManager.Instance.CorpsesInMotionCount--;
+            _rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        }
+        else if (_rb.velocity != Vector2.zero && !_inMotion)
+        {
+            _inMotion = true;
+            PlayerManager.Instance.CorpsesInMotionCount++;
+        }
     }
 
 
@@ -64,12 +84,12 @@ public class CorpsesBehavior : MonoBehaviour
 
     public void Jump()
     {
-        _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+        _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce * _rb.gravityScale);
         Debug.Log("jumping");
     }
     public void SideJump(int dir)
     {
-        _rb.velocity = new Vector2(_jumpForce * dir, _jumpForce);
+        _rb.velocity = new Vector2(_jumpForce * dir, _jumpForce * _rb.gravityScale);
         Debug.Log("Side Jumping");
     }
     public void InverseGravity()

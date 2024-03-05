@@ -14,6 +14,8 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
 
     [SerializeField] private ShapePower _shapePower;
 
+    [SerializeField] private bool _isLookingLeft;
+
     private int _direction = 1;
     
     public ShapePower GetShapePower() => _shapePower;
@@ -31,6 +33,9 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     [SerializeField] private List<Collider2D> _powerColliders;
     [SerializeField] private GameObject _triggersPowerContainer;
 
+    [SerializeField] private Transform _fieldOfView;
+    [SerializeField] private Transform _viewVisibilityHandler;
+
     private BoxCollider2D _boxCollider;
     private CircleCollider2D _circleCollider;
     private PolygonCollider2D _triangleCollider;
@@ -41,9 +46,18 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     public ShapeType ShapeType1 { get => _shapeType; set => _shapeType = value; }
     public SpriteRenderer SpriteRd { get => _spriteRd; set => _spriteRd = value; }
     public bool IsAffectedByGravity { get => _isAffectedByGravity; set => _isAffectedByGravity = value; }
+    public bool IsLookingLeft { get => _isLookingLeft; set => _isLookingLeft = value; }
 
     public void ChangeDirection()
     {
+        if (_isLookingLeft)
+        {
+            _isLookingLeft = false;
+        }
+        else
+        {
+            _isLookingLeft = true;
+        }
         _direction *= -1;
     }
     public int GetDirection()
@@ -72,7 +86,6 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
                             _powerColliders[i].enabled = false;
                         }
                     }
-
 
                     //_boxCollider.enabled = true;
                     //_triangleCollider.enabled = false;
@@ -142,6 +155,7 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
                             _powerColliders[i].enabled = false;
                         }
                     }
+
 
                     //_circleCollider.enabled = true;
                     //_triangleCollider.enabled = false;
@@ -239,6 +253,18 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
         {
             DesactivateGravity();
         }
+    }
+
+    public void ActivateFieldOfView()
+    {
+        _fieldOfView.gameObject.SetActive(true);
+        _viewVisibilityHandler.gameObject.SetActive(true);
+    }
+    public void ReverseFieldOfView()
+    {
+        Vector3 tempVect = _fieldOfView.localScale;
+        tempVect.x *= -1;
+        _fieldOfView.localScale = tempVect;
     }
 
     private void ActivateGravity()
@@ -403,6 +429,10 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
                             _powerColliders[i].enabled = false;
                         }
                     }
+                    break;
+                case ShapePower.ElectricSphere:
+
+
                     break;
             }
     }
@@ -616,6 +646,9 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
             case ShapePower.Mine:
                 _triggersPowerContainer.AddComponent(typeof(MineBehavior));
                 break;
+            case ShapePower.ElectricSphere:
+                _triggersPowerContainer.AddComponent(typeof(ElectricSpherePower));
+                break;
         }
     }
 
@@ -634,10 +667,25 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     // Update is called once per frame
     void Update()
     {
-        
+        if (_shapePower == ShapePower.SideJump)
+        {
+            _fieldOfView.position = Vector3.zero;
+        }
+        Vector3 tempVect = _fieldOfView.localScale;
+        if (transform.localScale.y == -1)
+        {
+            tempVect.y = -1;
+            _fieldOfView.localScale = tempVect;
+        }
+        else
+        {
+            tempVect.y = 1;
+            _fieldOfView.localScale = tempVect;
+        }
     }
 
     public Vector3 StartPosition { get; set; }
+
 
     public void InitReset()
     {

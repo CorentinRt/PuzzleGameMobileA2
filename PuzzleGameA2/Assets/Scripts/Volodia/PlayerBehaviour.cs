@@ -164,7 +164,10 @@ public class PlayerBehaviour : MonoBehaviour
 
         Destroy(gameObject);
     }
-
+    public void KillPlayerWithoutCorpses()
+    {
+        Destroy(gameObject);
+    }
     public void UnloadLevel() => Destroy(gameObject);
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -207,7 +210,7 @@ public class PlayerBehaviour : MonoBehaviour
         StartCoroutine(JumpCooldown());
         _isJumping = true;
         _rb.velocity = Vector2.zero;
-        _rb.AddForce(new Vector2(_jumpForce * _direction, _jumpForce), ForceMode2D.Impulse);
+        _rb.AddForce(new Vector2(_jumpForce * _direction, _jumpForce * _rb.gravityScale), ForceMode2D.Impulse);
         Debug.Log("jumping");
     }
     public void SideJump(int dir)
@@ -216,7 +219,7 @@ public class PlayerBehaviour : MonoBehaviour
         StartCoroutine(JumpCooldown());
         _isJumping = true;
         _rb.velocity = Vector2.zero;
-        _rb.AddForce(new Vector2(_jumpForce * dir, _jumpForce), ForceMode2D.Impulse);
+        _rb.AddForce(new Vector2(_jumpForce * dir, _jumpForce * _rb.gravityScale), ForceMode2D.Impulse);
         Debug.Log("Side Jumping");
     }
     public void Acceleration()
