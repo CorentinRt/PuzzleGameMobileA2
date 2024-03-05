@@ -3,21 +3,25 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Death
+  - Plateforme
+  - FinalDoor
+  - Floor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
+  - Player
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - DragTrigger
+  - Mask
+  - BehindMask
+  - Black
+  - ShapeIndicators
   - 
   - 
   - 
