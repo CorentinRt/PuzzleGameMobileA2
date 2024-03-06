@@ -114,7 +114,17 @@ public class LevelManager : MonoBehaviour
 
     public void LoadGlobalSceneAndLevel(int id)
     {
-        SceneManager.LoadScene(_globalScene);
+        StartCoroutine(WaitGlobalSceneAndLevel(id));
+    }
+
+    private IEnumerator WaitGlobalSceneAndLevel(int id)
+    {
+        var asyncOp = SceneManager.LoadSceneAsync(_globalScene);
+        asyncOp.allowSceneActivation = true;
+        while (!asyncOp.isDone)
+        {
+            yield return null;
+        }
         LoadLevel(id);
     }
 
@@ -175,7 +185,6 @@ public class LevelManager : MonoBehaviour
             level.SetStars(0);
             level.Lock();
         }
-        //PlayerPrefs.DeleteAll();
         foreach (LevelSavedData data in SaveManager.LoadData(_levels))
         {
             Debug.Log("ID: " + data.ID + ", Stars: " + data.Stars +  ", Unlocked: " + data.Unlocked);

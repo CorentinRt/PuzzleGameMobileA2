@@ -15,20 +15,25 @@ MonoBehaviour:
   _levelID: 4
   _maxPlayerToSave: 6
   _nbPlayerLives: 3
-  _levelAdditiveScene: Tuto 1
+  _levelAdditiveScene: MainMenuScene
   _shapes:
   - _power: 4
     _type: 0
     _maxCount: 10
+    _isLookingLeft: 0
   - _power: 2
     _type: 2
     _maxCount: 10
+    _isLookingLeft: 0
   - _power: 1
     _type: 1
     _maxCount: 10
+    _isLookingLeft: 0
   - _power: 5
     _type: 2
     _maxCount: 5
+    _isLookingLeft: 0
   - _power: 6
     _type: 1
     _maxCount: 20
+    _isLookingLeft: 0
