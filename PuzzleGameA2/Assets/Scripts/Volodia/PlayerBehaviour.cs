@@ -39,6 +39,13 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float _mineCooldown;
     private bool _isWalkingOnCorpse;
 
+    [Space(20)]
+
+    [SerializeField] private PlayersAnimationManager _playersAnimationManager;
+    [SerializeField] private Transform _playerVisuals;
+
+    [Space(20)]
+
     [SerializeField] private UnityEvent OnPlayerChangeDirection;
     [SerializeField] private UnityEvent OnPlayerAccelerate;
     [SerializeField] private UnityEvent OnPlayerJump;
@@ -124,6 +131,21 @@ public class PlayerBehaviour : MonoBehaviour
         
         if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
     }
+    private void Update()
+    {
+        if (GameManager.Instance.CurrentPhase == PhaseType.GameEndPhase)
+        {
+            _playersAnimationManager.PlayWinAnimation();
+        }
+        if (_rb.velocity.x != 0f)
+        {
+            _playersAnimationManager.StartRunAnimation();
+        }
+        else
+        {
+            _playersAnimationManager.EndRunAnimation();
+        }
+    }
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
     {
@@ -156,6 +178,9 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _rb.velocity = new Vector2(0, _rb.velocity.y);
         _direction *= -1;
+        Vector3 tempVector = _playerVisuals.localScale;
+        tempVector.x = _direction;
+        _playerVisuals.localScale = tempVector;
     }
 
     public void KillPlayer()
@@ -216,6 +241,8 @@ public class PlayerBehaviour : MonoBehaviour
     public void SideJump(int dir)
     {
         //_rb.velocity = new Vector2(_jumpForce * dir, _jumpForce);
+        _playersAnimationManager.PlayStartJumpAnimation();
+
         StartCoroutine(JumpCooldown());
         _isJumping = true;
         _rb.velocity = Vector2.zero;
@@ -224,6 +251,8 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public void Acceleration()
     {
+        _playersAnimationManager.PlaySpeedBoostAnimation();
+
         if (_accelerationDurationCoroutine != null)
         {
             StopCoroutine( _accelerationDurationCoroutine );
@@ -321,6 +350,9 @@ public class PlayerBehaviour : MonoBehaviour
 
         Debug.Log("Stop acceleration");
         _isAccelerating = false;
+
+        _playersAnimationManager.PlayIdleAnimation();
+
         _accelerationDurationCoroutine = null;
 
         yield return null;
