@@ -190,12 +190,15 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _rb.velocity = new Vector2(0, _rb.velocity.y);
         _direction *= -1;
-        Vector3 tempVector = _playerVisuals.localScale;
+        //Vector3 tempVector = _playerVisuals.localScale;
+        Vector3 tempVector = transform.parent.localScale;
         tempVector.x = _direction;
-        
-        _playerVisuals.localScale = tempVector;
-        transform.localScale = tempVector;
-        _corpseContainer.transform.localScale = tempVector;
+
+        //_playerVisuals.localScale = tempVector;
+        //transform.localScale = tempVector;
+        //_corpseContainer.transform.localScale = tempVector;
+
+        transform.parent.localScale = tempVector;
     }
 
     private void CreateCorpse()
@@ -228,6 +231,8 @@ public class PlayerBehaviour : MonoBehaviour
     public void KillPlayerWithoutCorpses()
     {
         _isDead = true;
+
+        _rb.gravityScale = 0f;
 
         Destroy(gameObject);
     }
@@ -354,7 +359,7 @@ public class PlayerBehaviour : MonoBehaviour
             yield return null;
         }
 
-        transform.parent.localScale = new Vector3(transform.localScale.x, targetScaleY, transform.localScale.z);
+        transform.parent.localScale = new Vector3(transform.parent.localScale.x, targetScaleY, transform.parent.localScale.z);
 
         yield return new WaitForSeconds(_inverseGravityCooldown);
 
