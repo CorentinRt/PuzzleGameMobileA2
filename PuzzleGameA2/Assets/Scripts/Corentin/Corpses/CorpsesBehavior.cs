@@ -19,6 +19,9 @@ public class CorpsesBehavior : MonoBehaviour
 
     private DeathType _deathType;
 
+    private Coroutine _desintegrateCooldownCoroutine;
+    [SerializeField] private float _desintegrationCooldown;
+
     [SerializeField] private UnityEvent OnCorpsesDamage;
 
     public Rigidbody2D Rb { get => _rb; set => _rb = value; }
@@ -26,14 +29,17 @@ public class CorpsesBehavior : MonoBehaviour
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
+        _rb = transform.parent.GetComponent<Rigidbody2D>();
         LevelManager.Instance.GetCurrentLevelController.OnLevelUnload += DestroySelf;
     }
 
 
     public void DesintagratedByLaser()
     {
-        Destroy(gameObject);
+        if (_desintegrateCooldownCoroutine == null)
+        {
+            _desintegrateCooldownCoroutine = StartCoroutine(DesintegrateCooldownCoroutine());
+        }
     }
 
     private void DestroySelf()
@@ -126,6 +132,15 @@ public class CorpsesBehavior : MonoBehaviour
         yield return new WaitForSeconds(_inverseGravityCooldown);
 
         _inverseGravityCoroutine = null;
+
+        yield return null;
+    }
+
+    IEnumerator DesintegrateCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(_desintegrationCooldown);
+
+        Destroy(transform.parent.gameObject);
 
         yield return null;
     }
