@@ -33,5 +33,19 @@ public class MenuUI : MonoBehaviour
         _selectMenu.SetActive(false);
         _levelsMenu.SetActive(true);
     }
+
+    public void GoBack()
+    {
+        if (_selectMenu.activeSelf)
+        {
+            _selectMenu.SetActive(false);
+            _homeMenu.SetActive(true);
+        }
+        else if (_levelsMenu.activeSelf)
+        {
+            _levelsMenu.SetActive(false);
+            _selectMenu.SetActive(true);
+        }
+    }
     
 }
