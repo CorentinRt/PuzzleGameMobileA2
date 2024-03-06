@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance { get => _instance; set => _instance = value; }
 
     [SerializeField] private List<Level> _levels;
+
+    public List<Level> GetLevelList() => _levels;
+    
     [SerializeField,Scene] private string _globalScene;
     [SerializeField, Scene] private string _mainMenu;
     private int _currentLevelID;

@@ -10,30 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85c4a68e69063c442a00bd9fd1baa78f, type: 3}
-  m_Name: tuto 1
+  m_Name: tuto 2
   m_EditorClassIdentifier: 
-  _levelID: 4
-  _maxPlayerToSave: 4
-  _nbPlayerLives: 10
-  _levelAdditiveScene: Tuto 1
+  _levelID: 5
+  _maxPlayerToSave: 2
+  _nbPlayerLives: 6
+  _levelAdditiveScene: Tuto 2
   _shapes:
   - _power: 4
     _type: 0
-    _maxCount: 1
+    _maxCount: 3
     _isLookingLeft: 0
   - _power: 2
     _type: 2
+    _maxCount: 1
+    _isLookingLeft: 0
+  - _power: 1
+    _type: 1
     _maxCount: 2
     _isLookingLeft: 0
   - _power: 5
     _type: 2
-    _maxCount: 2
+    _maxCount: 1
     _isLookingLeft: 0
-  - _power: 7
+  - _power: 6
     _type: 1
     _maxCount: 2
     _isLookingLeft: 0
   - _power: 3
     _type: 1
-    _maxCount: 1
+    _maxCount: 2
     _isLookingLeft: 0

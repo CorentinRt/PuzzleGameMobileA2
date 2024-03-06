@@ -24,6 +24,15 @@ public class PlayerBehaviour : MonoBehaviour
 
     private bool _isGrounded;
 
+    private bool _isDead;
+
+    [SerializeField] private GameObject _corpseContainer;
+
+    [SerializeField] private GameObject _playerContainer;
+
+    [SerializeField] private CapsuleCollider2D _capsuleColliderPlayer;
+
+
     [SerializeField] private GameObject _corpse;
     [SerializeField] private LayerMask _layer;
     [SerializeField] private Transform _groundCheckLeft;
@@ -31,7 +40,6 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector3 _startpoint;
     private bool _walking;
     private Rigidbody2D _rb;
-    private CapsuleCollider2D _capsuleCollider;
     private int _direction; //-1 = left ; 1 = right
     [SerializeField] private float _jumpForce;
     private LevelManager _levelManager;
@@ -53,6 +61,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 
     public int Direction { get => _direction; set => _direction = value; }
+    public bool IsDead { get => _isDead; set => _isDead = value; }
 
     [Button]
     public void StartWalking() => _walking = true;
@@ -60,8 +69,8 @@ public class PlayerBehaviour : MonoBehaviour
     public void SetSpawnpoint(Vector3 spawnpoint) => _startpoint = spawnpoint;
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _capsuleCollider = GetComponent<CapsuleCollider2D>();
+        _rb = transform.parent.GetComponent<Rigidbody2D>();
+         //_capsuleColliderPlayer = GetComponent<CapsuleCollider2D>();
         _walking = false;
         _direction = 1;
     }
@@ -77,7 +86,7 @@ public class PlayerBehaviour : MonoBehaviour
         _isWalkingOnCorpse = false;
         Debug.DrawLine(_groundCheckLeft.position, _groundCheckRight.position, Color.yellow);
         Collider2D groundCheckColl = Physics2D.OverlapArea(_groundCheckLeft.position, _groundCheckRight.position);
-        if (groundCheckColl && groundCheckColl != _capsuleCollider)
+        if (groundCheckColl && groundCheckColl != _capsuleColliderPlayer)
         {
             if (groundCheckColl.CompareTag("Floor") || groundCheckColl.CompareTag("Player"))
             {
@@ -95,41 +104,44 @@ public class PlayerBehaviour : MonoBehaviour
         {
             _isGrounded = false;
         }
-        
-        if (_isGrounded && !_isJumping)
+
+        if (!_isDead)
         {
-            if (_walking)
+            if (_isGrounded && !_isJumping)
             {
-                if (!_isAccelerating)
+                if (_walking)
                 {
-                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
-                    _rb.velocity = velocity;
+                    if (!_isAccelerating)
+                    {
+                        Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
+                        _rb.velocity = velocity;
+                    }
+                    else
+                    {
+                        Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
+                        _rb.velocity = velocity;
+                    }
                 }
-                else
+                else if (!_walking)
                 {
-                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
-                    _rb.velocity = velocity;
+                    if ((_direction == 1 && _startpoint.x > transform.position.x) || (_direction == -1 && _startpoint.x < transform.position.x)) _rb.velocity = new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y);
+                    else _rb.velocity = new Vector2(0, _rb.velocity.y);
                 }
-            }
-            else if (!_walking)
-            {
-                if ((_direction==1 && _startpoint.x > transform.position.x) || (_direction==-1 && _startpoint.x < transform.position.x)) _rb.velocity = new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y);
-                else _rb.velocity = new Vector2(0, _rb.velocity.y);
-            }
-        }
-        else
-        {
-            if (!_isJumping)
-            {
-                _rb.velocity = new Vector2(0f, _rb.velocity.y);
             }
             else
             {
-                Debug.Log("Still jumping");
+                if (!_isJumping)
+                {
+                    _rb.velocity = new Vector2(0f, _rb.velocity.y);
+                }
+                else
+                {
+                    Debug.Log("Still jumping");
+                }
             }
+
+            if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
         }
-        
-        if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
     }
     private void Update()
     {
@@ -180,17 +192,43 @@ public class PlayerBehaviour : MonoBehaviour
         _direction *= -1;
         Vector3 tempVector = _playerVisuals.localScale;
         tempVector.x = _direction;
+        
         _playerVisuals.localScale = tempVector;
+        transform.localScale = tempVector;
+        _corpseContainer.transform.localScale = tempVector;
     }
 
+    private void CreateCorpse()
+    {
+        _corpseContainer.SetActive(true);
+
+        _playersAnimationManager.PlayDeathBySpikeAnimation();
+    }
+
+
+    public void KillPlayerByLaser()
+    {
+        _isDead = true;
+
+        CreateCorpse();
+
+        _corpseContainer.GetComponent<CorpsesBehavior>().DesintagratedByLaser();
+
+        Destroy(gameObject);
+    }
     public void KillPlayer()
     {
-        Instantiate(_corpse, transform.position + new Vector3(_direction * 0.5f, -transform.localScale.y / 2, 0), transform.rotation);
+        //Instantiate(_corpse, transform.position + new Vector3(_direction * 0.5f, -transform.localScale.y / 2, 0), transform.rotation);
+        _isDead = true;
+
+        CreateCorpse();
 
         Destroy(gameObject);
     }
     public void KillPlayerWithoutCorpses()
     {
+        _isDead = true;
+
         Destroy(gameObject);
     }
     public void UnloadLevel() => Destroy(gameObject);
@@ -301,7 +339,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         float percent = 0f;
 
-        Vector3 scaleY = transform.localScale;
+        Vector3 scaleY = transform.parent.localScale;
 
         float targetScaleY = -scaleY.y;
 
@@ -309,14 +347,14 @@ public class PlayerBehaviour : MonoBehaviour
         {
             scaleY.y = Mathf.Lerp(scaleY.y, targetScaleY, percent);
 
-            transform.localScale = scaleY;
+            transform.parent.localScale = scaleY;
 
             percent += Time.deltaTime * _inverseGravitySpeed;
 
             yield return null;
         }
 
-        transform.localScale = new Vector3(transform.localScale.x, targetScaleY, transform.localScale.z);
+        transform.parent.localScale = new Vector3(transform.localScale.x, targetScaleY, transform.localScale.z);
 
         yield return new WaitForSeconds(_inverseGravityCooldown);
 
