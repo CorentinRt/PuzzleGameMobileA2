@@ -20,6 +20,12 @@ MonoBehaviour:
   - _power: 3
     _type: 0
     _maxCount: 1
+    _isLookingLeft: 0
   - _power: 5
     _type: 2
     _maxCount: 2
+    _isLookingLeft: 0
+  - _power: 6
+    _type: 2
+    _maxCount: 2
+    _isLookingLeft: 0
