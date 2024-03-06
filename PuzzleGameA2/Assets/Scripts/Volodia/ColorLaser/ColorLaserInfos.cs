@@ -18,7 +18,8 @@ public struct ColorLaserInfo
 public enum LaserColor
 {
     Purple,
-    Orange
+    Orange,
+    Pink
 }
 
 [CreateAssetMenu]
