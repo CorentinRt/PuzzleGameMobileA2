@@ -21,9 +21,9 @@ public class MineBehavior : MonoBehaviour
             {
                 if (collision.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
                 {
-                    collision.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                    collision.GetComponentInParent<Rigidbody2D>().velocity = Vector3.zero;
 
-                    collision.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                    collision.GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
 
                     // !!!!!!!!!!!!! Explosion normale !!!!!!!!!!!!!!!!!!!!!!!!
                     //AddExplosionForce(collision.GetComponent<Rigidbody2D>(), 700f, transform.position + new Vector3(0f, -0.5f), 10f);
@@ -39,7 +39,7 @@ public class MineBehavior : MonoBehaviour
 
                     dir.y *= GetComponentInParent<ShapeManagerNoCanvas>().transform.localScale.y;
 
-                    collision.GetComponent<Rigidbody2D>().AddForce(dir * 10f, ForceMode2D.Impulse);
+                    collision.GetComponentInParent<Rigidbody2D>().AddForce(dir * 10f, ForceMode2D.Impulse);
                     
                     // !!!!!!!!!!!!!!!!!!! Fin explosion predef !!!!!!!!!!!!!!!!!!!!!
                 }

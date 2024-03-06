@@ -50,7 +50,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
         {
             if (raycastHit.transform.CompareTag("Player"))
             {
-                playerBehaviour.KillPlayer();
+                playerBehaviour.KillPlayerByLaser();
             }
         }
     }
@@ -158,7 +158,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
             }
             if (hit1.collider.gameObject.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
             {
-                playerBehaviour.KillPlayer();
+                playerBehaviour.KillPlayerByLaser();
             }
             RaycastHit2D hit2 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_playerLayerMask);
             if (hit2)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Enums;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelPresentation : MonoBehaviour
 {
@@ -76,6 +77,7 @@ public class LevelPresentation : MonoBehaviour
         {
             ShapeDisplay shapeDisplay = Instantiate(_shapeDisplayPrefab, _shapeDisplayPanel).GetComponent<ShapeDisplay>();
             shapeDisplay.SetShape(shape);
+            if (shapes.Count <= 3) Destroy(shapeDisplay.GetComponent<AspectRatioFitter>());
         }
     }
 }
