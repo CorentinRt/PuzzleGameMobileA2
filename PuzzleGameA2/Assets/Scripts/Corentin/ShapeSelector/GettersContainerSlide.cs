@@ -76,31 +76,31 @@ public class GettersContainerSlide : MonoBehaviour, IPointerDownHandler, IPointe
     {
         Vector3 targetPosition;
 
-        if ((_limitLeft.position - transform.position).magnitude < (_limitRight.position - transform.position).magnitude)
+        if ((_limitLeft.localPosition - transform.localPosition).magnitude < (_limitRight.localPosition - transform.localPosition).magnitude)
         {
-            targetPosition = _limitLeft.position;
+            targetPosition = _limitLeft.localPosition;
         }
         else
         {
-            targetPosition = _limitRight.position;
+            targetPosition = _limitRight.localPosition;
         }
 
-        Vector3 tempVector = transform.position;
+        Vector3 tempVector = transform.localPosition;
 
-        while (!_isSliding && (targetPosition - transform.position).magnitude >= 0.1f)
+        while (!_isSliding && (targetPosition - transform.localPosition).magnitude >= 0.1f)
         {
             Debug.Log("Go Back To center");
 
             tempVector.x = Mathf.Lerp(tempVector.x, targetPosition.x, Time.deltaTime * _goBackToCenterSpeed);
 
-            transform.position = tempVector;
+            transform.localPosition = tempVector;
 
             yield return null;
         }
 
         tempVector.x = targetPosition.x;
 
-        transform.position = tempVector;
+        transform.localPosition = tempVector;
 
         _goBackToCenterCoroutine = null;
 
