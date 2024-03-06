@@ -49,6 +49,7 @@ MonoBehaviour:
   _floorLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  _distance: 5
 --- !u!33 &4014321524814848729
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -77,7 +78,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: eca213ea225b8a54682b7db550a7c992, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

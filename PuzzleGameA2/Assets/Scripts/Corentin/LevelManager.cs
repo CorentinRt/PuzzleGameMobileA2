@@ -19,8 +19,10 @@ public class LevelManager : MonoBehaviour
 
     private LevelController _currentLC;
     public LevelController GetCurrentLevelController => _currentLC = _currentLC == null ? LevelController.Instance : _currentLC;
+
     //FindObjectsOfType<LevelController>().Where(x => x.gameObject.scene == behav.gameObject.scene).FirstOrDefault();
 
+    public event Action OnSaveLoaded;
     public event Action OnLevelFinishedLoad;
 
     private void Awake()
@@ -31,8 +33,23 @@ public class LevelManager : MonoBehaviour
             return;
         }
         _instance = this;
-
         DontDestroyOnLoad(gameObject);
+
+        foreach (Level level in _levels)
+        {
+            level.SetStars(0);
+            level.Lock();
+        }
+        
+        foreach (LevelSavedData data in SaveManager.LoadData(_levels))
+        {
+            Level level = GetLevel(data.ID);
+            level.Unlock(false);
+            level.SetStars(data.Stars);
+        }
+        OnSaveLoaded?.Invoke();
+        
+        if (!_levels[0].isUnlocked) _levels[0].Unlock();
     }
 
     private void Start()
@@ -63,6 +80,17 @@ public class LevelManager : MonoBehaviour
         LoadLevel(_levels[0].GetID);
     }
 
+    public void LoadLastLevelUnlocked()
+    {
+        int id = _levels[0].GetID;
+        foreach (Level level in _levels)
+        {
+            if (level.isUnlocked) id = level.GetID;
+            else break;
+        }
+        LoadGlobalSceneAndLevel(id);
+    }
+
     public Level GetLevel(int id) => _levels.Find(x => x.GetID == id);
     public Level GetCurrentLevel() => GetLevel(_currentLevelID);
 
@@ -86,7 +114,17 @@ public class LevelManager : MonoBehaviour
 
     public void LoadGlobalSceneAndLevel(int id)
     {
-        SceneManager.LoadScene(_globalScene);
+        StartCoroutine(WaitGlobalSceneAndLevel(id));
+    }
+
+    private IEnumerator WaitGlobalSceneAndLevel(int id)
+    {
+        var asyncOp = SceneManager.LoadSceneAsync(_globalScene);
+        asyncOp.allowSceneActivation = true;
+        while (!asyncOp.isDone)
+        {
+            yield return null;
+        }
         LoadLevel(id);
     }
 
@@ -139,6 +177,24 @@ public class LevelManager : MonoBehaviour
             if (!GetLevel(_currentLevelID+1).isUnlocked) UnlockLevel(_currentLevelID + 1);
         }
     }
+
+    public void ReloadSave()
+    {
+        foreach (Level level in _levels)
+        {
+            level.SetStars(0);
+            level.Lock();
+        }
+        foreach (LevelSavedData data in SaveManager.LoadData(_levels))
+        {
+            Debug.Log("ID: " + data.ID + ", Stars: " + data.Stars +  ", Unlocked: " + data.Unlocked);
+            Level level = GetLevel(data.ID);
+            level.Unlock(false);
+            level.SetStars(data.Stars);
+        }
+        if (!_levels[0].isUnlocked) _levels[0].Unlock();
+        OnSaveLoaded?.Invoke();
+    }
 }
 
 [Serializable]
@@ -151,9 +207,29 @@ public class Level
     public bool isUnlocked => _unlocked;
     public int GetStarsNum => _starsWon;
 
-    public void SetStars(int nbStars) => _starsWon = _starsWon<nbStars? nbStars : _starsWon;
-    public void Unlock() => _unlocked = true;
+    public void UpdateStars(int nbStars, bool save = true)
+    {
+        _starsWon = _starsWon < nbStars ? nbStars : _starsWon;
+        if (save) SaveManager.SaveDataOfLevel(this);
+    }
+
+    public void SetStars(int nbStars)
+    {
+        _starsWon = nbStars;
+    }
+
+    public void Unlock(bool save = true)
+    {
+        _unlocked = true;
+        if (save) SaveManager.SaveDataOfLevel(this);
+    }
+
     public int GetID => _levelInfo.LevelID;
     public string GetScene => _levelInfo.LevelScene;
     public LevelInfo LevelInfo => _levelInfo;
+
+    public void Lock()
+    {
+        _unlocked = false;
+    }
 }
