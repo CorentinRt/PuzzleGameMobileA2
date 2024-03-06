@@ -747,6 +747,11 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
             Debug.Log("Reset Electric sphere");
             gameObject.SetActive(true);
         }
+        else if (_shapePower == ShapePower.SideJump)
+        {
+            Debug.Log("Reset sideJump");
+            _triggersPowerContainer.GetComponent<SideJumpPower>().HasUsed = false;
+        }
     }
     [Button]
     public void Desactive()
