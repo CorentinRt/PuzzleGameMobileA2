@@ -962,12 +962,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2524007813707398229, guid: c70a60a449c9c3b4ca40092866944ca6, type: 3}
       propertyPath: _levels.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2524007813707398229, guid: c70a60a449c9c3b4ca40092866944ca6, type: 3}
       propertyPath: _levels.Array.data[3]._levelInfo
       value: 
       objectReference: {fileID: 11400000, guid: 520d872071df6f24ca9972905120a377, type: 2}
+    - target: {fileID: 2524007813707398229, guid: c70a60a449c9c3b4ca40092866944ca6, type: 3}
+      propertyPath: _levels.Array.data[4]._levelInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c2768073d73648418cedefa10f72c91, type: 2}
     - target: {fileID: 6234146976988277709, guid: c70a60a449c9c3b4ca40092866944ca6, type: 3}
       propertyPath: m_Name
       value: LvlManager
