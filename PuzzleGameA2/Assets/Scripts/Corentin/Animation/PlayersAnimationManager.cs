@@ -6,33 +6,52 @@ public class PlayersAnimationManager : MonoBehaviour
 {
     private Animator _animator;
 
-    public Animator Animator { get => _animator; set => _animator = value; }
-
     private void Awake()
     {
         _animator = GetComponent<Animator>();
     }
 
-    public void PlayWalkAnimation()
+    public void PlayIdleAnimation()
+    {
+        _animator.SetTrigger("Idle");
+    }
+
+    public void StartRunAnimation()
+    {
+        _animator.SetBool("IsRunning", true);
+    }
+    public void EndRunAnimation()
+    {
+        _animator.SetBool("IsRunning", false);
+    }
+    public void PlaySpeedBoostAnimation()
+    {
+        _animator.SetTrigger("SpeedBoost");
+    }
+    public void PlayStartJumpAnimation()
+    {
+        _animator.SetTrigger("StartJump");
+    }
+    public void PlayMidJumpAnimation()
+    {
+        _animator.SetTrigger("MidJump");
+    }
+    public void PlayEndJumpAnimation()
     {
 
     }
-    public void PlayRunAnimation()
-    {
-
-    }
-    public void PlayJumpAnimation()
-    {
-
-    }
-
-
     public void PlayWinAnimation()
     {
-
+        _animator.SetTrigger("Win");
     }
-    public void PlayDeathAnimation()
+    public void PlayDeathBySpikeAnimation()
     {
-
+        _animator.SetTrigger("SpikeDeath");
+        _animator.SetBool("IsDead", true);
+    }
+    public void PlayDeathByLaserAnimation()
+    {
+        _animator.SetTrigger("LaserDeath");
+        _animator.SetBool("IsDead", true);
     }
 }
