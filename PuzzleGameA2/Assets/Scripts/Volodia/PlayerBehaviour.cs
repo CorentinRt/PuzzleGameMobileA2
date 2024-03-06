@@ -232,6 +232,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _isDead = true;
 
+        _rb.gravityScale = 0f;
+
         Destroy(gameObject);
     }
     public void UnloadLevel() => Destroy(gameObject);

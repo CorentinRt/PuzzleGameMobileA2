@@ -10,7 +10,7 @@ public class SkipLifeSystem : MonoBehaviour
         {
             if (PlayerManager.Instance.CurrentPlayer != null)
             {
-                PlayerManager.Instance.CurrentPlayer.KillPlayerWithoutCorpses();
+                PlayerManager.Instance.CurrentPlayer.KillPlayerByLaser();
             }
         }
     }
