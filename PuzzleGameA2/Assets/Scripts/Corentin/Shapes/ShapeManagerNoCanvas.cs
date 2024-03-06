@@ -259,6 +259,11 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     {
         _fieldOfView.gameObject.SetActive(true);
         _viewVisibilityHandler.gameObject.SetActive(true);
+
+        if (_isLookingLeft)
+        {
+            _fieldOfView.gameObject.GetComponent<FieldOfView>().InverseXAxis(_isLookingLeft);
+        }
     }
     public void ReverseFieldOfView()
     {

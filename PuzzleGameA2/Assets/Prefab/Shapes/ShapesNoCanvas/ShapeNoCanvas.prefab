@@ -2674,10 +2674,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightVisibilityHandler
       objectReference: {fileID: 0}
-    - target: {fileID: 1260545666046621226, guid: 6fe90120917134147bd1cbfe9427edff, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9147045397448573648, guid: 6fe90120917134147bd1cbfe9427edff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2779,10 +2775,6 @@ PrefabInstance:
     - target: {fileID: 5294381478981918634, guid: 61b42655e5609ac4eabf9bec4a405d17, type: 3}
       propertyPath: m_Name
       value: FieldOfView
-      objectReference: {fileID: 0}
-    - target: {fileID: 5294381478981918634, guid: 61b42655e5609ac4eabf9bec4a405d17, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -9,11 +9,21 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] private LayerMask _floorLayerMask;
 
     [SerializeField] private float _distance;
+    [SerializeField] private float fov;
+
+    private bool _isLookingLeft;
+
 
     private Vector3 GetVectorFromAngle(float angle)
     {
         float angleRad = angle * (Mathf.PI / 180f);
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+    }
+
+
+    public void InverseXAxis(bool isLookingLeft)
+    {
+        _isLookingLeft = isLookingLeft;
     }
 
     private void Start()
@@ -25,9 +35,33 @@ public class FieldOfView : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-        float fov = 360f;
+        float fov = 90f;
         int rayCount = 80;
+
         float angle = 0f;
+
+        if (_isLookingLeft)
+        {
+            if (transform.parent.parent.localScale.y == 1f)
+            {
+                angle = 180f;
+            }
+            else
+            {
+                angle = 270f;
+            }
+        }
+        else
+        {
+            if (transform.parent.parent.localScale.y == 1f)
+            {
+                angle = 90f;
+            }
+            else
+            {
+                angle = 0f;
+            }
+        }
         float angleIncrease = fov / rayCount;
         float viewDistance = _distance;
 
