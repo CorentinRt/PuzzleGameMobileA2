@@ -31,8 +31,7 @@ public class PlayerManager : MonoBehaviour
     public int CorpsesInMotionCount { get => _corpsesInMotionCount; set => _corpsesInMotionCount = value; }
     public PlayerBehaviour CurrentPlayer { get => _currentPlayer; set => _currentPlayer = value; }
 
-    public int GetPlayerAliveCount() => _nbLives - _playerCount /* + 2 */;
-
+    public int GetPlayerAliveCount() => _nbLives - _playerCount  + 2 ;
 
     private void Awake()
     {
