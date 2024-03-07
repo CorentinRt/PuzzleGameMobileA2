@@ -40,6 +40,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9093509580550251812}
     m_Modifications:
+    - target: {fileID: 4463565385770115021, guid: 567a73e5ffa714241b3d83bd85b26024, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7298647949742812327, guid: 567a73e5ffa714241b3d83bd85b26024, type: 3}
       propertyPath: m_Name
       value: plateforme
