@@ -259,7 +259,27 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     {
         _fieldOfView.gameObject.SetActive(true);
         _viewVisibilityHandler.gameObject.SetActive(true);
+
+        if (_isLookingLeft)
+        {
+            _fieldOfView.gameObject.GetComponent<FieldOfView>().InverseXAxis(_isLookingLeft);
+        }
     }
+
+    private void CheckDisplayFieldOfView()
+    {
+        if (_shapePower == ShapePower.SideJump && gameObject == DragDropManager.Instance.CurrentShapeDragged && GameManager.Instance.CurrentPhase == PhaseType.PlateformePlacement)
+        {
+            _fieldOfView.gameObject.SetActive(true);
+            _viewVisibilityHandler.gameObject.SetActive(true);
+        }
+        else
+        {
+            _fieldOfView.gameObject.SetActive(false);
+            _viewVisibilityHandler.gameObject.SetActive(false);
+        }
+    }
+
     public void ReverseFieldOfView()
     {
         Vector3 tempVect = _fieldOfView.localScale;
@@ -695,6 +715,8 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
             tempVect.y = 1;
             _fieldOfView.localScale = tempVect;
         }
+
+        CheckDisplayFieldOfView();
     }
 
     public Vector3 StartPosition { get; set; }
@@ -724,6 +746,11 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
         {
             Debug.Log("Reset Electric sphere");
             gameObject.SetActive(true);
+        }
+        else if (_shapePower == ShapePower.SideJump)
+        {
+            Debug.Log("Reset sideJump");
+            _triggersPowerContainer.GetComponent<SideJumpPower>().HasUsed = false;
         }
     }
     [Button]

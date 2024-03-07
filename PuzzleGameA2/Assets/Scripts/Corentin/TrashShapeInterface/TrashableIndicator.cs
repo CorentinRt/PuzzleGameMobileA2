@@ -20,6 +20,20 @@ public class TrashableIndicator : MonoBehaviour
         _indicatorOpen = true;
 
         _trashIndicator.SetActive(true);
+
+        if (_associatedShape.TryGetComponent<ShapeManagerNoCanvas>(out ShapeManagerNoCanvas shapeManagerNoCanvas))
+        {
+            Vector3 tempVector = _trashIndicator.transform.localPosition;
+            if (shapeManagerNoCanvas.GetShapePower() == Enums.ShapePower.ChangeDirection)
+            {
+                tempVector.y = 2f;
+            }
+            else
+            {
+                tempVector.y = 1f;
+            }
+            _trashIndicator.transform.localPosition = tempVector;
+        }
     }
     private void HideTrashIndicator()
     {
@@ -27,6 +41,8 @@ public class TrashableIndicator : MonoBehaviour
 
         _trashIndicator.SetActive(false);
     }
+
+
 
     private void Awake()
     {
