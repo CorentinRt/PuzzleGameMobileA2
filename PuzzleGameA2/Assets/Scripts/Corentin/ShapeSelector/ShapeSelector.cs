@@ -4,6 +4,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+//using UnityEngine.UIElements;
 
 public class ShapeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -27,6 +28,8 @@ public class ShapeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private bool _isOpen;
     private bool _isClosedTemporary;
+
+    private bool _isForcedClose;
 
 
     [Button]
@@ -77,6 +80,28 @@ public class ShapeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         CloseSelector();
     }
 
+    public void ForceCloseSelector()
+    {
+        _isForcedClose = true;
+        CloseSelector();
+    }
+    public void ForceOpenSelector()
+    {
+        _isForcedClose = false;
+        OpenSelector();
+    }
+    public void ToggleForcePosition()
+    {
+        if (_isForcedClose)
+        {
+            ForceOpenSelector();
+        }
+        else
+        {
+            ForceCloseSelector();
+        }
+    }
+
     [Button]
     private void ActivateSemiTransparent()
     {
@@ -116,7 +141,7 @@ public class ShapeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             OpenSelector();
         }
 
-        if (GameManager.Instance.CurrentPhase == Enums.PhaseType.PlateformePlacement && !_isOpen && !_isClosedTemporary)
+        if (GameManager.Instance.CurrentPhase == Enums.PhaseType.PlateformePlacement && !_isOpen && !_isClosedTemporary && !_isForcedClose)
         {
             OpenSelector();
         }
