@@ -195,7 +195,7 @@ public class PlayerBehaviour : MonoBehaviour
         _direction *= -1;
         //Vector3 tempVector = _playerVisuals.localScale;
         Vector3 tempVector = transform.parent.localScale;
-        tempVector.x = _direction;
+        tempVector.x *= -1f;
 
         //_playerVisuals.localScale = tempVector;
         //transform.localScale = tempVector;
