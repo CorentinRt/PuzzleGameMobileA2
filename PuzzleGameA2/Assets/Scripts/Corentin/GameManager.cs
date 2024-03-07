@@ -98,8 +98,8 @@ public class GameManager : MonoBehaviour
     private int CalculateStars()
     {
         int nbPlayerAliveCount = _playerManager.GetPlayerAliveCount();
-        int nonRequiredKilledPlayer = _levelManager.GetCurrentLevel().LevelInfo.MaxPlayerToSave - nbPlayerAliveCount;
-        return (nonRequiredKilledPlayer<=0? 3 : nonRequiredKilledPlayer<=2? 2 : nbPlayerAliveCount==1? 0 : 1);
+        int target = LevelManager.Instance.GetCurrentLevel().LevelInfo.MaxPlayerToSave;
+        return (nbPlayerAliveCount>=Mathf.Round(target/1.5f)? 3 : nbPlayerAliveCount>1? 2 : 1);
     }
     
     [Button]

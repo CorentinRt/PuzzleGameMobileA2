@@ -133,6 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7788445966147501657}
+  - component: {fileID: 8441883568670497332}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -158,6 +159,23 @@ Transform:
   - {fileID: 3336073531260714422}
   m_Father: {fileID: 4914013772104425612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8441883568670497332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816412853064396252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae56e1e517bdc9b4d9af3339e104fe31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderers:
+  - {fileID: 4089874829501070578}
+  - {fileID: 7891017924495415540}
+  _fadeSpeed: 2
+  _cooldownBeforeFadeAppear: 1
 --- !u!1 &1973045300575733508
 GameObject:
   m_ObjectHideFlags: 0
