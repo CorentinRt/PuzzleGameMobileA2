@@ -697,7 +697,7 @@ Transform:
   m_GameObject: {fileID: 2223994620266738408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2674,10 +2674,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightVisibilityHandler
       objectReference: {fileID: 0}
-    - target: {fileID: 1260545666046621226, guid: 6fe90120917134147bd1cbfe9427edff, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9147045397448573648, guid: 6fe90120917134147bd1cbfe9427edff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2779,10 +2775,6 @@ PrefabInstance:
     - target: {fileID: 5294381478981918634, guid: 61b42655e5609ac4eabf9bec4a405d17, type: 3}
       propertyPath: m_Name
       value: FieldOfView
-      objectReference: {fileID: 0}
-    - target: {fileID: 5294381478981918634, guid: 61b42655e5609ac4eabf9bec4a405d17, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
