@@ -76,7 +76,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 2.9099998, y: 0.65, z: 0}
-  - {x: 2.9099998, y: -0.9426708, z: 0}
+  - {x: 2.9099998, y: 0.65, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -193,6 +193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRenderers:
   - {fileID: 411891363417649297}
+  _lineRenderers:
+  - {fileID: 5882046158633352483}
   _fadeSpeed: 1
   _cooldownBeforeFadeAppear: 2
 --- !u!1 &3547683271177976558
