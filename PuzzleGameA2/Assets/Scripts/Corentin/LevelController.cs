@@ -22,11 +22,15 @@ public class LevelController : MonoBehaviour
     void Start()
     {
         OnLevelUnload += ResetResettableList;
+
+        GameManager.Instance.OnPhase1Started += ResetTraps;
     }
 
     private void OnDestroy()
     {
         OnLevelUnload -= ResetResettableList;
+
+        GameManager.Instance.OnPhase1Started -= ResetTraps;
     }
 
     public void AddToResettableObject<T>(UnityEngine.Object toResetObject) where T : IResetable
