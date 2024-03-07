@@ -76,7 +76,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 2.9099998, y: 0.65, z: 0}
-  - {x: 2.9099998, y: -3.617078, z: 0}
+  - {x: 2.9099998, y: 0.65, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -154,6 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8217673931953617522}
+  - component: {fileID: 4027453722386678320}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -178,6 +179,22 @@ Transform:
   - {fileID: 1552763805060986796}
   m_Father: {fileID: 3180058685968076909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4027453722386678320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2258702164630987649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae56e1e517bdc9b4d9af3339e104fe31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderers:
+  - {fileID: 411891363417649297}
+  _fadeSpeed: 1
+  _cooldownBeforeFadeAppear: 2
 --- !u!1 &3547683271177976558
 GameObject:
   m_ObjectHideFlags: 0
