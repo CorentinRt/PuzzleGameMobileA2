@@ -90,6 +90,8 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (groundCheckColl.CompareTag("Floor") || groundCheckColl.CompareTag("Player"))
             {
+                _playersAnimationManager.EndMidJumpAnimation();
+
                 _isGrounded = true;
                 if (_canStopJump)
                 {
@@ -102,6 +104,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else
         {
+            _playersAnimationManager.StartMidJumpAnimation();
             _isGrounded = false;
         }
 
