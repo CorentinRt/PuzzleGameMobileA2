@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GridDisplayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject _gridVisual;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (GameManager.Instance != null)
+        {
+            if (GameManager.Instance.CurrentPhase == Enums.PhaseType.PlateformePlacement)
+            {
+                _gridVisual.SetActive(true);
+            }
+            else
+            {
+                _gridVisual.SetActive(false);
+            }
+        }
     }
 }
