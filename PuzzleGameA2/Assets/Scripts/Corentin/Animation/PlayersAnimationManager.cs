@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class PlayersAnimationManager : MonoBehaviour
 {
     private Animator _animator;
+    public event Action OnStopLanding;
 
     private void Awake()
     {
@@ -40,9 +42,9 @@ public class PlayersAnimationManager : MonoBehaviour
     {
         _animator.SetBool("IsJumping", false);
     }
-    public void PlayEndJumpAnimation()
+    public void StopLanding()
     {
-
+        OnStopLanding?.Invoke();
     }
     public void PlayWinAnimation()
     {
