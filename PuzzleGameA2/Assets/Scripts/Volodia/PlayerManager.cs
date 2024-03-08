@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviour
 
     private int _corpsesInMotionCount;
 
+    private bool _onePlayerDied;
 
     public event Action OnPlayerDeath;
 
@@ -30,6 +31,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance { get => _instance; set => _instance = value; }
     public int CorpsesInMotionCount { get => _corpsesInMotionCount; set => _corpsesInMotionCount = value; }
     public PlayerBehaviour CurrentPlayer { get => _currentPlayer; set => _currentPlayer = value; }
+    public bool OnePlayerDied { get => _onePlayerDied; set => _onePlayerDied = value; }
 
     public int GetPlayerAliveCount() => _nbLives - _playerCount  + 2 ;
 
@@ -64,6 +66,8 @@ public class PlayerManager : MonoBehaviour
         _gameManager.OnPhase2Started += StartNextPlayer;
         _gameManager.SetPlayerManager(this);
         Debug.Log("pManager");
+
+        _levelManager.OnLevelFinishedLoad += ResetOnePlayerKilled;
     }
 
     private void SetLives()
@@ -79,6 +83,12 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    private void ResetOnePlayerKilled()
+    {
+        _onePlayerDied = false;
+        Debug.Log("Reset one player died");
+    }
+
     private void OnDestroy()
     {
         _gameManager.OnPhase1Started -= CreateFirstPlayer;
@@ -86,6 +96,8 @@ public class PlayerManager : MonoBehaviour
         _levelManager.OnLevelFinishedLoad -= SetLives;
         _levelManager.GetCurrentLevelController.OnLevelUnload -= Reset;
         OnPlayerDeath -= LevelManager.Instance.GetCurrentLevelController.ResetTraps;
+
+        _levelManager.OnLevelFinishedLoad -= ResetOnePlayerKilled;
     }
     private void Update()
     {
@@ -103,6 +115,7 @@ public class PlayerManager : MonoBehaviour
         {
             _isOnPlayerPhase = false;
             OnPlayerDeath?.Invoke();
+            _onePlayerDied = true;
             _gameManager.ChangeGamePhase(PhaseType.ChoicePhase);
         }
     }
