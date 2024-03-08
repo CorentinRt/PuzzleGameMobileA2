@@ -63,13 +63,15 @@ public class LevelManager : MonoBehaviour
         {
             if (scene.name !=_globalScene)
             {
-                var l = _levels.Find(x => x.GetScene == scene.name);
+                Debug.Log(_levels[5].GetSceneName == scene.name);
+                Debug.Log(_levels.Find(x => x.GetSceneName == scene.name));
+                var l = _levels.Find(x => x.GetSceneName == scene.name);
 
                 if (l == null)
                     continue;
 
-                _levels.Find(x => x.GetScene == scene.name).Unlock();
-                LoadGlobalSceneAndLevel(_levels.Find(x => x.GetScene == scene.name).GetID);
+                _levels.Find(x => x.GetSceneName == scene.name).Unlock();
+                LoadGlobalSceneAndLevel(_levels.Find(x => x.GetSceneName == scene.name).GetID);
             }
             
         }
@@ -107,7 +109,7 @@ public class LevelManager : MonoBehaviour
         {
             if (isLevelLoaded)
             {
-                SceneManager.UnloadSceneAsync(GetLevel(_currentLevelID).GetScene);
+                SceneManager.UnloadSceneAsync(GetLevel(_currentLevelID).GetSceneName);
                 GetCurrentLevelController.OnLevelUnload?.Invoke();
             }
             StartCoroutine(LoadLevelAndWait(id));
@@ -228,7 +230,7 @@ public class Level
     }
 
     public int GetID => _levelInfo.LevelID;
-    public string GetScene => _levelInfo.LevelScene;
+    public string GetSceneName => _levelInfo.LevelScene;
     public LevelInfo LevelInfo => _levelInfo;
 
     public void Lock()
