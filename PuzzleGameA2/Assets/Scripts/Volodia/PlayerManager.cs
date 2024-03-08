@@ -122,7 +122,9 @@ public class PlayerManager : MonoBehaviour
         _playerCount = resetPlayerCount ? 1 : _playerCount + 1;
         _nextPlayer = Instantiate(_playerPrefab, new Vector3(_spawnpoint.x, /* _spawnGravity * */ _spawnpoint.y, _spawnpoint.z), transform.rotation).GetComponentInChildren<PlayerBehaviour>();
         _nextPlayer.transform.parent.gameObject.GetComponent<Rigidbody2D>().gravityScale *= _spawnGravity;
-        _nextPlayer.transform.localScale = new Vector3(1, _spawnGravity, 1);
+        _nextPlayer.transform.parent.localScale = new Vector3(_nextPlayer.transform.parent.localScale.x,  _nextPlayer.transform.parent.localScale.y * _spawnGravity, _nextPlayer.transform.parent.localScale.z);
+        Debug.Log(_spawnGravity);
+        Debug.Log(_nextPlayer.transform.localScale);
         _nextPlayer.SetSpawnpoint(_startpoint);
         _nextPlayer.SetManager(_levelManager);
     }

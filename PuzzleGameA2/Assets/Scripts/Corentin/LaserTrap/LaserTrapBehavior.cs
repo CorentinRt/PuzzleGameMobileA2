@@ -15,6 +15,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
     [SerializeField] private float _laserVisualDuration;
 
     [SerializeField] private LineRenderer _lineRenderer;
+    [SerializeField] private List<GameObject> _laserFX;
 
     [SerializeField] private LayerMask _playerLayerMask;
 
@@ -42,6 +43,13 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
             _lineRenderer.SetPosition(0, transform.position);
 
             _lineRenderer.SetPosition(1, hit.point);
+
+            foreach (GameObject laserFX in _laserFX)
+            {
+                laserFX.SetActive(true);
+            }
+
+            _laserFX[1].transform.position = hit.point;
 
             StartCoroutine(LaserVisualCoroutine());
         }
@@ -73,6 +81,13 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
             _lineRenderer.SetPosition(0, transform.position);
 
             _lineRenderer.SetPosition(1, hit.point);
+            
+            foreach (GameObject laserFX in _laserFX)
+            {
+                laserFX.SetActive(true);
+            }
+
+            _laserFX[1].transform.position = hit.point;
 
             StartCoroutine(LaserVisualCoroutine());
         }
@@ -132,6 +147,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
                 //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * _laserRange, Color.red, 1f);
             }
 
+            if (!hit) return;
             if (hit.collider.gameObject.CompareTag("Player"))
             {
                 if (hit.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
@@ -151,6 +167,11 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
         else if (_isAlwaysShooting)
         {
             _lineRenderer.gameObject.SetActive(true);
+            foreach (GameObject laserFX in _laserFX)
+            {
+                laserFX.SetActive(true);
+            }
+            
             RaycastHit2D hit1 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
             if (hit1.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
             {
@@ -160,6 +181,8 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
             {
                 playerBehaviour.KillPlayerByLaser();
             }
+
+            if (hit1) _laserFX[1].transform.position = hit1.point;
             RaycastHit2D hit2 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_playerLayerMask);
             if (hit2)
             {
@@ -175,6 +198,11 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
         yield return new WaitForSeconds(_laserVisualDuration);
 
         _lineRenderer.gameObject.SetActive(false);
+        
+        foreach (GameObject laserFX in _laserFX)
+        {
+            laserFX.SetActive(false);
+        }
 
         yield return null;
     }
