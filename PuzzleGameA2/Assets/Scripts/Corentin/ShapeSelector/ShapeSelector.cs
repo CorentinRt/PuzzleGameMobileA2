@@ -4,6 +4,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+//using UnityEngine.UIElements;
 
 public class ShapeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -27,6 +28,8 @@ public class ShapeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private bool _isOpen;
     private bool _isClosedTemporary;
+
+    private bool _isForcedClose;
 
 
     [Button]
@@ -77,6 +80,28 @@ public class ShapeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         CloseSelector();
     }
 
+    public void ForceCloseSelector()
+    {
+        _isForcedClose = true;
+        CloseSelector();
+    }
+    public void ForceOpenSelector()
+    {
+        _isForcedClose = false;
+        OpenSelector();
+    }
+    public void ToggleForcePosition()
+    {
+        if (_isForcedClose)
+        {
+            ForceOpenSelector();
+        }
+        else
+        {
+            ForceCloseSelector();
+        }
+    }
+
     [Button]
     private void ActivateSemiTransparent()
     {
@@ -116,7 +141,7 @@ public class ShapeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             OpenSelector();
         }
 
-        if (GameManager.Instance.CurrentPhase == Enums.PhaseType.PlateformePlacement && !_isOpen && !_isClosedTemporary)
+        if (GameManager.Instance.CurrentPhase == Enums.PhaseType.PlateformePlacement && !_isOpen && !_isClosedTemporary && !_isForcedClose)
         {
             OpenSelector();
         }
@@ -128,19 +153,19 @@ public class ShapeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     IEnumerator OpenSelectorCoroutine()
     {
-        while ((_openTransf.position - transform.position).magnitude >= 0.1f)
+        while ((_openTransf.localPosition - transform.localPosition).magnitude >= 0.1f)
         {
 
             //Debug.Log("Opening");
-            Vector3 tempVect = transform.position;
+            Vector3 tempVect = transform.localPosition;
 
-            tempVect.y = Mathf.Lerp(tempVect.y, _openTransf.position.y, Time.deltaTime * _openSpeed);
+            tempVect.y = Mathf.Lerp(tempVect.y, _openTransf.localPosition.y, Time.deltaTime * _openSpeed);
 
-            transform.position = tempVect;
+            transform.localPosition = tempVect;
 
             yield return null;
         }
-        transform.position = _openTransf.position;
+        transform.localPosition = _openTransf.localPosition;
 
         _openCoroutine = null;
 
@@ -149,19 +174,19 @@ public class ShapeSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     IEnumerator CloseSelectorCoroutine()
     {
-        while ((_closeTransf.position - transform.position).magnitude >= 0.1f)
+        while ((_closeTransf.localPosition - transform.localPosition).magnitude >= 0.1f)
         {
             //Debug.Log("Closing");
 
-            Vector3 tempVect = transform.position;
+            Vector3 tempVect = transform.localPosition;
 
-            tempVect.y = Mathf.Lerp(tempVect.y, _closeTransf.position.y, Time.deltaTime * _closeSpeed);
+            tempVect.y = Mathf.Lerp(tempVect.y, _closeTransf.localPosition.y, Time.deltaTime * _closeSpeed);
 
-            transform.position = tempVect;
+            transform.localPosition = tempVect;
 
             yield return null;
         }
-        transform.position = _closeTransf.position;
+        transform.localPosition = _closeTransf.localPosition;
 
         _closeCoroutine = null;
 

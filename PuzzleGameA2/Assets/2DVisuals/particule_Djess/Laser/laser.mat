@@ -111,7 +111,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _LaseerEdgeSmoothness: 100
+    - _LaseerEdgeSmoothness: 300
     - _LaserScale: 5
     - _Metallic: 0
     - _OcclusionStrength: 1
@@ -135,7 +135,7 @@ Material:
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _laserSpeed: {r: 1, g: 0, b: 0, a: 0}
+    - _laserSpeed: {r: -1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6146142597481452131
 MonoBehaviour:

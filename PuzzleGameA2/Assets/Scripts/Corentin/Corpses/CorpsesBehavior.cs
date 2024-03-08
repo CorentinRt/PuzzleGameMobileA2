@@ -112,7 +112,7 @@ public class CorpsesBehavior : MonoBehaviour
     {
         float percent = 0f;
 
-        Vector3 scaleY = transform.localScale;
+        Vector3 scaleY = transform.parent.localScale;
 
         float targetScaleY = -scaleY.y;
 
@@ -120,14 +120,14 @@ public class CorpsesBehavior : MonoBehaviour
         {
             scaleY.y = Mathf.Lerp(scaleY.y, targetScaleY, percent);
 
-            transform.localScale = scaleY;
+            transform.parent.localScale = scaleY;
 
             percent += Time.deltaTime * _inverseGravitySpeed;
 
             yield return null;
         }
 
-        transform.localScale = new Vector3(transform.localScale.x, targetScaleY, transform.localScale.z);
+        transform.parent.localScale = new Vector3(transform.localScale.x, targetScaleY, transform.localScale.z);
 
         yield return new WaitForSeconds(_inverseGravityCooldown);
 
