@@ -90,6 +90,8 @@ public class PlayerBehaviour : MonoBehaviour
         {
             if (groundCheckColl.CompareTag("Floor") || groundCheckColl.CompareTag("Player"))
             {
+                _playersAnimationManager.EndMidJumpAnimation();
+
                 _isGrounded = true;
                 if (_canStopJump)
                 {
@@ -102,6 +104,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else
         {
+            _playersAnimationManager.StartMidJumpAnimation();
             _isGrounded = false;
         }
 
@@ -192,7 +195,7 @@ public class PlayerBehaviour : MonoBehaviour
         _direction *= -1;
         //Vector3 tempVector = _playerVisuals.localScale;
         Vector3 tempVector = transform.parent.localScale;
-        tempVector.x = _direction;
+        tempVector.x *= -1f;
 
         //_playerVisuals.localScale = tempVector;
         //transform.localScale = tempVector;

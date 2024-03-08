@@ -7,6 +7,8 @@ public class ItemFadeAppear : MonoBehaviour
 
     [SerializeField] private List<SpriteRenderer> _spriteRenderers;
 
+    [SerializeField] private List<LineRenderer> _lineRenderers;
+
     [SerializeField] private float _fadeSpeed;
 
     [SerializeField] private float _cooldownBeforeFadeAppear;
@@ -14,11 +16,31 @@ public class ItemFadeAppear : MonoBehaviour
 
     private void Awake()
     {
-        Color tempColor = _spriteRenderers[0].color;
+        if (_spriteRenderers.Count != 0)
+        {
+            Color tempColor = _spriteRenderers[0].color;
 
-        tempColor.a = 0f;
+            tempColor.a = 0f;
 
-        _spriteRenderers[0].color = tempColor;
+            foreach (var spriteRenderer in _spriteRenderers)
+            {
+                spriteRenderer.color = tempColor;
+            }
+        }
+        if (_lineRenderers.Count != 0)
+        {
+            Color tempColor = _lineRenderers[0].startColor;
+
+            tempColor.a = 0f;
+
+            foreach(var lineRenderer in _lineRenderers)
+            {
+                lineRenderer.startColor = tempColor;
+                lineRenderer.endColor = tempColor;
+
+                lineRenderer.sortingOrder = -5;
+            }
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -42,6 +64,11 @@ public class ItemFadeAppear : MonoBehaviour
             {
                 renderer.color = tempColor;
             }
+            foreach (var lineRenderer in _lineRenderers)
+            {
+                lineRenderer.startColor = tempColor;
+                lineRenderer.endColor = tempColor;
+            }
 
             percent += Time.deltaTime;
 
@@ -51,6 +78,11 @@ public class ItemFadeAppear : MonoBehaviour
         tempColor.a = 1f;
 
         _spriteRenderers[0].color = tempColor;
+
+        foreach (var lineRenderer in _lineRenderers)
+        {
+            lineRenderer.sortingOrder = 0;
+        }
 
         yield return null;
     }
