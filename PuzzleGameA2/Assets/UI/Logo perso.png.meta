@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 079a0d26be458e44b83313595f8d12c0
+guid: c275f6e327db01846a7d2b8d90554aa0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -108,28 +108,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: "gravitum d\xE9volodia_0"
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 36
-        width: 138
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6f95414dd60c2d448172bddb654f928
-      internalID: 987044512
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -140,8 +119,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      "gravitum d\xE9volodia_0": 987044512
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

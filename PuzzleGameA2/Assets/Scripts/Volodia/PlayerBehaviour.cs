@@ -61,6 +61,8 @@ public class PlayerBehaviour : MonoBehaviour
 
 
     public int Direction { get => _direction; set => _direction = value; }
+
+    private bool _isLanding;
     public bool IsDead { get => _isDead; set => _isDead = value; }
 
     [Button]
@@ -79,6 +81,17 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (_startpoint.x < transform.position.x) _direction = -1;
         else _direction = 1;
+        Vector3 tempVector = transform.parent.localScale;
+        tempVector.x *= _direction;
+        transform.parent.localScale = tempVector;
+        _playersAnimationManager.OnStopLanding += StopLanding;
+    }
+
+    private void StopLanding()
+    {
+        Debug.Log("hey");
+        _isLanding = false;
+        _isGrounded = true;
     }
 
     private void FixedUpdate()
@@ -91,13 +104,13 @@ public class PlayerBehaviour : MonoBehaviour
             if (groundCheckColl.CompareTag("Floor") || groundCheckColl.CompareTag("Player"))
             {
                 _playersAnimationManager.EndMidJumpAnimation();
-
-                _isGrounded = true;
+                
                 if (_canStopJump)
                 {
-                    _canStopJump = false;
+                    _isLanding = true;
                     _isJumping = false;
                 }
+                if (!_isLanding) _isGrounded = true;
 
                 if (groundCheckColl.CompareTag("Player")) _isWalkingOnCorpse = true;
             }
@@ -215,7 +228,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void KillPlayerByLaser()
     {
         _isDead = true;
-
+        _playersAnimationManager.PlayDeathByLaserAnimation();
         CreateCorpse();
 
         _corpseContainer.GetComponent<CorpsesBehavior>().DesintagratedByLaser();
@@ -414,5 +427,6 @@ public class PlayerBehaviour : MonoBehaviour
     private void OnDestroy()
     {
         _levelManager.GetCurrentLevelController.OnLevelUnload -= UnloadLevel;
+        _playersAnimationManager.OnStopLanding -= StopLanding;
     }
 }

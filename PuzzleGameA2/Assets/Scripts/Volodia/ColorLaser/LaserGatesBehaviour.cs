@@ -73,20 +73,20 @@ public class LaserGatesBehaviour : ItemsBehaviors
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(ColorLaserManager.Instance);
         if (!_isActive)
         {
             _lineRenderer.gameObject.SetActive(false);
             return;
         }
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
+        if (!hit) return;
         if (hit.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
         {
             corpsesBehavior.DesintagratedByLaser();
         }
         if (hit.collider.gameObject.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
         {
-            playerBehaviour.KillPlayer();
+            playerBehaviour.KillPlayerByLaser();
         }
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, hit.point);
