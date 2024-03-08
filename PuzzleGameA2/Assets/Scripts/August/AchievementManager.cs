@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,28 +6,41 @@ using UnityEngine;
 public class AchievementManager : MonoBehaviour
 {
 
-    public GameObject achievementPrefab;
 
-    // Start is called before the first frame update
-    void Start()
+}
+
+public class Achievement
+{
+    public Achievement(string title, string description, Predicate<object> requirement)
     {
-        CreateAchievement("General");
+        this.title = title;
+        this.description = description;
+        this.requirement = requirement;
     }
 
-    // Update is called once per frame
-    void Update()
+    public string title;
+    public string description;
+    public Predicate<object> requirement;
+
+    public bool achieved;
+
+    public void UpdateCompletion()
     {
-        
+        if (achieved)
+            return;
+
+        if (RequirementsMet())
+        {
+            Debug.Log($"{title}: {description}");
+            achieved = true;
+            
+        }
+
     }
 
-    public void CreateAchievement(string category)
+    public bool RequirementsMet()
     {
-        GameObject achievement = (GameObject)Instantiate(achievementPrefab);
-        SetAchievementInfo(category, achievement);
+        return requirement.Invoke(null);
     }
 
-    public void SetAchievementInfo(string category, GameObject achievement)
-    {
-        achievement.transform.SetParent(GameObject.Find(category).transform);
-    }
 }

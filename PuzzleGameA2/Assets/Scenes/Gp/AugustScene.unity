@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451b019009b28fa44a691773f3c416e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  achievementPrefab: {fileID: 0}
 --- !u!4 &374945862
 Transform:
   m_ObjectHideFlags: 0
