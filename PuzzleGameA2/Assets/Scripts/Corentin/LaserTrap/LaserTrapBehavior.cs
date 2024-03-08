@@ -132,6 +132,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
                 //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * _laserRange, Color.red, 1f);
             }
 
+            if (!hit) return;
             if (hit.collider.gameObject.CompareTag("Player"))
             {
                 if (hit.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
