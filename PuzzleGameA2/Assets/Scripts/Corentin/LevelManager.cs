@@ -63,8 +63,6 @@ public class LevelManager : MonoBehaviour
         {
             if (scene.name !=_globalScene)
             {
-                Debug.Log(_levels[5].GetSceneName == scene.name);
-                Debug.Log(_levels.Find(x => x.GetSceneName == scene.name));
                 var l = _levels.Find(x => x.GetSceneName == scene.name);
 
                 if (l == null)
