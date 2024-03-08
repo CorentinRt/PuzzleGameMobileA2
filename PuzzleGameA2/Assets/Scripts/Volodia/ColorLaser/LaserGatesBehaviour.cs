@@ -79,6 +79,7 @@ public class LaserGatesBehaviour : ItemsBehaviors
             return;
         }
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
+        if (!hit) return;
         if (hit.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
         {
             corpsesBehavior.DesintagratedByLaser();

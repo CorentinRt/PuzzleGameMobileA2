@@ -38,7 +38,6 @@ public class ColorLaserManager : MonoBehaviour
             return;
         }
         _instance = this;
-        Debug.Log("yes");
 
         _laserList = new List<LaserGatesBehaviour>(0);
         _buttonList = new List<LaserButtonBehaviour>(0);
