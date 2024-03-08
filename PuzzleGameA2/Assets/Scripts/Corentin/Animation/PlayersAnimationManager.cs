@@ -17,6 +17,14 @@ public class PlayersAnimationManager : MonoBehaviour
     {
         _animator.SetTrigger("Idle");
     }
+    public void EnableFearAnimation()
+    {
+        _animator.SetBool("IsAffraid", true);
+    }
+    public void DisableFearAnimation()
+    {
+        _animator.SetBool("IsAffraid", false);
+    }
 
     public void StartRunAnimation()
     {

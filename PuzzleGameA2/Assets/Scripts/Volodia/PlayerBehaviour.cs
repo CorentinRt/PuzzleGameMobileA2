@@ -176,6 +176,15 @@ public class PlayerBehaviour : MonoBehaviour
         {
             _playersAnimationManager.EndRunAnimation();
         }
+
+        if (PlayerManager.Instance.OnePlayerDied)
+        {
+            _playersAnimationManager.EnableFearAnimation();
+        }
+        else
+        {
+            _playersAnimationManager.DisableFearAnimation();
+        }
     }
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
