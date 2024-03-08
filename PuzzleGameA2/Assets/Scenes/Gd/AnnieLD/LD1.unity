@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 93990795}
   m_Layer: 0
   m_Name: Sol_0 (2)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2400,7 +2400,7 @@ GameObject:
   - component: {fileID: 1854632364}
   m_Layer: 0
   m_Name: Sol_0 (1)
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2525,6 +2525,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2524007813707398229, guid: c70a60a449c9c3b4ca40092866944ca6, type: 3}
+      propertyPath: _levels.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2524007813707398229, guid: c70a60a449c9c3b4ca40092866944ca6, type: 3}
+      propertyPath: _levels.Array.data[3]._levelInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: d08b9a4e1eb0d5f43b7b356a6282617d, type: 2}
     - target: {fileID: 6234146976988277709, guid: c70a60a449c9c3b4ca40092866944ca6, type: 3}
       propertyPath: m_Name
       value: LvlManager
@@ -2995,7 +3003,7 @@ GameObject:
   - component: {fileID: 2116144922}
   m_Layer: 0
   m_Name: Sol_0
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
