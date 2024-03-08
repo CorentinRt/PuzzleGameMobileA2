@@ -1185,7 +1185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4914013772104425612, guid: 71ec3d094b5f26f40b31c350ac082300, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.45
+      value: -0.61
       objectReference: {fileID: 0}
     - target: {fileID: 4914013772104425612, guid: 71ec3d094b5f26f40b31c350ac082300, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2770,6 +2770,7 @@ MonoBehaviour:
   _isAlwaysShooting: 0
   _laserVisualDuration: 0.2
   _lineRenderer: {fileID: 1787660335}
+  _laserFX: []
   _playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
