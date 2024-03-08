@@ -73,7 +73,6 @@ public class LaserGatesBehaviour : ItemsBehaviors
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(ColorLaserManager.Instance);
         if (!_isActive)
         {
             _lineRenderer.gameObject.SetActive(false);
@@ -86,7 +85,7 @@ public class LaserGatesBehaviour : ItemsBehaviors
         }
         if (hit.collider.gameObject.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
         {
-            playerBehaviour.KillPlayer();
+            playerBehaviour.KillPlayerByLaser();
         }
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, hit.point);
