@@ -62,7 +62,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public int Direction { get => _direction; set => _direction = value; }
 
-    public bool _isLanding;
+    private bool _isLanding;
     public bool IsDead { get => _isDead; set => _isDead = value; }
 
     [Button]
@@ -84,11 +84,12 @@ public class PlayerBehaviour : MonoBehaviour
         Vector3 tempVector = transform.parent.localScale;
         tempVector.x *= _direction;
         transform.parent.localScale = tempVector;
-        _playersAnimationManager.OnStopLanding += StopStopLanding;
+        _playersAnimationManager.OnStopLanding += StopLanding;
     }
 
-    private void StopStopLanding()
+    private void StopLanding()
     {
+        Debug.Log("hey");
         _isLanding = false;
         _isGrounded = true;
     }
@@ -426,6 +427,6 @@ public class PlayerBehaviour : MonoBehaviour
     private void OnDestroy()
     {
         _levelManager.GetCurrentLevelController.OnLevelUnload -= UnloadLevel;
-        _playersAnimationManager.OnStopLanding -= StopStopLanding;
+        _playersAnimationManager.OnStopLanding -= StopLanding;
     }
 }
