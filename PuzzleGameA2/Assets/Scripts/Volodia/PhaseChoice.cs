@@ -31,6 +31,9 @@ public class PhaseChoice : MonoBehaviour
     private void ActivatePanel()
     {
         _choicePanel.SetActive(true);
+
+        // Pour skip phase choice garder ci dessous
+        GoTo(0);
     }
 
     public void GoTo(int phaseNum)

@@ -138,7 +138,7 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-    textureScale: {x: 1, y: 1}
+    textureScale: {x: 1.57, y: 0.82}
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
@@ -193,6 +193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRenderers:
   - {fileID: 411891363417649297}
+  _lineRenderers:
+  - {fileID: 5882046158633352483}
   _fadeSpeed: 1
   _cooldownBeforeFadeAppear: 2
 --- !u!1 &3547683271177976558
@@ -221,9 +223,9 @@ Transform:
   m_GameObject: {fileID: 3547683271177976558}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.65, y: -1.79, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 1.662, y: -1.523, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8217673931953617522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -269,7 +271,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1ccdc3957e9f10241ad4183e19e6100e, type: 3}
-  m_Color: {r: 0.5882353, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.5901637, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

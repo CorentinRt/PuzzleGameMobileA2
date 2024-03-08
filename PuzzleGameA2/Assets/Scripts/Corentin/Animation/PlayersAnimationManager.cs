@@ -32,9 +32,13 @@ public class PlayersAnimationManager : MonoBehaviour
     {
         _animator.SetTrigger("StartJump");
     }
-    public void PlayMidJumpAnimation()
+    public void StartMidJumpAnimation()
     {
-        _animator.SetTrigger("MidJump");
+        _animator.SetBool("IsJumping", true);
+    }
+    public void EndMidJumpAnimation()
+    {
+        _animator.SetBool("IsJumping", false);
     }
     public void PlayEndJumpAnimation()
     {
