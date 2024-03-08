@@ -203,10 +203,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShapesContainer
       objectReference: {fileID: 0}
-    - target: {fileID: 4694819811364218664, guid: cf2808ab08129c24c961931bc54b6fac, type: 3}
-      propertyPath: m_CellSize.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8581669108736811585, guid: cf2808ab08129c24c961931bc54b6fac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
