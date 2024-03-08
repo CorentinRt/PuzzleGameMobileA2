@@ -1185,7 +1185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4914013772104425612, guid: 71ec3d094b5f26f40b31c350ac082300, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.63
+      value: 2.45
       objectReference: {fileID: 0}
     - target: {fileID: 4914013772104425612, guid: 71ec3d094b5f26f40b31c350ac082300, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1572,7 +1572,7 @@ PrefabInstance:
     - target: {fileID: 2524007813707398229, guid: c70a60a449c9c3b4ca40092866944ca6, type: 3}
       propertyPath: _levels.Array.data[3]._levelInfo
       value: 
-      objectReference: {fileID: 11400000, guid: f43c0958a72052f408412d626d564da7, type: 2}
+      objectReference: {fileID: 11400000, guid: 11cf5316297874542bb8646bdeded320, type: 2}
     - target: {fileID: 6234146976988277709, guid: c70a60a449c9c3b4ca40092866944ca6, type: 3}
       propertyPath: m_Name
       value: LvlManager

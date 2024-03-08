@@ -19,25 +19,17 @@ MonoBehaviour:
   _shapes:
   - _power: 4
     _type: 0
-    _maxCount: 4
-    _isLookingLeft: 0
+    _maxCount: 1
+    _isLookingLeft: 1
   - _power: 2
     _type: 2
-    _maxCount: 4
+    _maxCount: 1
     _isLookingLeft: 0
   - _power: 5
     _type: 2
-    _maxCount: 5
-    _isLookingLeft: 0
-  - _power: 3
-    _type: 1
-    _maxCount: 5
+    _maxCount: 2
     _isLookingLeft: 0
   - _power: 3
     _type: 1
     _maxCount: 2
-    _isLookingLeft: 1
-  - _power: 7
-    _type: 1
-    _maxCount: 10
     _isLookingLeft: 1
