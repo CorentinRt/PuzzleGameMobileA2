@@ -10,7 +10,8 @@ public class LifeCountDisplay : MonoBehaviour
 
     private void UpdateLifeCountText()
     {
-        int value = PlayerManager.Instance.GetPlayerAliveCount() + 1;
+        int value = PlayerManager.Instance.GetLivesNumber();
+        Debug.Log("Updating Value to " + value);
         _lifeCountText.text = _lifeCountText.text.Substring(0, 2) + value.ToString();
     }
 
@@ -19,9 +20,17 @@ public class LifeCountDisplay : MonoBehaviour
         //PlayerManager.Instance.OnLifeUpdate += UpdateLifeCountText;
         PlayerManager.Instance.OnPlayerDeath += UpdateLifeCountText;
 
-        int value = PlayerManager.Instance.GetPlayerAliveCount();
+        LevelManager.Instance.OnLevelFinishedLoad += SetLifeCount;
+        _lifeCountText.text = _lifeCountText.text.Substring(0, 2) + 0;
+
+    }
+
+    private void SetLifeCount()
+    {
+        int value = LevelManager.Instance.GetCurrentLevel().LevelInfo.NbPlayerLives;
         _lifeCountText.text = _lifeCountText.text.Substring(0, 2) + value.ToString();
     }
+
     private void OnDestroy()
     {
         //PlayerManager.Instance.OnLifeUpdate -= UpdateLifeCountText;

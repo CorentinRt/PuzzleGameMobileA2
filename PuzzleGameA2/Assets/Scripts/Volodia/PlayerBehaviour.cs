@@ -109,6 +109,7 @@ public class PlayerBehaviour : MonoBehaviour
                 {
                     _isLanding = true;
                     _isJumping = false;
+                    _canStopJump = false;
                 }
                 if (!_isLanding) _isGrounded = true;
 
@@ -240,6 +241,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void KillPlayerByLaser()
     {
         _isDead = true;
+        _rb.velocity = new Vector2(0, _rb.velocity.y);
         _playersAnimationManager.PlayDeathByLaserAnimation();
         CreateCorpse();
 
