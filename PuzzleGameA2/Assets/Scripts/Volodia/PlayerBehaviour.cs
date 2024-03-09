@@ -109,6 +109,7 @@ public class PlayerBehaviour : MonoBehaviour
                 {
                     _isLanding = true;
                     _isJumping = false;
+                    _canStopJump = false;
                 }
                 if (!_isLanding) _isGrounded = true;
 
