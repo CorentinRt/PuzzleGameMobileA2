@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7589420417208474375, guid: b0989c32dbd2aea46905d1f319434b33, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.46
+      value: 3.19
       objectReference: {fileID: 0}
     - target: {fileID: 7589420417208474375, guid: b0989c32dbd2aea46905d1f319434b33, type: 3}
       propertyPath: m_LocalPosition.z
@@ -458,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5882046158633352483, guid: 9562802be58e4d8499b85a2650eaf5a5, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: -2.1699998
+      value: -2.4399998
       objectReference: {fileID: 0}
     - target: {fileID: 5882046158633352483, guid: 9562802be58e4d8499b85a2650eaf5a5, type: 3}
       propertyPath: m_Positions.Array.data[1].x
@@ -466,7 +466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5882046158633352483, guid: 9562802be58e4d8499b85a2650eaf5a5, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: -3.96
+      value: -4.23
       objectReference: {fileID: 0}
     - target: {fileID: 9199963361660989141, guid: 9562802be58e4d8499b85a2650eaf5a5, type: 3}
       propertyPath: _laserColor
@@ -656,7 +656,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 0.25}
+    oldSize: {x: 8, y: 0.23}
     newSize: {x: 8, y: 0.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1905,7 +1905,7 @@ Transform:
   m_GameObject: {fileID: 1007607055}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.26999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2203,7 +2203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5882046158633352483, guid: 9562802be58e4d8499b85a2650eaf5a5, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: 1.8450003
+      value: 1.5750003
       objectReference: {fileID: 0}
     - target: {fileID: 5882046158633352483, guid: 9562802be58e4d8499b85a2650eaf5a5, type: 3}
       propertyPath: m_Positions.Array.data[1].x
@@ -2211,7 +2211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5882046158633352483, guid: 9562802be58e4d8499b85a2650eaf5a5, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: -0.69312775
+      value: -0.9631275
       objectReference: {fileID: 0}
     - target: {fileID: 9199963361660989141, guid: 9562802be58e4d8499b85a2650eaf5a5, type: 3}
       propertyPath: _laserColor
@@ -2705,7 +2705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5882046158633352483, guid: 9562802be58e4d8499b85a2650eaf5a5, type: 3}
       propertyPath: m_Positions.Array.data[0].y
-      value: -2.1859999
+      value: -2.4559999
       objectReference: {fileID: 0}
     - target: {fileID: 5882046158633352483, guid: 9562802be58e4d8499b85a2650eaf5a5, type: 3}
       propertyPath: m_Positions.Array.data[1].x
@@ -2713,7 +2713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5882046158633352483, guid: 9562802be58e4d8499b85a2650eaf5a5, type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: -3.995
+      value: -4.265
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2792,7 +2792,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1364211217
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2861,7 +2861,7 @@ Transform:
   m_GameObject: {fileID: 1364211216}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39990944, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3455,7 +3455,7 @@ Transform:
   m_GameObject: {fileID: 1623075329}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.49, z: 0}
+  m_LocalPosition: {x: 0, y: -4.7599998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3495,7 +3495,7 @@ Transform:
   m_GameObject: {fileID: 1641980730}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.05, y: -4.81, z: 0}
+  m_LocalPosition: {x: 6.05, y: -5.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3634,7 +3634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8910099259160658610, guid: 29d1e657b913a144089a1e149f2af9d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.937
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 8910099259160658610, guid: 29d1e657b913a144089a1e149f2af9d6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3751,7 +3751,7 @@ Transform:
   m_GameObject: {fileID: 1689410422}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0176, y: 0.398, z: 0}
+  m_LocalPosition: {x: 0.0176, y: 0.12800002, z: 0}
   m_LocalScale: {x: 2.7814207, y: 2.7715786, z: 1.0043043}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3839,7 +3839,7 @@ Transform:
   m_GameObject: {fileID: 1709355941}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.68, y: 0.12, z: 0}
+  m_LocalPosition: {x: 11.68, y: -0.14999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4367,7 +4367,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 0.25}
+    oldSize: {x: 8, y: 0.23}
     newSize: {x: 8, y: 0.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4712,7 +4712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3820670497408769128, guid: d644a40bd93be3c41a0333f88444ea9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.26999998
       objectReference: {fileID: 0}
     - target: {fileID: 3820670497408769128, guid: d644a40bd93be3c41a0333f88444ea9e, type: 3}
       propertyPath: m_LocalPosition.z

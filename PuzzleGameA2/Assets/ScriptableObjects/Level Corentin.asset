@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c4a68e69063c442a00bd9fd1baa78f, type: 3}
   m_Name: Level Corentin
   m_EditorClassIdentifier: 
-  _levelID: 3
+  _levelID: 20
   _maxPlayerToSave: 8
   _nbPlayerLives: 0
   _levelAdditiveScene: CorentinScene
@@ -20,9 +20,12 @@ MonoBehaviour:
   - _power: 3
     _type: 0
     _maxCount: 2
+    _isLookingLeft: 0
   - _power: 5
     _type: 2
     _maxCount: 2
+    _isLookingLeft: 0
   - _power: 4
     _type: 1
     _maxCount: 2
+    _isLookingLeft: 0

@@ -12,6 +12,8 @@ public class StarsBehaviors : MonoBehaviour
     private LevelManager _levelManager;
     private GameManager _gameManager;
 
+    [SerializeField] private float _cooldownStarAppears;
+
 
     public void DisplayStars()
     {
@@ -21,10 +23,12 @@ public class StarsBehaviors : MonoBehaviour
 
         value = _gameManager.NbStars;
 
-        for (int i = 0; i < value; i++)
-        {
-            _stars[i].SetActive(true);
-        }
+        //for (int i = 0; i < value; i++)
+        //{
+        //    _stars[i].SetActive(true);
+        //}
+
+        StartCoroutine(AppearStarsCooldownCoroutine(value));
     }
 
     public void DisplayGameOver()
@@ -62,5 +66,22 @@ public class StarsBehaviors : MonoBehaviour
     { 
         _levelManager.RestartCurrentLevel(); 
         _losePanel.SetActive(false); 
-    } 
+    }
+
+
+    IEnumerator AppearStarsCooldownCoroutine(int value)
+    {
+        int currentIndex = 0;
+
+        while (currentIndex < value)
+        {
+            _stars[currentIndex].SetActive(true);
+
+            currentIndex++;
+
+            yield return new WaitForSeconds(_cooldownStarAppears);
+        }
+
+        yield return null;
+    }
 }
