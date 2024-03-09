@@ -41,7 +41,7 @@ public class TransitionLifeDisplay : MonoBehaviour
 
         _lifeTransitionPanel.gameObject.SetActive(true);
 
-        ChangeCurrentNumber(PlayerManager.Instance.GetPlayerAliveCount() + 1);
+        ChangeCurrentNumber(PlayerManager.Instance.GetLivesNumber());
 
         SlideNumber();
     }
@@ -92,7 +92,7 @@ public class TransitionLifeDisplay : MonoBehaviour
     {
         GameManager.Instance.OnPhase2Ended += StartCooldown;
 
-        _currentNumber = PlayerManager.Instance.GetPlayerAliveCount();
+        _currentNumber = PlayerManager.Instance.GetLivesNumber();
         _lastNumber = _currentNumber;
 
         _lastNumberText.text = _lastNumber.ToString();
