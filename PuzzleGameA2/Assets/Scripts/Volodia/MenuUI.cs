@@ -60,6 +60,11 @@ public class MenuUI : MonoBehaviour
             _levelsMenu.SetActive(false);
             _selectMenu.SetActive(true);
         }
+        else if (_homeMenu.activeSelf)
+        {
+            Application.Quit();
+            Debug.Log("Application Quit");
+        }
     }
     
 }
