@@ -36,11 +36,11 @@ public class OnDragUIDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.CurrentPhase == Enums.PhaseType.PlateformePlacement && DragDropManager.Instance.DraggingNumber == 0f && !_isDisplaying)
+        if (DragDropManager.Instance.DraggingNumber == 0f && !_isDisplaying)
         {
             Display();
         }
-        else if (GameManager.Instance.CurrentPhase == Enums.PhaseType.PlateformePlacement && DragDropManager.Instance.DraggingNumber != 0f && _isDisplaying)
+        else if (DragDropManager.Instance.DraggingNumber != 0f && _isDisplaying)
         {
             UnDisplay();
         }

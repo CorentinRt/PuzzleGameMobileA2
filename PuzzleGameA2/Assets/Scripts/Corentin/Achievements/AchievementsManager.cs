@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class AchievementsManager : MonoBehaviour
 {
-    private static AchievementsManager _instance;
-    public static AchievementsManager Instance { get => _instance; set => _instance = value; }
+    private AchievementsManager _instance;
+    public AchievementsManager Instance { get => _instance; set => _instance = value; }
 
 
     private bool _madScientist;
@@ -97,8 +97,6 @@ public class AchievementsManager : MonoBehaviour
 
             PlayerPrefs.SetInt("_madScientist", 1);
 
-            Debug.Log("Achieve Mad Scientist");
-
             // faire succès
         }
     }
@@ -109,8 +107,6 @@ public class AchievementsManager : MonoBehaviour
             _bigBrain = true;
 
             PlayerPrefs.SetInt("_bigBrain", 1);
-
-            Debug.Log("Achieve Big Brain");
 
             // faire succès
         }
@@ -123,8 +119,6 @@ public class AchievementsManager : MonoBehaviour
 
             PlayerPrefs.SetInt("_noBrain", 1);
 
-            Debug.Log("Achieve No Brain");
-
             // faire succès
         }
     }
@@ -135,8 +129,6 @@ public class AchievementsManager : MonoBehaviour
             _iBelieveICanFly = true;
 
             PlayerPrefs.SetInt("_iBelieveICanFly", 1);
-
-            Debug.Log("Achieve I Believe I Can Fly");
 
             // faire succès
         }
@@ -149,8 +141,6 @@ public class AchievementsManager : MonoBehaviour
 
             PlayerPrefs.SetInt("_whatAShock", 1);
 
-            Debug.Log("Achieve What A Shock");
-
             // faire succès
         }
     }
@@ -161,8 +151,6 @@ public class AchievementsManager : MonoBehaviour
             _byAllMeans = true;
 
             PlayerPrefs.SetInt("_byAllMeans", 1);
-
-            Debug.Log("Achieve By All Means");
 
             // faire succès
         }
@@ -175,8 +163,6 @@ public class AchievementsManager : MonoBehaviour
 
             PlayerPrefs.SetInt("_shinyShiny", 1);
 
-            Debug.Log("Achieve Shiny Shiny");
-
             // faire succès
         }
     }
@@ -187,8 +173,6 @@ public class AchievementsManager : MonoBehaviour
             _atLeastSuccess = true;
 
             PlayerPrefs.SetInt("_atLeastSuccess", 1);
-
-            Debug.Log("Achieve At Least Success");
 
             // faire succès
         }

@@ -34,7 +34,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MA_Blood
-  m_Shader: {fileID: -6465566751694194690, guid: 13394cbc2428b8e49be10138a82888e7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 9d3279028c29ebd4bab1a909cd9e9550, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -111,7 +111,7 @@ Material:
     - _CameraNearFadeDistance: 1
     - _CastShadows: 1
     - _ColorMode: 0
-    - _Contrast: 10
+    - _Contrast: 1
     - _Cull: 0
     - _Cutoff: 0.5
     - _DecalMeshBiasType: 0
@@ -136,7 +136,7 @@ Material:
     - _SoftParticlesEnabled: 0
     - _SoftParticlesFarFadeDistance: 1
     - _SoftParticlesNearFadeDistance: 0
-    - _Speed: 0
+    - _Speed: 0.1
     - _SrcBlend: 5
     - _Surface: 1
     - _WorkflowMode: 0

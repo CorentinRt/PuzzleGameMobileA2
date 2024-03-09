@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inverseGravitySpeed: 3
   _inverseGravityCooldown: 1
-  _jumpForce: 10
+  _jumpForce: 7
   _desintegrationCooldown: 4
   OnCorpsesDamage:
     m_PersistentCalls:
@@ -261,7 +261,7 @@ MonoBehaviour:
     m_Bits: 8
   _groundCheckLeft: {fileID: 5598519250197158521}
   _groundCheckRight: {fileID: 8822542137946391359}
-  _jumpForce: 10
+  _jumpForce: 7
   _mineCooldown: 0.15
   _playersAnimationManager: {fileID: 3789802150079274963}
   _playerVisuals: {fileID: 8501150779622949243}

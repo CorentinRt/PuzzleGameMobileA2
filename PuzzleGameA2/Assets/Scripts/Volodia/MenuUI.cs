@@ -14,8 +14,6 @@ public class MenuUI : MonoBehaviour
     {
         foreach (Level level in LevelManager.Instance.GetLevelList())
         {
-            //ATTENTION A CHANGER SI BESOIN !
-            if (level.GetID > 15) return;
             LevelDisplay lvlDisplay = Instantiate(_levelDisplayPrefab, _levelsMenu.transform).GetComponent<LevelDisplay>();
             lvlDisplay.SetID(level.GetID);
         }
@@ -59,11 +57,6 @@ public class MenuUI : MonoBehaviour
         {
             _levelsMenu.SetActive(false);
             _selectMenu.SetActive(true);
-        }
-        else if (_homeMenu.activeSelf)
-        {
-            Application.Quit();
-            Debug.Log("Application Quit");
         }
     }
     

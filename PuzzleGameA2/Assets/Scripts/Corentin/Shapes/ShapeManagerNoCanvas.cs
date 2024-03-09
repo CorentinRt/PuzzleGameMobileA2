@@ -26,7 +26,6 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
     private SpriteRenderer _spriteRd;
     [SerializeField] private List<GameObject> _shapesVisuals;
 
-    [SerializeField] private List<GameObject> _shapesFX;
     [SerializeField] private AllShapesInfo _shapesInfo;
 
     [SerializeField] private GameObject _collidersContainer;
@@ -363,10 +362,6 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
 
         if (_renderWithShapePower)
         {
-            foreach (GameObject fx in _shapesFX)
-            {
-                fx.SetActive(false);
-            }
             switch (_shapePower)
             {
                 case ShapePower.Mine:
@@ -388,7 +383,7 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
                     }
                     break;
                 case ShapePower.InverseGravity:
-            
+
                     for (int i = 0; i < _shapesVisuals.Count; i++)
                     {
                         if (i == 1)
@@ -403,8 +398,6 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
                             _powerColliders[i].enabled = false;
                         }
                     }
-
-                    _shapesFX[0].SetActive(true);
                     break;
                 case ShapePower.ChangeDirection:
 
@@ -741,8 +734,7 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
         if (_shapePower == ShapePower.InverseGravity)
         {
             Debug.Log("Reset Gravity");
-            _shapesFX[0].SetActive(true);
-            _physics.SetActive(true);
+            gameObject.SetActive(true);
             transform.position = StartPosition;
         }
         else if(_shapePower == ShapePower.Mine)
@@ -767,8 +759,7 @@ public class ShapeManagerNoCanvas : ItemsBehaviors, IResetable
         if (_shapePower == ShapePower.InverseGravity)
         {
             Debug.Log("Desactive gravity");
-            _shapesFX[0].SetActive(false);
-            _physics.SetActive(false);
+            gameObject.SetActive(false);
         }
         else if (_shapePower == ShapePower.Mine)
         {

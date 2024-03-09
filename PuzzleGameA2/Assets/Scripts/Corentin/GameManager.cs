@@ -126,16 +126,10 @@ public class GameManager : MonoBehaviour
 
     private void GameEnd()
     {
-        if (_nbStars == 3)
-        {
-            AchievementsManager.Instance.AchieveBigBrain();
-        }
         OnGameEnd?.Invoke();
     }
     private void GameOver()
     {
-        AchievementsManager.Instance.AchieveNoBrain();
-
         OnGameLost?.Invoke();
     }
 
