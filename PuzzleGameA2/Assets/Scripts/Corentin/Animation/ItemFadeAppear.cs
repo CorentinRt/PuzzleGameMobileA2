@@ -8,10 +8,12 @@ public class ItemFadeAppear : MonoBehaviour
     [SerializeField] private List<SpriteRenderer> _spriteRenderers;
 
     [SerializeField] private List<LineRenderer> _lineRenderers;
+    [SerializeField] private List<GameObject> _objectFX;
 
     [SerializeField] private float _fadeSpeed;
 
     [SerializeField] private float _cooldownBeforeFadeAppear;
+    private bool _isDefaultActive;
 
 
     private void Awake()
@@ -39,6 +41,14 @@ public class ItemFadeAppear : MonoBehaviour
                 lineRenderer.endColor = tempColor;
 
                 lineRenderer.sortingOrder = -5;
+            }
+        }
+        if (_objectFX.Count != 0)
+        {
+            _isDefaultActive = _objectFX[0].activeSelf;
+            foreach(var objectFX in _objectFX)
+            {
+                objectFX.SetActive(false);
             }
         }
     }
@@ -82,6 +92,11 @@ public class ItemFadeAppear : MonoBehaviour
         foreach (var lineRenderer in _lineRenderers)
         {
             lineRenderer.sortingOrder = 0;
+        }
+
+        foreach (GameObject objectFX in _objectFX)
+        {
+            objectFX.SetActive(_isDefaultActive);
         }
 
         yield return null;

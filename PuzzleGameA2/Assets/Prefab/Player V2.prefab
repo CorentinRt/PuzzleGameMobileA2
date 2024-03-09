@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6476618446161529320}
   - component: {fileID: 8768422748471986415}
   - component: {fileID: 2513488729428079151}
+  - component: {fileID: 2465239125951261099}
   m_Layer: 3
   m_Name: CorpseContainer
   m_TagString: Player
@@ -65,8 +66,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5637429, y: -0.62499005}
-  m_Size: {x: 1.9440464, y: 0.65002483}
+  m_Offset: {x: 0.7410834, y: -0.62499005}
+  m_Size: {x: 1.5893698, y: 0.650025}
   m_Direction: 1
 --- !u!114 &2513488729428079151
 MonoBehaviour:
@@ -82,11 +83,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inverseGravitySpeed: 3
   _inverseGravityCooldown: 1
-  _jumpForce: 7
+  _jumpForce: 10
   _desintegrationCooldown: 4
   OnCorpsesDamage:
     m_PersistentCalls:
       m_Calls: []
+--- !u!60 &2465239125951261099
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857716769976173013}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.04092421, y: -0.3164034}
+      - {x: 0.027321994, y: -0.33891615}
+      - {x: -0.41932267, y: -0.906207}
+      - {x: 0.108531296, y: -0.8977679}
+      - {x: 1.4970207, y: -0.89955246}
+  m_UseDelaunayMesh: 0
 --- !u!1 &3582775323648224613
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +261,7 @@ MonoBehaviour:
     m_Bits: 8
   _groundCheckLeft: {fileID: 5598519250197158521}
   _groundCheckRight: {fileID: 8822542137946391359}
-  _jumpForce: 7
+  _jumpForce: 10
   _mineCooldown: 0.15
   _playersAnimationManager: {fileID: 3789802150079274963}
   _playerVisuals: {fileID: 8501150779622949243}
@@ -552,6 +603,10 @@ PrefabInstance:
     - target: {fileID: 5843682785989591251, guid: 9e69202518113f54a9f6e599c9209018, type: 3}
       propertyPath: m_Name
       value: Personnage_Bonnes
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843682785989591251, guid: 9e69202518113f54a9f6e599c9209018, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6120009575554152744, guid: 9e69202518113f54a9f6e599c9209018, type: 3}
       propertyPath: m_LocalRotation.w
