@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c4a68e69063c442a00bd9fd1baa78f, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  _levelID: 1
+  _levelID: 21
   _maxPlayerToSave: 3
   _nbPlayerLives: 3
   _levelAdditiveScene: Level1Test
   _shapes:
-  - _power: 3
+  - _power: 7
     _type: 0
     _maxCount: 1
     _isLookingLeft: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
     _type: 2
     _maxCount: 2
     _isLookingLeft: 0
-  - _power: 6
+  - _power: 4
     _type: 2
     _maxCount: 2
     _isLookingLeft: 0
