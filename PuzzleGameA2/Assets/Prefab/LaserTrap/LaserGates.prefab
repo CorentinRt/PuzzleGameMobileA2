@@ -406,6 +406,9 @@ MonoBehaviour:
   - {fileID: 8343031392999866747}
   - {fileID: 3592969848558767930}
   _laserSprite: {fileID: 411891363417649297}
+  _ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!1001 &7932114646826070345
 PrefabInstance:
   m_ObjectHideFlags: 0

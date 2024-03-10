@@ -50,6 +50,7 @@ public class LaserGatesBehaviour : ItemsBehaviors
 
     private bool _isActive;
     [SerializeField] private SpriteRenderer _laserSprite;
+    [SerializeField] private LayerMask _ignoreLayer;
 
     public Vector3 StartPosition { get; set; }
     
@@ -87,7 +88,7 @@ public class LaserGatesBehaviour : ItemsBehaviors
             _endFX.SetActive(false);
             return;
         }
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_ignoreLayer);
         if (!hit) return;
         if (hit.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
         {
