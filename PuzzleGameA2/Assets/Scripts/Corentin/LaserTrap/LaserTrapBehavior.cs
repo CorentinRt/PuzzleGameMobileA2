@@ -21,6 +21,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
 
     private bool _canShoot;
     private bool _hasDetected;
+    [SerializeField] private LayerMask _ignoreLayer;
 
     public Vector3 StartPosition { get; set; }
 
@@ -138,12 +139,12 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
             RaycastHit2D hit;
             if (_hasInfiniteRange)
             {
-                hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
+                hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_ignoreLayer);
                 //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * _laserRange, Color.red, 1f);
             }
             else
             {
-                hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), _laserRange);
+                hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), _laserRange,~_ignoreLayer);
                 //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * _laserRange, Color.red, 1f);
             }
 
