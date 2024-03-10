@@ -41,7 +41,10 @@ public class PlayerBehaviour : MonoBehaviour
     private bool _walking;
     private Rigidbody2D _rb;
     private int _direction; //-1 = left ; 1 = right
-    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _jumpLenght;
+    [SerializeField] private float _jumpHigh;
+
+
     private LevelManager _levelManager;
 
     [SerializeField] private float _mineCooldown;
@@ -308,7 +311,7 @@ public class PlayerBehaviour : MonoBehaviour
         StartCoroutine(JumpCooldown());
         _isJumping = true;
         _rb.velocity = Vector2.zero;
-        _rb.AddForce(new Vector2(_jumpForce * _direction, _jumpForce * _rb.gravityScale), ForceMode2D.Impulse);
+        _rb.AddForce(new Vector2(_jumpLenght * _direction, _jumpLenght * _rb.gravityScale), ForceMode2D.Impulse);
         Debug.Log("jumping");
     }
     public void SideJump(int dir)
@@ -319,7 +322,7 @@ public class PlayerBehaviour : MonoBehaviour
         StartCoroutine(JumpCooldown());
         _isJumping = true;
         _rb.velocity = Vector2.zero;
-        _rb.AddForce(new Vector2(_jumpForce * dir, _jumpForce * _rb.gravityScale), ForceMode2D.Impulse);
+        _rb.AddForce(new Vector2(_jumpLenght * dir, _jumpHigh * _rb.gravityScale), ForceMode2D.Impulse);
         Debug.Log("Side Jumping");
     }
     public void Acceleration()
