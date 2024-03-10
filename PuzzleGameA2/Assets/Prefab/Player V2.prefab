@@ -261,7 +261,8 @@ MonoBehaviour:
     m_Bits: 8
   _groundCheckLeft: {fileID: 5598519250197158521}
   _groundCheckRight: {fileID: 8822542137946391359}
-  _jumpForce: 10
+  _jumpLenght: 7
+  _jumpHigh: 9
   _mineCooldown: 0.15
   _playersAnimationManager: {fileID: 3789802150079274963}
   _playerVisuals: {fileID: 8501150779622949243}
