@@ -269,7 +269,11 @@ public class PlayerBehaviour : MonoBehaviour
 
         Destroy(gameObject);
     }
-    public void UnloadLevel() => Destroy(gameObject);
+    public void UnloadLevel()
+    {
+        Destroy(transform.parent.gameObject);
+
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
