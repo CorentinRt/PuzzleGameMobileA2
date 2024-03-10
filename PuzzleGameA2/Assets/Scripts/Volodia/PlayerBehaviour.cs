@@ -62,7 +62,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public int Direction { get => _direction; set => _direction = value; }
 
-    public bool _isLanding;
+    private bool _isLanding;
     public bool IsDead { get => _isDead; set => _isDead = value; }
 
     [Button]
@@ -84,11 +84,12 @@ public class PlayerBehaviour : MonoBehaviour
         Vector3 tempVector = transform.parent.localScale;
         tempVector.x *= _direction;
         transform.parent.localScale = tempVector;
-        _playersAnimationManager.OnStopLanding += StopStopLanding;
+        _playersAnimationManager.OnStopLanding += StopLanding;
     }
 
-    private void StopStopLanding()
+    private void StopLanding()
     {
+        Debug.Log("hey");
         _isLanding = false;
         _isGrounded = true;
     }
@@ -108,6 +109,7 @@ public class PlayerBehaviour : MonoBehaviour
                 {
                     _isLanding = true;
                     _isJumping = false;
+                    _canStopJump = false;
                 }
                 if (!_isLanding) _isGrounded = true;
 
@@ -120,43 +122,46 @@ public class PlayerBehaviour : MonoBehaviour
             _isGrounded = false;
         }
 
-        if (!_isDead)
+        if (_isDead)
         {
-            if (_isGrounded && !_isJumping)
+            if (_rb.velocity.x!=0) _rb.velocity = new Vector2(0f, _rb.velocity.y);
+            return;
+        }
+        
+        if (_isGrounded && !_isJumping)
+        {
+            if (_walking)
             {
-                if (_walking)
+                if (!_isAccelerating)
                 {
-                    if (!_isAccelerating)
-                    {
-                        Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
-                        _rb.velocity = velocity;
-                    }
-                    else
-                    {
-                        Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
-                        _rb.velocity = velocity;
-                    }
-                }
-                else if (!_walking)
-                {
-                    if ((_direction == 1 && _startpoint.x > transform.position.x) || (_direction == -1 && _startpoint.x < transform.position.x)) _rb.velocity = new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y);
-                    else _rb.velocity = new Vector2(0, _rb.velocity.y);
-                }
-            }
-            else
-            {
-                if (!_isJumping)
-                {
-                    _rb.velocity = new Vector2(0f, _rb.velocity.y);
+                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
+                    _rb.velocity = velocity;
                 }
                 else
                 {
-                    Debug.Log("Still jumping");
+                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
+                    _rb.velocity = velocity;
                 }
             }
-
-            if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
+            else if (!_walking)
+            {
+                if ((_direction == 1 && _startpoint.x > transform.position.x) || (_direction == -1 && _startpoint.x < transform.position.x)) _rb.velocity = new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y);
+                else _rb.velocity = new Vector2(0, _rb.velocity.y);
+            }
         }
+        else
+        {
+            if (!_isJumping)
+            {
+                _rb.velocity = new Vector2(0f, _rb.velocity.y);
+            }
+            else
+            {
+                Debug.Log("Still jumping");
+            }
+        }
+
+        if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
     }
     private void Update()
     {
@@ -171,6 +176,15 @@ public class PlayerBehaviour : MonoBehaviour
         else
         {
             _playersAnimationManager.EndRunAnimation();
+        }
+
+        if (PlayerManager.Instance.OnePlayerDied)
+        {
+            _playersAnimationManager.EnableFearAnimation();
+        }
+        else
+        {
+            _playersAnimationManager.DisableFearAnimation();
         }
     }
 
@@ -219,7 +233,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void CreateCorpse()
     {
         _corpseContainer.SetActive(true);
-
+        _rb.mass = 50;
         _playersAnimationManager.PlayDeathBySpikeAnimation();
     }
 
@@ -227,6 +241,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void KillPlayerByLaser()
     {
         _isDead = true;
+        _rb.velocity = new Vector2(0, _rb.velocity.y);
         _playersAnimationManager.PlayDeathByLaserAnimation();
         CreateCorpse();
 
@@ -238,7 +253,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         //Instantiate(_corpse, transform.position + new Vector3(_direction * 0.5f, -transform.localScale.y / 2, 0), transform.rotation);
         _isDead = true;
-
+        _rb.velocity = new Vector2(0, _rb.velocity.y);
         CreateCorpse();
 
         Destroy(gameObject);
@@ -426,6 +441,6 @@ public class PlayerBehaviour : MonoBehaviour
     private void OnDestroy()
     {
         _levelManager.GetCurrentLevelController.OnLevelUnload -= UnloadLevel;
-        _playersAnimationManager.OnStopLanding -= StopStopLanding;
+        _playersAnimationManager.OnStopLanding -= StopLanding;
     }
 }
