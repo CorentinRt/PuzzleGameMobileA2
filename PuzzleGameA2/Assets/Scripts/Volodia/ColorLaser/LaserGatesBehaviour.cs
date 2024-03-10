@@ -11,7 +11,6 @@ public class LaserGatesBehaviour : ItemsBehaviors
     [SerializeField] private ColorLaserInfos _colorLaserInfos;
     private void UpdateVisuals()
     {
-        Debug.Log("Updating Visuals for Laser");
         Color color = Color.white;
         Material material = _colorLaserInfos.ColorLaserInfosList[0].Material;
         foreach (ColorLaserInfo info in _colorLaserInfos.ColorLaserInfosList)
@@ -56,6 +55,7 @@ public class LaserGatesBehaviour : ItemsBehaviors
     
     private void Start()
     {
+        UpdateVisuals();
         Active();
         if (ColorLaserManager.Instance!=null) ColorLaserManager.Instance.AddToLaserList(this);
         
