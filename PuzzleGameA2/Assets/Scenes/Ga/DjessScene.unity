@@ -10171,18 +10171,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7601707739820815692, guid: 0ddf909188d13d647a29ed919d7bec4a, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7601707739820815692, guid: 0ddf909188d13d647a29ed919d7bec4a, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7601707739820815692, guid: 0ddf909188d13d647a29ed919d7bec4a, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8996139352558072975, guid: 0ddf909188d13d647a29ed919d7bec4a, type: 3}
       propertyPath: m_Name
       value: Electrical_sphere (1)
