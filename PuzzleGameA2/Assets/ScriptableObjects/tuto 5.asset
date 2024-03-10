@@ -13,19 +13,15 @@ MonoBehaviour:
   m_Name: tuto 5
   m_EditorClassIdentifier: 
   _levelID: 8
-  _maxPlayerToSave: 3
-  _nbPlayerLives: 6
+  _maxPlayerToSave: 4
+  _nbPlayerLives: 7
   _levelAdditiveScene: Tuto 5
   _shapes:
-  - _power: 2
-    _type: 2
-    _maxCount: 3
-    _isLookingLeft: 0
   - _power: 5
     _type: 2
-    _maxCount: 3
+    _maxCount: 2
     _isLookingLeft: 0
   - _power: 7
     _type: 1
-    _maxCount: 3
+    _maxCount: 1
     _isLookingLeft: 1

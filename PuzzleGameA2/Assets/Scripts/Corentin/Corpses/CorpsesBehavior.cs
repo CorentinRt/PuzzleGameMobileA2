@@ -44,7 +44,7 @@ public class CorpsesBehavior : MonoBehaviour
 
     private void DestroySelf()
     {
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     private void OnDestroy()
