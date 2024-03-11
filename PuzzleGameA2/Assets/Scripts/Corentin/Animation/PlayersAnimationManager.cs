@@ -56,7 +56,7 @@ public class PlayersAnimationManager : MonoBehaviour
     }
     public void PlayWinAnimation()
     {
-        _animator.SetTrigger("Win");
+        if (_animator!=null) _animator.SetTrigger("Win");
     }
     public void PlayDeathBySpikeAnimation()
     {
