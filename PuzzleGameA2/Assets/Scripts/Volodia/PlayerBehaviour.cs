@@ -339,6 +339,11 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public void SideJump(int dir)
     {
+        if (AchievementsManager.Instance != null)
+        {
+            AchievementsManager.Instance.IncreaseJumpCount();
+        }
+
         //_rb.velocity = new Vector2(_jumpForce * dir, _jumpForce);
         _playersAnimationManager.PlayStartJumpAnimation();
 
