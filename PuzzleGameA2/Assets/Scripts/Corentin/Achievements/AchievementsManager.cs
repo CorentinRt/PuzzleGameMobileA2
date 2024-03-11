@@ -8,7 +8,6 @@ public class AchievementsManager : MonoBehaviour
     private static AchievementsManager _instance;
     public static AchievementsManager Instance { get => _instance; set => _instance = value; }
 
-
     private bool _madScientist;
     private bool _bigBrain;
     private bool _noBrain;
@@ -18,6 +17,11 @@ public class AchievementsManager : MonoBehaviour
     private bool _shinyShiny;
     private bool _atLeastSuccess;
 
+    private int _killCount;
+    private int _jumpCount;
+
+    public int KillCount { get => _killCount; set => _killCount = value; }
+    public int JumpCount { get => _jumpCount; set => _jumpCount = value; }
 
     private void Awake()
     {
@@ -85,6 +89,39 @@ public class AchievementsManager : MonoBehaviour
                     _atLeastSuccess = true;
                 }
             }
+
+            if (PlayerPrefs.HasKey("_killCount"))
+            {
+                _killCount = PlayerPrefs.GetInt("_killCount");
+            }
+            if (PlayerPrefs.HasKey("_jumpCount"))
+            {
+                _jumpCount = PlayerPrefs.GetInt("_jumpCount");
+            }
+        }
+    }
+
+    public void IncreaseKillCount()
+    {
+        _killCount++;
+        PlayerPrefs.SetInt("_killCount", _killCount);
+    }
+    public void IncreaseJumpCount()
+    {
+        _jumpCount++;
+        PlayerPrefs.SetInt("_jumpCount", _jumpCount);
+    }
+
+    private void Update()
+    {
+        if (_killCount >= 10 && !_madScientist)
+        {
+            AchieveMadScientist();
+        }
+
+        if (_jumpCount >= 10 && !_iBelieveICanFly)
+        {
+            AchieveIBelieveICanFly();
         }
     }
 
