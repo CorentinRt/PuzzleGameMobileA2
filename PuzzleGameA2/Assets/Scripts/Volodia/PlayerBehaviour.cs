@@ -276,7 +276,7 @@ public class PlayerBehaviour : MonoBehaviour
         _rb.velocity = new Vector2(0, _rb.velocity.y);
         CreateCorpse();
 
-        CreateCorpse();
+        //CreateCorpse();
 
         Destroy(gameObject);
     }
@@ -298,6 +298,11 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Death"))
         {
+            if (AchievementsManager.Instance != null)
+            {
+                AchievementsManager.Instance.IncreaseSpikeCount();
+            }
+
             KillPlayer();
         }
         else if (other.gameObject.CompareTag("FinalDoor"))

@@ -20,6 +20,7 @@ public class AchievementsManager : MonoBehaviour
     private int _killCount;
     private int _jumpCount;
     private int _shockCount;
+    private int _spikeCount;
 
 
     private void Awake()
@@ -101,6 +102,10 @@ public class AchievementsManager : MonoBehaviour
             {
                 _shockCount = PlayerPrefs.GetInt("_shockCount");
             }
+            if (PlayerPrefs.HasKey("_spikeCount"))
+            {
+                _spikeCount = PlayerPrefs.GetInt("_spikeCount", _spikeCount);
+            }
         }
     }
 
@@ -119,6 +124,11 @@ public class AchievementsManager : MonoBehaviour
         _shockCount++;
         PlayerPrefs.SetInt("_shockCount", _shockCount);
     }
+    public void IncreaseSpikeCount()
+    {
+        _spikeCount++;
+        PlayerPrefs.SetInt("_spikeCount", _spikeCount);
+    }
 
     private void Update()
     {
@@ -134,6 +144,29 @@ public class AchievementsManager : MonoBehaviour
         if (_shockCount >= 10 && !_whatAShock)
         {
             AchieveWhatAShock();
+        }
+        if (_spikeCount >= 10 && !_byAllMeans)
+        {
+            AchieveByAllMeans();
+        }
+
+        if (!_bigBrain)
+        {
+            List<Level> levels = LevelManager.Instance.GetLevelList();
+
+            int lockedCount = 0;
+
+            foreach (var level in levels)
+            {
+                if (!level.isUnlocked || level.GetStarsNum == 0)
+                {
+                    lockedCount++;
+                }
+            }
+            if (lockedCount == 0)
+            {
+                AchieveBigBrain();
+            }
         }
     }
 
