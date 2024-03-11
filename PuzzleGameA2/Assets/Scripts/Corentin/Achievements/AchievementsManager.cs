@@ -149,6 +149,25 @@ public class AchievementsManager : MonoBehaviour
         {
             AchieveByAllMeans();
         }
+
+        if (!_bigBrain)
+        {
+            List<Level> levels = LevelManager.Instance.GetLevelList();
+
+            int lockedCount = 0;
+
+            foreach (var level in levels)
+            {
+                if (!level.isUnlocked || level.GetStarsNum == 0)
+                {
+                    lockedCount++;
+                }
+            }
+            if (lockedCount == 0)
+            {
+                AchieveBigBrain();
+            }
+        }
     }
 
 
