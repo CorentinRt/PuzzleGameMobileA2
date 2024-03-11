@@ -19,9 +19,8 @@ public class AchievementsManager : MonoBehaviour
 
     private int _killCount;
     private int _jumpCount;
+    private int _shockCount;
 
-    public int KillCount { get => _killCount; set => _killCount = value; }
-    public int JumpCount { get => _jumpCount; set => _jumpCount = value; }
 
     private void Awake()
     {
@@ -98,6 +97,10 @@ public class AchievementsManager : MonoBehaviour
             {
                 _jumpCount = PlayerPrefs.GetInt("_jumpCount");
             }
+            if (PlayerPrefs.HasKey("_shockCount"))
+            {
+                _shockCount = PlayerPrefs.GetInt("_shockCount");
+            }
         }
     }
 
@@ -111,6 +114,11 @@ public class AchievementsManager : MonoBehaviour
         _jumpCount++;
         PlayerPrefs.SetInt("_jumpCount", _jumpCount);
     }
+    public void IncreaseShockCount()
+    {
+        _shockCount++;
+        PlayerPrefs.SetInt("_shockCount", _shockCount);
+    }
 
     private void Update()
     {
@@ -122,6 +130,10 @@ public class AchievementsManager : MonoBehaviour
         if (_jumpCount >= 10 && !_iBelieveICanFly)
         {
             AchieveIBelieveICanFly();
+        }
+        if (_shockCount >= 10 && !_whatAShock)
+        {
+            AchieveWhatAShock();
         }
     }
 
