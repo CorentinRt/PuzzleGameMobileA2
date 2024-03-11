@@ -14,15 +14,16 @@ public class AccelerationPower : MonoBehaviour
             {
                 int tempDir = GetComponentInParent<ShapeManagerNoCanvas>().GetDirection();
 
-                if (tempDir == playerBehavior.Direction)
-                {
-                    playerBehavior.Acceleration();
-                }
-                else
-                {
-                    Debug.Log("Wrong direction to accelerate");
-                }
+                //if (tempDir == playerBehavior.Direction)
+                //{
+                //
+                //}
+                //else
+                //{
+                //    Debug.Log("Wrong direction to accelerate");
+                //}
 
+                playerBehavior.Acceleration();
             }
         }
     }
