@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6476618446161529320}
   - component: {fileID: 8768422748471986415}
   - component: {fileID: 2513488729428079151}
+  - component: {fileID: 2465239125951261099}
   m_Layer: 3
   m_Name: CorpseContainer
   m_TagString: Player
@@ -35,6 +36,60 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &8768422748471986415
 CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857716769976173013}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.7410834, y: -0.62499005}
+  m_Size: {x: 1.5893698, y: 0.650025}
+  m_Direction: 1
+--- !u!114 &2513488729428079151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857716769976173013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea4aec7091613f848ab2ca27616774f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inverseGravitySpeed: 3
+  _inverseGravityCooldown: 1
+  _jumpForce: 10
+  _desintegrationCooldown: 4
+  OnCorpsesDamage:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!60 &2465239125951261099
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -65,28 +120,27 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5637429, y: -0.62499005}
-  m_Size: {x: 1.9440464, y: 0.65002483}
-  m_Direction: 1
---- !u!114 &2513488729428079151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857716769976173013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea4aec7091613f848ab2ca27616774f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inverseGravitySpeed: 3
-  _inverseGravityCooldown: 1
-  _jumpForce: 7
-  _desintegrationCooldown: 4
-  OnCorpsesDamage:
-    m_PersistentCalls:
-      m_Calls: []
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.3954794, y: -0.36060986}
+      - {x: 0.35877958, y: -0.46497554}
+      - {x: 0.1958421, y: -0.50897443}
+      - {x: -0.5340822, y: -0.89791393}
+      - {x: 0.056886338, y: -0.7465405}
+      - {x: 0.28878233, y: -0.77351904}
+      - {x: 0.96916914, y: -0.7265302}
+      - {x: 1.7543848, y: -1.076097}
+  m_UseDelaunayMesh: 0
 --- !u!1 &3582775323648224613
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +264,8 @@ MonoBehaviour:
     m_Bits: 8
   _groundCheckLeft: {fileID: 5598519250197158521}
   _groundCheckRight: {fileID: 8822542137946391359}
-  _jumpForce: 7
+  _jumpLenght: 4.7
+  _jumpHigh: 8
   _mineCooldown: 0.15
   _playersAnimationManager: {fileID: 3789802150079274963}
   _playerVisuals: {fileID: 8501150779622949243}
@@ -552,6 +607,10 @@ PrefabInstance:
     - target: {fileID: 5843682785989591251, guid: 9e69202518113f54a9f6e599c9209018, type: 3}
       propertyPath: m_Name
       value: Personnage_Bonnes
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843682785989591251, guid: 9e69202518113f54a9f6e599c9209018, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6120009575554152744, guid: 9e69202518113f54a9f6e599c9209018, type: 3}
       propertyPath: m_LocalRotation.w

@@ -11,7 +11,6 @@ public class LaserGatesBehaviour : ItemsBehaviors
     [SerializeField] private ColorLaserInfos _colorLaserInfos;
     private void UpdateVisuals()
     {
-        Debug.Log("Updating Visuals for Laser");
         Color color = Color.white;
         Material material = _colorLaserInfos.ColorLaserInfosList[0].Material;
         foreach (ColorLaserInfo info in _colorLaserInfos.ColorLaserInfosList)
@@ -22,12 +21,20 @@ public class LaserGatesBehaviour : ItemsBehaviors
                 material = info.Material;
             }
         }
+
+        foreach (ParticleSystem particle  in _laserParticules)
+        {
+            particle.startColor = color;
+        }
         _laserSprite.color = color;
         _lineRenderer.material = material;
     }
     
     [SerializeField] private LineRenderer _lineRenderer;
     [SerializeField] private LaserButtonBehaviour _buttonRelated;
+
+    [SerializeField] private GameObject _endFX;
+    [SerializeField] private List<ParticleSystem> _laserParticules;
 
     public LaserButtonBehaviour ButtonRelated
     {
@@ -42,11 +49,13 @@ public class LaserGatesBehaviour : ItemsBehaviors
 
     private bool _isActive;
     [SerializeField] private SpriteRenderer _laserSprite;
+    [SerializeField] private LayerMask _ignoreLayer;
 
     public Vector3 StartPosition { get; set; }
     
     private void Start()
     {
+        UpdateVisuals();
         Active();
         if (ColorLaserManager.Instance!=null) ColorLaserManager.Instance.AddToLaserList(this);
         
@@ -76,9 +85,10 @@ public class LaserGatesBehaviour : ItemsBehaviors
         if (!_isActive)
         {
             _lineRenderer.gameObject.SetActive(false);
+            _endFX.SetActive(false);
             return;
         }
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_ignoreLayer);
         if (!hit) return;
         if (hit.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
         {
@@ -91,6 +101,8 @@ public class LaserGatesBehaviour : ItemsBehaviors
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, hit.point);
         _lineRenderer.gameObject.SetActive(true);
+        _endFX.transform.position = hit.point;
+        _endFX.SetActive(_laserSprite.color.a >= 1f);
     }
 
 

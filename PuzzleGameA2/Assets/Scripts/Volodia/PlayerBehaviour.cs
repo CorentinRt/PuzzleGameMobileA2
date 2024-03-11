@@ -41,7 +41,10 @@ public class PlayerBehaviour : MonoBehaviour
     private bool _walking;
     private Rigidbody2D _rb;
     private int _direction; //-1 = left ; 1 = right
-    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _jumpLenght;
+    [SerializeField] private float _jumpHigh;
+
+
     private LevelManager _levelManager;
 
     [SerializeField] private float _mineCooldown;
@@ -109,6 +112,7 @@ public class PlayerBehaviour : MonoBehaviour
                 {
                     _isLanding = true;
                     _isJumping = false;
+                    _canStopJump = false;
                 }
                 if (!_isLanding) _isGrounded = true;
 
@@ -121,43 +125,46 @@ public class PlayerBehaviour : MonoBehaviour
             _isGrounded = false;
         }
 
-        if (!_isDead)
+        if (_isDead)
         {
-            if (_isGrounded && !_isJumping)
+            if (_rb.velocity.x!=0) _rb.velocity = new Vector2(0f, _rb.velocity.y);
+            return;
+        }
+        
+        if (_isGrounded && !_isJumping)
+        {
+            if (_walking)
             {
-                if (_walking)
+                if (!_isAccelerating)
                 {
-                    if (!_isAccelerating)
-                    {
-                        Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
-                        _rb.velocity = velocity;
-                    }
-                    else
-                    {
-                        Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
-                        _rb.velocity = velocity;
-                    }
-                }
-                else if (!_walking)
-                {
-                    if ((_direction == 1 && _startpoint.x > transform.position.x) || (_direction == -1 && _startpoint.x < transform.position.x)) _rb.velocity = new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y);
-                    else _rb.velocity = new Vector2(0, _rb.velocity.y);
-                }
-            }
-            else
-            {
-                if (!_isJumping)
-                {
-                    _rb.velocity = new Vector2(0f, _rb.velocity.y);
+                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
+                    _rb.velocity = velocity;
                 }
                 else
                 {
-                    Debug.Log("Still jumping");
+                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
+                    _rb.velocity = velocity;
                 }
             }
-
-            if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
+            else if (!_walking)
+            {
+                if ((_direction == 1 && _startpoint.x > transform.position.x) || (_direction == -1 && _startpoint.x < transform.position.x)) _rb.velocity = new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y);
+                else _rb.velocity = new Vector2(0, _rb.velocity.y);
+            }
         }
+        else
+        {
+            if (!_isJumping)
+            {
+                _rb.velocity = new Vector2(0f, _rb.velocity.y);
+            }
+            else
+            {
+                Debug.Log("Still jumping");
+            }
+        }
+
+        if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
     }
     private void Update()
     {
@@ -172,6 +179,15 @@ public class PlayerBehaviour : MonoBehaviour
         else
         {
             _playersAnimationManager.EndRunAnimation();
+        }
+
+        if (PlayerManager.Instance.OnePlayerDied)
+        {
+            _playersAnimationManager.EnableFearAnimation();
+        }
+        else
+        {
+            _playersAnimationManager.DisableFearAnimation();
         }
     }
 
@@ -220,7 +236,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void CreateCorpse()
     {
         _corpseContainer.SetActive(true);
-
+        _rb.mass = 50;
         _playersAnimationManager.PlayDeathBySpikeAnimation();
     }
 
@@ -228,6 +244,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void KillPlayerByLaser()
     {
         _isDead = true;
+        _rb.velocity = new Vector2(0, _rb.velocity.y);
         _playersAnimationManager.PlayDeathByLaserAnimation();
         CreateCorpse();
 
@@ -239,7 +256,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         //Instantiate(_corpse, transform.position + new Vector3(_direction * 0.5f, -transform.localScale.y / 2, 0), transform.rotation);
         _isDead = true;
-
+        _rb.velocity = new Vector2(0, _rb.velocity.y);
         CreateCorpse();
 
         Destroy(gameObject);
@@ -252,7 +269,11 @@ public class PlayerBehaviour : MonoBehaviour
 
         Destroy(gameObject);
     }
-    public void UnloadLevel() => Destroy(gameObject);
+    public void UnloadLevel()
+    {
+        Destroy(transform.parent.gameObject);
+
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -294,7 +315,7 @@ public class PlayerBehaviour : MonoBehaviour
         StartCoroutine(JumpCooldown());
         _isJumping = true;
         _rb.velocity = Vector2.zero;
-        _rb.AddForce(new Vector2(_jumpForce * _direction, _jumpForce * _rb.gravityScale), ForceMode2D.Impulse);
+        _rb.AddForce(new Vector2(_jumpLenght * _direction, _jumpLenght * _rb.gravityScale), ForceMode2D.Impulse);
         Debug.Log("jumping");
     }
     public void SideJump(int dir)
@@ -305,7 +326,7 @@ public class PlayerBehaviour : MonoBehaviour
         StartCoroutine(JumpCooldown());
         _isJumping = true;
         _rb.velocity = Vector2.zero;
-        _rb.AddForce(new Vector2(_jumpForce * dir, _jumpForce * _rb.gravityScale), ForceMode2D.Impulse);
+        _rb.AddForce(new Vector2(_jumpLenght * dir, _jumpHigh * _rb.gravityScale), ForceMode2D.Impulse);
         Debug.Log("Side Jumping");
     }
     public void Acceleration()
