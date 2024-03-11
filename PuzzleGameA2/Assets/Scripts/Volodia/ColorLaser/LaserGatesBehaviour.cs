@@ -11,7 +11,6 @@ public class LaserGatesBehaviour : ItemsBehaviors
     [SerializeField] private ColorLaserInfos _colorLaserInfos;
     private void UpdateVisuals()
     {
-        Debug.Log("Updating Visuals for Laser");
         Color color = Color.white;
         Material material = _colorLaserInfos.ColorLaserInfosList[0].Material;
         foreach (ColorLaserInfo info in _colorLaserInfos.ColorLaserInfosList)
@@ -50,11 +49,13 @@ public class LaserGatesBehaviour : ItemsBehaviors
 
     private bool _isActive;
     [SerializeField] private SpriteRenderer _laserSprite;
+    [SerializeField] private LayerMask _ignoreLayer;
 
     public Vector3 StartPosition { get; set; }
     
     private void Start()
     {
+        UpdateVisuals();
         Active();
         if (ColorLaserManager.Instance!=null) ColorLaserManager.Instance.AddToLaserList(this);
         
@@ -87,7 +88,7 @@ public class LaserGatesBehaviour : ItemsBehaviors
             _endFX.SetActive(false);
             return;
         }
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_ignoreLayer);
         if (!hit) return;
         if (hit.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
         {

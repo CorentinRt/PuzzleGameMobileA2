@@ -48,9 +48,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3095568040423227256, guid: 2245fe31538b0a940afc9c9fdf5d0c8b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095568040423227256, guid: 2245fe31538b0a940afc9c9fdf5d0c8b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4563183542875717307, guid: 2245fe31538b0a940afc9c9fdf5d0c8b, type: 3}
       propertyPath: m_Name
-      value: Eclair Variant
+      value: Electrical_sphere
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

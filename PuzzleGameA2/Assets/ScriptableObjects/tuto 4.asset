@@ -12,24 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c4a68e69063c442a00bd9fd1baa78f, type: 3}
   m_Name: tuto 4
   m_EditorClassIdentifier: 
-  _levelID: 1
-  _maxPlayerToSave: 2
-  _nbPlayerLives: 6
+  _levelID: 3
+  _maxPlayerToSave: 3
+  _nbPlayerLives: 3
   _levelAdditiveScene: Tuto 4
   _shapes:
   - _power: 4
     _type: 0
     _maxCount: 1
     _isLookingLeft: 1
-  - _power: 2
+  - _power: 5
     _type: 2
     _maxCount: 2
     _isLookingLeft: 0
-  - _power: 5
-    _type: 2
-    _maxCount: 3
-    _isLookingLeft: 0
   - _power: 3
     _type: 1
-    _maxCount: 5
+    _maxCount: 2
     _isLookingLeft: 1

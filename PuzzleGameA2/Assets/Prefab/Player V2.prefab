@@ -41,7 +41,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857716769976173013}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -132,11 +132,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.04092421, y: -0.3164034}
-      - {x: 0.027321994, y: -0.33891615}
-      - {x: -0.41932267, y: -0.906207}
-      - {x: 0.108531296, y: -0.8977679}
-      - {x: 1.4970207, y: -0.89955246}
+    - - {x: 1.3954794, y: -0.36060986}
+      - {x: 0.35877958, y: -0.46497554}
+      - {x: 0.1958421, y: -0.50897443}
+      - {x: -0.5340822, y: -0.89791393}
+      - {x: 0.056886338, y: -0.7465405}
+      - {x: 0.28878233, y: -0.77351904}
+      - {x: 0.96916914, y: -0.7265302}
+      - {x: 1.7543848, y: -1.076097}
   m_UseDelaunayMesh: 0
 --- !u!1 &3582775323648224613
 GameObject:
@@ -261,7 +264,8 @@ MonoBehaviour:
     m_Bits: 8
   _groundCheckLeft: {fileID: 5598519250197158521}
   _groundCheckRight: {fileID: 8822542137946391359}
-  _jumpForce: 10
+  _jumpLenght: 4.7
+  _jumpHigh: 8
   _mineCooldown: 0.15
   _playersAnimationManager: {fileID: 3789802150079274963}
   _playerVisuals: {fileID: 8501150779622949243}
