@@ -64,6 +64,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 
     public int Direction { get => _direction; set => _direction = value; }
+    public bool IsDead { get => _isDead; set => _isDead = value; }
 
     private bool _isLanding;
     public bool IsDead { get => _isDead; set => _isDead = value; }
@@ -133,17 +134,25 @@ public class PlayerBehaviour : MonoBehaviour
         
         if (_isGrounded && !_isJumping)
         {
-            if (_walking)
+            if (_isGrounded && !_isJumping)
             {
-                if (!_isAccelerating)
+                if (_walking)
                 {
-                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
-                    _rb.velocity = velocity;
+                    if (!_isAccelerating)
+                    {
+                        Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
+                        _rb.velocity = velocity;
+                    }
+                    else
+                    {
+                        Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
+                        _rb.velocity = velocity;
+                    }
                 }
-                else
+                else if (!_walking)
                 {
-                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
-                    _rb.velocity = velocity;
+                    if ((_direction == 1 && _startpoint.x > transform.position.x) || (_direction == -1 && _startpoint.x < transform.position.x)) _rb.velocity = new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y);
+                    else _rb.velocity = new Vector2(0, _rb.velocity.y);
                 }
             }
             else if (!_walking)
@@ -160,8 +169,17 @@ public class PlayerBehaviour : MonoBehaviour
             }
             else
             {
-                Debug.Log("Still jumping");
+                if (!_isJumping)
+                {
+                    _rb.velocity = new Vector2(0f, _rb.velocity.y);
+                }
+                else
+                {
+                    Debug.Log("Still jumping");
+                }
             }
+
+            if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
         }
 
         if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
@@ -257,6 +275,8 @@ public class PlayerBehaviour : MonoBehaviour
         //Instantiate(_corpse, transform.position + new Vector3(_direction * 0.5f, -transform.localScale.y / 2, 0), transform.rotation);
         _isDead = true;
         _rb.velocity = new Vector2(0, _rb.velocity.y);
+        CreateCorpse();
+
         CreateCorpse();
 
         Destroy(gameObject);
