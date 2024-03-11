@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: AnnieLevel1
   m_EditorClassIdentifier: 
   _levelID: 32
-  _maxPlayerToSave: 3
+  _maxPlayerToSave: 4
   _nbPlayerLives: 6
   _levelAdditiveScene: LD1
   _shapes:
   - _power: 4
     _type: 0
-    _maxCount: 2
+    _maxCount: 1
     _isLookingLeft: 0
   - _power: 5
     _type: 0
