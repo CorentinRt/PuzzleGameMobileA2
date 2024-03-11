@@ -103,7 +103,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("PlayerCount: " + _playerCount);
+        //Debug.Log("PlayerCount: " + _playerCount);
         if (!_isOnPlayerPhase) return;
         if (_currentPlayer == null && _nextPlayer == null)
         {

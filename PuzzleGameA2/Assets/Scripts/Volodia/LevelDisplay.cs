@@ -45,6 +45,8 @@ public class LevelDisplay : MonoBehaviour
 
     public void StartLevel()
     {
-        _levelManager.LoadGlobalSceneAndLevel(_levelID);
+        //_levelManager.LoadGlobalSceneAndLevel(_levelID);  // Ancienne version
+
+        _levelManager.LoadGlobalSceneAndLevelWithTransition(_levelID); // Alternative avec transition
     }
 }
