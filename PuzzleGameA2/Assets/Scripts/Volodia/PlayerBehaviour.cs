@@ -67,7 +67,6 @@ public class PlayerBehaviour : MonoBehaviour
     public bool IsDead { get => _isDead; set => _isDead = value; }
 
     private bool _isLanding;
-    public bool IsDead { get => _isDead; set => _isDead = value; }
 
     [Button]
     public void StartWalking() => _walking = true;
