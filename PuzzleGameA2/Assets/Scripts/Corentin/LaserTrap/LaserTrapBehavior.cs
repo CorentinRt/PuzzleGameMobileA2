@@ -19,6 +19,9 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
 
     [SerializeField] private LayerMask _playerLayerMask;
 
+    [SerializeField] private LayerMask _dragTriggerLayerMask;
+    [SerializeField] private LayerMask _indicatorLayerMask;
+
     private bool _canShoot;
     private bool _hasDetected;
     [SerializeField] private LayerMask _ignoreLayer;
@@ -31,7 +34,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
 
         RaycastHit2D hit;
 
-        hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_playerLayerMask);
+        hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~(_playerLayerMask + _ignoreLayer + _indicatorLayerMask + _dragTriggerLayerMask));
 
         if (hit)
         {
@@ -54,7 +57,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
 
             StartCoroutine(LaserVisualCoroutine());
         }
-        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, _playerLayerMask);
         if (raycastHit)
         {
             if (raycastHit.transform.CompareTag("Player"))
@@ -69,7 +72,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
 
         RaycastHit2D hit;
 
-        hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_playerLayerMask);
+        hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~(_playerLayerMask + _ignoreLayer + _indicatorLayerMask + _dragTriggerLayerMask));
 
         if (hit)
         {
@@ -92,7 +95,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
 
             StartCoroutine(LaserVisualCoroutine());
         }
-        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
+        RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, _playerLayerMask);
         if (raycastHit)
         {
             if (raycastHit.transform.CompareTag("Player"))
@@ -139,12 +142,12 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
             RaycastHit2D hit;
             if (_hasInfiniteRange)
             {
-                hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_ignoreLayer);
+                hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~(_ignoreLayer + _indicatorLayerMask + _dragTriggerLayerMask));
                 //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * _laserRange, Color.red, 1f);
             }
             else
             {
-                hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), _laserRange,~_ignoreLayer);
+                hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), _laserRange,~(_ignoreLayer + _indicatorLayerMask + _dragTriggerLayerMask));
                 //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * _laserRange, Color.red, 1f);
             }
 
@@ -184,7 +187,7 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
             }
 
             if (hit1) _laserFX[1].transform.position = hit1.point;
-            RaycastHit2D hit2 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_playerLayerMask);
+            RaycastHit2D hit2 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~(_playerLayerMask + _ignoreLayer + _indicatorLayerMask + _dragTriggerLayerMask));
             if (hit2)
             {
                 _lineRenderer.SetPosition(0, transform.position);
