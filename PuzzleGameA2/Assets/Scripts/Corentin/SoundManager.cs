@@ -54,6 +54,8 @@ public class SoundManager : MonoBehaviour
     }
     private void Update()
     {
+        _audioSource.volume = _musicVolume;
+
         if (PlayerPrefs.HasKey("_musicVolume"))
         {
             _musicVolume = PlayerPrefs.GetFloat("_musicVolume");
@@ -77,10 +79,66 @@ public class SoundManager : MonoBehaviour
 
     public void PlayVictorySound()
     {
-        _audioSource.PlayOneShot(_victorySound, _effectVolume);
+        if (_victorySound != null)
+        {
+            _audioSource.PlayOneShot(_victorySound, _effectVolume);
+        }
     }
     public void PlayDefeatSound()
     {
-        _audioSource.PlayOneShot(_defeatSound, _effectVolume);
+        if (_defeatSound != null)
+        {
+            _audioSource.PlayOneShot(_defeatSound, _effectVolume);
+        }
+    }
+
+    public void PlayChangeDirectionSound()
+    {
+        if (_changeDirection != null)
+        {
+            _audioSource.PlayOneShot(_changeDirection, _effectVolume);
+        }
+    }
+    public void PlayAccelerationSound()
+    {
+        if (_acceleration != null)
+        {
+            _audioSource.PlayOneShot(_acceleration, _effectVolume);
+        }
+    }
+    public void PlayGravitySound()
+    {
+        if (_gravity != null)
+        {
+            _audioSource.PlayOneShot(_gravity, _effectVolume);
+        }
+    }
+    public void PlayButtonClickSound()
+    {
+        if (_buttonClick != null)
+        {
+            _audioSource.PlayOneShot(_buttonClick, _effectVolume);
+        }
+    }
+    public void PlaySideJumpSound()
+    {
+        if (_sideJump != null)
+        {
+            _audioSource.PlayOneShot(_sideJump, _effectVolume);
+        }
+    }
+    public void PlayLaserSound()
+    {
+        if (_laser != null)
+        {
+            _audioSource.PlayOneShot(_laser, _effectVolume);
+        }
+    }
+    public void PlayElectricalSphereSound()
+    {
+        if (_electricalSphere != null)
+        {
+            _audioSource.PlayOneShot(_electricalSphere, _effectVolume);
+        }
     }
 }
