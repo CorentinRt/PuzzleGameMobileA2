@@ -29,6 +29,16 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip _victorySound;
     [SerializeField] private AudioClip _defeatSound;
 
+
+    [SerializeField] private AudioClip _changeDirection;
+    [SerializeField] private AudioClip _acceleration;
+    [SerializeField] private AudioClip _gravity;
+    [SerializeField] private AudioClip _buttonClick;
+    [SerializeField] private AudioClip _sideJump;
+    [SerializeField] private AudioClip _laser;
+    [SerializeField] private AudioClip _electricalSphere;
+
+
     private void Start()
     {
         if (!PlayerPrefs.HasKey("_volumeMusic"))
