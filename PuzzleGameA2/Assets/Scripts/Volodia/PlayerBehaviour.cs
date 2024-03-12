@@ -237,6 +237,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void ChangeDirection()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayChangeDirectionSound();
+        }
+
         _rb.velocity = new Vector2(0, _rb.velocity.y);
         _direction *= -1;
         //Vector3 tempVector = _playerVisuals.localScale;
@@ -348,6 +353,10 @@ public class PlayerBehaviour : MonoBehaviour
         {
             AchievementsManager.Instance.IncreaseJumpCount();
         }
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlaySideJumpSound();
+        }
 
         //_rb.velocity = new Vector2(_jumpForce * dir, _jumpForce);
         _playersAnimationManager.PlayStartJumpAnimation();
@@ -360,6 +369,11 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public void Acceleration()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayAccelerationSound();
+        }
+
         _playersAnimationManager.PlaySpeedBoostAnimation();
 
         if (_accelerationDurationCoroutine != null)
@@ -377,6 +391,11 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public void InverseGravity()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayGravitySound();
+        }
+
         _rb.gravityScale *= -1;
 
         if (_inverseGravityCoroutine != null)
