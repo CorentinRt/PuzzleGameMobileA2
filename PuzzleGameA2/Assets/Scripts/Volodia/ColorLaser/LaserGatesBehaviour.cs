@@ -131,7 +131,7 @@ public class LaserGatesBehaviour : ItemsBehaviors
 
     private void OnDrawGizmosSelected()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity,  ~(_ignoreLayer + _dragTriggerLayerMask + _indicatorLayerMask));
         if (!hit) return;
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, hit.point);
