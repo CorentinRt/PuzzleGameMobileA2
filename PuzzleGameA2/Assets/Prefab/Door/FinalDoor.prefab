@@ -108,7 +108,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: b081d32cdefefb64d870cdd3caedca54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -307,10 +307,6 @@ PrefabInstance:
       value: -0.12899995
       objectReference: {fileID: 0}
     - target: {fileID: 4446186436915818076, guid: 61783d03a51797b46aeee86b9618bb89, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4446186436915818076, guid: 61783d03a51797b46aeee86b9618bb89, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
       objectReference: {fileID: 0}
@@ -345,6 +341,10 @@ PrefabInstance:
     - target: {fileID: 6098688821600930912, guid: 61783d03a51797b46aeee86b9618bb89, type: 3}
       propertyPath: m_Name
       value: Teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 6098688821600930912, guid: 61783d03a51797b46aeee86b9618bb89, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -497,7 +497,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _won = true;
         yield return new WaitForSeconds(1.5f);
-        _playerVisuals.gameObject.SetActive(false);
-        
+        Debug.Log("StartANim");
+        StartCoroutine(_playersAnimationManager.PlayFadeOutAnimation());
+
     }
 }
