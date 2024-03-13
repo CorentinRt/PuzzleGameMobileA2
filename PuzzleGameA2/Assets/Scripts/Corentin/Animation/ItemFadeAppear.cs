@@ -55,7 +55,9 @@ public class ItemFadeAppear : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Actual alpha : " + _spriteRenderers[0].color.a);
         StartCoroutine(FadeAppearAnim());
+        Debug.Log("Start fade appear anim");
     }
 
     IEnumerator FadeAppearAnim()

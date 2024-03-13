@@ -29,6 +29,7 @@ public class LaserGatesBehaviour : ItemsBehaviors
         {
             particle.startColor = color;
         }
+        color.a = _laserSprite.color.a;
         _laserSprite.color = color;
         _lineRenderer.material = material;
     }
