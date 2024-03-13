@@ -103,7 +103,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("PlayerCount: " + _playerCount);
+        //Debug.Log("PlayerCount: " + _playerCount);
         if (!_isOnPlayerPhase) return;
         if (_currentPlayer == null && _nextPlayer == null)
         {
@@ -114,8 +114,14 @@ public class PlayerManager : MonoBehaviour
 
         if (_currentPlayer == null && _isOnPlayerPhase && _corpsesInMotionCount == 0)
         {
+            Debug.Log("DetectPlayerDeath");
+
             _isOnPlayerPhase = false;
             OnPlayerDeath?.Invoke();
+            if (AchievementsManager.Instance != null)
+            {
+                AchievementsManager.Instance.IncreaseKillCount();
+            }
             _onePlayerDied = true;
             _gameManager.ChangeGamePhase(PhaseType.ChoicePhase);
         }

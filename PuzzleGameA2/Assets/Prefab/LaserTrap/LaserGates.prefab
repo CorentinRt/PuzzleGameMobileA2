@@ -76,7 +76,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 2.9099998, y: 0.65, z: 0}
-  - {x: 2.9099998, y: -3.9288485, z: 0}
+  - {x: 2.91, y: -4.0009823, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -397,6 +397,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _laserColor: 0
   _colorLaserInfos: {fileID: 11400000, guid: c7b26b91cf710cc42807bea160a711ca, type: 2}
+  _dragTriggerLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _indicatorLayerMask:
+    serializedVersion: 2
+    m_Bits: 4096
   _lineRenderer: {fileID: 5882046158633352483}
   _buttonRelated: {fileID: 0}
   _endFX: {fileID: 1450917123276373658}
