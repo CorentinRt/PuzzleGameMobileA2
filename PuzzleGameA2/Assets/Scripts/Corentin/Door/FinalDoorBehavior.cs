@@ -21,6 +21,11 @@ public class FinalDoorBehavior : MonoBehaviour
         }
     }
 
+    private void DisableAnim()
+    {
+        throw new System.NotImplementedException();
+    }
+
     // Start is called before the first frame update
     void Start()
     {

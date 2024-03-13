@@ -65,7 +65,6 @@ public class PlayerBehaviour : MonoBehaviour
 
 
     public int Direction { get => _direction; set => _direction = value; }
-    public bool IsDead { get => _isDead; set => _isDead = value; }
 
     private bool _isLanding;
     private bool _won;
