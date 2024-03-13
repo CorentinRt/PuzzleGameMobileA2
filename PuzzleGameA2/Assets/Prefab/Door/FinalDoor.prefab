@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3530998421292471871}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FinalDoor
   m_TagString: FinalDoor
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3531137664538115075}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Physics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 4705985075590681787}
   - component: {fileID: 8739569436098661509}
   - component: {fileID: 1550895721219145614}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TriggerDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
