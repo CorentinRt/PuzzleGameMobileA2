@@ -39,6 +39,15 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip _laser;
     [SerializeField] private AudioClip _electricalSphere;
 
+    [SerializeField] private float _changeDirectionAdj;
+    [SerializeField] private float _accelerationAdj;
+    [SerializeField] private float _gravityAdj;
+    [SerializeField] private float _buttonClickAdj;
+    [SerializeField] private float _laserButtonPressedAdj;
+    [SerializeField] private float _sideJumpAdj;
+    [SerializeField] private float _laserAdj;
+    [SerializeField] private float _electricalSphereAdj;
+
 
     private void Start()
     {
@@ -97,14 +106,14 @@ public class SoundManager : MonoBehaviour
     {
         if (_changeDirection != null)
         {
-            _audioSource.PlayOneShot(_changeDirection, _effectVolume);
+            _audioSource.PlayOneShot(_changeDirection, _effectVolume * _changeDirectionAdj);
         }
     }
     public void PlayAccelerationSound()
     {
         if (_acceleration != null)
         {
-            _audioSource.PlayOneShot(_acceleration, _effectVolume);
+            _audioSource.PlayOneShot(_acceleration, _effectVolume * _accelerationAdj);
         }
     }
     public void PlayGravitySound()
@@ -119,7 +128,7 @@ public class SoundManager : MonoBehaviour
         if (_buttonClick != null)
         {
             Debug.Log("Play click sound");
-            _audioSource.PlayOneShot(_buttonClick, _effectVolume);
+            _audioSource.PlayOneShot(_buttonClick, _effectVolume * _buttonClickAdj);
         }
     }
     public void PlayLaserButtonPressed()
@@ -127,28 +136,28 @@ public class SoundManager : MonoBehaviour
         if (_laserButtonPressed != null)
         {
             Debug.Log("Laser Button Pressed sound");
-            _audioSource.PlayOneShot(_laserButtonPressed);
+            _audioSource.PlayOneShot(_laserButtonPressed, _effectVolume * _laserButtonPressedAdj);
         }
     }
     public void PlaySideJumpSound()
     {
         if (_sideJump != null)
         {
-            _audioSource.PlayOneShot(_sideJump, _effectVolume);
+            _audioSource.PlayOneShot(_sideJump, _effectVolume * _sideJumpAdj);
         }
     }
     public void PlayLaserSound()
     {
         if (_laser != null)
         {
-            _audioSource.PlayOneShot(_laser, _effectVolume);
+            _audioSource.PlayOneShot(_laser, _effectVolume * _laserAdj);
         }
     }
     public void PlayElectricalSphereSound()
     {
         if (_electricalSphere != null)
         {
-            _audioSource.PlayOneShot(_electricalSphere, _effectVolume);
+            _audioSource.PlayOneShot(_electricalSphere, _effectVolume * _electricalSphereAdj);
         }
     }
 }

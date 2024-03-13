@@ -54,11 +54,19 @@ MonoBehaviour:
   _changeDirection: {fileID: 8300000, guid: 870b15bdf9ab0574ea0d63655888964c, type: 3}
   _acceleration: {fileID: 8300000, guid: 5c57a76ddc57c5842acc709d04cc6a01, type: 3}
   _gravity: {fileID: 8300000, guid: 396b094ba5d87324183687a2bbf50cd5, type: 3}
-  _buttonClick: {fileID: 8300000, guid: c886aeafa1323ec46bb8cb2d870afabe, type: 3}
+  _buttonClick: {fileID: 8300000, guid: 3be37243101bc15418f5f672ba90ac3e, type: 3}
   _laserButtonPressed: {fileID: 8300000, guid: 59ac432c427cb5041b8eb872b751cfc7, type: 3}
   _sideJump: {fileID: 8300000, guid: 03e95c8558de7b748bcd59d6ec2155b0, type: 3}
   _laser: {fileID: 8300000, guid: f0eb4530071d58c45953a060d0c9fb75, type: 3}
   _electricalSphere: {fileID: 8300000, guid: 7ab696ba698a2404f84a2706a877a0c9, type: 3}
+  _changeDirectionAdj: 1
+  _accelerationAdj: 1
+  _gravityAdj: 1
+  _buttonClickAdj: 1
+  _laserButtonPressedAdj: 1
+  _sideJumpAdj: 1
+  _laserAdj: 1
+  _electricalSphereAdj: 1
 --- !u!82 &4017485345014678229
 AudioSource:
   m_ObjectHideFlags: 0
