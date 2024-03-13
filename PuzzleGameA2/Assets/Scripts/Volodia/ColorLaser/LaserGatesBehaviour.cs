@@ -9,6 +9,9 @@ public class LaserGatesBehaviour : ItemsBehaviors
     [SerializeField, OnValueChanged("UpdateVisuals")] private LaserColor _laserColor;
     
     [SerializeField] private ColorLaserInfos _colorLaserInfos;
+
+    [SerializeField] private LayerMask _dragTriggerLayerMask;
+    [SerializeField] private LayerMask _indicatorLayerMask;
     private void UpdateVisuals()
     {
         Color color = Color.white;
@@ -88,8 +91,9 @@ public class LaserGatesBehaviour : ItemsBehaviors
             _endFX.SetActive(false);
             return;
         }
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~_ignoreLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~(_ignoreLayer + _dragTriggerLayerMask + _indicatorLayerMask));
         if (!hit) return;
+        Debug.Log("Object hit : " + hit.transform.gameObject.name);
         if (hit.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
         {
             corpsesBehavior.DesintagratedByLaser();

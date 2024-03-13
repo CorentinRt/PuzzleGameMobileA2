@@ -31,6 +31,8 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private TextMeshProUGUI _shapeCountText;
 
+    [SerializeField] private GameObject _visuals;
+
     public int ShapeCount { get => _shapeCount; set => _shapeCount = value; }
     public ShapePower ShapePower { get => _shapePower; set => _shapePower = value; }
     public ShapeType ShapeType { get => _shapeType; set => _shapeType = value; }
@@ -258,10 +260,10 @@ public class ShapeGetter : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         _isLookingLeft = shape.IsLookingLeft;
         if (_isLookingLeft)
         {
-            Vector3 tempVect = transform.localScale;
+            Vector3 tempVect = _visuals.transform.localScale;
             tempVect.x = -1;
-            transform.localScale = tempVect;
-            _shapeCountText.transform.localScale = tempVect;
+            _visuals.transform.localScale = tempVect;
+            //_shapeCountText.transform.localScale = tempVect;
         }
     }
 

@@ -101,6 +101,19 @@ public class LevelManager : MonoBehaviour
 
     public void LoadLevel(int id)
     {
+        // !!!! Addition for setup transition !!!!
+
+        if (isLevelLoaded)
+        {
+            //TransitionsManager.Instance.StartTransition();
+            Debug.Log("In isLevelLoaded");
+        }
+
+        StartCoroutine(CallTransitionAndWait(id));
+
+        // !!!! Addition for setup transition !!!!
+
+        /*
         if (!DoesLevelExist(id)) return;
         Debug.Log("loading Level" + 1);
         if (GetLevel(id).isUnlocked)
@@ -112,12 +125,28 @@ public class LevelManager : MonoBehaviour
             }
             StartCoroutine(LoadLevelAndWait(id));
         }
+        */
         
     }
 
     public void LoadGlobalSceneAndLevel(int id)
     {
         StartCoroutine(WaitGlobalSceneAndLevel(id));
+    }
+    public void LoadGlobalSceneAndLevelWithTransition(int id)
+    {
+        TransitionsManager.Instance.StartTransition();
+        Debug.Log("In global scene and level transition");
+
+        StartCoroutine(waitForEndTransitionBeforeLoadGlobalAndLevel(id));
+    }
+    IEnumerator waitForEndTransitionBeforeLoadGlobalAndLevel(int id)
+    {
+        yield return new WaitForSeconds(1f);
+
+        LoadGlobalSceneAndLevel(id);
+
+        yield return null;
     }
 
     private IEnumerator WaitGlobalSceneAndLevel(int id)
@@ -143,8 +172,36 @@ public class LevelManager : MonoBehaviour
         _currentLevelID = id;
         OnLevelFinishedLoad?.Invoke();
         Debug.Log("lManager");
+
+        Debug.Log("In load level and wait");
+        TransitionsManager.Instance.EndTransition();
+
         yield return null;
     }
+    private IEnumerator CallTransitionAndWait(int id)
+    {
+        //TransitionsManager.Instance.StartTransition();
+
+        Debug.Log("Time1");
+        yield return new WaitForSeconds(/* TransitionsManager.Instance.TransitionTime */ 2f);
+        Debug.Log("Time2");
+
+        //if (!DoesLevelExist(id)) return;
+        if (!DoesLevelExist(id)) yield break;
+        Debug.Log("loading Level" + 1);
+        if (GetLevel(id).isUnlocked)
+        {
+            if (isLevelLoaded)
+            {
+                SceneManager.UnloadSceneAsync(GetLevel(_currentLevelID).GetSceneName);
+                GetCurrentLevelController.OnLevelUnload?.Invoke();
+            }
+            StartCoroutine(LoadLevelAndWait(id));
+        }
+
+        yield return null;
+    }
+
     public void UnloadCurrentLevel()
     {
         SceneManager.UnloadSceneAsync(GetLevel(_currentLevelID).LevelInfo.LevelScene);
@@ -160,8 +217,22 @@ public class LevelManager : MonoBehaviour
 
     public void RestartCurrentLevel()
     {
-        LoadLevel(_currentLevelID);
+        TransitionsManager.Instance.StartTransition();
+
+        StartCoroutine(WaitBeforeRestartlevel());
+
+
+        //LoadLevel(_currentLevelID);
     }
+    IEnumerator WaitBeforeRestartlevel()
+    {
+        yield return new WaitForSeconds(1f);
+
+        LoadLevel(_currentLevelID);
+
+        yield return null;
+    }
+
 
     public bool DoesLevelExist(int id)
     {
