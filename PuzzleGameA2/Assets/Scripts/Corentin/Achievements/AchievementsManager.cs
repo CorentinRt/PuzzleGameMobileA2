@@ -176,6 +176,10 @@ public class AchievementsManager : MonoBehaviour
     {
         if (!_madScientist)
         {
+            Social.ReportProgress("CgkIgfrixdgKEAIQAQ", 100.0f, (bool success) => {
+                // handle success or failure
+            });
+
             _madScientist = true;
 
             PlayerPrefs.SetInt("_madScientist", 1);
@@ -189,6 +193,10 @@ public class AchievementsManager : MonoBehaviour
     {
         if (!_bigBrain)
         {
+            Social.ReportProgress("CgkIgfrixdgKEAIQAg", 100.0f, (bool success) => {
+                // handle success or failure
+            });
+
             _bigBrain = true;
 
             PlayerPrefs.SetInt("_bigBrain", 1);
@@ -202,6 +210,10 @@ public class AchievementsManager : MonoBehaviour
     {
         if (!_noBrain)
         {
+            Social.ReportProgress("CgkIgfrixdgKEAIQAw", 100.0f, (bool success) => {
+                // handle success or failure
+            });
+
             _noBrain = true;
 
             PlayerPrefs.SetInt("_noBrain", 1);
@@ -215,6 +227,10 @@ public class AchievementsManager : MonoBehaviour
     {
         if (!_iBelieveICanFly)
         {
+            Social.ReportProgress("CgkIgfrixdgKEAIQBA", 100.0f, (bool success) => {
+                // handle success or failure
+            });
+
             _iBelieveICanFly = true;
 
             PlayerPrefs.SetInt("_iBelieveICanFly", 1);
@@ -228,6 +244,10 @@ public class AchievementsManager : MonoBehaviour
     {
         if (!_whatAShock)
         {
+            Social.ReportProgress("CgkIgfrixdgKEAIQBQ", 100.0f, (bool success) => {
+                // handle success or failure
+            });
+
             _whatAShock = true;
 
             PlayerPrefs.SetInt("_whatAShock", 1);
@@ -241,6 +261,10 @@ public class AchievementsManager : MonoBehaviour
     {
         if (!_byAllMeans)
         {
+            Social.ReportProgress("CgkIgfrixdgKEAIQBg", 100.0f, (bool success) => {
+                // handle success or failure
+            });
+
             _byAllMeans = true;
 
             PlayerPrefs.SetInt("_byAllMeans", 1);
@@ -254,6 +278,10 @@ public class AchievementsManager : MonoBehaviour
     {
         if (!_shinyShiny)
         {
+            Social.ReportProgress("CgkIgfrixdgKEAIQBw", 100.0f, (bool success) => {
+                // handle success or failure
+            });
+
             _shinyShiny = true;
 
             PlayerPrefs.SetInt("_shinyShiny", 1);
@@ -267,6 +295,10 @@ public class AchievementsManager : MonoBehaviour
     {
         if (!_atLeastSuccess)
         {
+            Social.ReportProgress("CgkIgfrixdgKEAIQCA", 100.0f, (bool success) => {
+                // handle success or failure
+            });
+
             _atLeastSuccess = true;
 
             PlayerPrefs.SetInt("_atLeastSuccess", 1);

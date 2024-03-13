@@ -13,26 +13,14 @@ public class PlayGamesManager : MonoBehaviour
     
     void Start()
     {
+        PlayGamesPlatform.Activate();
+
         SignIn();
     }
 
     public void SignIn()
     {
-        try
-        {
-            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
-        }
-        catch
-        {
-            try
-            {
-                PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication);
-            }
-            catch
-            {
-                _detailsText.text = "catch text";
-            }
-        }
+        PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
     }
     internal void ProcessAuthentication(SignInStatus status)
     {
