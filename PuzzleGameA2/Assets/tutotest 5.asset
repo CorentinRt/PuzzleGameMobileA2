@@ -15,25 +15,9 @@ MonoBehaviour:
   _levelID: 2
   _maxPlayerToSave: 4
   _nbPlayerLives: 7
-  _levelAdditiveScene: tutotest
+  _levelAdditiveScene: tutotest5
   _shapes:
-  - _power: 5
+  - _power: 2
     _type: 2
     _maxCount: 1
     _isLookingLeft: 0
-  - _power: 7
-    _type: 1
-    _maxCount: 1
-    _isLookingLeft: 1
-  - _power: 3
-    _type: 1
-    _maxCount: 1
-    _isLookingLeft: 0
-  - _power: 4
-    _type: 1
-    _maxCount: 1
-    _isLookingLeft: 1
-  - _power: 2
-    _type: 1
-    _maxCount: 1
-    _isLookingLeft: 1
