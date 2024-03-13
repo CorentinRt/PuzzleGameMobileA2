@@ -128,7 +128,11 @@ public class GameManager : MonoBehaviour
     {
         if (_nbStars == 3)
         {
-            AchievementsManager.Instance.AchieveBigBrain();
+            AchievementsManager.Instance.AchieveShinyShiny();
+        }
+        else if(NbStars == 1)
+        {
+            AchievementsManager.Instance.AchieveAtLeastSuccess();
         }
         OnGameEnd?.Invoke();
     }

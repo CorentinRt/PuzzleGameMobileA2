@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c4a68e69063c442a00bd9fd1baa78f, type: 3}
   m_Name: AnnieLevel1
   m_EditorClassIdentifier: 
-  _levelID: 4
-  _maxPlayerToSave: 3
+  _levelID: 32
+  _maxPlayerToSave: 4
   _nbPlayerLives: 6
   _levelAdditiveScene: LD1
   _shapes:
   - _power: 4
     _type: 0
-    _maxCount: 2
+    _maxCount: 1
     _isLookingLeft: 0
   - _power: 5
     _type: 0

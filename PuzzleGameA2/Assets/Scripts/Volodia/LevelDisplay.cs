@@ -13,7 +13,7 @@ public class LevelDisplay : MonoBehaviour
     private Level _level;
     [SerializeField, Foldout("References")] private Button _button;
     [SerializeField, Foldout("References")] private TextMeshProUGUI _text;
-    [SerializeField, Foldout("References")] private List<Image> _stars;
+    [SerializeField, Foldout("References")] private List<GameObject> _stars;
 
     public void SetID(int id) => _levelID = id;
     
@@ -39,12 +39,14 @@ public class LevelDisplay : MonoBehaviour
         int stars = _level.GetStarsNum;
         for (int i = 1; i < 4; i++)
         {
-            _stars[i - 1].color = stars >= i? Color.yellow : new Color32(95, 95, 0, 255);
+            _stars[i - 1].SetActive(stars >= i);
         }
     }
 
     public void StartLevel()
     {
-        _levelManager.LoadGlobalSceneAndLevel(_levelID);
+        //_levelManager.LoadGlobalSceneAndLevel(_levelID);  // Ancienne version
+
+        _levelManager.LoadGlobalSceneAndLevelWithTransition(_levelID); // Alternative avec transition
     }
 }

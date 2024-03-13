@@ -8,7 +8,6 @@ public class AchievementsManager : MonoBehaviour
     private static AchievementsManager _instance;
     public static AchievementsManager Instance { get => _instance; set => _instance = value; }
 
-
     private bool _madScientist;
     private bool _bigBrain;
     private bool _noBrain;
@@ -17,6 +16,11 @@ public class AchievementsManager : MonoBehaviour
     private bool _byAllMeans;
     private bool _shinyShiny;
     private bool _atLeastSuccess;
+
+    private int _killCount;
+    private int _jumpCount;
+    private int _shockCount;
+    private int _spikeCount;
 
 
     private void Awake()
@@ -84,6 +88,84 @@ public class AchievementsManager : MonoBehaviour
                 {
                     _atLeastSuccess = true;
                 }
+            }
+
+            if (PlayerPrefs.HasKey("_killCount"))
+            {
+                _killCount = PlayerPrefs.GetInt("_killCount");
+            }
+            if (PlayerPrefs.HasKey("_jumpCount"))
+            {
+                _jumpCount = PlayerPrefs.GetInt("_jumpCount");
+            }
+            if (PlayerPrefs.HasKey("_shockCount"))
+            {
+                _shockCount = PlayerPrefs.GetInt("_shockCount");
+            }
+            if (PlayerPrefs.HasKey("_spikeCount"))
+            {
+                _spikeCount = PlayerPrefs.GetInt("_spikeCount", _spikeCount);
+            }
+        }
+    }
+
+    public void IncreaseKillCount()
+    {
+        _killCount++;
+        PlayerPrefs.SetInt("_killCount", _killCount);
+    }
+    public void IncreaseJumpCount()
+    {
+        _jumpCount++;
+        PlayerPrefs.SetInt("_jumpCount", _jumpCount);
+    }
+    public void IncreaseShockCount()
+    {
+        _shockCount++;
+        PlayerPrefs.SetInt("_shockCount", _shockCount);
+    }
+    public void IncreaseSpikeCount()
+    {
+        _spikeCount++;
+        PlayerPrefs.SetInt("_spikeCount", _spikeCount);
+    }
+
+    private void Update()
+    {
+        if (_killCount >= 10 && !_madScientist)
+        {
+            AchieveMadScientist();
+        }
+
+        if (_jumpCount >= 10 && !_iBelieveICanFly)
+        {
+            AchieveIBelieveICanFly();
+        }
+        if (_shockCount >= 10 && !_whatAShock)
+        {
+            AchieveWhatAShock();
+        }
+        if (_spikeCount >= 10 && !_byAllMeans)
+        {
+            AchieveByAllMeans();
+        }
+
+        if (!_bigBrain)
+        {
+            List<Level> levels = LevelManager.Instance.GetLevelList();
+
+            int lockedCount = 0;
+
+            foreach (var level in levels)
+            {
+                if (!level.isUnlocked || level.GetStarsNum == 0)
+                {
+                    lockedCount++;
+                }
+            }
+            if (lockedCount == 0)
+            {
+                AchieveBigBrain();
             }
         }
     }

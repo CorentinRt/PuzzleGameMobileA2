@@ -13,6 +13,10 @@ public class ElectricSpherePower : MonoBehaviour
                 if (collision.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
                 {
                     playerBehaviour.KillPlayer();
+                    if (AchievementsManager.Instance != null)
+                    {
+                        AchievementsManager.Instance.IncreaseShockCount();
+                    }
                     GetComponentInParent<ShapeManagerNoCanvas>().Desactive();
                 }
             }
