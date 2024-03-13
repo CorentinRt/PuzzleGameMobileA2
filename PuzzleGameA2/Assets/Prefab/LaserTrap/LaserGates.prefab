@@ -406,6 +406,7 @@ MonoBehaviour:
   _lineRenderer: {fileID: 5882046158633352483}
   _buttonRelated: {fileID: 0}
   _endFX: {fileID: 1450917123276373658}
+  _startFX: {fileID: 7461017079657665507}
   _laserParticules:
   - {fileID: 2591252590336891656}
   - {fileID: 5126282135223581905}
@@ -414,7 +415,7 @@ MonoBehaviour:
   _laserSprite: {fileID: 411891363417649297}
   _ignoreLayer:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 8320
 --- !u!1001 &7932114646826070345
 PrefabInstance:
   m_ObjectHideFlags: 0
