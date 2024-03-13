@@ -34,6 +34,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip _acceleration;
     [SerializeField] private AudioClip _gravity;
     [SerializeField] private AudioClip _buttonClick;
+    [SerializeField] private AudioClip _laserButtonPressed;
     [SerializeField] private AudioClip _sideJump;
     [SerializeField] private AudioClip _laser;
     [SerializeField] private AudioClip _electricalSphere;
@@ -117,7 +118,16 @@ public class SoundManager : MonoBehaviour
     {
         if (_buttonClick != null)
         {
+            Debug.Log("Play click sound");
             _audioSource.PlayOneShot(_buttonClick, _effectVolume);
+        }
+    }
+    public void PlayLaserButtonPressed()
+    {
+        if (_laserButtonPressed != null)
+        {
+            Debug.Log("Laser Button Pressed sound");
+            _audioSource.PlayOneShot(_laserButtonPressed);
         }
     }
     public void PlaySideJumpSound()

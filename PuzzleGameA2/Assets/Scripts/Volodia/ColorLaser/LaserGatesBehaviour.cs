@@ -93,13 +93,18 @@ public class LaserGatesBehaviour : ItemsBehaviors
         }
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~(_ignoreLayer + _dragTriggerLayerMask + _indicatorLayerMask));
         if (!hit) return;
-        Debug.Log("Object hit : " + hit.transform.gameObject.name);
+        //Debug.Log("Object hit : " + hit.transform.gameObject.name);
         if (hit.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
         {
             corpsesBehavior.DesintagratedByLaser();
         }
         if (hit.collider.gameObject.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
         {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlayLaserSound();
+            }
+
             playerBehaviour.KillPlayerByLaser();
         }
         _lineRenderer.SetPosition(0, transform.position);
