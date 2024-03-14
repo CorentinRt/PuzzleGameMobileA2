@@ -614,6 +614,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5873864833744724139, guid: f60c42d309b4b7149bb0d8d9ae8a772f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6286311346305922142, guid: f60c42d309b4b7149bb0d8d9ae8a772f, type: 3}
       propertyPath: m_Name
       value: Parent
@@ -1066,6 +1070,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2021295636}
     m_Modifications:
+    - target: {fileID: 1711673547456488153, guid: 5c5342a69490c62448ff307d48a2f776, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.47
+      objectReference: {fileID: 0}
     - target: {fileID: 7033548108763000661, guid: 5c5342a69490c62448ff307d48a2f776, type: 3}
       propertyPath: m_Name
       value: LaserTrap (1)
@@ -2353,6 +2361,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5873864833744724139, guid: f60c42d309b4b7149bb0d8d9ae8a772f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6286311346305922142, guid: f60c42d309b4b7149bb0d8d9ae8a772f, type: 3}
       propertyPath: m_Name
       value: Parent (1)
@@ -3004,6 +3016,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2021295636}
     m_Modifications:
+    - target: {fileID: 1711673547456488153, guid: 5c5342a69490c62448ff307d48a2f776, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.46
+      objectReference: {fileID: 0}
     - target: {fileID: 7033548108763000661, guid: 5c5342a69490c62448ff307d48a2f776, type: 3}
       propertyPath: m_Name
       value: LaserTrap (2)
@@ -3313,6 +3329,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5873864833744724139, guid: f60c42d309b4b7149bb0d8d9ae8a772f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6286311346305922142, guid: f60c42d309b4b7149bb0d8d9ae8a772f, type: 3}
       propertyPath: m_Name
       value: Parent (2)
@@ -3370,6 +3390,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2021295636}
     m_Modifications:
+    - target: {fileID: 1711673547456488153, guid: 5c5342a69490c62448ff307d48a2f776, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.47
+      objectReference: {fileID: 0}
     - target: {fileID: 7033548108763000661, guid: 5c5342a69490c62448ff307d48a2f776, type: 3}
       propertyPath: m_Name
       value: LaserTrap
