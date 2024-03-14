@@ -11,6 +11,7 @@ public class PlayersAnimationManager : MonoBehaviour
     public event Action OnStopLanding;
 
     [FormerlySerializedAs("boneSprites")] [SerializeField] private List<SpriteRenderer> _boneSprites;
+    [SerializeField] private GameObject _bloodFX;
 
     [Button]
     private void GetSprites()
@@ -97,5 +98,10 @@ public class PlayersAnimationManager : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    public void LaunchBlood()
+    {
+        _bloodFX.SetActive(true);
     }
 }
