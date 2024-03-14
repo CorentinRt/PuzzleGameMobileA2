@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Enums;
 using NaughtyAttributes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -62,22 +63,28 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private UnityEvent OnPlayerJump;
     [SerializeField] private UnityEvent OnPlayerInverseGravity;
 
+    [SerializeField] private GameObject _accelerationSFX;
 
     public int Direction { get => _direction; set => _direction = value; }
-    public bool IsDead { get => _isDead; set => _isDead = value; }
 
     private bool _isLanding;
+    private bool _won;
+    private Vector3 _finalDoorPos;
+    public bool IsDead { get => _isDead; set => _isDead = value; }
 
     [Button]
     public void StartWalking() => _walking = true;
 
     public void SetSpawnpoint(Vector3 spawnpoint) => _startpoint = spawnpoint;
+
+    public void SetFinalDoor(Vector3 pos) => _finalDoorPos = pos;
     private void Awake()
     {
         _rb = transform.parent.GetComponent<Rigidbody2D>();
          //_capsuleColliderPlayer = GetComponent<CapsuleCollider2D>();
         _walking = false;
         _direction = 1;
+        _accelerationSFX.SetActive(false);
     }
 
     private void Start()
@@ -88,6 +95,7 @@ public class PlayerBehaviour : MonoBehaviour
         tempVector.x *= _direction;
         transform.parent.localScale = tempVector;
         _playersAnimationManager.OnStopLanding += StopLanding;
+        _won = false;
     }
 
     private void StopLanding()
@@ -99,6 +107,13 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_won)
+        {
+            if (transform.position.x < _finalDoorPos.x - 0.1f) _rb.velocity = new Vector2(_speed * Time.deltaTime,_rb.velocity.y);
+            else if (transform.position.x > _finalDoorPos.x + 0.1f) _rb.velocity = new Vector2(_speed * Time.deltaTime, _rb.velocity.y);
+            else _rb.velocity = new Vector2(0, _rb.velocity.y);
+            return;
+        }
         _isWalkingOnCorpse = false;
         Debug.DrawLine(_groundCheckLeft.position, _groundCheckRight.position, Color.yellow);
         Collider2D groundCheckColl = Physics2D.OverlapArea(_groundCheckLeft.position, _groundCheckRight.position);
@@ -133,32 +148,30 @@ public class PlayerBehaviour : MonoBehaviour
         
         if (_isGrounded && !_isJumping)
         {
-            if (_isGrounded && !_isJumping)
+            if (_walking)
             {
-                if (_walking)
+                if (!_isAccelerating)
                 {
-                    if (!_isAccelerating)
-                    {
-                        Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
-                        _rb.velocity = velocity;
-                    }
-                    else
-                    {
-                        Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
-                        _rb.velocity = velocity;
-                    }
+                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y));
+                    _rb.velocity = velocity;
                 }
-                else if (!_walking)
+                else
                 {
-                    if ((_direction == 1 && _startpoint.x > transform.position.x) || (_direction == -1 && _startpoint.x < transform.position.x)) _rb.velocity = new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y);
-                    else _rb.velocity = new Vector2(0, _rb.velocity.y);
+                    Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
+                    _rb.velocity = velocity;
                 }
+                if (_isAccelerating!=_accelerationSFX.activeSelf) _accelerationSFX.SetActive(_isAccelerating);
             }
             else if (!_walking)
             {
                 if ((_direction == 1 && _startpoint.x > transform.position.x) || (_direction == -1 && _startpoint.x < transform.position.x)) _rb.velocity = new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y);
                 else _rb.velocity = new Vector2(0, _rb.velocity.y);
             }
+        }
+        else if (!_walking)
+        {
+            if ((_direction == 1 && _startpoint.x > transform.position.x) || (_direction == -1 && _startpoint.x < transform.position.x)) _rb.velocity = new Vector2(_speed * _direction * Time.deltaTime, _rb.velocity.y);
+            else _rb.velocity = new Vector2(0, _rb.velocity.y);
         }
         else
         {
@@ -168,14 +181,7 @@ public class PlayerBehaviour : MonoBehaviour
             }
             else
             {
-                if (!_isJumping)
-                {
-                    _rb.velocity = new Vector2(0f, _rb.velocity.y);
-                }
-                else
-                {
-                    Debug.Log("Still jumping");
-                }
+                Debug.Log("Still jumping");
             }
 
             if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
@@ -478,5 +484,14 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _levelManager.GetCurrentLevelController.OnLevelUnload -= UnloadLevel;
         _playersAnimationManager.OnStopLanding -= StopLanding;
+    }
+
+    public IEnumerator WinCoroutine()
+    {
+        _won = true;
+        yield return new WaitForSeconds(1.5f);
+        Debug.Log("StartANim");
+        StartCoroutine(_playersAnimationManager.PlayFadeOutAnimation());
+
     }
 }
