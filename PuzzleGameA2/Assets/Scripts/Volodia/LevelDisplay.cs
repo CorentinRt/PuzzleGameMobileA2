@@ -37,7 +37,7 @@ public class LevelDisplay : MonoBehaviour
         Debug.Log("Updating UI");
         _levelManager = LevelManager.Instance;
         _level = _levelManager.GetLevel(_levelID);
-        _text.text = "Level " + _level.GetID;
+        _text.text = _level.LevelInfo.GetName;
         _button.interactable = _level.isUnlocked;
         if (!_level.isUnlocked) return;
         int stars = _level.GetStarsNum;
