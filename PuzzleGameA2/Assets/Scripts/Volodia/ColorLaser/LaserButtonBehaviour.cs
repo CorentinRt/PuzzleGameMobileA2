@@ -59,6 +59,12 @@ public class LaserButtonBehaviour : MonoBehaviour
     private void PressButton()
     {
         Debug.Log("Press Button");
+
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayLaserButtonPressed();
+        }
+
         OnButtonPressed?.Invoke();
 
         _buttonVisual.position = _pressedTransf.position;
