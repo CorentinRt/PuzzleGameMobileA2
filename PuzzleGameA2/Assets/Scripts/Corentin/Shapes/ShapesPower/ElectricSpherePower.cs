@@ -17,6 +17,10 @@ public class ElectricSpherePower : MonoBehaviour
                     {
                         AchievementsManager.Instance.IncreaseShockCount();
                     }
+                    if (SoundManager.Instance != null)
+                    {
+                        SoundManager.Instance.PlayElectricalSphereSound();
+                    }
                     GetComponentInParent<ShapeManagerNoCanvas>().Desactive();
                 }
             }

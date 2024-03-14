@@ -296,6 +296,7 @@ GameObject:
   - component: {fileID: 6446589073322011229}
   - component: {fileID: 2563796785902449321}
   - component: {fileID: 8506331671935377186}
+  - component: {fileID: 179407137843632366}
   m_Layer: 0
   m_Name: ShapeGettersPrefab
   m_TagString: Untagged
@@ -389,6 +390,18 @@ MonoBehaviour:
   - {fileID: 156145492030279823}
   _isAffectedByGravity: 0
   _visuals: {fileID: 4968407109682793165}
+--- !u!114 &179407137843632366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3438982896736697550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e30713b62457a4f8c02f2f30ea1432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3769831556258441703
 GameObject:
   m_ObjectHideFlags: 0

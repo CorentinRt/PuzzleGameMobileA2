@@ -126,6 +126,10 @@ public class GameManager : MonoBehaviour
 
     private void GameEnd()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayVictorySound();
+        }
         if (_nbStars == 3)
         {
             AchievementsManager.Instance.AchieveShinyShiny();
@@ -138,6 +142,11 @@ public class GameManager : MonoBehaviour
     }
     private void GameOver()
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayDefeatSound();
+        }
+
         AchievementsManager.Instance.AchieveNoBrain();
 
         OnGameLost?.Invoke();
