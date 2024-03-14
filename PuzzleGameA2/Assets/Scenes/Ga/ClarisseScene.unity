@@ -360,17 +360,37 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.54
       objectReference: {fileID: 0}
+    - target: {fileID: 517699596318973087, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
+      propertyPath: _shapePower
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 567814805514326856, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1826879288983157175, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2280714713902603030, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280714713902603030, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280714713902603030, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280714713902603030, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.352
       objectReference: {fileID: 0}
     - target: {fileID: 2280714713902603030, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.336
       objectReference: {fileID: 0}
     - target: {fileID: 2280714713902603030, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
       propertyPath: m_LocalPosition.z
@@ -404,9 +424,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2280714713902603030, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2423419562359650399, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
       propertyPath: m_Name
       value: ShapeNoCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113144756848412441, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6281701502378519965, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
       propertyPath: m_LocalPosition.y
@@ -414,7 +442,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6772162572489639951, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7018331654764765204, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9164796287058602336, guid: 174102ca5d61c7849832e7b1e7c85841, type: 3}
       propertyPath: m_Sprite
