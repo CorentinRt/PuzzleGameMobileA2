@@ -9,6 +9,8 @@ public class AchievementsManager : MonoBehaviour
     private static AchievementsManager _instance;
     public static AchievementsManager Instance { get => _instance; set => _instance = value; }
 
+    private bool _useGooglePlay;
+
     private bool _madScientist;
     private bool _bigBrain;
     private bool _noBrain;
@@ -133,6 +135,11 @@ public class AchievementsManager : MonoBehaviour
 
     private void Update()
     {
+        if (PlayGamesManager.Instance != null)
+        {
+            _useGooglePlay = PlayGamesManager.Instance.UseGooglePlay;
+        }
+
         if (_killCount >= 10 && !_madScientist)
         {
             AchieveMadScientist();
@@ -174,138 +181,162 @@ public class AchievementsManager : MonoBehaviour
 
     public void AchieveMadScientist()   // Tuer 10 perso
     {
-        if (!_madScientist)
+        if (_useGooglePlay)
         {
-            Social.ReportProgress("CgkIgfrixdgKEAIQAQ", 100.0f, (bool success) => {
-                // handle success or failure
-            });
+            if (!_madScientist)
+            {
+                Social.ReportProgress("CgkIgfrixdgKEAIQAQ", 100.0f, (bool success) => {
+                    // handle success or failure
+                });
 
-            _madScientist = true;
+                _madScientist = true;
 
-            PlayerPrefs.SetInt("_madScientist", 1);
+                PlayerPrefs.SetInt("_madScientist", 1);
 
-            Debug.Log("Achieve Mad Scientist");
+                Debug.Log("Achieve Mad Scientist");
 
-            // faire succès
+                // faire succès
+            }
         }
     }
     public void AchieveBigBrain()   // Finir le jeu
     {
-        if (!_bigBrain)
+        if (_useGooglePlay)
         {
-            Social.ReportProgress("CgkIgfrixdgKEAIQAg", 100.0f, (bool success) => {
-                // handle success or failure
-            });
+            if (!_bigBrain)
+            {
+                Social.ReportProgress("CgkIgfrixdgKEAIQAg", 100.0f, (bool success) => {
+                    // handle success or failure
+                });
 
-            _bigBrain = true;
+                _bigBrain = true;
 
-            PlayerPrefs.SetInt("_bigBrain", 1);
+                PlayerPrefs.SetInt("_bigBrain", 1);
 
-            Debug.Log("Achieve Big Brain");
+                Debug.Log("Achieve Big Brain");
 
-            // faire succès
+                // faire succès
+            }
         }
     }
     public void AchieveNoBrain()    // Rater un niveau
     {
-        if (!_noBrain)
+        if (_useGooglePlay)
         {
-            Social.ReportProgress("CgkIgfrixdgKEAIQAw", 100.0f, (bool success) => {
-                // handle success or failure
-            });
+            if (!_noBrain)
+            {
+                Social.ReportProgress("CgkIgfrixdgKEAIQAw", 100.0f, (bool success) => {
+                    // handle success or failure
+                });
 
-            _noBrain = true;
+                _noBrain = true;
 
-            PlayerPrefs.SetInt("_noBrain", 1);
+                PlayerPrefs.SetInt("_noBrain", 1);
 
-            Debug.Log("Achieve No Brain");
+                Debug.Log("Achieve No Brain");
 
-            // faire succès
+                // faire succès
+            }
         }
     }
     public void AchieveIBelieveICanFly()    // Faire sauter 10 perso avec le bumper
     {
-        if (!_iBelieveICanFly)
+        if (_useGooglePlay)
         {
-            Social.ReportProgress("CgkIgfrixdgKEAIQBA", 100.0f, (bool success) => {
-                // handle success or failure
-            });
+            if (!_iBelieveICanFly)
+            {
+                Social.ReportProgress("CgkIgfrixdgKEAIQBA", 100.0f, (bool success) => {
+                    // handle success or failure
+                });
 
-            _iBelieveICanFly = true;
+                _iBelieveICanFly = true;
 
-            PlayerPrefs.SetInt("_iBelieveICanFly", 1);
+                PlayerPrefs.SetInt("_iBelieveICanFly", 1);
 
-            Debug.Log("Achieve I Believe I Can Fly");
+                Debug.Log("Achieve I Believe I Can Fly");
 
-            // faire succès
+                // faire succès
+            }
         }
     }
     public void AchieveWhatAShock()     // Tuer 10 perso avec les spheres
     {
-        if (!_whatAShock)
+        if (_useGooglePlay)
         {
-            Social.ReportProgress("CgkIgfrixdgKEAIQBQ", 100.0f, (bool success) => {
-                // handle success or failure
-            });
+            if (!_whatAShock)
+            {
+                Social.ReportProgress("CgkIgfrixdgKEAIQBQ", 100.0f, (bool success) => {
+                    // handle success or failure
+                });
 
-            _whatAShock = true;
+                _whatAShock = true;
 
-            PlayerPrefs.SetInt("_whatAShock", 1);
+                PlayerPrefs.SetInt("_whatAShock", 1);
 
-            Debug.Log("Achieve What A Shock");
+                Debug.Log("Achieve What A Shock");
 
-            // faire succès
+                // faire succès
+            }
         }
     }
     public void AchieveByAllMeans()     // Tuer 10 perso dans les spikes
     {
-        if (!_byAllMeans)
+        if (_useGooglePlay)
         {
-            Social.ReportProgress("CgkIgfrixdgKEAIQBg", 100.0f, (bool success) => {
-                // handle success or failure
-            });
+            if (!_byAllMeans)
+            {
+                Social.ReportProgress("CgkIgfrixdgKEAIQBg", 100.0f, (bool success) => {
+                    // handle success or failure
+                });
 
-            _byAllMeans = true;
+                _byAllMeans = true;
 
-            PlayerPrefs.SetInt("_byAllMeans", 1);
+                PlayerPrefs.SetInt("_byAllMeans", 1);
 
-            Debug.Log("Achieve By All Means");
+                Debug.Log("Achieve By All Means");
 
-            // faire succès
+                // faire succès
+            }
         }
     }
     public void AchieveShinyShiny()     // Réussir un niveau avec 3 étoiles
     {
-        if (!_shinyShiny)
+        if (_useGooglePlay)
         {
-            Social.ReportProgress("CgkIgfrixdgKEAIQBw", 100.0f, (bool success) => {
-                // handle success or failure
-            });
+            if (!_shinyShiny)
+            {
+                Social.ReportProgress("CgkIgfrixdgKEAIQBw", 100.0f, (bool success) => {
+                    // handle success or failure
+                });
 
-            _shinyShiny = true;
+                _shinyShiny = true;
 
-            PlayerPrefs.SetInt("_shinyShiny", 1);
+                PlayerPrefs.SetInt("_shinyShiny", 1);
 
-            Debug.Log("Achieve Shiny Shiny");
+                Debug.Log("Achieve Shiny Shiny");
 
-            // faire succès
+                // faire succès
+            }
         }
     }
     public void AchieveAtLeastSuccess()     // Réussir un niveau avec 1 seule étoile
     {
-        if (!_atLeastSuccess)
+        if (_useGooglePlay)
         {
-            Social.ReportProgress("CgkIgfrixdgKEAIQCA", 100.0f, (bool success) => {
-                // handle success or failure
-            });
+            if (!_atLeastSuccess)
+            {
+                Social.ReportProgress("CgkIgfrixdgKEAIQCA", 100.0f, (bool success) => {
+                    // handle success or failure
+                });
 
-            _atLeastSuccess = true;
+                _atLeastSuccess = true;
 
-            PlayerPrefs.SetInt("_atLeastSuccess", 1);
+                PlayerPrefs.SetInt("_atLeastSuccess", 1);
 
-            Debug.Log("Achieve At Least Success");
+                Debug.Log("Achieve At Least Success");
 
-            // faire succès
+                // faire succès
+            }
         }
     }
 }

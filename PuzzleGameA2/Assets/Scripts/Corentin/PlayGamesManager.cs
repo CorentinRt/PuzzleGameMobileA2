@@ -2,41 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GooglePlayGames;
-using GooglePlayGames.BasicApi;
 using TMPro;
+using GooglePlayGames.BasicApi;
 
 public class PlayGamesManager : MonoBehaviour
 {
+    private static PlayGamesManager _instance;
+    public static PlayGamesManager Instance { get => _instance; set => _instance = value; }
+    public bool UseGooglePlay { get => _useGooglePlay; set => _useGooglePlay = value; }
+
+    private void Awake()
+    {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+        }
+        _instance = this;
+    }
+
+    private bool _useGooglePlay;
 
     [SerializeField] private TextMeshProUGUI _detailsText;
 
-    
-    void Start()
-    {
-        PlayGamesPlatform.Activate();
 
-        SignIn();
+    public void Start()
+    {
+
+        PlayGamesPlatform.DebugLogEnabled = true;
+
+
+        //PlayGamesPlatform.Activate();
+
+
+
+        PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
     }
 
     public void SignIn()
     {
-        PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+        PlayGamesPlatform.Instance.ManuallyAuthenticate(ProcessAuthentication);
     }
+
     internal void ProcessAuthentication(SignInStatus status)
     {
         if (status == SignInStatus.Success)
         {
             // Continue with Play Games Services
 
-            string name = PlayGamesPlatform.Instance.GetUserDisplayName();
-            string id = PlayGamesPlatform.Instance.GetUserId();
-            string ImgUrl = PlayGamesPlatform.Instance.GetUserImageUrl();
-
-            _detailsText.text = "Success \n " + name;
+            _useGooglePlay = true;
         }
         else
         {
-            _detailsText.text = "Sign in failed";
+            
+            _useGooglePlay = false;
 
             // Disable your integration with Play Games Services or show a login button
             // to ask users to sign-in. Clicking it should call
