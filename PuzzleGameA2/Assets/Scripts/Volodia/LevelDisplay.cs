@@ -15,7 +15,11 @@ public class LevelDisplay : MonoBehaviour
     [SerializeField, Foldout("References")] private TextMeshProUGUI _text;
     [SerializeField, Foldout("References")] private List<GameObject> _stars;
 
-    public void SetID(int id) => _levelID = id;
+    public void SetID(int id)
+    {
+        _levelID = id;
+        UpdateUI();
+    }
     
     private void Start()
     {
