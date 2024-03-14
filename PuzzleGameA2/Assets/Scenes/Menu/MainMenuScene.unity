@@ -326,10 +326,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2524007813707398229, guid: c70a60a449c9c3b4ca40092866944ca6, type: 3}
-      propertyPath: _levels.Array.size
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2524007813707398229, guid: c70a60a449c9c3b4ca40092866944ca6, type: 3}
       propertyPath: _levels.Array.data[16]._levelInfo
       value: 
       objectReference: {fileID: 11400000, guid: c29835499eedc924a8d31daa855bdd03, type: 2}

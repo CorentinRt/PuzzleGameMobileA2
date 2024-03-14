@@ -110,6 +110,7 @@ public class MenuUI : MonoBehaviour
 
     public void DisplayLevels()
     {
+        Debug.Log("Debugging Levels");
         for (int i = 0; i < 6; i++)
         {
             if (!LevelManager.Instance.DoesLevelExist(_firstDisplayedID + i))
@@ -126,5 +127,7 @@ public class MenuUI : MonoBehaviour
     {
         if (!LevelManager.Instance.DoesLevelExist(_firstDisplayedID + num * 6)) return;
         _firstDisplayedID += num * 6;
+        DisplayLevels();
+        Debug.Log(_firstDisplayedID);
     }
 }

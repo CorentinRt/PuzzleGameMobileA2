@@ -34,6 +34,10 @@ public class LevelDisplay : MonoBehaviour
 
     private void UpdateUI()
     {
+        foreach (GameObject star in _stars)
+        {
+            star.SetActive(false);
+        }
         Debug.Log("Updating UI");
         _levelManager = LevelManager.Instance;
         _level = _levelManager.GetLevel(_levelID);
