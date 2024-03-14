@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Gp/GooglePlayTest.unity
+    guid: c08e9b01ec9ad3f49a95ce36c97d4c9d
   - enabled: 1
     path: Assets/Scenes/Menu/MainMenuScene.unity
     guid: 845de9df560e0a44ca3fbc77878f389f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Gp/CorentinScene.unity
     guid: 8350de86b2ded8141a5c5aebbe348e64
   - enabled: 0
@@ -17,13 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gp/Volodia Scene/Global Scene.unity
     guid: 1846f21af96bf1b4fb9a509614026427
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Gp/Volodia Scene/Level1Test.unity
     guid: 58abe697abd468c44a65a568889babad
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Gp/TestLevels/Level2Test.unity
     guid: ed67aefadba5a314e9822392c4f5e124
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Gp/TestLevels/Level3Test.unity
     guid: fe2cef6f35eff4548be3bddbc8f5214a
   - enabled: 1
