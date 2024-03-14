@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicVolume: 0
   _effectVolume: 0
-  _menuMusic: {fileID: 0}
-  _inGameMusic: {fileID: 0}
+  _menuMusic: {fileID: 8300000, guid: 8e9e8b92500ea314b97cdad32a23c410, type: 3}
+  _inGameMusic: {fileID: 8300000, guid: 01f808538921efe469d78e3c01b2213d, type: 3}
   _victorySound: {fileID: 8300000, guid: a799967772309e7488ad5fd37ffbe795, type: 3}
   _defeatSound: {fileID: 8300000, guid: 454132680d6f61a43ba7250e9fb9e5fa, type: 3}
   _changeDirection: {fileID: 8300000, guid: 870b15bdf9ab0574ea0d63655888964c, type: 3}
