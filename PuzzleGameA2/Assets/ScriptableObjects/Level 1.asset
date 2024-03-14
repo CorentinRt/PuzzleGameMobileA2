@@ -15,7 +15,7 @@ MonoBehaviour:
   _levelID: 21
   _maxPlayerToSave: 3
   _nbPlayerLives: 3
-  _levelAdditiveScene: Level1Test
+  _levelAdditiveScene: MainMenuScene
   _shapes:
   - _power: 3
     _type: 0
@@ -29,3 +29,4 @@ MonoBehaviour:
     _type: 2
     _maxCount: 2
     _isLookingLeft: 0
+  _levelName: 
