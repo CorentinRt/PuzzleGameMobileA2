@@ -185,6 +185,7 @@ public class AchievementsManager : MonoBehaviour
         {
             if (!_madScientist)
             {
+                PlayGamesPlatform.Instance.UnlockAchievement("CgkIgfrixdgKEAIQAQ");
                 Social.ReportProgress("CgkIgfrixdgKEAIQAQ", 100.0f, (bool success) => {
                     // handle success or failure
                 });
@@ -205,6 +206,7 @@ public class AchievementsManager : MonoBehaviour
         {
             if (!_bigBrain)
             {
+                PlayGamesPlatform.Instance.UnlockAchievement("CgkIgfrixdgKEAIQAg");
                 Social.ReportProgress("CgkIgfrixdgKEAIQAg", 100.0f, (bool success) => {
                     // handle success or failure
                 });
@@ -225,6 +227,7 @@ public class AchievementsManager : MonoBehaviour
         {
             if (!_noBrain)
             {
+                PlayGamesPlatform.Instance.UnlockAchievement("CgkIgfrixdgKEAIQAw");
                 Social.ReportProgress("CgkIgfrixdgKEAIQAw", 100.0f, (bool success) => {
                     // handle success or failure
                 });
@@ -245,6 +248,7 @@ public class AchievementsManager : MonoBehaviour
         {
             if (!_iBelieveICanFly)
             {
+                PlayGamesPlatform.Instance.UnlockAchievement("CgkIgfrixdgKEAIQBA");
                 Social.ReportProgress("CgkIgfrixdgKEAIQBA", 100.0f, (bool success) => {
                     // handle success or failure
                 });
@@ -265,6 +269,7 @@ public class AchievementsManager : MonoBehaviour
         {
             if (!_whatAShock)
             {
+                PlayGamesPlatform.Instance.UnlockAchievement("CgkIgfrixdgKEAIQBQ");
                 Social.ReportProgress("CgkIgfrixdgKEAIQBQ", 100.0f, (bool success) => {
                     // handle success or failure
                 });
@@ -285,6 +290,7 @@ public class AchievementsManager : MonoBehaviour
         {
             if (!_byAllMeans)
             {
+                PlayGamesPlatform.Instance.UnlockAchievement("CgkIgfrixdgKEAIQBg");
                 Social.ReportProgress("CgkIgfrixdgKEAIQBg", 100.0f, (bool success) => {
                     // handle success or failure
                 });
@@ -305,6 +311,7 @@ public class AchievementsManager : MonoBehaviour
         {
             if (!_shinyShiny)
             {
+                PlayGamesPlatform.Instance.UnlockAchievement("CgkIgfrixdgKEAIQBw");
                 Social.ReportProgress("CgkIgfrixdgKEAIQBw", 100.0f, (bool success) => {
                     // handle success or failure
                 });
@@ -325,6 +332,7 @@ public class AchievementsManager : MonoBehaviour
         {
             if (!_atLeastSuccess)
             {
+                PlayGamesPlatform.Instance.UnlockAchievement("CgkIgfrixdgKEAIQCA");
                 Social.ReportProgress("CgkIgfrixdgKEAIQCA", 100.0f, (bool success) => {
                     // handle success or failure
                 });
