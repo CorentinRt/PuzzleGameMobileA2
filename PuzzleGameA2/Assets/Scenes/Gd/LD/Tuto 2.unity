@@ -1145,6 +1145,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorSpike (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 142990178735482877, guid: d085af7f57fcd374cbf9cac077736806, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2470182731398046228, guid: d085af7f57fcd374cbf9cac077736806, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.101185
@@ -1399,7 +1403,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.005379975}
+  m_Offset: {x: 0, y: -0.0045544915}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1410,7 +1414,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 0.23924005}
+  m_Size: {x: 8, y: 0.24089101}
   m_EdgeRadius: 0
 --- !u!212 &1078493850
 SpriteRenderer:
