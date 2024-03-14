@@ -1100,14 +1100,14 @@ RectTransform:
   m_GameObject: {fileID: 3074724754513448236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1503, y: 1.1503, z: 1.1503}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4351468596867816763}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 358, y: 0}
+  m_AnchoredPosition: {x: 362.4, y: 0}
   m_SizeDelta: {x: 52.5702, y: 49.681}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4211185104323558981
@@ -1138,8 +1138,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 6b67d065dba1aa746ac56bdf9bfc833a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3761,7 +3761,6 @@ MonoBehaviour:
   _selectMenu: {fileID: 6762616770840136950}
   _creditMenu: {fileID: 7747740134248357090}
   _settingMenu: {fileID: 2510454923771308029}
-  _arrowButtons: {fileID: 4940721924710422634}
   _creditButton: {fileID: 4457606219644794908}
   _goBackButton: {fileID: 8505173640773232732}
 --- !u!114 &3400332699982232349
@@ -5398,13 +5397,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8935767355540813042}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1591, y: 1.1591, z: 1.1591}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4351468596867816763}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -359, y: 0}
@@ -5438,8 +5437,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 6b67d065dba1aa746ac56bdf9bfc833a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5877,7 +5876,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6745931622587014234, guid: 80af3f2c72124bd49b810c81249f929d, type: 3}
       propertyPath: m_fontSize
-      value: 25.25
+      value: 35.95
       objectReference: {fileID: 0}
     - target: {fileID: 6853632563813420588, guid: 80af3f2c72124bd49b810c81249f929d, type: 3}
       propertyPath: m_Name
@@ -6095,7 +6094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6745931622587014234, guid: 80af3f2c72124bd49b810c81249f929d, type: 3}
       propertyPath: m_fontSize
-      value: 23.5
+      value: 33.5
       objectReference: {fileID: 0}
     - target: {fileID: 6853632563813420588, guid: 80af3f2c72124bd49b810c81249f929d, type: 3}
       propertyPath: m_Name
