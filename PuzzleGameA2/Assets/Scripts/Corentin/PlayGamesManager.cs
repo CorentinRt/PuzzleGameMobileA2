@@ -18,12 +18,11 @@ public class PlayGamesManager : MonoBehaviour
             Destroy(gameObject);
         }
         _instance = this;
+
+        DontDestroyOnLoad(_instance);
     }
 
     private bool _useGooglePlay;
-
-    [SerializeField] private TextMeshProUGUI _detailsText;
-
 
     public void Start()
     {
