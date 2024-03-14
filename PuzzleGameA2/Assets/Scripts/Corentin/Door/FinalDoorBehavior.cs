@@ -6,15 +6,26 @@ public class FinalDoorBehavior : MonoBehaviour
 {
 
     [SerializeField] private TriggerCollisionDetection _triggerCol;
+    [SerializeField] private GameObject _teleportationParticles;
 
 
     private void FinalDoorReachedCheck(GameObject gameObject)
     {
         if (gameObject.CompareTag("Player"))
         {
+            PlayerBehaviour player = gameObject.GetComponent<PlayerBehaviour>(); 
+            player.SetFinalDoor(transform.position);
+            _teleportationParticles.SetActive(true);
             GameManager.Instance.ChangeGamePhase(Enums.PhaseType.GameEndPhase);
+            StartCoroutine(player.WinCoroutine());
         }
     }
+
+    private void DisableAnim()
+    {
+        throw new System.NotImplementedException();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
