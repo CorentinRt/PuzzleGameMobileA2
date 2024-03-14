@@ -9906,6 +9906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3316525071533774094}
+  - component: {fileID: 2592300298674456327}
   m_Layer: 0
   m_Name: FX_Blood
   m_TagString: Untagged
@@ -9932,6 +9933,18 @@ Transform:
   - {fileID: 566519817168922719}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!210 &2592300298674456327
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6482690976134227113}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -2
+  m_SortAtRoot: 0
 --- !u!1 &7538681761702953150
 GameObject:
   m_ObjectHideFlags: 0
