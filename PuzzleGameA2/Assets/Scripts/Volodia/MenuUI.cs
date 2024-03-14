@@ -51,7 +51,7 @@ public class MenuUI : MonoBehaviour
         _selectMenu.SetActive(false);
         SaveManager.DeleteData();
         LevelManager.Instance.ReloadSave();
-        _levelsMenu.SetActive(true);
+        _animator.SetBool(OnLevelMenu,true);
     }
 
     public void Continue()
@@ -128,6 +128,5 @@ public class MenuUI : MonoBehaviour
         if (!LevelManager.Instance.DoesLevelExist(_firstDisplayedID + num * 6)) return;
         _firstDisplayedID += num * 6;
         DisplayLevels();
-        Debug.Log(_firstDisplayedID);
     }
 }
