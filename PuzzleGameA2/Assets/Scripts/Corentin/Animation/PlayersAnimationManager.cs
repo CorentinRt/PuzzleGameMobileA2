@@ -1,12 +1,27 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayersAnimationManager : MonoBehaviour
 {
     private Animator _animator;
     public event Action OnStopLanding;
+
+    [FormerlySerializedAs("boneSprites")] [SerializeField] private List<SpriteRenderer> _boneSprites;
+
+    [Button]
+    private void GetSprites()
+    {
+        _boneSprites = new List<SpriteRenderer>();
+        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            _boneSprites.Add(spriteRenderer);
+        }
+    }
 
     private void Awake()
     {
@@ -56,7 +71,7 @@ public class PlayersAnimationManager : MonoBehaviour
     }
     public void PlayWinAnimation()
     {
-        _animator.SetTrigger("Win");
+        if (_animator!=null) _animator.SetTrigger("Win");
     }
     public void PlayDeathBySpikeAnimation()
     {
@@ -67,5 +82,20 @@ public class PlayersAnimationManager : MonoBehaviour
     {
         _animator.SetTrigger("LaserDeath");
         _animator.SetBool("IsDead", true);
+    }
+
+    public IEnumerator PlayFadeOutAnimation()
+    {
+        while (_boneSprites[0].color.a>0)
+        {
+            foreach (SpriteRenderer boneSprite in _boneSprites)
+            {
+                var color = boneSprite.color;
+                color.a -= Time.deltaTime * 3;
+                boneSprite.color = color;
+            }
+            yield return null;
+        }
+
     }
 }

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c4a68e69063c442a00bd9fd1baa78f, type: 3}
+  m_Name: tutotest 2
+  m_EditorClassIdentifier: 
+  _levelID: 2
+  _maxPlayerToSave: 4
+  _nbPlayerLives: 7
+  _levelAdditiveScene: tutotest2
+  _shapes:
+  - _power: 7
+    _type: 1
+    _maxCount: 1
+    _isLookingLeft: 1
