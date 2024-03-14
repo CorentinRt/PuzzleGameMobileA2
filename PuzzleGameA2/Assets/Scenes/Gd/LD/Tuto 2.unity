@@ -1145,6 +1145,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorSpike (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 142990178735482877, guid: d085af7f57fcd374cbf9cac077736806, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2470182731398046228, guid: d085af7f57fcd374cbf9cac077736806, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.101185
