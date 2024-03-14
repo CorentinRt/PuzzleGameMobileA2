@@ -45,10 +45,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d165420d07665034aa28a2d4b493e463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuMusics: []
-  _inGameMusics: []
-  _victorySound: {fileID: 0}
-  _defeatSound: {fileID: 0}
+  _musicVolume: 0
+  _effectVolume: 0
+  _menuMusic: {fileID: 8300000, guid: 8e9e8b92500ea314b97cdad32a23c410, type: 3}
+  _inGameMusic: {fileID: 8300000, guid: 01f808538921efe469d78e3c01b2213d, type: 3}
+  _victorySound: {fileID: 8300000, guid: a799967772309e7488ad5fd37ffbe795, type: 3}
+  _defeatSound: {fileID: 8300000, guid: 454132680d6f61a43ba7250e9fb9e5fa, type: 3}
+  _changeDirection: {fileID: 8300000, guid: 870b15bdf9ab0574ea0d63655888964c, type: 3}
+  _acceleration: {fileID: 8300000, guid: 5c57a76ddc57c5842acc709d04cc6a01, type: 3}
+  _gravity: {fileID: 8300000, guid: 396b094ba5d87324183687a2bbf50cd5, type: 3}
+  _buttonClick: {fileID: 8300000, guid: 3be37243101bc15418f5f672ba90ac3e, type: 3}
+  _laserButtonPressed: {fileID: 8300000, guid: 59ac432c427cb5041b8eb872b751cfc7, type: 3}
+  _sideJump: {fileID: 8300000, guid: 03e95c8558de7b748bcd59d6ec2155b0, type: 3}
+  _laser: {fileID: 8300000, guid: f0eb4530071d58c45953a060d0c9fb75, type: 3}
+  _electricalSphere: {fileID: 8300000, guid: 7ab696ba698a2404f84a2706a877a0c9, type: 3}
+  _changeDirectionAdj: 1
+  _accelerationAdj: 1
+  _gravityAdj: 1
+  _buttonClickAdj: 1
+  _laserButtonPressedAdj: 1
+  _sideJumpAdj: 1
+  _laserAdj: 1
+  _electricalSphereAdj: 1
 --- !u!82 &4017485345014678229
 AudioSource:
   m_ObjectHideFlags: 0
