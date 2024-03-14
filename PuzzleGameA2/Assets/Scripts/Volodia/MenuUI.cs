@@ -100,6 +100,7 @@ public class MenuUI : MonoBehaviour
     public void ActivateLevelMenu()
     {
         _firstDisplayedID = 1;
+        DisplayLevels();
         _levelsMenu.SetActive(true);
         _arrowButtons.SetActive(true);
     }
@@ -110,7 +111,6 @@ public class MenuUI : MonoBehaviour
 
     public void DisplayLevels()
     {
-        Debug.Log("Debugging Levels");
         for (int i = 0; i < 6; i++)
         {
             if (!LevelManager.Instance.DoesLevelExist(_firstDisplayedID + i))
