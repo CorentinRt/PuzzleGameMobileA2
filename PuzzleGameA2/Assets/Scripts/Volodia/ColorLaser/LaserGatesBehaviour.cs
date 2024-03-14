@@ -38,6 +38,7 @@ public class LaserGatesBehaviour : ItemsBehaviors
     [SerializeField] private LaserButtonBehaviour _buttonRelated;
 
     [SerializeField] private GameObject _endFX;
+    [SerializeField] private GameObject _startFX;
     [SerializeField] private List<ParticleSystem> _laserParticules;
 
     public LaserButtonBehaviour ButtonRelated
@@ -90,6 +91,7 @@ public class LaserGatesBehaviour : ItemsBehaviors
         {
             _lineRenderer.gameObject.SetActive(false);
             _endFX.SetActive(false);
+            _startFX.SetActive(false);
             return;
         }
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity, ~(_ignoreLayer + _dragTriggerLayerMask + _indicatorLayerMask));
@@ -113,6 +115,7 @@ public class LaserGatesBehaviour : ItemsBehaviors
         _lineRenderer.gameObject.SetActive(true);
         _endFX.transform.position = hit.point;
         _endFX.SetActive(_laserSprite.color.a >= 1f);
+        _startFX.SetActive(_laserSprite.color.a >= 1f);
     }
 
 
@@ -137,8 +140,12 @@ public class LaserGatesBehaviour : ItemsBehaviors
 
     private void OnDrawGizmosSelected()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
-        if (!hit) return;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity,  ~(_ignoreLayer + _dragTriggerLayerMask + _indicatorLayerMask));
+        if (!hit)
+        {
+            _lineRenderer.SetPosition(1, transform.position);
+            return;
+        }
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, hit.point);
     }
