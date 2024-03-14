@@ -70,7 +70,7 @@ public class LevelPresentation : MonoBehaviour
     private void SetupPresentation()
     {
         _level = LevelManager.Instance.GetCurrentLevel();
-        _levelName.text = "Level" + _level.GetID;
+        _levelName.text = _level.LevelInfo.GetName;
         _nbLivesText.text = "x" + _level.LevelInfo.NbPlayerLives;
         List<Shape> shapes = _level.LevelInfo.Shapes;
         foreach (Shape shape in shapes)

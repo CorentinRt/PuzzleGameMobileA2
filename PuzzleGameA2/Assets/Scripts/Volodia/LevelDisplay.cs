@@ -15,7 +15,11 @@ public class LevelDisplay : MonoBehaviour
     [SerializeField, Foldout("References")] private TextMeshProUGUI _text;
     [SerializeField, Foldout("References")] private List<GameObject> _stars;
 
-    public void SetID(int id) => _levelID = id;
+    public void SetID(int id)
+    {
+        _levelID = id;
+        UpdateUI();
+    }
     
     private void Start()
     {
@@ -30,10 +34,14 @@ public class LevelDisplay : MonoBehaviour
 
     private void UpdateUI()
     {
+        foreach (GameObject star in _stars)
+        {
+            star.SetActive(false);
+        }
         Debug.Log("Updating UI");
         _levelManager = LevelManager.Instance;
         _level = _levelManager.GetLevel(_levelID);
-        _text.text = "Level " + _level.GetID;
+        _text.text = _level.LevelInfo.GetName;
         _button.interactable = _level.isUnlocked;
         if (!_level.isUnlocked) return;
         int stars = _level.GetStarsNum;
