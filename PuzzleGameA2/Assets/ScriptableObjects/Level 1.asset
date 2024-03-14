@@ -17,7 +17,7 @@ MonoBehaviour:
   _nbPlayerLives: 3
   _levelAdditiveScene: Level1Test
   _shapes:
-  - _power: 2
+  - _power: 3
     _type: 0
     _maxCount: 1
     _isLookingLeft: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
     _type: 2
     _maxCount: 2
     _isLookingLeft: 0
-  - _power: 4
+  - _power: 7
     _type: 2
     _maxCount: 2
     _isLookingLeft: 0
