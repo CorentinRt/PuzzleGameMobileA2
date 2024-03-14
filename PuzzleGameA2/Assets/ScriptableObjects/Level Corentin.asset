@@ -15,7 +15,7 @@ MonoBehaviour:
   _levelID: 20
   _maxPlayerToSave: 8
   _nbPlayerLives: 0
-  _levelAdditiveScene: CorentinScene
+  _levelAdditiveScene: MainMenuScene
   _shapes:
   - _power: 3
     _type: 0
@@ -29,3 +29,4 @@ MonoBehaviour:
     _type: 1
     _maxCount: 2
     _isLookingLeft: 0
+  _levelName: 

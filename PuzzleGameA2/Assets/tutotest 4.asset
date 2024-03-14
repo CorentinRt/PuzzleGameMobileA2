@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c4a68e69063c442a00bd9fd1baa78f, type: 3}
   m_Name: tutotest 4
   m_EditorClassIdentifier: 
-  _levelID: 2
+  _levelID: 4
   _maxPlayerToSave: 4
   _nbPlayerLives: 7
   _levelAdditiveScene: tutotest 4
@@ -21,3 +21,4 @@ MonoBehaviour:
     _type: 2
     _maxCount: 1
     _isLookingLeft: 0
+  _levelName: Tuto 4

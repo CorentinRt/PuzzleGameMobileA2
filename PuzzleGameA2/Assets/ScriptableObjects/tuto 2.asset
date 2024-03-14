@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c4a68e69063c442a00bd9fd1baa78f, type: 3}
   m_Name: tuto 2
   m_EditorClassIdentifier: 
-  _levelID: 5
+  _levelID: 15
   _maxPlayerToSave: 4
   _nbPlayerLives: 7
   _levelAdditiveScene: Tuto 2
   _shapes:
   - _power: 4
     _type: 0
-    _maxCount: 2
+    _maxCount: 1
     _isLookingLeft: 1
   - _power: 2
     _type: 2
@@ -41,3 +41,4 @@ MonoBehaviour:
     _type: 2
     _maxCount: 1
     _isLookingLeft: 0
+  _levelName: Level 10
