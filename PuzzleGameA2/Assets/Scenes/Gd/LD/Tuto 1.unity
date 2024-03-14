@@ -2607,6 +2607,12 @@ MonoBehaviour:
   _playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  _dragTriggerLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  _indicatorLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   _ignoreLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -3433,7 +3439,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -3
   m_Sprite: {fileID: 21300000, guid: 20fb7968475c6984594c531130ce39b6, type: 3}
-  m_Color: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
