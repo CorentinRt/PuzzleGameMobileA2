@@ -179,6 +179,11 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
             RaycastHit2D hit1 = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.down), Mathf.Infinity);
             if (hit1.collider.gameObject.TryGetComponent<CorpsesBehavior>(out CorpsesBehavior corpsesBehavior))
             {
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.PlayLaserSound();
+                }
+
                 LaserHitCorpses(corpsesBehavior);
             }
             if (hit1.collider.gameObject.TryGetComponent<PlayerBehaviour>(out PlayerBehaviour playerBehaviour))
@@ -213,6 +218,11 @@ public class LaserTrapBehavior : ItemsBehaviors, IResetable
 
     IEnumerator TimeBeforeShootCoroutine(PlayerBehaviour playerBehaviour)
     {
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.PlayLaserSound();
+        }
+
         yield return new WaitForSeconds(_timeBeforeShoot);
 
         LaserHit(playerBehaviour);
