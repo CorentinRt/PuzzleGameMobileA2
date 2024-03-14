@@ -4,6 +4,7 @@ using Enums;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 
 [CreateAssetMenu(menuName = "ScriptableObjects/LevelInfo")]
@@ -14,8 +15,10 @@ public class LevelInfo : ScriptableObject
     [SerializeField] private int _nbPlayerLives;
     [SerializeField,Scene] private string _levelAdditiveScene;
     [SerializeField] private List<Shape> _shapes;
+    [SerializeField] private string _levelName;
 
     public int LevelID => _levelID;
+    public string GetName => _levelName;
     public int MaxPlayerToSave => _maxPlayerToSave;
     public int NbPlayerLives => _nbPlayerLives;
     public string LevelScene => _levelAdditiveScene;
