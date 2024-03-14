@@ -13,6 +13,7 @@ public class MenuUI : MonoBehaviour
     [SerializeField] private GameObject _selectMenu;
     [SerializeField] private GameObject _creditMenu;
     [SerializeField] private GameObject _settingMenu;
+    [SerializeField] private GameObject _arrowButtons;
 
     [Header("Buttons")] [SerializeField] private GameObject _creditButton;
     [SerializeField] private GameObject _goBackButton;
@@ -76,6 +77,7 @@ public class MenuUI : MonoBehaviour
         else if (_levelsMenu.activeSelf)
         {
             _levelsMenu.SetActive(false);
+            _arrowButtons.SetActive(false);
             _animator.SetBool(OnLevelMenu, false); 
         }
         /*else if (_homeMenu.activeSelf)
@@ -97,8 +99,9 @@ public class MenuUI : MonoBehaviour
 
     public void ActivateLevelMenu()
     {
-        _levelsMenu.SetActive(true);
         _firstDisplayedID = 1;
+        _levelsMenu.SetActive(true);
+        _arrowButtons.SetActive(true);
     }
     public void ActivateSelectMenu()
     {
