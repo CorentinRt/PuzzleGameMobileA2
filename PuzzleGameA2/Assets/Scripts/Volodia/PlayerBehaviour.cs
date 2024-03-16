@@ -110,7 +110,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (_won)
         {
             if (transform.position.x < _finalDoorPos.x - 0.1f) _rb.velocity = new Vector2(_speed * Time.deltaTime,_rb.velocity.y);
-            else if (transform.position.x > _finalDoorPos.x + 0.1f) _rb.velocity = new Vector2(_speed * Time.deltaTime, _rb.velocity.y);
+            else if (transform.position.x > _finalDoorPos.x + 0.1f) _rb.velocity = new Vector2(-_speed * Time.deltaTime, _rb.velocity.y);
             else _rb.velocity = new Vector2(0, _rb.velocity.y);
             return;
         }
