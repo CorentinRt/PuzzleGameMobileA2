@@ -26,6 +26,7 @@ public class PlayerManager : MonoBehaviour
     private bool _onePlayerDied;
 
     public event Action OnPlayerDeath;
+    public event Action<int> OnNumberOfLivesSet;
 
     private static PlayerManager _instance;
     public static PlayerManager Instance { get => _instance; set => _instance = value; }
@@ -75,7 +76,7 @@ public class PlayerManager : MonoBehaviour
     private void SetLives()
     {
         _nbLives = _levelManager.GetCurrentLevel().LevelInfo.NbPlayerLives;
-        
+        OnNumberOfLivesSet?.Invoke(_nbLives);
     }
 
     private void CreateFirstPlayer()
