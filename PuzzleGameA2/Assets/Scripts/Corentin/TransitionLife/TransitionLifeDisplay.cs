@@ -92,11 +92,8 @@ public class TransitionLifeDisplay : MonoBehaviour
     {
         GameManager.Instance.OnPhase2Ended += StartCooldown;
 
-        _currentNumber = PlayerManager.Instance.GetLivesNumber();
-        _lastNumber = _currentNumber;
-
-        _lastNumberText.text = _lastNumber.ToString();
-        _currentNumberText.text = _currentNumber.ToString();
+        SetLivesNumber(PlayerManager.Instance.GetLivesNumber());
+        PlayerManager.Instance.OnNumberOfLivesSet += SetLivesNumber;
 
         Vector3 tempVector = _textContainer.localPosition;
 
@@ -105,6 +102,15 @@ public class TransitionLifeDisplay : MonoBehaviour
         _textContainer.localPosition = tempVector;
 
         _lifeTransitionPanel.gameObject.SetActive(false);
+    }
+
+    public void SetLivesNumber(int nbLives)
+    {
+        _currentNumber = nbLives;
+        _lastNumber = _currentNumber;
+
+        _lastNumberText.text = _lastNumber.ToString();
+        _currentNumberText.text = _currentNumber.ToString();
     }
     private void OnDestroy()
     {
