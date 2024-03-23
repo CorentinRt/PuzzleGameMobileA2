@@ -41,6 +41,14 @@ public class PhaseChoice : MonoBehaviour
         _gameManager.ChangeGamePhase((PhaseType) phaseNum);
         _choicePanel.SetActive(false);
     }
+    public void LaunchPlayer()
+    {
+        if (_gameManager.CurrentPhase != PhaseType.LevelPresentation)
+        {
+            _gameManager.ChangeGamePhase((PhaseType)1);
+            _choicePanel.SetActive(false);
+        }
+    }
 
     public void RestartLevel()
     {
