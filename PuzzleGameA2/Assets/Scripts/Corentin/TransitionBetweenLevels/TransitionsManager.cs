@@ -52,15 +52,15 @@ public class TransitionsManager : MonoBehaviour
     {
         _transitionPanel.SetActive(true);
 
-        Debug.Log("Name scene : " + SceneManager.GetActiveScene().name);
-        if (SceneManager.GetActiveScene().name == "MainMenuScene")
-        {
+        //Debug.Log("Name scene : " + SceneManager.GetActiveScene().name);
+        //if (SceneManager.GetActiveScene().name == "MainMenuScene")
+        //{
 
-        }
-        else
-        {
+        //}
+        //else
+        //{
 
-        }
+        //}
         StartTransition();
     }
 }

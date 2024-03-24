@@ -59,12 +59,12 @@ MonoBehaviour:
   _sideJump: {fileID: 8300000, guid: 03e95c8558de7b748bcd59d6ec2155b0, type: 3}
   _laser: {fileID: 8300000, guid: f0eb4530071d58c45953a060d0c9fb75, type: 3}
   _electricalSphere: {fileID: 8300000, guid: 7ab696ba698a2404f84a2706a877a0c9, type: 3}
-  _changeDirectionAdj: 1
-  _accelerationAdj: 1
-  _gravityAdj: 1
-  _buttonClickAdj: 1
-  _laserButtonPressedAdj: 1
-  _sideJumpAdj: 1
+  _changeDirectionAdj: 3
+  _accelerationAdj: 3
+  _gravityAdj: 3
+  _buttonClickAdj: 2
+  _laserButtonPressedAdj: 2
+  _sideJumpAdj: 1.5
   _laserAdj: 1
   _electricalSphereAdj: 1
 --- !u!82 &4017485345014678229

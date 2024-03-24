@@ -17,6 +17,10 @@ public class StarsBehaviors : MonoBehaviour
 
     public void DisplayStars()
     {
+        foreach (var star in _stars)
+        {
+            star.SetActive(false);
+        }
         _winPanel.SetActive(true);
 
         int value = 0;
@@ -75,6 +79,14 @@ public class StarsBehaviors : MonoBehaviour
 
         while (currentIndex < value)
         {
+            if (currentIndex != 0)
+            {
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.PlayVictorySound();
+                }
+            }
+
             _stars[currentIndex].SetActive(true);
 
             currentIndex++;

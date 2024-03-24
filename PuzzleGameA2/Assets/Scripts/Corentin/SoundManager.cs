@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -60,7 +61,7 @@ public class SoundManager : MonoBehaviour
             PlayerPrefs.SetFloat("_effectVolume", 0.5f);
         }
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
     private void Update()
     {
@@ -87,6 +88,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    [Button]
     public void PlayVictorySound()
     {
         if (_victorySound != null)
@@ -94,6 +96,7 @@ public class SoundManager : MonoBehaviour
             _audioSource.PlayOneShot(_victorySound, _effectVolume);
         }
     }
+    [Button]
     public void PlayDefeatSound()
     {
         if (_defeatSound != null)
@@ -101,28 +104,34 @@ public class SoundManager : MonoBehaviour
             _audioSource.PlayOneShot(_defeatSound, _effectVolume);
         }
     }
-
+    [Button]
     public void PlayChangeDirectionSound()
     {
         if (_changeDirection != null)
         {
+            Debug.Log("Play direction change sound");
             _audioSource.PlayOneShot(_changeDirection, _effectVolume * _changeDirectionAdj);
         }
     }
+    [Button]
     public void PlayAccelerationSound()
     {
         if (_acceleration != null)
         {
+            Debug.Log("Play acceleration sound");
             _audioSource.PlayOneShot(_acceleration, _effectVolume * _accelerationAdj);
         }
     }
+    [Button]
     public void PlayGravitySound()
     {
         if (_gravity != null)
         {
+            Debug.Log("Play gravity sound");
             _audioSource.PlayOneShot(_gravity, _effectVolume);
         }
     }
+    [Button]
     public void PlayButtonClickSound()
     {
         if (_buttonClick != null)
@@ -131,6 +140,7 @@ public class SoundManager : MonoBehaviour
             _audioSource.PlayOneShot(_buttonClick, _effectVolume * _buttonClickAdj);
         }
     }
+    [Button]
     public void PlayLaserButtonPressed()
     {
         if (_laserButtonPressed != null)
@@ -139,24 +149,30 @@ public class SoundManager : MonoBehaviour
             _audioSource.PlayOneShot(_laserButtonPressed, _effectVolume * _laserButtonPressedAdj);
         }
     }
+    [Button]
     public void PlaySideJumpSound()
     {
         if (_sideJump != null)
         {
+            Debug.Log("Play side jump sound");
             _audioSource.PlayOneShot(_sideJump, _effectVolume * _sideJumpAdj);
         }
     }
+    [Button]
     public void PlayLaserSound()
     {
         if (_laser != null)
         {
+            Debug.Log("Play laser sound");
             _audioSource.PlayOneShot(_laser, _effectVolume * _laserAdj);
         }
     }
+    [Button]
     public void PlayElectricalSphereSound()
     {
         if (_electricalSphere != null)
         {
+            Debug.Log("Play electrical sphere sound");
             _audioSource.PlayOneShot(_electricalSphere, _effectVolume * _electricalSphereAdj);
         }
     }

@@ -105,7 +105,7 @@ public class LevelManager : MonoBehaviour
 
         if (isLevelLoaded)
         {
-            //TransitionsManager.Instance.StartTransition();
+            TransitionsManager.Instance.StartTransition();
             Debug.Log("In isLevelLoaded");
         }
 
@@ -211,8 +211,23 @@ public class LevelManager : MonoBehaviour
 
     public void MainMenu()
     {
+        //UnloadCurrentLevel();
+
+        //SceneManager.LoadScene(_mainMenu);
+
+        StartCoroutine(WaitBeforeGoToMenu());
+    }
+
+    IEnumerator WaitBeforeGoToMenu()
+    {
+        TransitionsManager.Instance.StartTransition();
+
+        yield return new WaitForSeconds(2f);
+
         UnloadCurrentLevel();
         SceneManager.LoadScene(_mainMenu);
+
+        yield return null;
     }
 
     public void RestartCurrentLevel()
