@@ -17,6 +17,10 @@ public class StarsBehaviors : MonoBehaviour
 
     public void DisplayStars()
     {
+        foreach (var star in _stars)
+        {
+            star.SetActive(false);
+        }
         _winPanel.SetActive(true);
 
         int value = 0;
