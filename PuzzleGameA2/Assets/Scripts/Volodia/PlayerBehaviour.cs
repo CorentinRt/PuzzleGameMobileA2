@@ -160,7 +160,10 @@ public class PlayerBehaviour : MonoBehaviour
                     Vector2 velocity = AdjustVelocityToSlope(new Vector2(_accelerationSpeed * _direction * Time.deltaTime, _rb.velocity.y));
                     _rb.velocity = velocity;
                 }
-                if (_isAccelerating!=_accelerationSFX.activeSelf) _accelerationSFX.SetActive(_isAccelerating);
+                if (_isAccelerating != _accelerationSFX.activeSelf)
+                {
+                    _accelerationSFX.SetActive(_isAccelerating);
+                }
             }
             else if (!_walking)
             {
@@ -210,6 +213,18 @@ public class PlayerBehaviour : MonoBehaviour
         {
             _playersAnimationManager.DisableFearAnimation();
         }
+
+        Vector3 tempVectorVfx = _accelerationSFX.transform.localScale;
+        if (transform.parent.localScale.y < 0f)
+        {
+            tempVectorVfx.y = -1f;
+        }
+        else
+        {
+            tempVectorVfx.y = 1f;
+        }
+        _accelerationSFX.transform.localScale = tempVectorVfx;
+
     }
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
