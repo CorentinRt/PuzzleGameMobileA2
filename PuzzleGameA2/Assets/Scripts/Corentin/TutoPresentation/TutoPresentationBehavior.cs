@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
@@ -29,6 +30,14 @@ public class TutoPresentationBehavior : MonoBehaviour
         Button = 5,
         Direction = 6,
         Sphere = 7
+    }
+
+    [Button]
+    private void TestDisplay()
+    {
+        AddToShowVideo(_tutorialVideo[0]);
+
+        DisplayAnimation();
     }
 
     private void SetUpAnimation()
@@ -61,7 +70,7 @@ public class TutoPresentationBehavior : MonoBehaviour
             AddToShowVideo(_tutorialVideo[0]);
             AddToShowVideo(_tutorialVideo[3]);
         }
-        else if(currentScene.name == "tutotest 2")
+        else if(currentScene.name == "tutotest2")
         {
             AddToShowVideo(_tutorialVideo[7]);
             AddToShowVideo(_tutorialVideo[5]);
@@ -74,7 +83,7 @@ public class TutoPresentationBehavior : MonoBehaviour
         {
             AddToShowVideo(_tutorialVideo[2]);
         }
-        else if (currentScene.name == "tutotest 5")
+        else if (currentScene.name == "tutotest5")
         {
             AddToShowVideo(_tutorialVideo[6]);
         }
