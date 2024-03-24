@@ -1531,17 +1531,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: FinalDoor
       objectReference: {fileID: 0}
-    - target: {fileID: 1981379202378209031, guid: 5c5fafded0f8af0489692484de9ac0da, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.64
-      objectReference: {fileID: 0}
-    - target: {fileID: 1981379202378209031, guid: 5c5fafded0f8af0489692484de9ac0da, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.72
-      objectReference: {fileID: 0}
     - target: {fileID: 3530998421292471871, guid: 5c5fafded0f8af0489692484de9ac0da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.81
+      value: 10.2
       objectReference: {fileID: 0}
     - target: {fileID: 3530998421292471871, guid: 5c5fafded0f8af0489692484de9ac0da, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1578,10 +1570,6 @@ PrefabInstance:
     - target: {fileID: 3530998421292471871, guid: 5c5fafded0f8af0489692484de9ac0da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 3531137664538115075, guid: 5c5fafded0f8af0489692484de9ac0da, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -183,11 +183,9 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 Debug.Log("Still jumping");
             }
-
-            if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
         }
 
-        if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
+        //if (_isWalkingOnCorpse) _rb.velocity = new Vector2(_rb.velocity.x, 0f);
     }
     private void Update()
     {
