@@ -79,6 +79,14 @@ public class StarsBehaviors : MonoBehaviour
 
         while (currentIndex < value)
         {
+            if (currentIndex != 0)
+            {
+                if (SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.PlayVictorySound();
+                }
+            }
+
             _stars[currentIndex].SetActive(true);
 
             currentIndex++;
