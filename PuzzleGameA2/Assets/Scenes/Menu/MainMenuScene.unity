@@ -260,11 +260,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!224 &96792561 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5843405652489248103, guid: a742dafe97ba9584092ec03133b9b653, type: 3}
-  m_PrefabInstance: {fileID: 775590124432227917}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &349275043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -353,7 +348,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 96792561}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -720,6 +715,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -40
       objectReference: {fileID: 0}
+    - target: {fileID: 553784053269450013, guid: a742dafe97ba9584092ec03133b9b653, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 30.51947
+      objectReference: {fileID: 0}
     - target: {fileID: 578106373271199294, guid: a742dafe97ba9584092ec03133b9b653, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -828,6 +827,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4351468596867816763, guid: a742dafe97ba9584092ec03133b9b653, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3.5271301
+      objectReference: {fileID: 0}
     - target: {fileID: 4940721924710422634, guid: a742dafe97ba9584092ec03133b9b653, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -913,3 +916,4 @@ SceneRoots:
   - {fileID: 926725947}
   - {fileID: 349275043}
   - {fileID: 1880370255}
+  - {fileID: 490737214}
